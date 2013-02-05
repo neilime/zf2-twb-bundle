@@ -1,0 +1,17 @@
+language: php
+
+php:
+ - 5.3.3
+ - 5.3
+ - 5.4
+
+before_install:
+ - composer self-update
+ - composer install
+
+before_script:
+ - cd tests
+ - cp phpunit.xml.dist phpunit.xml
+
+script:
+ - ../vendor/bin/phpunit TwbBundleTest
