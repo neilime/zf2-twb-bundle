@@ -3,7 +3,6 @@ namespace TwbBundleTest\View\Helper;
 /**
  * Test form rendering
  * Based on http://twitter.github.com/bootstrap/base-css.html#forms
- * @author Emilien
  */
 class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 	/**
@@ -28,7 +27,9 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 		if(!$bAllowOverride)$oServiceManager->setAllowOverride(true);
 		$oServiceManager->setService('Config',$this->configuration)->setAllowOverride($bAllowOverride);
 
+		/* @var $oViewHelperPluginManager \Zend\View\HelperPluginManager */
 		$oViewHelperPluginManager = $oServiceManager->get('view_helper_manager');
+
 		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
 		$this->formHelper = $oViewHelperPluginManager->get('form')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
@@ -44,26 +45,31 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 			'options' => array(
 				'label' => 'Label name',
 				'twb' => array(
-					'help' => 'Example block-level help text here.'
+					'help-block' => 'Example block-level help text here.'
 				)
 			)
 		))
 		->add(array(
 			'name' => 'input-checkbox',
-			'type' => 'Zend\Form\Element\Checkbox',
+			'type' => 'checkbox',
 			'options' => array(
-				'label' => 'Check me out'
+				'label' => 'Check me out',
+				'use_hidden_element' => false
 			)
 		))
 		->add(array(
-			'name' => 'input-submit',
+			'name' => 'button-submit',
+			'type' => 'button',
 			'attributes' => array(
-				'type' => 'submit',
-				'value' => 'Submit'
+				'type' => 'submit'
+			),
+			'options' => array(
+				'label' => 'Submit'
 			)
 		)));
+
 		$this->assertEquals(
-			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_VERTICAL),
+			$this->formHelper->render($oForm),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/default.html')
 		);
 	}
@@ -77,14 +83,15 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 			)
 		))
 		->add(array(
-			'name' => 'input-submit',
+			'name' => 'button-submit',
+			'type' => 'button',
 			'attributes' => array(
-				'type' => 'button',
-				'value' => 'Search'
+				'type' => 'submit'
+			),
+			'options' => array(
+				'label' => 'Search'
 			)
 		));
-
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-forms/search.html',$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH));
 
 		$this->assertEquals(
 			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH),
@@ -92,39 +99,87 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 		);
 	}
 
-	public function testRenderVertical(){
+	public function testRenderInlineForm(){
 		$oForm = new \Zend\Form\Form();
 		$oForm->add(array(
-			'name' => 'test-input',
+			'name' => 'input-text-email',
 			'attributes' => array(
-				'required' => true
+				'class' => 'input-small',
+				'placeholder' => 'Email'
+			)
+		))
+		->add(array(
+			'name' => 'input-text-password',
+			'attributes' => array(
+				'class' => 'input-small',
+				'placeholder' => 'Password'
+			)
+		))
+		->add(array(
+			'name' => 'input-checkbox',
+			'type' => 'checkbox',
+			'options' => array(
+				'label' => 'Remember me',
+				'use_hidden_element' => false
+			)
+		))
+		->add(array(
+			'name' => 'button-submit',
+			'type' => 'button',
+			'attributes' => array(
+				'type' => 'submit'
 			),
 			'options' => array(
-				'label' => 'test'
+				'label' => 'Sign in'
 			)
 		));
 
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-forms/vertical.html',$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_VERTICAL));
-
 		$this->assertEquals(
-			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_VERTICAL),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/vertical.html')
+			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/inline.html')
 		);
 	}
 
-	public function testRenderHorizontal(){
+	public function testRenderHorizontalForm(){
 		$oForm = new \Zend\Form\Form();
 		$oForm->add(array(
-			'name' => 'test-input',
+			'name' => 'input-text-email',
 			'attributes' => array(
-				'required' => true,
+				'class' => 'input-small',
+				'placeholder' => 'Email'
 			),
 			'options' => array(
-				'label' => 'test'
+				'label' => 'Email'
+			)
+		))
+		->add(array(
+			'name' => 'input-text-password',
+			'attributes' => array(
+				'class' => 'input-small',
+				'placeholder' => 'Password'
+			),
+			'options' => array(
+				'label' => 'Password'
+			)
+		))
+		->add(array(
+			'name' => 'input-checkbox',
+			'type' => 'checkbox',
+			'options' => array(
+				'label' => 'Remember me',
+				'use_hidden_element' => false
+			)
+		))
+		->add(array(
+			'name' => 'button-submit',
+			'type' => 'button',
+			'attributes' => array(
+				'type' => 'submit'
+			),
+			'options' => array(
+				'label' => 'Sign in'
 			)
 		));
-
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-forms/horizontal.html',$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL));
 
 		$this->assertEquals(
 			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL),
