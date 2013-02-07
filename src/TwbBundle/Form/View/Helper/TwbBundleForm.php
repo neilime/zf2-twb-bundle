@@ -4,7 +4,6 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
 	const LAYOUT_HORIZONTAL = 'horizontal';
 	const LAYOUT_INLINE = 'inline';
 	const LAYOUT_SEARCH = 'search';
-	const LAYOUT_VERTICAL = 'vertical';
 
     /**
      * Render a form from the provided $oForm,
@@ -12,8 +11,7 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
      * @param \Zend\Form\FormInterface $oForm
      * @return string
      */
-    public function render(\Zend\Form\FormInterface $oForm, $sFormLayout = self::LAYOUT_VERTICAL){
-
+    public function render(\Zend\Form\FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL){
     	//Set form layout class
     	if(is_string($sFormLayout)){
     		$sLayoutClass = 'form-'.$sFormLayout;
@@ -24,12 +22,19 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
     	}
     	if(method_exists($oForm, 'prepare'))$oForm->prepare();
 
-    	$sFormContent = '';
+    	$sFormContent = $sFormActions = '';
     	foreach($oForm as $oElement){
-    		$sFormContent .= $oElement instanceof \Zend\Form\FieldsetInterface
-    			?$this->getView()->formCollection($oElement,true,$sFormLayout)
-    			:$this->getView()->formRow($oElement,null,null,$sFormLayout);
+    		if($oElement instanceof \Zend\Form\FieldsetInterface)$sFormContent .= $this->getView()->formCollection($oElement,true,$sFormLayout);
+    		else{
+    			$aOptions = $oElement->getOption('twb');
+    			if(empty($aOptions['formAction']))$sFormContent .= $this->getView()->formRow($oElement,null,null,$sFormLayout);
+    			else $sFormActions .= $this->getView()->formRow($oElement,null,null,null);
+    		}
     	}
-    	return $this->openTag($oForm).$sFormContent.$this->closeTag();
+    	if(!empty($sFormActions))$sFormActions = sprintf(
+    		'<div class="form-actions">%s</div>',
+    		$sFormActions
+    	);
+    	return $this->openTag($oForm).$sFormContent.$sFormActions.$this->closeTag();
     }
 }

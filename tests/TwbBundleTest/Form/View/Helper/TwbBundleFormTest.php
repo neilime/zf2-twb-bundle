@@ -69,7 +69,7 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 		)));
 
 		$this->assertEquals(
-			$this->formHelper->render($oForm),
+			$this->formHelper->render($oForm,null),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/default.html')
 		);
 	}
@@ -182,8 +182,72 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 		));
 
 		$this->assertEquals(
-			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL),
+			$this->formHelper->render($oForm),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/horizontal.html')
+		);
+	}
+
+	public function testRenderSearchFormButtonAppend(){
+		$oForm = new \Zend\Form\Form();
+		$oForm->add(array(
+			'name' => 'input-search-append',
+			'attributes' => array(
+				'class' => 'search-query input-medium'
+			),
+			'options' => array('twb' => array(
+				'append' => array(
+					'type' => 'buttons',
+					'buttons' => array(
+						'search-submit-append' => array('options' => array('label' => 'Search'),'attributes' => array('type' => 'submit'))
+					)
+				)
+			))
+		))->add(array(
+			'name' => 'input-search-prepend',
+			'attributes' => array(
+				'class' => 'search-query input-medium'
+			),
+			'options' => array('twb' => array(
+				'prepend' => array(
+					'type' => 'buttons',
+					'buttons' => array(
+						'search-submit-prepend' => array('options' => array('label' => 'Search'),'attributes' => array('type' => 'submit'))
+					)
+				)
+			))
+		));
+
+		$this->assertEquals(
+			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/search-button-append.html')
+		);
+	}
+
+	public function testRenderFormActions(){
+		$oForm = new \Zend\Form\Form();
+		$oForm->add(array(
+			'name' => 'button-submit',
+			'type' => 'button',
+			'attributes' => array(
+				'type' => 'submit',
+				'class' => 'btn-primary'
+			),
+			'options' => array(
+				'label' => 'Save changes',
+				'twb' => array('formAction' => true)
+			)
+		))->add(array(
+			'name' => 'button-cancel',
+			'type' => 'button',
+			'options' => array(
+				'label' => 'Cancel',
+				'twb' => array('formAction' => true)
+			)
+		));
+
+		$this->assertEquals(
+			$this->formHelper->render($oForm,null),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/form-actions.html')
 		);
 	}
 }

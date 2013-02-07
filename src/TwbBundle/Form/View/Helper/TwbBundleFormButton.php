@@ -9,7 +9,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 	 */
 	public function render(\Zend\Form\ElementInterface $oElement, $sButtonContent = null){
 		if($sClass = $oElement->getAttribute('class')){
-			if(strpos($sClass, 'btn') === false)$oElement->setAttribute('class',$sClass.' btn');
+			if(!preg_match('/(\s|^)btn(\s|$)/',$sClass))$oElement->setAttribute('class',$sClass.' btn');
 		}
 		else $oElement->setAttribute('class','btn');
 		if($aOptions = $oElement->getOptions('twb')){

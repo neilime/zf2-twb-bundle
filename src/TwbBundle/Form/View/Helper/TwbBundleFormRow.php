@@ -2,6 +2,11 @@
 namespace TwbBundle\Form\View\Helper;
 class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	/**
+	 * @var \Zend\Form\Factory
+	 */
+	protected $formFactory;
+
+	/**
 	 * @var string
 	 */
 	protected $formLayout;
@@ -12,7 +17,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	 * @param boolean $bRenderErrors
 	 * @return string|\TwbBundle\Form\View\Helper\TwbBundleFormRow
 	 */
-	public function __invoke(\Zend\Form\ElementInterface $oElement = null, $sLabelPosition = null, $bRenderErrors = null,$sFormLayout = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_VERTICAL){
+	public function __invoke(\Zend\Form\ElementInterface $oElement = null, $sLabelPosition = null, $bRenderErrors = null,$sFormLayout = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL){
 		if($sFormLayout)$this->setFormLayout($sFormLayout);
 		return parent::__invoke($oElement,$sLabelPosition,$bRenderErrors);
 	}
@@ -37,7 +42,6 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 		->setMessageOpenFormat('<div%s>')
 		->setMessageSeparatorString('<br/>')
 		->setMessageCloseString('</div>');
-
 
 		if($sType === 'hidden')$sMarkup = $oElementHelper->render($oElement).$oElementErrorsHelper->render($oElement, array('class' => 'alert alert-error'));
 		else{
@@ -80,18 +84,13 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 			//Buttons
 			elseif(in_array($sType,array('submit','button'))){
 				if($sClass = $oElement->getAttribute('class')){
-					if(strpos($sClass, 'btn') === false)$oElement->setAttribute('class',$sClass.' btn');
+					if(!preg_match('/(\s|^)btn(\s|$)/',$sClass))$oElement->setAttribute('class',$sClass.' btn');
 				}
 				else $oElement->setAttribute('class','btn');
 			}
 
 			//Render according to layout
 			switch($sFormLayout){
-				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_VERTICAL:
-					$sMarkup = $this->renderLabel($oElement);
-					if(!$bElementInLabel)$sMarkup .= $this->renderElement($oElement);
-					$sMarkup .= $oElementErrorsHelper->render($oElement, array('class' => 'help-block'));
-					break;
 				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
 				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH:
 					$sMarkup = ($bElementInLabel?$this->renderLabel($oElement):$this->renderElement($oElement)).$oElementErrorsHelper->render($oElement, array('class' => 'help-block'));
@@ -103,6 +102,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 					'</div>':$this->renderLabel($oElement).'<div class="controls">'
 					.$this->renderElement($oElement).$oElementErrorsHelper->render($oElement, array('class' => 'help-block')).
 					'</div>').'</div>';
+					break;
+				default:
+					$sMarkup = $this->renderLabel($oElement);
+					if(!$bElementInLabel)$sMarkup .= $this->renderElement($oElement);
+					$sMarkup .= $oElementErrorsHelper->render($oElement, array('class' => 'help-block'));
 					break;
 			}
 		}
@@ -202,8 +206,9 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 				$sMarkup = '';
 				foreach($aAddOnConfig['buttons'] as $sName => $oButton){
 					if(is_array($oButton)){
-						if(!is_string($sName) && isset($oButton['label']))$sName = $oButton['label'];
-						$oButton = new \Zend\Form\Element\Button(is_string($sName)?$sName:null,$oButton);
+						if(!isset($oButton['type']))$oButton['type'] = 'button';
+						if(!isset($oButton['name']) && is_string($sName))$oButton['name'] = $sName;
+						$oButton = $this->getFormFactory()->createElement($oButton);
 					}
 					elseif(!($oButton instanceof \Zend\Form\Element\Button))throw new \Exception(sprintf(
 						'AddOn "buttons" configuration expects arrays or \Zend\Form\Element\Button, "%s" given',
@@ -233,6 +238,31 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	 * @return string
 	 */
 	public function getFormLayout(){
-		return $this->formLayout?:\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_VERTICAL;
+		return $this->formLayout;
+	}
+
+	/**
+	 * Retrieve composed form factory, lazy-loads one if none present
+	 * @return \Zend\Form\Factory
+	 */
+	public function getFormFactory(){
+		if(null === $this->formFactory)$this->setFormFactory(new \Zend\Form\Factory());
+		return $this->formFactory;
+	}
+
+	/**
+	 * Compose a form factory to use when calling add() with a non-element/fieldset
+	 * @param \Zend\Form\Factory $oFactory
+	 * @return Form
+	 */
+
+	/**
+	 * Compose a form factory to create AddOn buttons
+	 * @param \Zend\Form\Factory $oFactory
+	 * @return \TwbBundle\Form\View\Helper\TwbBundleFormRow
+	 */
+	public function setFormFactory(\Zend\Form\Factory $oFactory){
+		$this->formFactory = $oFactory;
+		return $this;
 	}
 }
