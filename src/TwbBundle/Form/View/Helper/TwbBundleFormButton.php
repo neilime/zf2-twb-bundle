@@ -13,24 +13,54 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 		}
 		else $oElement->setAttribute('class','btn');
 		if($aOptions = $oElement->getOptions('twb')){
-			$sMarkup = '%s';
 			if(isset($aOptions['dropdown'])){
-				if($sClass = $oElement->getAttribute('class')){
-					if(strpos($sClass, 'dropdown-toggle') === false)$oElement->setAttribute('class',$sClass.' dropdown-toggle');
+
+				//Dropdown button is not segmented
+				if(empty($aOptions['dropdown']['segmented'])){
+
+					if($sClass = $oElement->getAttribute('class')){
+						if(strpos($sClass, 'dropdown-toggle') === false)$oElement->setAttribute('class',$sClass.' dropdown-toggle');
+					}
+					else $oElement->setAttribute('class','dropdown-toggle');
+
+					//Set dropdown toogle behavior
+					$oElement->setAttribute('data-toggle','dropdown');
+
+					$sCloseTag = $this->closeTag();
+					//Render element and insert caret
+					$sElementMarkup = str_ireplace(
+						$sCloseTag,
+						PHP_EOL.'<span class="caret"></span>'.$sCloseTag,
+						parent::render($oElement, $sButtonContent)
+					);
 				}
-				else $oElement->setAttribute('class','dropdown-toggle');
-				$sButtonContent .= '<span class="caret"></span>';
-				$sMarkup = '
-					<div class="btn-group">%s</div>
-					<ul class="dropdown-menu">'.join(PHP_EOL,array_map(
+				else{
+					//Create caret button
+					$oCaretElement = new \Zend\Form\Element\Button('caret');
+					$oCaretElement->setAttributes(array(
+						'class' => 'btn dropdown-toggle',
+						'data-toggle' => 'dropdown'
+					));
+
+					//Render element and insert caret
+					$sCloseTag = $this->closeTag();
+					$sElementMarkup = parent::render($oElement, $sButtonContent).str_ireplace(
+						$sCloseTag,
+						PHP_EOL.'<span class="caret"></span>'.$sCloseTag,
+						parent::render($oCaretElement,'')
+					);
+				}
+				return sprintf(
+					'<div class="btn-group">%s<ul class="dropdown-menu">%s</ul></div>',
+					$sElementMarkup,
+					join(PHP_EOL,array_map(
 						array($this,'renderDropdownAction'),
-						empty($aOptions['actions']) || !is_array($aOptions['actions'])?array():$aOptions['actions']
-					)).'</ul>
-				';
+						empty($aOptions['dropdown']['actions']) || !is_array($aOptions['dropdown']['actions'])?array():$aOptions['dropdown']['actions']
+					))
+				);
 			}
-			return sprintf($sMarkup,parent::render($oElement, $sButtonContent));
 		}
-		else return parent::render($oElement, $sButtonContent);
+		return parent::render($oElement, $sButtonContent);
 	}
 
 	/**
@@ -41,21 +71,24 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 	 */
 	protected function renderDropdownAction($aActionConfig){
 		$sActionUrl = '#';
-		if(is_array($aActionInfos)){
-			$sActionName = $aActionInfos['name'];
+		if(is_array($aActionConfig)){
+			$sActionName = $aActionConfig['name'];
 			if($sActionName === '-')return '<li class="divider"></li>';
-			if(!empty($aActionInfos['url']))$sActionUrl = $aActionInfos['url'];
-			unset($aActionInfos['name'],$aActionInfos['url']);
-			$sAttributes = $this->createAttributesString($aActionInfos);
+			if(!empty($aActionConfig['url']))$sActionUrl = $aActionConfig['url'];
+			unset($aActionConfig['name'],$aActionConfig['url']);
+			$sAttributes = $this->createAttributesString($aActionConfig);
 		}
-		elseif(is_string($aActionInfos)){
-			if(empty($aActionInfos))throw new \Exception('Action name is empty');
-			$sActionName = $aActionInfos;
+		elseif(is_string($aActionConfig)){
+			if(empty($aActionConfig))throw new \Exception('Action name is empty');
+			$sActionName = $aActionConfig;
 			if($sActionName === '-')return '<li class="divider"></li>';
 		}
 		else throw new \Exception('Action config expects string or array, "'.gettype($aActionConfig).'" given');
-		return '<li>
-			<a href="'.$this->getEscapeHtmlAttrHelper()->__invoke($sActionUrl).'"'.(empty($sAttributes)?'':$sAttributes).'>'.$this->getEscapeHtmlHelper()->__invoke($sActionName).'</a>
-		</li>';
+		return sprintf(
+			'<li><a href="%s"%s>%s</a></li>',
+			$this->getEscapeHtmlAttrHelper()->__invoke($sActionUrl),
+			empty($sAttributes)?'':' '.$sAttributes,
+			$this->getEscapeHtmlHelper()->__invoke($sActionName)
+		);
 	}
 }

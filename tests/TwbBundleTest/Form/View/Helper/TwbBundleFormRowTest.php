@@ -141,7 +141,8 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/help-block.html')
 		);
 	}
-	public function testRenderButtonDropdowns(){
+
+	public function testRenderButtonDropdownAppend(){
 		$oElement = new \Zend\Form\Element('input-text',array(
 			'twb' => array(
 				'append' => array(
@@ -149,15 +150,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 					'buttons' => array(
 						array(
 							'label' => 'Action',
-							'dropdown' => array(
-								'action' => array(
-									'Action',
-									'Another action',
-									'Something else here',
-									'-',
-									'Separated link'
-								)
-							)
+							'dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link'))
 						)
 					)
 				)
@@ -166,7 +159,84 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 
 		$this->assertEquals(
 			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdowns.html')
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-append.html')
+		);
+	}
+
+	public function testRenderButtonDropdownPrepend(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'twb' => array(
+				'prepend' => array(
+					'type' => 'buttons',
+					'buttons' => array(
+						array(
+							'label' => 'Action',
+							'dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link'))
+						)
+					)
+				)
+			)
+		));
+
+		$this->assertEquals(
+			$this->formRowHelper->render($oElement),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-prepend.html')
+		);
+	}
+
+	public function testRenderButtonDropdownCombined(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'twb' => array(
+				'prepend' => array(
+					'type' => 'buttons',
+					'buttons' => array(
+						array(
+							'label' => 'Action',
+							'dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link'))
+						)
+					)
+				),
+				'append' => array(
+					'type' => 'buttons',
+					'buttons' => array(
+						array(
+							'label' => 'Action',
+							'dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link'))
+						)
+					)
+				)
+			)
+		));
+
+		$this->assertEquals(
+			$this->formRowHelper->render($oElement),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-combined.html')
+		);
+	}
+
+	public function testRenderButtonSegmentedDropdownPrepend(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'twb' => array(
+				'prepend' => array(
+					'type' => 'buttons',
+					'buttons' => array(
+						array(
+							'label' => 'Action',
+							'dropdown' => array(
+								'segmented' => true,
+								'actions' => array('Action','Another action','Something else here','-','Separated link')
+							)
+						)
+					)
+				)
+			)
+		));
+
+		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-segmented-dropdown-prepend.html',$this->formRowHelper->render($oElement));
+
+		$this->assertEquals(
+			$this->formRowHelper->render($oElement),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-segmented-dropdown-prepend.html')
 		);
 	}
 }

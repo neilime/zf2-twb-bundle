@@ -201,7 +201,10 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 				if(!isset($aAddOnConfig['buttons']) || !is_array($aAddOnConfig['buttons']))throw new \Exception('AddOn "buttons" type expects array "buttons" configuration');
 				$sMarkup = '';
 				foreach($aAddOnConfig['buttons'] as $sName => $oButton){
-					if(is_array($oButton))$oButton = new \Zend\Form\Element\Button(is_string($sName)?$sName:'btn',$oButton);
+					if(is_array($oButton)){
+						if(!is_string($sName) && isset($oButton['label']))$sName = $oButton['label'];
+						$oButton = new \Zend\Form\Element\Button(is_string($sName)?$sName:null,$oButton);
+					}
 					elseif(!($oButton instanceof \Zend\Form\Element\Button))throw new \Exception(sprintf(
 						'AddOn "buttons" configuration expects arrays or \Zend\Form\Element\Button, "%s" given',
 						is_object($oButton)?get_class($oButton):gettype($oButton)
