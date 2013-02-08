@@ -19,6 +19,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	 */
 	public function __invoke(\Zend\Form\ElementInterface $oElement = null, $sLabelPosition = null, $bRenderErrors = null,$sFormLayout = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL){
 		if($sFormLayout)$this->setFormLayout($sFormLayout);
+		else $this->formLayout = null;
 		return parent::__invoke($oElement,$sLabelPosition,$bRenderErrors);
 	}
 
@@ -81,6 +82,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 					return $sOption;
 				},$aOptions,array_keys($aOptions)));
 			}
+
 			//Buttons
 			elseif(in_array($sType,array('submit','button'))){
 				if($sClass = $oElement->getAttribute('class')){
@@ -96,10 +98,17 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 					$sMarkup = ($bElementInLabel?$this->renderLabel($oElement):$this->renderElement($oElement)).$oElementErrorsHelper->render($oElement, array('class' => 'help-block'));
 					break;
 				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
-					$sMarkup = '<div class="control-group'.(count($oElement->getMessages())?' error':'').'">'.($bElementInLabel?'<div class="controls">'
+
+					//Validation state
+					$sStateClass = '';
+					if(count($oElement->getMessages()))$sStateClass = 'error';
+					if(($aTwbOptions = $oElement->getOption('twb')) && !empty($aTwbOptions['state']) && $aTwbOptions['state'] !== $sStateClass)$sStateClass .= ' '.$aTwbOptions['state'];
+					if(!empty($sStateClass))$sStateClass = ' '.trim($sStateClass);
+
+					$sMarkup = '<div class="control-group'.$sStateClass.'">'.($bElementInLabel?'<div class="controls'.$sStateClass.'">'
 						.$this->renderLabel($oElement)
 						.$oElementErrorsHelper->render($oElement, array('class' => 'help-block')).
-					'</div>':$this->renderLabel($oElement).'<div class="controls">'
+					'</div>':$this->renderLabel($oElement).'<div class="controls'.$sStateClass.'">'
 					.$this->renderElement($oElement).$oElementErrorsHelper->render($oElement, array('class' => 'help-block')).
 					'</div>').'</div>';
 					break;
@@ -124,6 +133,10 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 
 		$slabelOpen = $sLabelClose = '';
 		if($sLabel = $oElement->getLabel()){
+
+			//Translate label
+			if($oTranslator = $this->getTranslator())$sLabel = $oTranslator->translate($sLabel,$this->getTranslatorTextDomain());
+
 			$sLabel = $this->getEscapeHtmlHelper()->__invoke($sLabel);
 			$aLabelAttributes = $oElement->getLabelAttributes()?:$this->labelAttributes;
 

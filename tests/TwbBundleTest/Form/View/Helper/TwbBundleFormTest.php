@@ -250,4 +250,39 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/form-actions.html')
 		);
 	}
+
+	public function testRenderFormValidation(){
+		$oInputFilter = new \Zend\InputFilter\InputFilter();
+
+		$oForm = new \Zend\Form\Form();
+		$oForm->add(array(
+			'name' => 'input-text-email',
+			'attributes' => array(
+				'class' => 'input-small',
+				'placeholder' => 'Email'
+			),
+			'options' => array(
+				'label' => 'Email'
+			)
+		))->add(array(
+			'name' => 'button-submit',
+			'type' => 'button',
+			'attributes' => array('type' => 'submit'),
+			'options' => array('label' => 'Submit')
+		))->setInputFilter($oInputFilter->add(array(
+			'name' => 'input-text-email',
+			'required' => true,
+			'filters' => array(array('name' => 'StringTrim')),
+			'validators' => array(
+				array('name'=> 'EmailAddress'),
+			)
+		)));
+
+		$this->assertFalse($oForm->setData(array('input-text-email' => 'test'))->isValid());
+
+		$this->assertEquals(
+			$this->formHelper->render($oForm),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/form-validation.html')
+		);
+	}
 }

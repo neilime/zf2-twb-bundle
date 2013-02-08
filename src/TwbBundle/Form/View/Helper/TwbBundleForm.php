@@ -28,7 +28,7 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
     		else{
     			$aOptions = $oElement->getOption('twb');
     			if(empty($aOptions['formAction']))$sFormContent .= $this->getView()->formRow($oElement,null,null,$sFormLayout);
-    			else $sFormActions .= $this->getView()->formRow($oElement,null,null,null);
+    			else $sFormActions .= $this->getView()->formRow($oElement,null,null,'');
     		}
     	}
     	if(!empty($sFormActions))$sFormActions = sprintf(

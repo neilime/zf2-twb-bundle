@@ -95,7 +95,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		$oElement = new \Zend\Form\Element('input-text',array(
 			'placeholder' => 'Username',
 			'twb' => array(
-				'append' => array('type'=>'icon','icon'=>'enveloppe'),
+				'append' => array('type'=>'icon','icon'=>'envelope'),
 			)
 		));
 
@@ -287,6 +287,21 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		$this->assertEquals(
 			$this->formRowHelper->render($oElement),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-segmented-dropdown-append.html')
+		);
+	}
+
+	public function testRenderValidationStates(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'twb' => array(
+				'help-inline' => 'Something may have gone wrong',
+				'state' => 'warning'
+			),
+			'label' => 'Input with warning'
+		));
+
+		$this->assertEquals(
+			$this->formRowHelper->setFormLayout(\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)->render($oElement),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/validation-states.html')
 		);
 	}
 }

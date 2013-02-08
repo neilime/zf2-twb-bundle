@@ -14,6 +14,7 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
 	 */
     public function __invoke(\Zend\Form\ElementInterface $oElement = null, $bWrap = true,$sFormLayout = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL){
     	if($sFormLayout)$this->setFormLayout($sFormLayout);
+    	else $this->formLayout = null;
     	return parent::__invoke($oElement,$bWrap);
     }
 
