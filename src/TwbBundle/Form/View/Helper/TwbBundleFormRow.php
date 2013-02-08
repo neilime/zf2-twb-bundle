@@ -195,12 +195,16 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 		if(is_string($aAddOnConfig))return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig).'</span>';
 		elseif(is_array($aAddOnConfig) && isset($aAddOnConfig['type']))switch($aAddOnConfig['type']){
 			case 'text':
-				if(!isset($aAddOnConfig['content']) || !is_string($aAddOnConfig['content']))throw new \Exception('AddOn "text" type expects string "content" configuration');
-				if($oTranslator = $this->getTranslator())$aAddOnConfig['content'] = $oTranslator->translate(
-					$aAddOnConfig['content'],
+				if(!isset($aAddOnConfig['text']) || !is_string($aAddOnConfig['text']))throw new \Exception('AddOn "text" type expects string "text" configuration');
+				if($oTranslator = $this->getTranslator())$aAddOnConfig['text'] = $oTranslator->translate(
+					$aAddOnConfig['text'],
 					$this->getTranslatorTextDomain()
 				);
-				return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig['content']).'</span>';
+				return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig['text']).'</span>';
+			case 'icon':
+				if(!isset($aAddOnConfig['icon']) || !is_string($aAddOnConfig['icon']))throw new \Exception('AddOn "text" type expects string "icon" configuration');
+				return '<span class="add-on"><i class="icon-'.$this->getEscapeHtmlAttrHelper()->__invoke($aAddOnConfig['icon']).'"></i></span>';
+				break;
 			case 'buttons':
 				if(!isset($aAddOnConfig['buttons']) || !is_array($aAddOnConfig['buttons']))throw new \Exception('AddOn "buttons" type expects array "buttons" configuration');
 				$sMarkup = '';

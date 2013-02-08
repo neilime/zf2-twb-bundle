@@ -77,6 +77,34 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		);
 	}
 
+	public function testRenderTextAppend(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'placeholder' => 'Username',
+			'twb' => array(
+				'append' => array('type'=>'text','text'=>'Append text'),
+			)
+		));
+
+		$this->assertEquals(
+			$this->formRowHelper->render($oElement),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/text-append.html')
+		);
+	}
+
+	public function testRenderIconAppend(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'placeholder' => 'Username',
+			'twb' => array(
+				'append' => array('type'=>'icon','icon'=>'enveloppe'),
+			)
+		));
+
+		$this->assertEquals(
+			$this->formRowHelper->render($oElement),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/icon-append.html')
+		);
+	}
+
 	public function testRenderOneButtonAppended(){
 		$oElement = new \Zend\Form\Element('input-text',array(
 			'placeholder' => 'Username',
