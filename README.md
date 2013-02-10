@@ -80,10 +80,13 @@ return array(
 ```
 
 * Edit layout file `module/Application/view/layout/layout.phtml`, echo head scripts :
+
 ```php
- <?php
-	//...		
+<?php
+	//...	
+		
 	echo $this->headScript();
+	
 	//...
 ?>
 ```
@@ -164,5 +167,217 @@ return array(
 ?>
 ```
 
-## Configuration
+## Features
 
+TwbBundle is abble to render [Twitter bootstrap demo site](http://twitter.github.com/bootstrap) forms, inputs, buttons & navigation stuff. (tests are written to check that)
+
+### Forms
+
+Render \Zend\Form\FormInterface
+
+#### Form layout :
+
+Layout us define when calling form view helper
+
+```php
+<?php
+
+$this->form($form,$layout);
+
+?>
+```
+
+* None : `null`
+* Search form : `\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH`
+* Inline form : `\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE`
+* Horizontal form (default) : `\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL`
+
+### Inputs
+
+Render \Zend\Form\Element\ElementInterface
+
+All elements options are defined in `twb` array
+
+```php
+<?php
+
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		/** TwbBundle options **/
+	)
+);
+
+?>
+```
+
+#### Appended and / or prepended
+
+For all prepended / appended types : 
+
+```php
+<?php
+
+
+
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'prepend' => array(
+			'type' => 'prepended type',
+			//Prepended type option
+		),
+		'append' => array(
+			'type' => 'appended type',
+			//Appended type option
+		)
+	)
+);
+?>
+```
+
+
+* Text :
+
+Appended / prepended texts are translated 
+
+```php
+<?php
+
+//Prepended text
+
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'prepend' => array(
+			'type' => 'text',
+			'text' => 'Prepended text'
+		)
+	)
+);
+?>
+```
+
+* Icon : 
+
+```php
+<?php
+
+//Appended icon
+
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'append' => array(
+			'type' => 'icon',
+			'icon' => 'enveloppe' //icon class without "icon-"
+		)
+	)
+);
+?>
+```
+
+* Button(s) :
+
+Button options are explained [below](#Buttons)
+ 
+```php
+<?php
+
+//Appended buttons
+
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'append' => array(
+			'type' => 'icon',
+			'buttons' => array(
+				'button-one' => array(/* Button factory options, name is not mandatory if given with the array key */),
+				new \Zend\Form\Element\Button('button-two',array(/* Button options */))
+			)
+		)
+	)
+);
+?>
+```
+
+* Or what ever you want :
+
+```php
+<?php
+
+//Appended markup
+
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'append' => '<span>Simple appended text</span>'
+	)
+);
+?>
+```
+
+#### Form actions
+
+This option allows an element to be in form actions part
+
+```php
+<?php
+
+//Element in form actions
+
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'formAction' => true
+	)
+);
+?>
+```
+
+#### Help :
+
+* Inline
+```php
+<?php
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'help-inline' => 'Inline help text'
+	)
+);
+?>
+```
+
+* Block
+```php
+<?php
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'help-block' => 'A longer block of help text that breaks onto a new line and may extend beyond one line.'
+	)
+);
+?>
+```
+
+#### Validation states
+
+Validations are only rendered with horizontal form layout
+
+```php
+
+//Element with "warning" state
+
+<?php
+new \Zend\Form\Element\Element('test-element',array(
+	'twb' => array(
+		'state' => 'warning'
+	)
+);
+?>
+```
+
+### Buttons
+
+Render \Zend\Form\Element\Button
+
+#### Icons
+#### Button dropdowns
+#### Split button dropdowns
+#### Dropup menus
+
+### Navigation
+
+'Work in progress'
