@@ -1,6 +1,8 @@
 TwbBundle
 =====================
 
+`Work in progress`
+
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
 
 Created by Neilime
@@ -266,7 +268,7 @@ new \Zend\Form\Element\Element('test-element',array(
 	'twb' => array(
 		'append' => array(
 			'type' => 'icon',
-			'icon' => 'enveloppe' //icon class without "icon-"
+			'icon' => 'enveloppe' //icon class excluding "icon-"
 		)
 	)
 );
@@ -275,7 +277,7 @@ new \Zend\Form\Element\Element('test-element',array(
 
 * Button(s) :
 
-Button options are explained [below](#Buttons)
+Button options are explained [below](#buttons)
  
 ```php
 <?php
@@ -380,4 +382,4 @@ Render \Zend\Form\Element\Button
 
 ### Navigation
 
-'Work in progress'
+`Work in progress`
