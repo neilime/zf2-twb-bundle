@@ -12,11 +12,36 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 			if(!preg_match('/(\s|^)btn(\s|$)/',$sClass))$oElement->setAttribute('class',$sClass.' btn');
 		}
 		else $oElement->setAttribute('class','btn');
-		if($aOptions = $oElement->getOptions('twb')){
-			if(isset($aOptions['dropdown'])){
+
+		if(null === $sButtonContent){
+			$sButtonContent = $oElement->getLabel();
+			if(null === $sButtonContent)throw new \Exception(sprintf(
+				'%s expects either button content as the second argument, or that the element provided has a label value; neither found',
+				__METHOD__
+			));
+			if(null !== ($oTranslator = $this->getTranslator()))$sButtonContent = $oTranslator->translate($sButtonContent, $this->getTranslatorTextDomain());
+		}
+		$sButtonContent = $this->getEscapeHtmlHelper()->__invoke($sButtonContent);
+
+		if($aOptions = $oElement->getOption('twb')){
+
+			//Icon
+			if(isset($aOptions['icon'])){
+				if(!is_string($aOptions['icon']))throw new \Exception('Icon configuration expects string, "'.gettype($aOptions['icon']).'" given');
+				//Add icon to button content
+				$sButtonContent = '<i class="'.$this->getEscapeHtmlAttrHelper()->__invoke(trim($aOptions['icon'])).'"></i> '.$sButtonContent;
+			}
+
+			//Dropdowns // dropup
+			if(isset($aOptions['dropdown'],$aOptions['dropup']))throw new \Exception('dropdown & dropup options are not allowed together');
+			elseif(isset($aOptions['dropdown']))$sDrop = 'dropdown';
+			elseif(isset($aOptions['dropup']))$sDrop = 'dropup';
+			else $sDrop = null;
+
+			if($sDrop){
 
 				//Dropdown button is not segmented
-				if(empty($aOptions['dropdown']['segmented'])){
+				if(empty($aOptions[$sDrop]['segmented'])){
 
 					if($sClass = $oElement->getAttribute('class')){
 						if(strpos($sClass, 'dropdown-toggle') === false)$oElement->setAttribute('class',$sClass.' dropdown-toggle');
@@ -26,69 +51,83 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 					//Set dropdown toogle behavior
 					$oElement->setAttribute('data-toggle','dropdown');
 
-					$sCloseTag = $this->closeTag();
-					//Render element and insert caret
-					$sElementMarkup = str_ireplace(
-						$sCloseTag,
-						PHP_EOL.'<span class="caret"></span>'.$sCloseTag,
-						parent::render($oElement, $sButtonContent)
-					);
+					//Add caret to button content and render element
+					$sMarkup = $this->openTag($oElement).$sButtonContent.PHP_EOL.'<span class="caret"></span>'.$this->closeTag();
 				}
 				else{
 					//Create caret button
 					$oCaretElement = new \Zend\Form\Element\Button('caret');
 					$oCaretElement->setAttributes(array(
-						'class' => 'btn dropdown-toggle',
+						'class' => trim('btn dropdown-toggle '.trim(preg_replace('/(^|\s)(btn|dropdown-toggle)(\s|$)/', '', $oElement->getAttribute('class')))),
 						'data-toggle' => 'dropdown'
 					));
 
-					//Render element and insert caret
+					//Add caret button to button content and render element
 					$sCloseTag = $this->closeTag();
-					$sElementMarkup = parent::render($oElement, $sButtonContent).str_ireplace(
-						$sCloseTag,
-						PHP_EOL.'<span class="caret"></span>'.$sCloseTag,
-						parent::render($oCaretElement,'')
-					);
+					$sMarkup = $this->openTag($oElement).$sButtonContent.$this->closeTag()
+					.str_ireplace($sCloseTag, PHP_EOL.'<span class="caret"></span>'.$sCloseTag, parent::render($oCaretElement,''));
 				}
+
 				return sprintf(
-					'<div class="btn-group">%s<ul class="dropdown-menu">%s</ul></div>',
-					$sElementMarkup,
+					'<div class="btn-group'.($sDrop === 'dropdown'?'':' '.$sDrop).'">%s<ul class="dropdown-menu'.(empty($aOptions[$sDrop]['pull'])?'':' pull-'.$aOptions[$sDrop]['pull']).'">%s</ul></div>',
+					$sMarkup,
 					join(PHP_EOL,array_map(
-						array($this,'renderDropdownAction'),
-						empty($aOptions['dropdown']['actions']) || !is_array($aOptions['dropdown']['actions'])?array():$aOptions['dropdown']['actions']
+						array($this,'renderDropAction'),
+						empty($aOptions[$sDrop]['actions']) || !is_array($aOptions[$sDrop]['actions'])?array():$aOptions[$sDrop]['actions']
 					))
 				);
 			}
 		}
-		return parent::render($oElement, $sButtonContent);
+		return $this->openTag($oElement).$sButtonContent.$this->closeTag();
 	}
 
 	/**
-	 * Retrieve dropdown action markup
+	 * Retrieve drop (down or up) action markup
 	 * @param string|array $aActionConfig
 	 * @throws \Exception
 	 * @return string
 	 */
-	protected function renderDropdownAction($aActionConfig){
-		$sActionUrl = '#';
+	protected function renderDropAction($aActionConfig){
+		$sHref = '#';
 		if(is_array($aActionConfig)){
-			$sActionName = $aActionConfig['name'];
-			if($sActionName === '-')return '<li class="divider"></li>';
-			if(!empty($aActionConfig['url']))$sActionUrl = $aActionConfig['url'];
-			unset($aActionConfig['name'],$aActionConfig['url']);
+			$sActionLabel = '';
+
+			//Label
+			if(!empty($aActionConfig['label'])){
+				if(!is_string($aActionConfig['label']))throw new \Exception('Label configuration expects string, "'.gettype($aActionConfig['label']).'" given');
+
+				$sActionLabel = $aActionConfig['label'];
+				if(null !== ($oTranslator = $this->getTranslator()))$sActionLabel = $oTranslator->translate($sActionLabel, $this->getTranslatorTextDomain());
+				$sActionLabel = $this->getEscapeHtmlHelper()->__invoke($sActionLabel);
+			}
+			//Content
+			elseif(!empty($aActionConfig['content']) && is_string($aActionConfig['content']))$sActionLabel = $aActionConfig['content'];
+
+			//Icon
+			if(!empty($aActionConfig['icon'])){
+				if(!is_string($aActionConfig['icon']))throw new \Exception('Icon configuration expects string, "'.gettype($aActionConfig['icon']).'" given');
+				$sActionLabel = '<i class="'.$this->getEscapeHtmlAttrHelper()->__invoke(trim($aActionConfig['icon'])).'"></i> '.$sActionLabel;
+			}
+
+			if(isset($aActionConfig['href']))$sHref =  $aActionConfig['href'];
+			unset($aActionConfig['label'],$aActionConfig['href']);
 			$sAttributes = $this->createAttributesString($aActionConfig);
 		}
 		elseif(is_string($aActionConfig)){
 			if(empty($aActionConfig))throw new \Exception('Action name is empty');
-			$sActionName = $aActionConfig;
-			if($sActionName === '-')return '<li class="divider"></li>';
+			$sActionLabel = $aActionConfig;
+			if($sActionLabel === '-')return '<li class="divider"></li>';
+			$sHref = '#'.$this->getEscapeHtmlAttrHelper()->__invoke($sActionLabel);
+
+			if(null !== ($oTranslator = $this->getTranslator()))$sActionLabel = $oTranslator->translate($sActionLabel, $this->getTranslatorTextDomain());
+			$sActionLabel = $this->getEscapeHtmlHelper()->__invoke($sActionLabel);
 		}
 		else throw new \Exception('Action config expects string or array, "'.gettype($aActionConfig).'" given');
 		return sprintf(
 			'<li><a href="%s"%s>%s</a></li>',
-			$this->getEscapeHtmlAttrHelper()->__invoke($sActionUrl),
+			$sHref,
 			empty($sAttributes)?'':' '.$sAttributes,
-			$this->getEscapeHtmlHelper()->__invoke($sActionName)
+			$sActionLabel
 		);
 	}
 }

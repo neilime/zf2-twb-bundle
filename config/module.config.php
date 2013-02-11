@@ -6,7 +6,10 @@ return array(
 			'form' => 'TwbBundle\Form\View\Helper\TwbBundleForm',
 			'formbutton' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
 			'formCollection' => 'TwbBundle\Form\View\Helper\TwbBundleFormCollection',
-			'formRow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow'
+			'formRow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow',
+
+			//Alert
+			'alert' => 'TwbBundle\View\Helper\TwbBundleAlert'
 		)
 	)
 );

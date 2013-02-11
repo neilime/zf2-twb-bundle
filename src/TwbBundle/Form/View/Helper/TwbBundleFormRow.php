@@ -215,8 +215,8 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 				);
 				return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig['text']).'</span>';
 			case 'icon':
-				if(!isset($aAddOnConfig['icon']) || !is_string($aAddOnConfig['icon']))throw new \Exception('AddOn "text" type expects string "icon" configuration');
-				return '<span class="add-on"><i class="icon-'.$this->getEscapeHtmlAttrHelper()->__invoke($aAddOnConfig['icon']).'"></i></span>';
+				if(!isset($aAddOnConfig['icon']) || !is_string($aAddOnConfig['icon']))throw new \Exception('AddOn "icon" type expects string "icon" configuration');
+				return '<span class="add-on"><i class="'.$this->getEscapeHtmlAttrHelper()->__invoke(trim($aAddOnConfig['icon'])).'"></i></span>';
 				break;
 			case 'buttons':
 				if(!isset($aAddOnConfig['buttons']) || !is_array($aAddOnConfig['buttons']))throw new \Exception('AddOn "buttons" type expects array "buttons" configuration');

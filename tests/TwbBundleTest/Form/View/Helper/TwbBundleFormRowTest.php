@@ -95,7 +95,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		$oElement = new \Zend\Form\Element('input-text',array(
 			'placeholder' => 'Username',
 			'twb' => array(
-				'append' => array('type'=>'icon','icon'=>'envelope'),
+				'append' => array('type'=>'icon','icon'=>'icon-envelope'),
 			)
 		));
 
@@ -178,12 +178,14 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 					'buttons' => array(
 						'action' => array('options' => array(
 							'label' => 'Action',
-							'dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link'))
+							'twb' => array('dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link')))
 						))
 					)
 				)
 			)
 		));
+
+		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-append.html',$this->formRowHelper->render($oElement));
 
 		$this->assertEquals(
 			$this->formRowHelper->render($oElement),
@@ -199,7 +201,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 					'buttons' => array(
 						'action' => array('options' => array(
 							'label' => 'Action',
-							'dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link'))
+							'twb' => array('dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link')))
 						))
 					)
 				)
@@ -220,7 +222,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 					'buttons' => array(
 						'action' => array('options' => array(
 							'label' => 'Action',
-							'dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link'))
+							'twb' => array('dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link')))
 						))
 					)
 				),
@@ -229,7 +231,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 					'buttons' => array(
 						'action' => array('options' => array(
 							'label' => 'Action',
-							'dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link'))
+							'twb' => array('dropdown' => array('actions' => array('Action','Another action','Something else here','-','Separated link')))
 						))
 					)
 				)
@@ -250,10 +252,10 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 					'buttons' => array(
 						'action' => array('options' => array(
 							'label' => 'Action',
-							'dropdown' => array(
+							'twb' => array('dropdown' => array(
 								'segmented' => true,
 								'actions' => array('Action','Another action','Something else here','-','Separated link')
-							)
+							))
 						))
 					)
 				)
@@ -274,10 +276,10 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 					'buttons' => array(
 						'action' => array('options' => array(
 							'label' => 'Action',
-							'dropdown' => array(
+							'twb' => array('dropdown' => array(
 								'segmented' => true,
 								'actions' => array('Action','Another action','Something else here','-','Separated link')
-							)
+							))
 						))
 					)
 				)
