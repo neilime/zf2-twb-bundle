@@ -97,16 +97,6 @@ strong {
   font-weight:700;
 }
 
-ul li {
-  list-style: inside;
-  padding-left: 25px;
-}
-
-ol li {
-  list-style: decimal inside;
-  padding-left: 20px;
-}
-
 blockquote {
   margin: 0;
   padding: 0 0 0 20px;
@@ -298,6 +288,26 @@ a.buttons {
 
 a.github {
 	background: url(../images/octocat-small.png) no-repeat 1px;
+}
+
+a.demo {
+	background: url(../images/demo.png) no-repeat 1px;
+}
+
+a.home {
+	background: url(../images/home.png) no-repeat 1px;
+}
+
+a.alerts {
+	background: url(../images/alert.png) no-repeat 1px;
+}
+
+a.button {
+	background: url(../images/button.png) no-repeat 1px;
+}
+
+a.form {
+	background: url(../images/form.png) no-repeat 1px;
 }
 
 a.buttons:hover {

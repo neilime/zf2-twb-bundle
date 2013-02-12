@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>TwbBundle by neilime</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">TwbBundle</h1>
+        <p class="header">Zend Framework 2 module for easy integration of Twitter Bootstrap</p>
+        <ul>
+          <li><a class="buttons home" href="index.html">Home</a></li>
+          <li><a class="buttons form" href="#forms">View forms</a></li>
+          <li><a class="buttons button" href="#buttons">View buttons</a></li>
+          <li><a class="buttons alerts" href="#alerts">View alerts</a></li>
+        </ul>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/neilime">Neilime</a></p>
+      </header>
+      <section>
+        <h1>TwbBundle - Demonstration</h1>
+        
+        <h3 id="forms">Forms</h3>
+        
+        <ul class="nav nav-tabs">
+			<li class="active"><a href="#forms-sample" data-toggle="tab">Sample</a></li>
+			<li><a href="#forms-markup" data-toggle="tab">Markup</a></li>
+		</ul>
+       	<div class="tab-content">
+			<div class="tab-pane active" id="forms-sample">
+				<h4>Default style</h4>
+				<form action="" method="POST"><fieldset><legend>Legend</legend><label class="control-label">Label name</label><input name="legend[input-text]" placeholder="Type something..." type="text" value=""><span class="help-block">Example block-level help text here.</span>
+				<label class="checkbox"><input type="checkbox" name="legend[input-checkbox]" value="1">Check me out</label>
+				<button type="submit" name="legend[button-submit]" class="btn" value="">Submit</button>
+				</fieldset></form>
+				<hr/>
+				
+				<h4>Search form</h4>
+				<form action="" method="POST" class="form-search"><input name="input-text" class="search-query input-medium" type="text" value="">
+				<button type="submit" name="button-submit" class="btn" value="">Search</button>
+				</form>
+				<hr/>
+				
+				<h4>Inline form</h4>
+				<form action="" method="POST" class="form-inline"><input name="input-text-email" class="input-small" placeholder="Email" type="text" value="">
+				<input name="input-text-password" class="input-small" placeholder="Password" type="text" value="">
+				<label class="checkbox"><input type="checkbox" name="input-checkbox" value="1">Remember me</label>
+				<button type="submit" name="button-submit" class="btn" value="">Sign in</button>
+				</form>
+				<hr/>
+				
+				<h4>Horizontal form</h4>
+				<form action="" method="POST" class="form-horizontal"><div class="control-group"><label class="control-label">Email</label><div class="controls"><input name="input-text-email" class="input-small" placeholder="Email" type="text" value=""></div></div>
+				<div class="control-group"><label class="control-label">Password</label><div class="controls"><input name="input-text-password" class="input-small" placeholder="Password" type="text" value=""></div></div>
+				<div class="control-group"><div class="controls"><label class="checkbox"><input type="checkbox" name="input-checkbox" value="1">Remember me</label></div></div>
+				<div class="control-group"><div class="controls"><button type="submit" name="button-submit" class="btn" value="">Sign in</button></div></div>
+				</form>
+				<hr/>
+				
+				<h4>Prepended and appended inputs</h4>
+				<div class=" input-prepend"><span class="add-on">@</span><input name="input-text" type="text" value=""></div>
+				<div class=" input-append"><input name="input-text" type="text" value=""><span class="add-on">.00</span></div>
+				<hr/>
+				
+				<h4>Combined</h4>
+				<div class=" input-prepend input-append"><span class="add-on">$</span><input name="input-text" type="text" value=""><span class="add-on">.00</span></div>
+				<hr/>
+				
+				<h4>Buttons instead of text</h4>
+				<div class=" input-append"><input name="input-text" type="text" value=""><button type="button" name="go" class="btn" value="">Go!</button></div>
+				<div class=" input-append"><input name="input-text" type="text" value=""><button type="button" name="search" class="btn" value="">Search</button><button type="button" name="options" class="btn" value="">Options</button></div>
+				<hr/>
+				
+				<h4>Button dropdowns</h4>
+				<div class=" input-prepend"><div class="btn-group"><button type="button" name="action" class="btn dropdown-toggle" data-toggle="dropdown" value="">Action
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div><input name="input-text" type="text" value=""></div>
+				
+				<div class=" input-append"><input name="input-text" type="text" value=""><div class="btn-group"><button type="button" name="action" class="btn dropdown-toggle" data-toggle="dropdown" value="">Action
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div></div>
+				
+				<div class=" input-prepend input-append"><div class="btn-group"><button type="button" name="action" class="btn dropdown-toggle" data-toggle="dropdown" value="">Action
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div><input name="input-text" type="text" value=""><div class="btn-group"><button type="button" name="action" class="btn dropdown-toggle" data-toggle="dropdown" value="">Action
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div></div>
+				<hr/>
+				
+				<h4>Segmented dropdown groups</h4>
+				<div class=" input-prepend"><div class="btn-group"><button type="button" name="action" class="btn" value="">Action</button><button type="button" name="caret" class="btn dropdown-toggle" data-toggle="dropdown" value="">
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div><input name="input-text" type="text" value=""></div>
+				<div class=" input-append"><input name="input-text" type="text" value=""><div class="btn-group"><button type="button" name="action" class="btn" value="">Action</button><button type="button" name="caret" class="btn dropdown-toggle" data-toggle="dropdown" value="">
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div></div>
+				<hr/>
+				
+				<h4>Appended search button</h4>
+				<form action="" method="POST" class="form-search"><div class=" input-append"><input name="input-search-append" class="search-query input-medium" type="text" value=""><button type="submit" name="search-submit-append" class="btn" value="">Search</button></div>
+				<div class=" input-prepend"><button type="submit" name="search-submit-prepend" class="btn" value="">Search</button><input name="input-search-prepend" class="search-query input-medium" type="text" value=""></div>
+				</form>
+				<hr/>
+				
+				<h4>Form actions</h4>
+				<form action="" method="POST"><div class="form-actions"><button type="submit" name="button-submit" class="btn-primary btn" value="">Save changes</button>
+				<button type="button" name="button-cancel" class="btn" value="">Cancel</button>
+				</div></form>
+				<hr/>
+				
+				<h4>Help text</h4>
+				<input name="input-text" type="text" value=""><span class="help-inline">Inline help text</span>
+				<hr/>
+				
+				<h4>Block help</h4>
+				<input name="input-text" type="text" value=""><span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+				<hr/>
+
+				<h4>Validation states</h4>
+				<form class="form-horizontal">
+					<div class="control-group warning"><label class="control-label">Input with warning</label><div class="controls warning"><input name="input-text" type="text" value=""><span class="help-inline">Something may have gone wrong</span></div></div>
+					<div class="control-group error"><label class="control-label">Input with error</label><div class="controls error"><input name="input-text" type="text" value=""><span class="help-inline">Please correct the error</span></div></div>
+					<div class="control-group info"><label class="control-label">Input with info</label><div class="controls info"><input name="input-text" type="text" value=""><span class="help-inline">Username is taken</span></div></div>
+					<div class="control-group success"><label class="control-label">Input with success</label><div class="controls success"><input name="input-text" type="text" value=""><span class="help-inline">Woohoo!</span></div></div>
+				</form>
+				<hr/>
+				
+			</div>
+			<div class="tab-pane active" id="forms-markup">
+			</div>
+		</div>
+
+        <h3 id="buttons">Buttons</h3>
+        
+        <ul class="nav nav-tabs">
+			<li class="active"><a href="#buttons-sample" data-toggle="tab">Sample</a></li>
+			<li><a href="#buttons-markup" data-toggle="tab">Markup</a></li>
+		</ul>
+       	<div class="tab-content">
+			<div class="tab-pane active" id="buttons-sample">
+				<h4>Default</h4>
+				<button type="button" name="button-default" class="btn" value="">Default</button>
+				<hr/>
+				
+				<h4>Primary</h4>
+		        <button type="button" name="button-primary" class="btn-primary btn" value="">Primary</button>
+				<hr/>
+		        
+		        <h4>Icon</h4>
+		        <button type="button" name="button-icon" class="btn" value=""><i class="icon-star"></i> </button>
+		        <button type="button" name="button-icon-label" class="btn" value=""><i class="icon-star"></i> Star</button>
+				<hr/>
+		        
+		        <h4>Dropdown</h4>
+		        <div class="btn-group"><button type="button" name="action" class="btn dropdown-toggle" data-toggle="dropdown" value="">Action
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div>
+				<hr/>
+		        
+		        <h4>Dropdown in a button group</h4>
+		        <div class="btn-group"><button type="button" name="button-icon-label-segmented-dropdown" class="btn-primary btn" value=""><i class="icon-user&#x20;icon-white"></i> User</button><button type="button" name="caret" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" value="">
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+				<li><a href="#"><i class="icon-trash"></i> Belete</a></li>
+				<li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+				<li class="divider"></li>
+				<li><a href="#Make&#x20;admin">Make admin</a></li></ul></div>	
+				<hr/>	
+				
+				<h4>Dropup menus</h4>
+				<div class="btn-group dropup"><button type="button" name="segmented-dropup" class="btn" value="">Dropup</button><button type="button" name="caret" class="btn dropdown-toggle" data-toggle="dropdown" value="">
+				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div>
+				<div class="btn-group dropup"><button type="button" name="segmented-right-dropup" class="btn" value="">Right dropup</button><button type="button" name="caret" class="btn dropdown-toggle" data-toggle="dropdown" value="">
+				<span class="caret"></span></button><ul class="dropdown-menu pull-right"><li><a href="#Action">Action</a></li>
+				<li><a href="#Another&#x20;action">Another action</a></li>
+				<li><a href="#Something&#x20;else&#x20;here">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div>
+				<hr/>
+			</div>
+			<div class="tab-pane" id="buttons-markup">
+			
+			</div>
+		</div>
+        
+        <h3 id="alerts">Alerts</h3>
+        
+        <ul class="nav nav-tabs">
+			<li class="active"><a href="#alerts-sample" data-toggle="tab">Sample</a></li>
+			<li><a href="#alerts-markup" data-toggle="tab">Markup</a></li>
+		</ul>
+       	<div class="tab-content">
+        	<div class="tab-pane active" id="alerts-sample">
+		        <h4>Default</h4>
+		        <div class="alert"><button type="button" class="close" data-dismiss="alert">&times;</button>Test message</div>
+				<hr/>
+				
+		        <h4>Block</h4>
+		        <div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Warning!</h4><p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p></div>
+				<hr/>
+				
+		        <h4>Error or danger</h4>
+		        <div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Oh snap!</strong> Change a few things up and try submitting again.</div>
+				<hr/>
+				
+		        <h4>Success</h4>
+		        <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Well done!</strong> You successfully read this important alert message.</div>
+				<hr/>
+				
+		        <h4>Information</h4>
+		        <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>
+				<hr/>
+				
+		        <h4>Without close button</h4>
+		        <div class="alert">Test message</div>
+				<hr/>
+		    </div>
+		    <div class="tab-pane" id="alerts-markup">
+			
+			</div>
+		</div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
