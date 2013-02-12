@@ -34,6 +34,31 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 		$this->formButtonHelper = $oViewHelperPluginManager->get('formButton')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
 
+	public function testRenderDefaultButton(){
+		$oButton = new \Zend\Form\Element\Button('button-default',array(
+			'label' => 'Default'
+		));
+
+		$this->assertEquals(
+			$this->formButtonHelper->render($oButton),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/default.html')
+		);
+	}
+
+	public function testRenderPrimaryButton(){
+		$oButton = new \Zend\Form\Element\Button('button-primary',array(
+			'label' => 'Primary'
+		));
+		$oButton->setAttribute('class','btn-primary');
+
+		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/primary.html',$this->formButtonHelper->render($oButton));
+
+		$this->assertEquals(
+			$this->formButtonHelper->render($oButton),
+			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/primary.html')
+		);
+	}
+
 	public function testRenderButtonIcon(){
 		$oButton = new \Zend\Form\Element\Button('button-icon',array(
 			'label' => '',
