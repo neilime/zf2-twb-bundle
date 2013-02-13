@@ -155,7 +155,210 @@
 				<hr/>
 				
 			</div>
-			<div class="tab-pane active" id="forms-markup">
+			<div class="tab-pane" id="forms-markup">
+				<h4>Default style</h4>
+				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$fieldset</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Fieldset</span><span class="p">(</span><span class="s1">'legend'</span><span class="p">);</span>
+<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$fieldset</span><span class="o">-&gt;</span><span class="na">setLabel</span><span class="p">(</span><span class="s1">'Legend'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Type something...'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Label name'</span><span class="p">,</span>
+        <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'help-block'</span> <span class="o">=&gt;</span> <span class="s1">'Example block-level help text here.'</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-checkbox'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Check me out'</span><span class="p">,</span>
+        <span class="s1">'use_hidden_element'</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'button-submit'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'button'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Submit'</span>
+    <span class="p">)</span>
+<span class="p">)));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Search form</h4>
+				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'search-query input-medium'</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'button-submit'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'button'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Search'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Inline form</h4>
+				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-email'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-small'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-password'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-small'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-checkbox'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Remember me'</span><span class="p">,</span>
+        <span class="s1">'use_hidden_element'</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'button-submit'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'button'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Sign in'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_INLINE</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Horizontal form</h4>
+				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-email'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-small'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-password'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-small'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-checkbox'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Remember me'</span><span class="p">,</span>
+        <span class="s1">'use_hidden_element'</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">)</span>
+<span class="p">))</span>
+<span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'button-submit'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'button'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Sign in'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Prepended and appended inputs</h4>
+				<div class="highlight"><pre><span class="nv">$oElementPrepend</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+  <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'prepend'</span> <span class="o">=&gt;</span> <span class="s1">'@'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$oElementAppend</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="s1">'.00'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$oElementPrepend</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$oElementAppend</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Combined</h4>
+				<div class="highlight"><pre><span class="nv">$oElement</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'prepend'</span> <span class="o">=&gt;</span> <span class="s1">'$'</span><span class="p">,</span>
+        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="s1">'.00'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$oElement</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Buttons instead of text</h4>
+				<div class="highlight"><pre><span class="nv">$oElementOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
+            <span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'go'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Go!'</span><span class="p">)))</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$oElementTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
+            <span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'search'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Search'</span><span class="p">)),</span>
+                <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Options'</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$oElementOne</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$oElementTwo</span><span class="p">);</span>
+</pre></div>
+				<hr/>
 			</div>
 		</div>
 
