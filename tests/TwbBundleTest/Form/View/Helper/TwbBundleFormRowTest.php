@@ -185,8 +185,6 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-append.html',$this->formRowHelper->render($oElement));
-
 		$this->assertEquals(
 			$this->formRowHelper->render($oElement),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-append.html')
