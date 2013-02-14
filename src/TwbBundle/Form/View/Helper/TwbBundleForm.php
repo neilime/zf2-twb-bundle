@@ -5,6 +5,17 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
 	const LAYOUT_INLINE = 'inline';
 	const LAYOUT_SEARCH = 'search';
 
+
+	/**
+	 * Invoke as function
+	 * @param  null|FormInterface $form
+	 * @return \TwbBundle\Form\View\Helper|string
+	 */
+	public function __invoke(\Zend\Form\FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL){
+		if($oForm)return $this->render($oForm,$sFormLayout);
+		return $this;
+	}
+
     /**
      * Render a form from the provided $oForm,
      * @see \Zend\Form\View\Helper\Form::render()
