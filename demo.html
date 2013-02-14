@@ -189,7 +189,7 @@
         <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Submit'</span>
     <span class="p">)</span>
 <span class="p">)));</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -212,7 +212,7 @@
     <span class="p">)</span>
 <span class="p">));</span>
 
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -251,7 +251,7 @@
     <span class="p">)</span>
 <span class="p">));</span>
 
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_INLINE</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_INLINE</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -296,7 +296,7 @@
     <span class="p">)</span>
 <span class="p">));</span>
 
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -314,8 +314,8 @@
     <span class="p">)</span>
 <span class="p">));</span>
 
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementPrepend</span><span class="p">);</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementAppend</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementPrepend</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementAppend</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -328,7 +328,7 @@
     <span class="p">)</span>
 <span class="p">));</span>
 
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -355,8 +355,8 @@
     <span class="p">)</span>
 <span class="p">));</span>
 
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementOne</span><span class="p">);</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementTwo</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementOne</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementTwo</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -417,9 +417,9 @@
         <span class="p">)</span>
     <span class="p">)</span>
 <span class="p">));</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementPrepend</span><span class="p">);</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementAppend</span><span class="p">);</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementCombined</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementPrepend</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementAppend</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementCombined</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				<h4>Segmented dropdown groups</h4>
@@ -456,8 +456,8 @@
     <span class="p">)</span>
 <span class="p">));</span>
 
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementPrepend</span><span class="p">);</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$elementAppend</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementPrepend</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementAppend</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				<h4>Appended search button</h4>
@@ -489,7 +489,7 @@
         <span class="p">)</span>
     <span class="p">))</span>
 <span class="p">));</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -514,7 +514,7 @@
         <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'formAction'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">)</span>
     <span class="p">)</span>
 <span class="p">));</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -525,7 +525,7 @@
         <span class="s1">'help-inline'</span> <span class="o">=&gt;</span> <span class="s1">'Inline help text'</span>
     <span class="p">)</span>
 <span class="p">));</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -536,7 +536,7 @@
         <span class="s1">'help-block'</span> <span class="o">=&gt;</span> <span class="s1">'A longer block of help text that breaks onto a new line and may extend beyond one line.'</span>
     <span class="p">)</span>
 <span class="p">));</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRowHelper</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 				
@@ -548,7 +548,7 @@
     <span class="p">),</span>
     <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with warning'</span>
 <span class="p">));</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
 
 <span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
     <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
@@ -566,7 +566,7 @@
     <span class="p">),</span>
     <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with info'</span>
 <span class="p">));</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
 
 <span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
     <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
@@ -575,7 +575,7 @@
     <span class="p">),</span>
     <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with success'</span>
 <span class="p">));</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
 </pre></div>
 				<hr/>
 			</div>
@@ -638,7 +638,96 @@
 				
 			</div>
 			<div class="tab-pane" id="buttons-markup">
-			
+				<h4>Default</h4>
+				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+  <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Default'</span>
+<span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Primary</h4>
+				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-primary'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Primary'</span>
+<span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-primary'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Icon</h4>
+				<div class="highlight"><pre><span class="nv">$oButtonIcon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-icon'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+  <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-star'</span><span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$oButtonIconLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-icon-label'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Star'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-star'</span><span class="p">)</span>
+<span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButtonIcon</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButtonIconLabel</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Dropdown</h4>
+				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'dropdown'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+  <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Action'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Action'</span><span class="p">,</span><span class="s1">'Another action'</span><span class="p">,</span><span class="s1">'Something else here'</span><span class="p">,</span><span class="s1">'-'</span><span class="p">,</span><span class="s1">'Separated link'</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Dropdown in a button group</h4>
+				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-icon-label-segmented-dropdown'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'User'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-user icon-white'</span><span class="p">,</span>
+        <span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'segmented'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+            <span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'edit'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Edit'</span><span class="p">,</span> <span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-pencil'</span><span class="p">),</span>
+                <span class="s1">'delete'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Belete'</span><span class="p">,</span> <span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-trash'</span><span class="p">),</span>
+                <span class="s1">'Ban'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Ban'</span><span class="p">,</span> <span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-ban-circle'</span><span class="p">),</span>
+                <span class="s1">'-'</span><span class="p">,</span>
+                <span class="s1">'Make admin'</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-primary'</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+								
+				<h4>Dropup menus</h4>
+				<div class="highlight"><pre><span class="nv">$dropup</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'segmented-dropup'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+  <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropup'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'dropup'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'segmented'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+            <span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Action'</span><span class="p">,</span><span class="s1">'Another action'</span><span class="p">,</span><span class="s1">'Something else here'</span><span class="p">,</span><span class="s1">'-'</span><span class="p">,</span><span class="s1">'Separated link'</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$dropupRight</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'segmented-right-dropup'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Right dropup'</span><span class="p">,</span>
+    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'dropup'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'segmented'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+            <span class="s1">'pull'</span> <span class="o">=&gt;</span> <span class="s1">'right'</span><span class="p">,</span>
+            <span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Action'</span><span class="p">,</span><span class="s1">'Another action'</span><span class="p">,</span><span class="s1">'Something else here'</span><span class="p">,</span><span class="s1">'-'</span><span class="p">,</span><span class="s1">'Separated link'</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$dropup</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$dropupRight</span><span class="p">);</span>
+</pre></div>
+				<hr/>
 			</div>
 		</div>
         
