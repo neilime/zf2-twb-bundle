@@ -30,12 +30,16 @@
       </header>
       <section>
         <h1>TwbBundle - Demonstration</h1>
+        <p>
+        	This demonstration page shows how to render Twitter Boostrap elements.
+        	For each elements, you can see how to do it in "Source" tabs. These are supposed to be run into a view file.
+        </p>
         
         <h3 id="forms">Forms</h3>
         
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#forms-sample" data-toggle="tab">Sample</a></li>
-			<li><a href="#forms-markup" data-toggle="tab">Markup</a></li>
+			<li><a href="#forms-source" data-toggle="tab">Source</a></li>
 		</ul>
        	<div class="tab-content">
 			<div class="tab-pane active" id="forms-sample">
@@ -155,7 +159,7 @@
 				<hr/>
 				
 			</div>
-			<div class="tab-pane" id="forms-markup">
+			<div class="tab-pane" id="forms-Source">
 				<h4>Default style</h4>
 				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
 <span class="nv">$fieldset</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Fieldset</span><span class="p">(</span><span class="s1">'legend'</span><span class="p">);</span>
@@ -585,7 +589,7 @@
         
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#buttons-sample" data-toggle="tab">Sample</a></li>
-			<li><a href="#buttons-markup" data-toggle="tab">Markup</a></li>
+			<li><a href="#buttons-source" data-toggle="tab">Source</a></li>
 		</ul>
        	<div class="tab-content">
 			<div class="tab-pane active" id="buttons-sample">
@@ -637,7 +641,7 @@
 				
 				
 			</div>
-			<div class="tab-pane" id="buttons-markup">
+			<div class="tab-pane" id="buttons-source">
 				<h4>Default</h4>
 				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
   <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Default'</span>
@@ -735,7 +739,7 @@
         
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#alerts-sample" data-toggle="tab">Sample</a></li>
-			<li><a href="#alerts-markup" data-toggle="tab">Markup</a></li>
+			<li><a href="#alerts-source" data-toggle="tab">Source</a></li>
 		</ul>
        	<div class="tab-content">
         	<div class="tab-pane active" id="alerts-sample">
@@ -763,8 +767,48 @@
 		        <div class="alert">Test message</div>
 				<hr/>
 		    </div>
-		    <div class="tab-pane" id="alerts-markup">
-			
+		    <div class="tab-pane" id="alerts-source">
+				<h4>Default</h4>
+				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span><span class="s1">'Test message'</span><span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Block</h4>
+				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span>
+  <span class="s1">'&lt;h4&gt;Warning!&lt;/h4&gt;&lt;p&gt;Best check yo self, you\'re not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;'</span><span class="p">,</span>
+  <span class="s1">'block-alert'</span>
+<span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Error or danger</h4>
+				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span>
+  <span class="s1">'&lt;strong&gt;Oh snap!&lt;/strong&gt; Change a few things up and try submitting again.'</span><span class="p">,</span>
+  <span class="s1">'alert-error'</span>
+<span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Success</h4>
+				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span>
+  <span class="s1">'&lt;strong&gt;Well done!&lt;/strong&gt; You successfully read this important alert message.'</span><span class="p">,</span>
+  <span class="s1">'alert-success'</span>
+<span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Information</h4>
+				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span>
+  <span class="s1">'&lt;strong&gt;Heads up!&lt;/strong&gt; This alert needs your attention, but it\'s not super important.'</span><span class="p">,</span>
+  <span class="s1">'alert-info'</span>
+<span class="p">);</span>
+</pre></div>
+				<hr/>
+				
+				<h4>Without close button</h4>
+				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span><span class="s1">'Test message'</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">false</span><span class="p">);</span>
+</pre></div>
+				<hr/>
 			</div>
 		</div>
       </section>
