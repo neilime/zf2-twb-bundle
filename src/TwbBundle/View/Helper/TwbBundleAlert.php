@@ -27,7 +27,7 @@ class TwbBundleAlert extends \Zend\I18n\View\Helper\AbstractTranslatorHelper{
      * @return string
      */
 	public function render($sAlertMessage, $sAlertClass = null, $bCloseAlert = true){
-		if(!is_string($sAlertMessage))throw new \Exception('Alert message expects string, "'.gettype($sAlertMessage).'" given');
+		if(!is_scalar($sAlertMessage))throw new \Exception('Alert message expects scalar value, "'.gettype($sAlertMessage).'" given');
 		if($sAlertClass && !is_string($sAlertClass))throw new \Exception('Alert class expects string, "'.gettype($sAlertClass).'" given');
 
 		if(null !== ($oTranslator = $this->getTranslator()))$sAlertMessage = $oTranslator->translate($sAlertMessage, $this->getTranslatorTextDomain());

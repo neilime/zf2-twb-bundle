@@ -56,7 +56,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 			if(in_array($sType,array('multicheckbox','radio'))){
 				$aOptions = $oElement->getValueOptions();
 				$oElement->setAttribute('value_options',array_map(function($sOption,$sKey) use($sType,$bIsInlineForm){
-					if(is_string($sOption)){
+					if(is_scalar($sOption)){
 						$sClass = $sType === 'radio'?'radio':'checkbox';
 						if($bIsInlineForm)$sClass .= ' inline';
 						$sOption = array(
@@ -205,10 +205,10 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	 * @return string
 	 */
 	protected function renderAddOn($aAddOnConfig){
-		if(is_string($aAddOnConfig))return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig).'</span>';
+		if(is_scalar($aAddOnConfig))return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig).'</span>';
 		elseif(is_array($aAddOnConfig) && isset($aAddOnConfig['type']))switch($aAddOnConfig['type']){
 			case 'text':
-				if(!isset($aAddOnConfig['text']) || !is_string($aAddOnConfig['text']))throw new \Exception('AddOn "text" type expects string "text" configuration');
+				if(!isset($aAddOnConfig['text']) || !is_scalar($aAddOnConfig['text']))throw new \Exception('AddOn "text" type expects string "text" configuration');
 				if($oTranslator = $this->getTranslator())$aAddOnConfig['text'] = $oTranslator->translate(
 					$aAddOnConfig['text'],
 					$this->getTranslatorTextDomain()
@@ -224,7 +224,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 				foreach($aAddOnConfig['buttons'] as $sName => $oButton){
 					if(is_array($oButton)){
 						if(!isset($oButton['type']))$oButton['type'] = 'button';
-						if(!isset($oButton['name']) && is_string($sName))$oButton['name'] = $sName;
+						if(!isset($oButton['name']) && is_scalar($sName))$oButton['name'] = $sName;
 						$oButton = $this->getFormFactory()->createElement($oButton);
 					}
 					elseif(!($oButton instanceof \Zend\Form\Element\Button))throw new \Exception(sprintf(

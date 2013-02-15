@@ -94,14 +94,14 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 
 			//Label
 			if(!empty($aActionConfig['label'])){
-				if(!is_string($aActionConfig['label']))throw new \Exception('Label configuration expects string, "'.gettype($aActionConfig['label']).'" given');
+				if(!is_scalar($aActionConfig['label']))throw new \Exception('Label configuration expects string, "'.gettype($aActionConfig['label']).'" given');
 
 				$sActionLabel = $aActionConfig['label'];
 				if(null !== ($oTranslator = $this->getTranslator()))$sActionLabel = $oTranslator->translate($sActionLabel, $this->getTranslatorTextDomain());
 				$sActionLabel = $this->getEscapeHtmlHelper()->__invoke($sActionLabel);
 			}
 			//Content
-			elseif(!empty($aActionConfig['content']) && is_string($aActionConfig['content']))$sActionLabel = $aActionConfig['content'];
+			elseif(!empty($aActionConfig['content']) && is_scalar($aActionConfig['content']))$sActionLabel = $aActionConfig['content'];
 
 			//Icon
 			if(!empty($aActionConfig['icon'])){
@@ -113,7 +113,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 			unset($aActionConfig['label'],$aActionConfig['href']);
 			$sAttributes = $this->createAttributesString($aActionConfig);
 		}
-		elseif(is_string($aActionConfig)){
+		elseif(is_scalar($aActionConfig)){
 			if(empty($aActionConfig))throw new \Exception('Action name is empty');
 			$sActionLabel = $aActionConfig;
 			if($sActionLabel === '-')return '<li class="divider"></li>';
