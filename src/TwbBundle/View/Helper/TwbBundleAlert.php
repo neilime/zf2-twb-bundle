@@ -14,8 +14,8 @@ class TwbBundleAlert extends \Zend\I18n\View\Helper\AbstractTranslatorHelper{
 	 * @return string|\TwbBundle\View\Helper\TwbBundleAlert
 	 */
     public function __invoke($sAlertMessage, $sAlertClass = null, $bCloseAlert = true){
-        if(!$sAlert)return $this;
-        return $this->render($sAlert,$sAlertClass,$bCloseAlert);
+        if(!$sAlertMessage)return $this;
+        return $this->render($sAlertMessage,$sAlertClass,$bCloseAlert);
     }
 
     /**
