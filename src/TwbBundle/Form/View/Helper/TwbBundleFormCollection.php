@@ -41,7 +41,7 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
 
     	// Every collection is wrapped by a fieldset if needed
     	if($this->shouldWrap && ($sLabel = $oElement->getLabel())){
-   			if(null !== ($oTranslator = $this->getTranslator()))$sLabel = $oTranslator->translate($label, $this->getTranslatorTextDomain());
+   			if(null !== ($oTranslator = $this->getTranslator()))$sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
     		$sMarkup = sprintf(
     			'<fieldset><legend>%s</legend>%s</fieldset>',
     			$this->getEscapeHtmlHelper()->__invoke($sLabel),
