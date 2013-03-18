@@ -14,4 +14,4 @@ before_script:
  - cp phpunit.xml.dist phpunit.xml
 
 script:
- - ../vendor/bin/phpunit TwbBundleTest
+ - phpunit TwbBundleTest
