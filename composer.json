@@ -28,8 +28,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "2.*",
-        "phpunit/phpunit": "3.7.*",
+        "zendframework/zendframework": "2.*"
         "twitter/bootstrap": "dev-master"
     },
     "autoload": {
