@@ -35,9 +35,6 @@ class TwbBundleAlertTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testRenderDefaultAlert(){
-
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/default-alert.html',$this->alertHelper->render('Test message'));
-
 		$this->assertEquals(
 			$this->alertHelper->render('Test message'),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/default-alert.html')
@@ -45,9 +42,6 @@ class TwbBundleAlertTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testRenderBlockAlert(){
-
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/block-alert.html',$this->alertHelper->render('Test message','block-alert'));
-
 		$this->assertEquals(
 			$this->alertHelper->render('Test message','block-alert'),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/block-alert.html')
@@ -55,9 +49,6 @@ class TwbBundleAlertTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testRenderErrorAlert(){
-
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/error-alert.html',$this->alertHelper->render('Test message','alert-error'));
-
 		$this->assertEquals(
 			$this->alertHelper->render('Test message','alert-error'),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/error-alert.html')
@@ -65,9 +56,6 @@ class TwbBundleAlertTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testRenderAlertUnclosable(){
-
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/alert-unclosable.html',$this->alertHelper->render('Test message',null,false));
-
 		$this->assertEquals(
 			$this->alertHelper->render('Test message',null,false),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/alert-unclosable.html')

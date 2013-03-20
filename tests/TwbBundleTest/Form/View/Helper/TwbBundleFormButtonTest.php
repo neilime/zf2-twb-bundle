@@ -51,8 +51,6 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 		));
 		$oButton->setAttribute('class','btn-primary');
 
-		file_put_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/primary.html',$this->formButtonHelper->render($oButton));
-
 		$this->assertEquals(
 			$this->formButtonHelper->render($oButton),
 			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/primary.html')
