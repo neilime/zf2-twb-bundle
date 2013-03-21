@@ -58,6 +58,9 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
      */
     public function renderTemplate(\Zend\Form\Element\Collection $oCollection){
     	$oElementOrFieldSet = $oCollection->getTemplateElement();
+
+    	$sTemplateMarkup = '';
+
     	if($oElementOrFieldSet instanceof \Zend\Form\FieldsetInterface)$sTemplateMarkup .= $this->render($oElementOrFieldSet);
     	elseif($oElementOrFieldSet instanceof \Zend\Form\ElementInterface)$sTemplateMarkup .= $this->getView()->formRow($oElementOrFieldSet,null,null,$this->getFormLayout());
     	else $sTemplateMarkup = '';
