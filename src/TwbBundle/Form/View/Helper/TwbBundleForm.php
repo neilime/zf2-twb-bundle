@@ -35,7 +35,11 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
 
     	$sFormContent = $sFormActions = '';
     	foreach($oForm as $oElement){
-    		if($oElement instanceof \Zend\Form\FieldsetInterface)$sFormContent .= $this->getView()->formCollection($oElement,true,$sFormLayout);
+    		if($oElement instanceof \Zend\Form\FieldsetInterface)$sFormContent .= $this->getView()->formCollection(
+    			$oElement,
+    			method_exists($oElement,'useAsBaseFieldset')?!$oElement->useAsBaseFieldset():true,
+    			$sFormLayout
+    		);
     		else{
     			$aOptions = $oElement->getOption('twb');
     			if(empty($aOptions['formAction']))$sFormContent .= $this->getView()->formRow($oElement,null,null,$sFormLayout);
