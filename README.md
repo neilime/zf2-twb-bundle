@@ -68,7 +68,8 @@ Installation
 
 ###### With __AssetsBundle__ module (easy way)
     
-* Install the [AssetsBundle module ](https://github.com/neilime/zf2-assets-bundle)(latest master)
+* Install the [AssetsBundle module](https://github.com/neilime/zf2-assets-bundle)(latest master)
+* Install [Twitter Bootstrap](https://github.com/twitter/bootstrap)(latest master)
 * Edit the application module configuration file `module/Application/config/module.config.php`, adding the configuration fragment below:
 
     ```php
@@ -93,7 +94,7 @@ Installation
 
 ###### Manually
     
-* Copy `vendor/twitter/bootstrap/docs/assets/css/bootstrap.css` file into your asset folder and add it in your head scripts
+* Copy `bootstrap.css` file (available on Twitter Bootstrap website(http://twitter.github.io/bootstrap/assets/bootstrap.zip)) into your assets folder and add it in your head scripts
     
 # How to use __TwbBundle__
 
