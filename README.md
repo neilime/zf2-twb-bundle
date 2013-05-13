@@ -2,15 +2,14 @@ TwbBundle
 =====================
 
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
+![Code coverage](https://raw.github.com/zf2-boiler-app/app-test/master/ressources/100%25-code-coverage.png "100% code coverage")
 
-Created by Neilime
+NOTE : If you want to contribute don't hesitate, I'll review any PR.
 
 Introduction
 ------------
 
 __TwbBundle__ is a module for Zend Framework 2, for easy integration of the [Twitter Bootstrap](https://github.com/twitter/bootstrap). 
-
-_P.S. Sorry for my english. If You wish to help me with this project or correct my english description - You are welcome :)_
 
 Demonstration / exemple
 -----------------------
