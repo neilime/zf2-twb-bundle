@@ -37,28 +37,28 @@ class TwbBundleAlertTest extends \PHPUnit_Framework_TestCase{
 	public function testRenderDefaultAlert(){
 		$this->assertStringEqualsFile(
 			getcwd().'/TwbBundleTest/_files/expected-alerts/default-alert.html',
-			$this->alertHelper->render('Test message')
+			$this->alertHelper->__invoke('Test message')
 		);
 	}
 
 	public function testRenderBlockAlert(){
 		$this->assertStringEqualsFile(
 			getcwd().'/TwbBundleTest/_files/expected-alerts/block-alert.html',
-			$this->alertHelper->render('Test message','block-alert')
+			$this->alertHelper->__invoke('Test message','block-alert')
 		);
 	}
 
 	public function testRenderErrorAlert(){
 		$this->assertStringEqualsFile(
 			getcwd().'/TwbBundleTest/_files/expected-alerts/error-alert.html',
-			$this->alertHelper->render('Test message','alert-error')
+			$this->alertHelper->__invoke('Test message','alert-error')
 		);
 	}
 
 	public function testRenderAlertUnclosable(){
 		$this->assertStringEqualsFile(
 			getcwd().'/TwbBundleTest/_files/expected-alerts/alert-unclosable.html',
-			$this->alertHelper->render('Test message',null,false)
+			$this->alertHelper->__invoke('Test message',null,false)
 		);
 	}
 }

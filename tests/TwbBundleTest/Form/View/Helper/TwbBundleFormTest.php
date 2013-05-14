@@ -99,7 +99,6 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 				'label' => 'Search'
 			)
 		));
-
 		$this->assertStringEqualsFile(
 			getcwd().'/TwbBundleTest/_files/expected-forms/search.html',
 			$this->formHelper->__invoke($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH)
@@ -222,7 +221,6 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 				)
 			))
 		));
-
 		$this->assertStringEqualsFile(
 			getcwd().'/TwbBundleTest/_files/expected-forms/search-button-append.html',
 			$this->formHelper->__invoke($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH)

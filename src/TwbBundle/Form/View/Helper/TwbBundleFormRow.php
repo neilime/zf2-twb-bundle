@@ -65,7 +65,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 			elseif($oElement instanceof \Zend\Form\Element\MultiCheckbox){
 				$aOptions = $oElement->getValueOptions();
 
-				if(empty($aOptions))throw new Exception\DomainException(sprintf(
+				if(empty($aOptions))throw new \DomainException(sprintf(
 					'%s requires that the element has "value_options"; none found',
 					__METHOD__
 				));
@@ -83,10 +83,6 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 
 			//Render according to layout
 			switch($sFormLayout){
-				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH:
-					$sMarkup = ($bElementInLabel?$this->renderLabel($oElement):$this->renderElement($oElement)).$oElementErrorsHelper->render($oElement, array('class' => 'help-block'));
-					break;
 				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
 
 					//Validation state
@@ -102,10 +98,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 					.$this->renderElement($oElement).$oElementErrorsHelper->render($oElement, array('class' => 'help-block')).
 					'</div>').'</div>';
 					break;
+				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
+				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH:
 				default:
-					$sMarkup = $this->renderLabel($oElement);
-					if(!$bElementInLabel)$sMarkup .= $this->renderElement($oElement);
-					$sMarkup .= $oElementErrorsHelper->render($oElement, array('class' => 'help-block'));
+					$sMarkup = ($bElementInLabel?$this->renderLabel($oElement):$this->renderElement($oElement)).$oElementErrorsHelper->render($oElement, array('class' => 'help-block'));
+					if((!$sType || in_array($sType,array('text'))) && ($sLabel = $this->renderLabel($oElement)))$sMarkup = $sLabel.PHP_EOL.$sMarkup;
 					break;
 			}
 		}
@@ -131,7 +128,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 			$aLabelAttributes = $oElement->getLabelAttributes()?:$this->labelAttributes;
 
 			//Insert element in label for checkbox and radio inputs
-			if(in_array($sType,array('checkbox','multicheckbox','radio'))){
+			if(in_array($sType,array('checkbox'))){
 				$sLabel = $this->renderElement($oElement).$sLabel;
 				$sFormLayout = $this->getFormLayout();
 				if(empty($aLabelAttributes['class'])){

@@ -304,4 +304,25 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			$this->formRowHelper->setFormLayout(\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)->render($oElement)
 		);
 	}
+
+	public function testRenderRadio(){
+		$oElement = new \Zend\Form\Element\Radio('input-radio',array(
+			'value_options' => array(
+				array('label' => 'test','value' => 1,'label_attributes' => array('class' => 'test'))
+			)
+		));
+
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/radio.html',
+			$this->formRowHelper->render($oElement)
+		);
+	}
+
+	/**
+	 * @expectedException DomainException
+	 */
+	public function testRenderRadioWithoutValueOptions(){
+		$oElement = new \Zend\Form\Element\Radio('input-radio');
+		$this->formRowHelper->render($oElement);
+	}
 }

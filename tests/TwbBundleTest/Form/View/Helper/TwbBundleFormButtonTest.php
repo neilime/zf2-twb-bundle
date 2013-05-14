@@ -142,7 +142,6 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 				)
 			)
 		));
-
 		$this->assertStringEqualsFile(
 			getcwd().'/TwbBundleTest/_files/expected-buttons/segmented-dropup.html',
 			$this->formButtonHelper->render($oButton)
