@@ -11,7 +11,7 @@ before_install:
 
 before_script:
  - cd tests
- - cp phpunit.xml.dist phpunit.xml
 
 script:
- - phpunit TwbBundleTest
+ - phpunit
+ - php ./coverage-checker.php ./clover.xml 100

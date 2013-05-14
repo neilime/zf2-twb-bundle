@@ -7,6 +7,15 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 	 * @param null|string $sButtonContent
 	 * @return string
 	 */
+
+	/**
+	 * @see \Zend\Form\View\Helper\FormButton::render()
+	 * @param \Zend\Form\ElementInterface $oElement
+	 * @param string $sButtonContent
+	 * @throws \LogicException
+	 * @throws \Exception
+	 * @return string
+	 */
 	public function render(\Zend\Form\ElementInterface $oElement, $sButtonContent = null){
 		if($sClass = $oElement->getAttribute('class')){
 			if(!preg_match('/(\s|^)btn(\s|$)/',$sClass))$oElement->setAttribute('class',$sClass.' btn');
@@ -15,7 +24,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 
 		if(null === $sButtonContent){
 			$sButtonContent = $oElement->getLabel();
-			if(null === $sButtonContent)throw new \Exception(sprintf(
+			if(null === $sButtonContent)throw new \LogicException(sprintf(
 				'%s expects either button content as the second argument, or that the element provided has a label value; neither found',
 				__METHOD__
 			));
@@ -27,13 +36,13 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 
 			//Icon
 			if(isset($aOptions['icon'])){
-				if(!is_string($aOptions['icon']))throw new \Exception('Icon configuration expects string, "'.gettype($aOptions['icon']).'" given');
+				if(!is_string($aOptions['icon']))throw new \LogicException('Icon configuration expects string, "'.gettype($aOptions['icon']).'" given');
 				//Add icon to button content
 				$sButtonContent = '<i class="'.$this->getEscapeHtmlAttrHelper()->__invoke(trim($aOptions['icon'])).'"></i> '.$sButtonContent;
 			}
 
 			//Dropdowns // dropup
-			if(isset($aOptions['dropdown'],$aOptions['dropup']))throw new \Exception('dropdown & dropup options are not allowed together');
+			if(isset($aOptions['dropdown'],$aOptions['dropup']))throw new \LogicException('dropdown & dropup options are not allowed together');
 			elseif(isset($aOptions['dropdown']))$sDrop = 'dropdown';
 			elseif(isset($aOptions['dropup']))$sDrop = 'dropup';
 			else $sDrop = null;
@@ -43,10 +52,8 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 				//Dropdown button is not segmented
 				if(empty($aOptions[$sDrop]['segmented'])){
 
-					if($sClass = $oElement->getAttribute('class')){
-						if(strpos($sClass, 'dropdown-toggle') === false)$oElement->setAttribute('class',$sClass.' dropdown-toggle');
-					}
-					else $oElement->setAttribute('class','dropdown-toggle');
+					$sClass = $oElement->getAttribute('class');
+					if(!preg_match('/(\s|^)dropdown-toggle(\s|$)/',$sClass))$oElement->setAttribute('class',$sClass.' dropdown-toggle');
 
 					//Set dropdown toogle behavior
 					$oElement->setAttribute('data-toggle','dropdown');
@@ -84,7 +91,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 	/**
 	 * Retrieve drop (down or up) action markup
 	 * @param string|array $aActionConfig
-	 * @throws \Exception
+	 * @throws \InvalidArgumentException
 	 * @return string
 	 */
 	protected function renderDropAction($aActionConfig){
@@ -94,7 +101,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 
 			//Label
 			if(!empty($aActionConfig['label'])){
-				if(!is_scalar($aActionConfig['label']))throw new \Exception('Label configuration expects string, "'.gettype($aActionConfig['label']).'" given');
+				if(!is_scalar($aActionConfig['label']))throw new \InvalidArgumentException('Label configuration expects string, "'.gettype($aActionConfig['label']).'" given');
 
 				$sActionLabel = $aActionConfig['label'];
 				if(null !== ($oTranslator = $this->getTranslator()))$sActionLabel = $oTranslator->translate($sActionLabel, $this->getTranslatorTextDomain());
@@ -105,7 +112,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 
 			//Icon
 			if(!empty($aActionConfig['icon'])){
-				if(!is_string($aActionConfig['icon']))throw new \Exception('Icon configuration expects string, "'.gettype($aActionConfig['icon']).'" given');
+				if(!is_string($aActionConfig['icon']))throw new \InvalidArgumentException('Icon configuration expects string, "'.gettype($aActionConfig['icon']).'" given');
 				$sActionLabel = '<i class="'.$this->getEscapeHtmlAttrHelper()->__invoke(trim($aActionConfig['icon'])).'"></i> '.$sActionLabel;
 			}
 
@@ -114,7 +121,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 			$sAttributes = $this->createAttributesString($aActionConfig);
 		}
 		elseif(is_scalar($aActionConfig)){
-			if(empty($aActionConfig))throw new \Exception('Action name is empty');
+			if(empty($aActionConfig))throw new \InvalidArgumentException('Action name is empty');
 			$sActionLabel = $aActionConfig;
 			if($sActionLabel === '-')return '<li class="divider"></li>';
 			$sHref = '#'.$this->getEscapeHtmlAttrHelper()->__invoke($sActionLabel);
@@ -122,7 +129,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 			if(null !== ($oTranslator = $this->getTranslator()))$sActionLabel = $oTranslator->translate($sActionLabel, $this->getTranslatorTextDomain());
 			$sActionLabel = $this->getEscapeHtmlHelper()->__invoke($sActionLabel);
 		}
-		else throw new \Exception('Action config expects string or array, "'.gettype($aActionConfig).'" given');
+		else throw new \InvalidArgumentException('Action config expects string or array, "'.gettype($aActionConfig).'" given');
 		return sprintf(
 			'<li><a href="%s"%s>%s</a></li>',
 			$sHref,

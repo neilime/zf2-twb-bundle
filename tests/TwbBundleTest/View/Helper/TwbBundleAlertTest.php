@@ -35,30 +35,30 @@ class TwbBundleAlertTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testRenderDefaultAlert(){
-		$this->assertEquals(
-			$this->alertHelper->render('Test message'),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/default-alert.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-alerts/default-alert.html',
+			$this->alertHelper->render('Test message')
 		);
 	}
 
 	public function testRenderBlockAlert(){
-		$this->assertEquals(
-			$this->alertHelper->render('Test message','block-alert'),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/block-alert.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-alerts/block-alert.html',
+			$this->alertHelper->render('Test message','block-alert')
 		);
 	}
 
 	public function testRenderErrorAlert(){
-		$this->assertEquals(
-			$this->alertHelper->render('Test message','alert-error'),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/error-alert.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-alerts/error-alert.html',
+			$this->alertHelper->render('Test message','alert-error')
 		);
 	}
 
 	public function testRenderAlertUnclosable(){
-		$this->assertEquals(
-			$this->alertHelper->render('Test message',null,false),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-alerts/alert-unclosable.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-alerts/alert-unclosable.html',
+			$this->alertHelper->render('Test message',null,false)
 		);
 	}
 }

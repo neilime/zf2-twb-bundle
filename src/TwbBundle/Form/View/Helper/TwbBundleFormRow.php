@@ -46,42 +46,13 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 
 		if($sType === 'hidden')$sMarkup = $oElementHelper->render($oElement).$oElementErrorsHelper->render($oElement, array('class' => 'alert alert-error'));
 		else{
-			$bElementInLabel = in_array($sType,array('checkbox','radio'));
+			$bElementInLabel = in_array($sType,array('checkbox'));
 
-			if($bIsInlineForm && !$bElementInLabel
-			&& !$oElement->getAttribute('placeholder')
-			&& ($sLabel = $oElement->getLabel()))$oElement->setAttribute('placeholder',$sLabel);
-
-			//Process elements options
-			if(in_array($sType,array('multicheckbox','radio'))){
-				$aOptions = $oElement->getValueOptions();
-				$oElement->setAttribute('value_options',array_map(function($sOption,$sKey) use($sType,$bIsInlineForm){
-					if(is_scalar($sOption)){
-						$sClass = $sType === 'radio'?'radio':'checkbox';
-						if($bIsInlineForm)$sClass .= ' inline';
-						$sOption = array(
-							'label' => $sOption,
-							'value' => $sKey,
-							'label_attributes' => array(
-								'class' => $sClass
-							)
-						);
-					}
-					elseif(is_array($sOption)){
-						if(empty($sOption['label_attributes']['class'])){
-							$sClass = $sType === 'radio'?'radio':'checkbox';
-							if($bIsInlineForm)$sClass .= ' inline';
-							$sOption['label_attributes']['class'] = $sClass;
-						}
-						else{
-							$sClass = $sType === 'radio'?'radio':'checkbox';
-							if(strpos($sOption['label_attributes']['class'], $sClass) === false)$sOption['label_attributes']['class'] .= ' '.$sClass;
-							if($bIsInlineForm && strpos($sOption['label_attributes']['class'], 'inline'))$sOption['label_attributes']['class'] .= ' inline';
-						}
-					}
-					return $sOption;
-				},$aOptions,array_keys($aOptions)));
-			}
+			if(
+				$bIsInlineForm && !$bElementInLabel
+				&& !$oElement->getAttribute('placeholder')
+				&& ($sLabel = $oElement->getLabel())
+			)$oElement->setAttribute('placeholder',$sLabel);
 
 			//Buttons
 			elseif(in_array($sType,array('submit','button'))){
@@ -89,6 +60,25 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 					if(!preg_match('/(\s|^)btn(\s|$)/',$sClass))$oElement->setAttribute('class',$sClass.' btn');
 				}
 				else $oElement->setAttribute('class','btn');
+			}
+
+			elseif($oElement instanceof \Zend\Form\Element\MultiCheckbox){
+				$aOptions = $oElement->getValueOptions();
+
+				if(empty($aOptions))throw new Exception\DomainException(sprintf(
+					'%s requires that the element has "value_options"; none found',
+					__METHOD__
+				));
+
+				foreach($aOptions as $sKey => $aOption){
+					if(is_scalar($aOption))$aOption = array('label' => $aOption, 'value' => $sKey);
+					if(empty($aOption['label_attributes']['class']))$aOption['label_attributes']['class'] = $sType;
+					elseif(!preg_match('/(\s|^)'.preg_quote($sType).'(\s|$)/',$aOption['label_attributes']['class']))$aOption['label_attributes']['class'] .= ' '.$sType;
+					if($sFormLayout && !preg_match('/(\s|^)'.preg_quote($sFormLayout).'(\s|$)/',$aOption['label_attributes']['class']))$aOption['label_attributes']['class'] .= ' '.$sFormLayout;
+					$aOptions[$sKey] = $aOption;
+				}
+
+				$oElement->setValueOptions($aOptions);
 			}
 
 			//Render according to layout
@@ -141,10 +131,18 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 			$aLabelAttributes = $oElement->getLabelAttributes()?:$this->labelAttributes;
 
 			//Insert element in label for checkbox and radio inputs
-			if(in_array($sType,array('checkbox','radio'))){
+			if(in_array($sType,array('checkbox','multicheckbox','radio'))){
 				$sLabel = $this->renderElement($oElement).$sLabel;
-				if(empty($aLabelAttributes['class']))$aLabelAttributes['class'] = $sType;
-				elseif(strpos($aLabelAttributes['class'], $sType) === false)$aLabelAttributes['class'] .= ' '.$sType;
+				$sFormLayout = $this->getFormLayout();
+				if(empty($aLabelAttributes['class'])){
+					$aLabelAttributes['class'] = $sType;
+					if($sFormLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)$aLabelAttributes['class'] .= ' '.$sFormLayout;
+				}
+				else{
+					if(!preg_match('/(\s|^)'.preg_quote($sType).'(\s|$)/',$sClass))$aLabelAttributes['class'] .= ' '.$sType;
+					if($sFormLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE && !preg_match('/(\s|^)'.preg_quote($sFormLayout).'(\s|$)/',$sClass))$aLabelAttributes['class'] .= ' '.$sFormLayout;
+					$aLabelAttributes['class'] = trim($aLabelAttributes['class']);
+				}
 			}
 			elseif(empty($aLabelAttributes['class']))$aLabelAttributes['class'] = 'control-label';
 			elseif(strpos($aLabelAttributes['class'], 'control-label') === false)$aLabelAttributes['class'] .= ' control-label';

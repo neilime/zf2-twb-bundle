@@ -34,15 +34,24 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 		$this->formButtonHelper = $oViewHelperPluginManager->get('formButton')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
 
-	public function testRenderDefaultButton(){
+	public function testRenderDefaultButtonWithoutLabel(){
 		$oButton = new \Zend\Form\Element\Button('button-default',array(
 			'label' => 'Default'
 		));
 
-		$this->assertEquals(
-			$this->formButtonHelper->render($oButton),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/default.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-buttons/default.html',
+			$this->formButtonHelper->render($oButton)
 		);
+
+	}
+
+	/**
+	 * @expectedException LogicException
+	 */
+	public function testRenderDefaultButton(){
+		$oButton = new \Zend\Form\Element\Button('button-default');
+		$this->formButtonHelper->render($oButton);
 	}
 
 	public function testRenderPrimaryButton(){
@@ -51,9 +60,9 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 		));
 		$oButton->setAttribute('class','btn-primary');
 
-		$this->assertEquals(
-			$this->formButtonHelper->render($oButton),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/primary.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-buttons/primary.html',
+			$this->formButtonHelper->render($oButton)
 		);
 	}
 
@@ -63,9 +72,9 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 			'twb' => array('icon' => 'icon-star')
 		));
 
-		$this->assertEquals(
-			$this->formButtonHelper->render($oButton),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/icon.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-buttons/icon.html',
+			$this->formButtonHelper->render($oButton)
 		);
 	}
 
@@ -75,9 +84,9 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 			'twb' => array('icon' => 'icon-star')
 		));
 
-		$this->assertEquals(
-			$this->formButtonHelper->render($oButton),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/icon-label.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-buttons/icon-label.html',
+			$this->formButtonHelper->render($oButton)
 		);
 	}
 
@@ -91,7 +100,7 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 					'actions' => array(
 						'edit' => array('label' => 'Edit', 'icon' => 'icon-pencil'),
 						'delete' => array('label' => 'Belete', 'icon' => 'icon-trash'),
-						'Ban' => array('label' => 'Ban', 'icon' => 'icon-ban-circle'),
+						'Ban' => array('content' => 'Ban', 'icon' => 'icon-ban-circle'),
 						'-',
 						'Make admin'
 					)
@@ -100,12 +109,28 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 		));
 		$oButton->setAttribute('class','btn-primary');
 
-		$this->assertEquals(
-			$this->formButtonHelper->render($oButton),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/button-icon-label-segmented-dropdown.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-buttons/button-icon-label-segmented-dropdown.html',
+			$this->formButtonHelper->render($oButton)
 		);
 	}
 
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testRenderButtonDropdownWithWrongConfig(){
+		$oButton = new \Zend\Form\Element\Button('button-dropdown-with-wrong-config',array(
+			'label' => 'User',
+			'twb' => array(
+				'dropdown' => array(
+					'actions' => array(
+						'wrong' => new \stdClass()
+					)
+				)
+			)
+		));
+		$this->formButtonHelper->render($oButton);
+	}
 
 	public function testRenderSegmentedDropup(){
 		$oButton = new \Zend\Form\Element\Button('segmented-dropup',array(
@@ -118,9 +143,9 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formButtonHelper->render($oButton),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/segmented-dropup.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-buttons/segmented-dropup.html',
+			$this->formButtonHelper->render($oButton)
 		);
 	}
 
@@ -136,9 +161,9 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formButtonHelper->render($oButton),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-buttons/segmented-right-dropup.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-buttons/segmented-right-dropup.html',
+			$this->formButtonHelper->render($oButton)
 		);
 	}
 }

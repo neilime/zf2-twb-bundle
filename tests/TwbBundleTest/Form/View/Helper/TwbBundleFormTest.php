@@ -34,8 +34,13 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 		$this->formHelper = $oViewHelperPluginManager->get('form')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
 
+	public function testInvoke(){
+		$this->assertEquals($this->formHelper,$this->formHelper->__invoke());
+	}
+
 	public function testRenderDefaultStyles(){
 		$oForm = new \Zend\Form\Form();
+
 		$oFieldset = new \Zend\Form\Fieldset('legend');
 		$oForm->add($oFieldset->setLabel('Legend')->add(array(
 			'name' => 'input-text',
@@ -68,15 +73,17 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 			)
 		)));
 
-		$this->assertEquals(
-			$this->formHelper->render($oForm,null),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/default.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/default.html',
+			$this->formHelper->__invoke($oForm,null)
 		);
 	}
 
 	public function testRenderSearchForm(){
 		$oForm = new \Zend\Form\Form();
-		$oForm->add(array(
+		$oForm
+		->setAttribute('class', 'test-class')
+		->add(array(
 			'name' => 'input-text',
 			'attributes' => array(
 				'class' => 'search-query input-medium'
@@ -93,9 +100,9 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/search.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/search.html',
+			$this->formHelper->__invoke($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH)
 		);
 	}
 
@@ -133,10 +140,9 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 				'label' => 'Sign in'
 			)
 		));
-
-		$this->assertEquals(
-			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/inline.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/inline.html',
+			$this->formHelper->__invoke($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)
 		);
 	}
 
@@ -181,9 +187,9 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formHelper->render($oForm),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/horizontal.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/horizontal.html',
+			$this->formHelper->__invoke($oForm)
 		);
 	}
 
@@ -217,9 +223,9 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 			))
 		));
 
-		$this->assertEquals(
-			$this->formHelper->render($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/search-button-append.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/search-button-append.html',
+			$this->formHelper->__invoke($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH)
 		);
 	}
 
@@ -245,9 +251,9 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formHelper->render($oForm,null),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/form-actions.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/form-actions.html',
+			$this->formHelper->__invoke($oForm,null)
 		);
 	}
 
@@ -280,9 +286,51 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase{
 
 		$this->assertFalse($oForm->setData(array('input-text-email' => 'test'))->isValid());
 
-		$this->assertEquals(
-			$this->formHelper->render($oForm),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-forms/form-validation.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/form-validation.html',
+			$this->formHelper->__invoke($oForm)
+		);
+	}
+
+	public function testRenderCheckboxesAndRadios(){
+		$oForm = new \Zend\Form\Form();
+		$oForm->add(new \Zend\Form\Element\Checkbox('input-checkbox',array(
+			'use_hidden_element' => false,
+			'label' => 'Option one is this and that-be sure to include why it\'s great'
+		)))
+		->add(new \Zend\Form\Element\Radio('optionsRadios',array(
+			'value_options' => array('Option one is this and that-be sure to include why it\'s great')
+		)))
+		->add(new \Zend\Form\Element\Radio('optionsRadios',array(
+			'value_options' => array('Option two can be something else and selecting it will deselect option one')
+		)));
+
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/checkboxes-and-radios-stacked.html',
+			$this->formHelper->__invoke($oForm,null)
+		);
+	}
+
+	public function testRenderInlineCheckboxesAndRadios(){
+		$oForm = new \Zend\Form\Form();
+		$oForm->add(new \Zend\Form\Element\Checkbox('input-checkbox',array(
+			'use_hidden_element' => false,
+			'label' => '1'
+		)))->add(new \Zend\Form\Element\Checkbox('input-checkbox',array(
+			'use_hidden_element' => false,
+			'label' => '2'
+		)))
+		->add(new \Zend\Form\Element\Checkbox('input-checkbox',array(
+			'use_hidden_element' => false,
+			'label' => '3'
+		)))
+		->add(new \Zend\Form\Element\Radio('optionsRadios',array(
+			'value_options' => array(1,2,3)
+		)));
+
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-forms/checkboxes-and-radios-inline.html',
+			$this->formHelper->__invoke($oForm,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)
 		);
 	}
 }

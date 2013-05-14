@@ -2,14 +2,15 @@
 return array(
 	'view_helpers' => array(
 		'invokables' => array(
+			//Alert
+			'alert' => 'TwbBundle\View\Helper\TwbBundleAlert',
+
 			//Form
 			'form' => 'TwbBundle\Form\View\Helper\TwbBundleForm',
-			'formbutton' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
+			'formButton' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
 			'formCollection' => 'TwbBundle\Form\View\Helper\TwbBundleFormCollection',
-			'formRow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow',
-
-			//Alert
-			'alert' => 'TwbBundle\View\Helper\TwbBundleAlert'
+			//'formRadio' => 'TwbBundle\Form\View\Helper\TwbBundleFormRadio',
+			'formRow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow'
 		)
 	)
 );

@@ -5,9 +5,8 @@
          backupGlobals="false"
          backupStaticAttributes="false"
          stopOnFailure="false">
-
     <testsuites>
-        <testsuite name="src">
+        <testsuite name="TwbBundleTest">
             <directory suffix=".php">./TwbBundleTest/</directory>
         </testsuite>
     </testsuites>
@@ -16,4 +15,7 @@
             <directory suffix=".php">../src/</directory>
         </whitelist>
     </filter>
+    <logging>
+		<log type="coverage-clover" target="./clover.xml"/>
+	</logging>
 </phpunit>

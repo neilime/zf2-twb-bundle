@@ -50,9 +50,21 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase{
     		)
     	)));
 
-    	$this->assertEquals(
-    		$this->formCollectionHelper->render($oRootFieldSet),
-    		file_get_contents(getcwd().'/TwbBundleTest/_files/expected-collections/default.html')
+    	$this->assertStringEqualsFile(
+    		getcwd().'/TwbBundleTest/_files/expected-collections/default.html',
+			$this->formCollectionHelper->render($oRootFieldSet)
+    	);
+    }
+
+    public function testRenderTemplate(){
+    	$oCollection = new \Zend\Form\Element\Collection();
+    	$oCollection->setTargetElement(new \Zend\Form\Element\Button('button-default',array(
+			'label' => 'Default'
+		)));
+
+    	$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-collections/template.html',
+   			$this->formCollectionHelper->renderTemplate($oCollection)
     	);
     }
 }

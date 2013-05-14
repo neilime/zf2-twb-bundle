@@ -42,9 +42,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/prepended.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/prepended.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -56,9 +56,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/appended.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/appended.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -71,9 +71,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/combined.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/combined.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -85,9 +85,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/text-append.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/text-append.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -99,9 +99,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/icon-append.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/icon-append.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -116,9 +116,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/one-button-appended.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/one-button-appended.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -136,9 +136,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/two-buttons-appended.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/two-buttons-appended.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -150,9 +150,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/help-inline.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/help-inline.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -164,9 +164,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/help-block.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/help-block.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -185,9 +185,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-append.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-append.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -206,9 +206,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-prepend.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-prepend.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -236,9 +236,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-combined.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/button-dropdown-combined.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -260,9 +260,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-segmented-dropdown-prepend.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/button-segmented-dropdown-prepend.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -284,9 +284,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			)
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/button-segmented-dropdown-append.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/button-segmented-dropdown-append.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 
@@ -299,9 +299,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			'label' => 'Input with warning'
 		));
 
-		$this->assertEquals(
-			$this->formRowHelper->setFormLayout(\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)->render($oElement),
-			file_get_contents(getcwd().'/TwbBundleTest/_files/expected-inputs/validation-states.html')
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/validation-states.html',
+			$this->formRowHelper->setFormLayout(\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)->render($oElement)
 		);
 	}
 }
