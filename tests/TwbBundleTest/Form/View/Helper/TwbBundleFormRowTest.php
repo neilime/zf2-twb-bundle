@@ -32,14 +32,14 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 
 		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
 		$this->formRowHelper = $oViewHelperPluginManager->get('formRow')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+
+		$this->formRowHelper->setTranslator(\Zend\I18n\Translator\Translator::factory(array()));
 	}
 
 	public function testRenderPrependedInput(){
 		$oElement = new \Zend\Form\Element('input-text',array(
 			'placeholder' => 'Username',
-			'twb' => array(
-				'prepend' => '@'
-			)
+			'twb' => array('prepend' => '@')
 		));
 
 		$this->assertStringEqualsFile(
@@ -51,9 +51,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 	public function testRenderAppendedInput(){
 		$oElement = new \Zend\Form\Element('input-text',array(
 			'placeholder' => 'Username',
-			'twb' => array(
-				'append' => '.00'
-			)
+			'twb' => array('append' => '.00')
 		));
 
 		$this->assertStringEqualsFile(
@@ -81,7 +79,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		$oElement = new \Zend\Form\Element('input-text',array(
 			'placeholder' => 'Username',
 			'twb' => array(
-				'append' => array('type'=>'text','text'=>'Append text'),
+				'append' => array('type'=>'text','text'=>'Append text')
 			)
 		));
 
@@ -89,6 +87,46 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			getcwd().'/TwbBundleTest/_files/expected-inputs/text-append.html',
 			$this->formRowHelper->render($oElement)
 		);
+	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testRenderTextAppendWithAddOnConfig(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'placeholder' => 'Username',
+			'twb' => array(
+				'append' => array('wrong')
+			)
+		));
+		$this->formRowHelper->render($oElement);
+	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testRenderTextAppendWithWrongButtonsConfig(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'placeholder' => 'Username',
+			'twb' => array(
+				'append' => array('type'=>'buttons','buttons'=>array('wrong'))
+			)
+		));
+		$this->formRowHelper->render($oElement);
+	}
+
+
+	/**
+	 * @expectedException DomainException
+	 */
+	public function testRenderTextAppendWithWrongAddOnType(){
+		$oElement = new \Zend\Form\Element('input-text',array(
+			'placeholder' => 'Username',
+			'twb' => array(
+				'append' => array('type'=>'wrong')
+			)
+		));
+		$this->formRowHelper->render($oElement);
 	}
 
 	public function testRenderIconAppend(){
@@ -296,12 +334,25 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 				'help-inline' => 'Something may have gone wrong',
 				'state' => 'warning'
 			),
-			'label' => 'Input with warning'
+			'label' => 'Input with warning',
+			'label_attributes' => array('class' => 'test')
 		));
-
 		$this->assertStringEqualsFile(
 			getcwd().'/TwbBundleTest/_files/expected-inputs/validation-states.html',
 			$this->formRowHelper->setFormLayout(\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)->render($oElement)
+		);
+	}
+
+	public function testRenderCheckbox(){
+		$oElement = new \Zend\Form\Element\Checkbox('input-checkbox',array(
+			'label' => 'test',
+			'value' => 1,
+			'label_attributes' => array('class' => 'test')
+		));
+
+		$this->assertStringEqualsFile(
+			getcwd().'/TwbBundleTest/_files/expected-inputs/checkbox.html',
+			$this->formRowHelper->render($oElement)
 		);
 	}
 

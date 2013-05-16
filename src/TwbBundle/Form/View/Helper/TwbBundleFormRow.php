@@ -136,13 +136,13 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 					if($sFormLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)$aLabelAttributes['class'] .= ' '.$sFormLayout;
 				}
 				else{
-					if(!preg_match('/(\s|^)'.preg_quote($sType).'(\s|$)/',$sClass))$aLabelAttributes['class'] .= ' '.$sType;
-					if($sFormLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE && !preg_match('/(\s|^)'.preg_quote($sFormLayout).'(\s|$)/',$sClass))$aLabelAttributes['class'] .= ' '.$sFormLayout;
+					if(!preg_match('/(\s|^)'.preg_quote($sType).'(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] .= ' '.$sType;
+					if($sFormLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE && !preg_match('/(\s|^)'.preg_quote($sFormLayout).'(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] .= ' '.$sFormLayout;
 					$aLabelAttributes['class'] = trim($aLabelAttributes['class']);
 				}
 			}
 			elseif(empty($aLabelAttributes['class']))$aLabelAttributes['class'] = 'control-label';
-			elseif(strpos($aLabelAttributes['class'], 'control-label') === false)$aLabelAttributes['class'] .= ' control-label';
+			elseif(!preg_match('/(\s|^)control-label(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] .= ' control-label';
 
 			$oLabelHelper = $this->getLabelHelper();
 
@@ -196,25 +196,26 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	/**
 	 * Retrieve input AddOn markup
 	 * @param string|array $aAddOnConfig
-	 * @throws \Exception
+	 * @throws \InvalidArgumentException
+	 * @throws \DomainException
 	 * @return string
 	 */
 	protected function renderAddOn($aAddOnConfig){
 		if(is_scalar($aAddOnConfig))return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig).'</span>';
 		elseif(is_array($aAddOnConfig) && isset($aAddOnConfig['type']))switch($aAddOnConfig['type']){
 			case 'text':
-				if(!isset($aAddOnConfig['text']) || !is_scalar($aAddOnConfig['text']))throw new \Exception('AddOn "text" type expects string "text" configuration');
+				if(!isset($aAddOnConfig['text']) || !is_scalar($aAddOnConfig['text']))throw new \InvalidArgumentException('AddOn "text" type expects string "text" configuration');
 				if($oTranslator = $this->getTranslator())$aAddOnConfig['text'] = $oTranslator->translate(
 					$aAddOnConfig['text'],
 					$this->getTranslatorTextDomain()
 				);
 				return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig['text']).'</span>';
 			case 'icon':
-				if(!isset($aAddOnConfig['icon']) || !is_string($aAddOnConfig['icon']))throw new \Exception('AddOn "icon" type expects string "icon" configuration');
+				if(!isset($aAddOnConfig['icon']) || !is_string($aAddOnConfig['icon']))throw new \InvalidArgumentException('AddOn "icon" type expects string "icon" configuration');
 				return '<span class="add-on"><i class="'.$this->getEscapeHtmlAttrHelper()->__invoke(trim($aAddOnConfig['icon'])).'"></i></span>';
 				break;
 			case 'buttons':
-				if(!isset($aAddOnConfig['buttons']) || !is_array($aAddOnConfig['buttons']))throw new \Exception('AddOn "buttons" type expects array "buttons" configuration');
+				if(!isset($aAddOnConfig['buttons']) || !is_array($aAddOnConfig['buttons']))throw new \InvalidArgumentException('AddOn "buttons" type expects array "buttons" configuration');
 				$sMarkup = '';
 				foreach($aAddOnConfig['buttons'] as $sName => $oButton){
 					if(is_array($oButton)){
@@ -222,7 +223,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 						if(!isset($oButton['name']) && is_scalar($sName))$oButton['name'] = $sName;
 						$oButton = $this->getFormFactory()->createElement($oButton);
 					}
-					elseif(!($oButton instanceof \Zend\Form\Element\Button))throw new \Exception(sprintf(
+					elseif(!($oButton instanceof \Zend\Form\Element\Button))throw new \InvalidArgumentException(sprintf(
 						'AddOn "buttons" configuration expects arrays or \Zend\Form\Element\Button, "%s" given',
 						is_object($oButton)?get_class($oButton):gettype($oButton)
 					));
@@ -230,9 +231,9 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 				}
 				return $sMarkup;
 			default:
-				throw new \Exception('"'.$aAddOnConfig['type'].'" is not a valid AddOn type');
+				throw new \DomainException('"'.$aAddOnConfig['type'].'" is not a valid AddOn type');
 		}
-		else throw new \Exception('AddOn config expects string or array having at least "type" key');
+		else throw new \InvalidArgumentException('AddOn config expects string or array having at least "type" key');
 	}
 
 	/**
