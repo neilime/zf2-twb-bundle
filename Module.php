@@ -11,7 +11,7 @@ class Module implements
 	public function getAutoloaderConfig(){
         return array(
             'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php'
+                __DIR__.DIRECTORY_SEPARATOR.'autoload_classmap.php'
             )
         );
     }
@@ -20,6 +20,6 @@ class Module implements
      * @return array
      */
     public function getConfig(){
-        return include __DIR__ . '/config/module.config.php';
+        return include __DIR__.DIRECTORY_SEPARATOR.'config/module.config.php';
     }
 }
