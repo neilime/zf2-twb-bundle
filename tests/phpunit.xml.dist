@@ -4,7 +4,7 @@
          verbose="true"
          backupGlobals="false"
          backupStaticAttributes="false"
-         stopOnFailure="false">
+         stopOnFailure="true">
     <testsuites>
         <testsuite name="TwbBundleTest">
             <directory suffix=".php">./TwbBundleTest/</directory>
