@@ -168,7 +168,7 @@ Installation
 
 ## Features
 
-__TwbBundle__ is abble to render [Twitter bootstrap demo site](http://twitter.github.com/bootstrap) forms, inputs, buttons, & alerts. (tests are written in order to cover what is showed on demo site)
+__TwbBundle__ is abble to render [Twitter bootstrap demo site](http://getbootstrap.com/2.3.2/) forms, inputs, buttons, & alerts. (tests are written in order to cover what is showed on demo site)
 
 ### 1. Forms
 
