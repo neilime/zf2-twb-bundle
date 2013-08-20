@@ -49,15 +49,14 @@
 			<li>(Optionnal) Clone the <a href="https://github.com/twbs/bootstrap/tree/v3.0">Twitter bootstrap project</a> (v3.0) into your <code>./vendor/</code> directory.</li>
 		</ol>
 		
-		<h4><a name="with-composer" class="anchor" href="#with-composer"><span class="octicon octicon-link"></span></a>With composer</h4>
+				<h4><a name="with-composer" class="anchor" href="#with-composer"><span class="octicon octicon-link"></span></a>With composer</h4>
 		<ol>
 			<li>
 				<p>Add this project in your composer.json:</p>
-		
 				<div class="highlight"><pre><span class="s2">"require"</span><span class="err">:</span> <span class="p">{</span>
-				<span class="nt">"neilime/zf2-twb-bundle"</span><span class="p">:</span> <span class="s2">"2.0"</span>
-				<span class="p">}</span>
-				</pre></div>
+    <span class="nt">"neilime/zf2-twb-bundle"</span><span class="p">:</span> <span class="s2">"1.0"</span>
+<span class="p">}</span>
+</pre></div>
 			</li>
 			<li>
 				<p>Now tell composer to download <strong>TwbBundle</strong> by running the command:</p>
@@ -69,47 +68,41 @@
 		<ol>
 			<li>
 				<p>Enabling it in your <code>application.config.php</code> file.</p>
-				<div class="highlight">
-					<pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'modules'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="c1">// ...</span>
-					<span class="s1">'TwbBundle'</span><span class="p">,</span>
-					<span class="p">),</span>
-					<span class="c1">// ...</span>
-					<span class="p">);</span>
-					</pre>
-				</div>
+				<div class="highlight"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'modules'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="c1">// ...</span>
+        <span class="s1">'TwbBundle'</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="c1">// ...</span>
+<span class="p">);</span>
+</pre></div>
 			</li>
 			<li><p>Include Twitter Bootstrap assets</p></li>
 		</ol>
 		
 		<h6><a name="with-assetsbundle-module-easy-way" class="anchor" href="#with-assetsbundle-module-easy-way"><span class="octicon octicon-link"></span></a>With <strong>AssetsBundle</strong> module (easy way)</h6>
 		<ul>
-			<li>Install the <a href="https://github.com/neilime/zf2-assets-bundle/tree/3.0">AssetsBundle module</a>(3.0)</li>
-			<li>Install <a href="https://github.com/twbs/bootstrap/tree/v3.0">Twitter Bootstrap</a> (v3.0)</li>
+			<li>Install the <a href="https://github.com/neilime/zf2-assets-bundle/tree/2.1">AssetsBundle module</a>(2.1)</li>
+			<li>Install <a href="https://github.com/twbs/bootstrap/tree/v2.3.2">Twitter Bootstrap</a> (v2.3.2)</li>
 			<li>
 				<p>Edit the application module configuration file <code>module/Application/config/module.config.php</code>, adding the configuration fragment below:</p>
-				<div class="highlight">
-					<pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
-					<span class="c1">//...</span>
-					<span class="s1">'asset_bundle'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'assets'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'less'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'@zfRootPath/vendor/twitter/bootstrap/less/bootstrap.less'</span><span class="p">)</span>
-					<span class="p">)</span>
-					<span class="p">),</span>
-					<span class="c1">//...</span>
-					<span class="p">);</span>
-					</pre>
-				</div>
+				<div class="highlight"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="c1">//...</span>
+     <span class="s1">'asset_bundle'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+         <span class="s1">'assets'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+             <span class="s1">'less'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'@zfRootPath/vendor/twitter/bootstrap/less/bootstrap.less'</span><span class="p">)</span>
+         <span class="p">)</span>
+     <span class="p">),</span>
+     <span class="c1">//...</span>
+ <span class="p">);</span>
+</pre></div>
 			</li>
 			<li>
 				<p>Edit layout file <code>module/Application/view/layout/layout.phtml</code>, to render head scripts :</p>
-				<div class="highlight">
-					<pre><span class="c1">//...    </span>
-					<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headScript</span><span class="p">();</span>
-					<span class="c1">//...</span>
-					</pre>
-				</div>
+				<div class="highlight"><pre><span class="c1">//...    </span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headScript</span><span class="p">();</span>
+<span class="c1">//...</span>
+</pre></div>
 			</li>
 		</ul>
 		
