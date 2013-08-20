@@ -294,6 +294,10 @@ a.demo {
 	background: url(../images/demo.png) no-repeat 1px;
 }
 
+a.installation {
+	background: url(../images/installation.png) no-repeat 1px;
+}
+
 a.home {
 	background: url(../images/home.png) no-repeat 1px;
 }

@@ -1,521 +1,61 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>TwbBundle by neilime</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">TwbBundle</h1>
-        <p class="header">Zend Framework 2 module for easy integration of Twitter Bootstrap</p>
-        <ul>
-          <li><a class="buttons demo" href="demo.html">Demonstration</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/neilime/zf2-twb-bundle/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/neilime/zf2-twb-bundle/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/neilime/zf2-twb-bundle">View On GitHub</a></li>
-        </ul>
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/neilime">Neilime</a></p>
-      </header>
-      <section>
-        <h1>TwbBundle</h1>
-
-<p>
-	<a href="https://travis-ci.org/neilime/zf2-twb-bundle"><img src="https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master" alt="Build Status"></a>
-	<br/>
-	Created by <a href="https://github.com/neilime">Neilime</a>
-</p>
-
-<h2>Introduction</h2>
-
-<p>
-	<strong>TwbBundle</strong> is a module for Zend Framework 2, for easy integration of the <a href="https://github.com/twitter/bootstrap">Twitter Bootstrap</a>. 
-</p>
-
-<p><em>P.S. Sorry for my english. If You wish to help me with this project or correct my english description - You are welcome :)</em></p>
-
-<h2>Demonstration / exemple</h2>
-
-<p>
-	Render forms, buttons, alerts with TwbBundle : see it in action <a href="demo.html"><strong>on-line</strong></a>.
-</p>
-
-<h2>Requirements</h2>
-
-<ul>
-<li>
-<a href="https://github.com/zendframework/zf2">Zend Framework 2</a> (latest master)</li>
-<li>
-<a href="https://github.com/twitter/bootstrap">Twitter Bootstrap</a> (latest master)</li>
-</ul><h2>Installation</h2>
-
-<h3>Main Setup</h3>
-
-<h4>By cloning project</h4>
-
-<ol>
-<li>Clone this project into your <code>./vendor/</code> directory.</li>
-<li>(Optionnal) Clone the <a href="https://github.com/twitter/bootstrap">Twitter bootstrap project</a> (latest master) into your <code>./vendor/</code> directory.</li>
-</ol><h4>With composer</h4>
-
-<ol>
-<li>
-<p>Add this project in your composer.json:</p>
-
-<div class="highlight"><pre><span class="s2">"require"</span><span class="err">:</span> <span class="p">{</span>
-    <span class="nt">"neilime/zf2-twb-bundle"</span><span class="p">:</span> <span class="s2">"dev-master"</span>
-<span class="p">}</span>
-</pre></div>
-</li>
-<li>
-<p>Now tell composer to download <strong>TwbBundle</strong> by running the command:</p>
-
-<div class="highlight"><pre><span class="nv">$ </span>php composer.phar update
-</pre></div>
-</li>
-</ol><h4>Post installation</h4>
-
-<ol>
-<li>
-<p>Enabling it in your <code>application.config.php</code> file.</p>
-
-<div class="highlight"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'modules'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="c1">// ...</span>
-        <span class="s1">'TwbBundle'</span><span class="p">,</span>
-    <span class="p">),</span>
-    <span class="c1">// ...</span>
-<span class="p">);</span>
-</pre></div>
-</li>
-<li><p>Include Twitter Bootstrap assets</p></li>
-</ol><h6>With <strong>AssetsBundle</strong> module (easy way)</h6>
-
-<ul>
-<li>Install the <a href="https://github.com/neilime/zf2-assets-bundle">AssetsBundle module </a>(latest master)</li>
-<li>
-<p>Edit the application module configuration file <code>module/Application/config/module.config.php</code>, adding the configuration fragment below:</p>
-
-<div class="highlight"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
-    <span class="c1">//...</span>
-     <span class="s1">'asset_bundle'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-         <span class="s1">'assets'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-             <span class="s1">'less'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'@zfRootPath/vendor/twitter/bootstrap/less/bootstrap.less'</span><span class="p">)</span>
-         <span class="p">)</span>
-     <span class="p">),</span>
-     <span class="c1">//...</span>
- <span class="p">);</span>
-</pre></div>
-</li>
-<li>
-<p>Edit layout file <code>module/Application/view/layout/layout.phtml</code>, to render head scripts :</p>
-
-<div class="highlight"><pre><span class="c1">//...    </span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headScript</span><span class="p">();</span>
-<span class="c1">//...</span>
-</pre></div>
-</li>
-</ul><h6>Manually</h6>
-
-<ul>
-<li>Copy <code>vendor/twitter/bootstrap/docs/assets/css/bootstrap.css</code> file into your asset folder and add it in your head scripts</li>
-</ul><h1>How to use <strong>TwbBundle</strong>
-</h1>
-
-<h2>Simple examples</h2>
-
-<ul>
-<li>
-<p>Render a dropdown button</p>
-
-<div class="highlight"><pre><span class="c1">//...</span>
-<span class="c1">//Create button</span>
-<span class="nv">$button</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Element\Button</span><span class="p">(</span><span class="s1">'test-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Action'</span><span class="p">,</span>
-    <span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'Action'</span><span class="p">,</span>
-        <span class="s1">'Another action'</span><span class="p">,</span>
-        <span class="s1">'Something else here'</span><span class="p">,</span>
-        <span class="s1">'-'</span><span class="p">,</span>
-        <span class="s1">'Separated link'</span>
-    <span class="p">))</span>
-<span class="p">)));</span>
-<span class="c1">//Render it in your view</span>
-<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$button</span><span class="p">);</span>
-<span class="c1">//...</span>
-</pre></div>
-</li>
-<li>
-<p>Render a search form</p>
-
-<div class="highlight"><pre><span class="c1">//...</span>
-<span class="c1">//Create form</span>
-<span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
-<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-search-append'</span><span class="p">,</span>
-    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'search-query input-medium'</span>
-    <span class="p">),</span>
-    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
-            <span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                <span class="s1">'search-submit-append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Search'</span><span class="p">),</span>
-                    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">)</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-    <span class="p">))</span>
-<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-search-prepend'</span><span class="p">,</span>
-    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'search-query input-medium'</span>
-    <span class="p">),</span>
-    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'prepend'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
-            <span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                <span class="s1">'search-submit-prepend'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Search'</span><span class="p">),</span>
-                    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">)</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-    <span class="p">))</span>
-<span class="p">));</span>
-<span class="c1">//Render it in your view</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
-<span class="c1">//...</span>
-</pre></div>
-</li>
-</ul><h2>Features</h2>
-
-<p><strong>TwbBundle</strong> is abble to render <a href="http://twitter.github.com/bootstrap">Twitter bootstrap demo site</a> forms, inputs, buttons, &amp; alerts. (tests are written in order to cover what is showed on demo site)</p>
-
-<h3>1. Forms</h3>
-
-<p><em>Render \Zend\Form\FormInterface</em></p>
-
-<h4>Form layout :</h4>
-
-<p>Layout should be defined when form view helper is invoked</p>
-
-<ul>
-<li>None : <code>null</code>
-</li>
-<li>Search form : <code>\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH</code>
-</li>
-<li>Inline form : <code>\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE</code>
-</li>
-<li>
-<p>Horizontal form (default) : <code>\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL</code></p>
-
-<p>Exemple : </p>
-
-<div class="highlight"><pre><span class="c1">//...</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_INLINE</span><span class="p">);</span>
-<span class="c1">//...    </span>
-</pre></div>
-</li>
-</ul><h3>2. Inputs</h3>
-
-<p><em>Render \Zend\Form\ElementInterface</em></p>
-
-<p>All elements options are defined in <code>twb</code> (array)</p>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="sd">/** TwbBundle options **/</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<h4>Appended and / or prepended</h4>
-
-<p>For all prepended / appended types : </p>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'prepend'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'prepended type'</span><span class="p">,</span>
-            <span class="c1">//Prepended type option</span>
-        <span class="p">),</span>
-        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'appended type'</span><span class="p">,</span>
-            <span class="c1">//Appended type option</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<ul>
-<li>
-<p>Text :</p>
-
-<p><em>Appended / prepended texts are translated</em></p>
-
-<div class="highlight"><pre><span class="c1">//Prepended text</span>
-<span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'prepend'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
-            <span class="s1">'text'</span> <span class="o">=&gt;</span> <span class="s1">'Prepended text'</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-</li>
-<li>
-<p>Icon : </p>
-
-<div class="highlight"><pre><span class="c1">//Appended icon</span>
-<span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'icon'</span><span class="p">,</span>
-            <span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-enveloppe'</span> <span class="c1">//icon class</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-</li>
-<li>
-<p>Button(s) :</p>
-
-<p><em>Button options are explained <a href="#buttons">below</a>.</em></p>
-
-<div class="highlight"><pre><span class="c1">//Appended buttons</span>
-<span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
-            <span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                <span class="s1">'button-one'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                    <span class="cm">/* Button factory options, name is not mandatory if given with the array key */</span>
-                <span class="p">),</span>
-                <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-two'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="cm">/* Button options */</span><span class="p">))</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-</li>
-<li>
-<p>Or what ever you want :</p>
-
-<div class="highlight"><pre><span class="c1">//Appended markup</span>
-<span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;span&gt;Simple appended text&lt;/span&gt;'</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-</li>
-</ul><h4>Form actions</h4>
-
-<p>This option allows an element to be in form actions part</p>
-
-<div class="highlight"><pre><span class="c1">//Element in form actions</span>
-<span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'formAction'</span> <span class="o">=&gt;</span> <span class="k">true</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<h4>Help</h4>
-
-<ul>
-<li>
-<p>Inline</p>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'help-inline'</span> <span class="o">=&gt;</span> <span class="s1">'Inline help text'</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-</li>
-<li>
-<p>Block</p>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'help-block'</span> <span class="o">=&gt;</span> <span class="s1">'A longer block of help text that breaks onto a new line and may extend beyond one line.'</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-</li>
-</ul><h4>Validation states</h4>
-
-<p>Validations states are only rendered with horizontal form layout, validation status "error" is automatically added when the element contains at least one error message.</p>
-
-<div class="highlight"><pre><span class="c1">//Element with "info" state</span>
-<span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'test-element'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'state'</span> <span class="o">=&gt;</span> <span class="s1">'info'</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<h3>3. Buttons</h3>
-
-<p>Render \Zend\Form\Element\Button</p>
-
-<h4>Icons</h4>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'test-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-info'</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<h4>Button dropdowns</h4>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'test-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                <span class="sd">/** action options **/</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<h4>Split button dropdowns</h4>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'test-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'segmented'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
-            <span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                <span class="sd">/** action options **/</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<h4>Right menus</h4>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'test-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="s1">'pull'</span> <span class="o">=&gt;</span> <span class="s1">'right'</span><span class="p">,</span>
-            <span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                <span class="sd">/** action options **/</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<h4>Dropup menus</h4>
-
-<div class="highlight"><pre><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'test-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'dropup'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-            <span class="sd">/** dropup options (same as dropdown **/</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-<h4>Actions options</h4>
-
-<p>Should be <code>string</code> or <code>array</code></p>
-
-<ul>
-<li>
-<p>String : The label name (would be translated), href url is # + String value.
-Exemple : </p>
-
-<div class="highlight"><pre><span class="c1">//...</span>
-<span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'test'</span> <span class="c1">//Render &lt;li&gt;&lt;a href="#test"&gt;test&lt;/a&gt;&lt;/li&gt;</span>
-<span class="p">)</span>
-<span class="c1">//...</span>
-</pre></div>
-
-<p>You can render a <code>divider</code> by using  <code>-</code> as label name</p>
-
-<p>Exemple : </p>
-
-<div class="highlight"><pre><span class="c1">//...</span>
-<span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'-'</span> <span class="c1">//Render &lt;li class="divider"&gt;&lt;/li&gt;</span>
-<span class="p">)</span>
-<span class="c1">//...</span>
-</pre></div>
-</li>
-<li>
-<p>Array (available options):</p>
-
-<ul>
-<li>
-<code>string</code> label : the label name (would be translated)</li>
-<li>
-<code>string</code> content : markup, if <code>label</code> is defined, this option is not used</li>
-<li>
-<code>string</code> icon : (optionnal) the icon class to prepend to label or content</li>
-<li>
-<code>string</code> href : (optionnal) href for the link, default <code>#</code>
-</li>
-<li>... : all attributes you want for the link element (onclick, class...)</li>
-</ul>
-<p>Exemple : </p>
-
-<div class="highlight"><pre><span class="c1">//...</span>
-<span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-    <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Test action'</span><span class="p">,</span>
-        <span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'icon-user'</span><span class="p">,</span>
-        <span class="s1">'href'</span> <span class="o">=&gt;</span> <span class="s1">'test.html'</span><span class="p">,</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'test-class'</span>
-    <span class="p">)</span> <span class="c1">// Render &lt;li&gt;&lt;a href="test.html" class="test-class"&gt;&lt;i class="icon-user"&gt;&lt;/i&gt; Test action&lt;/a&gt;&lt;/li&gt;</span>
-<span class="p">)</span>
-<span class="c1">//...</span>
-</pre></div>
-</li>
-</ul><h3>4. Alerts</h3>
-
-<p><em>Render alerts</em></p>
-
-<p>Exemple : </p>
-
-<div class="highlight"><pre><span class="c1">//...</span>
-<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span><span class="s1">'Test message'</span><span class="p">,</span><span class="s1">'alert-error'</span><span class="p">);</span>
-<span class="c1">//...    </span>
-</pre></div>
-
-<h4>Params</h4>
-
-<ul>
-<li>
-<code>string</code> alert message :  (would be translated)</li>
-<li>
-<code>string</code> alert class : (optionnal)</li>
-<li>
-<code>boolean</code> close : show close button or not, default true</li>
-</ul>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
-  </body>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<title>TwbBundle</title>
+	
+	<link rel="stylesheet" href="stylesheets/styles.css">
+	<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+	<script src="javascripts/scale.fix.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+<div class="wrapper">
+	<header>
+		<h1 class="header">TwbBundle</h1>
+		<p class="header">Zend Framework 2 module for easy integration of Twitter Bootstrap</p>
+		<ul>
+			<li class="download"><a class="buttons" href="https://github.com/neilime/zf2-twb-bundle/zipball/master">Download ZIP</a></li>
+			<li class="download"><a class="buttons" href="https://github.com/neilime/zf2-twb-bundle/tarball/master">Download TAR</a></li>
+			<li><a class="buttons github" href="https://github.com/neilime/zf2-twb-bundle">View On GitHub</a></li>
+		</ul>
+		<p class="header">This project is maintained by <a class="header name" href="https://github.com/neilime">Neilime</a></p>
+	</header>
+	<section>
+      	<h1>TwbBundle</h1>
+		<p>
+			<a href="https://travis-ci.org/neilime/zf2-twb-bundle"><img src="https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master" alt="Build Status" style="max-width:100%;"></a>
+			<a href="https://packagist.org/packages/neilime/zf2-twb-bundle"><img src="https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png" alt="Latest Stable Version" style="max-width:100%;"></a>
+			<a href="https://packagist.org/packages/neilime/zf2-twb-bundle"><img src="https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png" alt="Total Downloads" style="max-width:100%;"></a>
+			<a href="https://raw.github.com/zf2-boiler-app/app-test/master/ressources/100%25-code-coverage.png" target="_blank"><img src="https://raw.github.com/zf2-boiler-app/app-test/master/ressources/100%25-code-coverage.png" alt="Code coverage" title="100% code coverage" style="max-width:100%;"></a>
+		</p>
+		<p>NOTE : If you want to contribute don't hesitate, I'll review any PR.</p>
+		<h2>Introduction</h2>
+		<p><strong>TwbBundle</strong> is a module for Zend Framework 2, for easy integration of the <a href="http://getbootstrap.com/">Twitter Bootstrap</a>. </p>
+		<h2>Demonstration / exemple</h2>
+		<div>
+			Render forms, buttons, alerts with TwbBundle, see it in action on-line:
+			<ul>
+				<li><a href="http://neilime.github.com/zf2-twb-bundle/2.0/demo.html">Twitter Bootstrap v3.0</a></li>
+				<li><a href="http://neilime.github.com/zf2-twb-bundle/1.0/demo.html">Twitter Bootstrap v2.3.2</a></li>
+			</ul>
+		</div>
+		<h2>Installation</h2>
+		<div>
+			<ul>
+				<li><a href="http://neilime.github.com/zf2-twb-bundle/2.0/installation.html">Twitter Bootstrap v3.0</a></li>
+				<li><a href="http://neilime.github.com/zf2-twb-bundle/1.0/installation.html">Twitter Bootstrap v2.3.2</a></li>
+			</ul>
+		</div>
+	</section>
+	<footer>
+		<p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+	</footer>
+</div>
+<!--[if !IE]><script>fixScale(document);</script><![endif]-->
+</body>
 </html>
