@@ -53,11 +53,9 @@
 		<ol>
 			<li>
 				<p>Add this project in your composer.json:</p>
-		
 				<div class="highlight"><pre><span class="s2">"require"</span><span class="err">:</span> <span class="p">{</span>
-				<span class="nt">"neilime/zf2-twb-bundle"</span><span class="p">:</span> <span class="s2">"1.0"</span>
-				<span class="p">}</span>
-				</pre></div>
+	<span class="nt">"neilime/zf2-twb-bundle"</span><span class="p">:</span> <span class="s2">"1.0"</span>
+<span class="p">}</span></pre></div>
 			</li>
 			<li>
 				<p>Now tell composer to download <strong>TwbBundle</strong> by running the command:</p>
@@ -69,16 +67,13 @@
 		<ol>
 			<li>
 				<p>Enabling it in your <code>application.config.php</code> file.</p>
-				<div class="highlight">
-					<pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'modules'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="c1">// ...</span>
-					<span class="s1">'TwbBundle'</span><span class="p">,</span>
-					<span class="p">),</span>
-					<span class="c1">// ...</span>
-					<span class="p">);</span>
-					</pre>
-				</div>
+				<div class="highlight"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+	<span class="s1">'modules'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+	<span class="c1">// ...</span>
+	<span class="s1">'TwbBundle'</span><span class="p">,</span>
+	<span class="p">),</span>
+	<span class="c1">// ...</span>
+<span class="p">);</span></pre></div>
 			</li>
 			<li><p>Include Twitter Bootstrap assets</p></li>
 		</ol>
@@ -89,27 +84,21 @@
 			<li>Install <a href="https://github.com/twbs/bootstrap/tree/v2.3.2">Twitter Bootstrap</a> (v2.3.2)</li>
 			<li>
 				<p>Edit the application module configuration file <code>module/Application/config/module.config.php</code>, adding the configuration fragment below:</p>
-				<div class="highlight">
-					<pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
-					<span class="c1">//...</span>
-					<span class="s1">'asset_bundle'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'assets'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'less'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'@zfRootPath/vendor/twitter/bootstrap/less/bootstrap.less'</span><span class="p">)</span>
-					<span class="p">)</span>
-					<span class="p">),</span>
-					<span class="c1">//...</span>
-					<span class="p">);</span>
-					</pre>
-				</div>
+				<div class="highlight"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+	<span class="c1">//...</span>
+	<span class="s1">'asset_bundle'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+	<span class="s1">'assets'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+	<span class="s1">'less'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'@zfRootPath/vendor/twitter/bootstrap/less/bootstrap.less'</span><span class="p">)</span>
+	<span class="p">)</span>
+	<span class="p">),</span>
+	<span class="c1">//...</span>
+<span class="p">);</span></pre></div>
 			</li>
 			<li>
 				<p>Edit layout file <code>module/Application/view/layout/layout.phtml</code>, to render head scripts :</p>
-				<div class="highlight">
-					<pre><span class="c1">//...    </span>
-					<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headScript</span><span class="p">();</span>
-					<span class="c1">//...</span>
-					</pre>
-				</div>
+				<div class="highlight"><pre><span class="c1">//...    </span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headScript</span><span class="p">();</span>
+<span class="c1">//...</span></pre></div>
 			</li>
 		</ul>
 		
@@ -125,69 +114,64 @@
 		<ul>
 			<li>
 				<p>Render a dropdown button</p>
-				<div class="highlight">
-					<pre><span class="c1">//...</span>
-					<span class="c1">//Create button</span>
-					<span class="nv">$button</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Element\Button</span><span class="p">(</span><span class="s1">'test-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
-					<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Action'</span><span class="p">,</span>
-					<span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'Action'</span><span class="p">,</span>
-					<span class="s1">'Another action'</span><span class="p">,</span>
-					<span class="s1">'Something else here'</span><span class="p">,</span>
-					<span class="s1">'-'</span><span class="p">,</span>
-					<span class="s1">'Separated link'</span>
-					<span class="p">))</span>
-					<span class="p">)));</span>
-					<span class="c1">//Render it in your view</span>
-					<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$button</span><span class="p">);</span>
-					<span class="c1">//...</span>
-					</pre>
-				</div>
+				<div class="highlight"><pre><span class="c1">//...</span>
+<span class="c1">//Create button</span>
+<span class="nv">$button</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Element\Button</span><span class="p">(</span><span class="s1">'test-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+	<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Action'</span><span class="p">,</span>
+	<span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'actions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+	<span class="s1">'Action'</span><span class="p">,</span>
+	<span class="s1">'Another action'</span><span class="p">,</span>
+	<span class="s1">'Something else here'</span><span class="p">,</span>
+	<span class="s1">'-'</span><span class="p">,</span>
+	<span class="s1">'Separated link'</span>
+	<span class="p">))</span>
+<span class="p">)));</span>
+<span class="c1">//Render it in your view</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$button</span><span class="p">);</span>
+<span class="c1">//...</span>
+</pre></div>
 			</li>
 			<li>
 				<p>Render a search form</p>
-				<div class="highlight">
-					<pre><span class="c1">//...</span>
-					<span class="c1">//Create form</span>
-					<span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
-					<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-					<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-search-append'</span><span class="p">,</span>
-					<span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'search-query input-medium'</span>
-					<span class="p">),</span>
-					<span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
-					<span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'search-submit-append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Search'</span><span class="p">),</span>
-					<span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">)</span>
-					<span class="p">)</span>
-					<span class="p">)</span>
-					<span class="p">)</span>
+				<div class="highlight"><pre><span class="c1">//...</span>
+<span class="c1">//Create form</span>
+<span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+	<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-search-append'</span><span class="p">,</span>
+	<span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+		<span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'search-query input-medium'</span>
+	<span class="p">),</span>
+	<span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+		<span class="s1">'append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+		<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
+		<span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+		<span class="s1">'search-submit-append'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+		<span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Search'</span><span class="p">),</span>
+		<span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">)</span>
+	<span class="p">)</span>
+			<span class="p">)</span>
+				<span class="p">)</span>
 					<span class="p">))</span>
-					<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-					<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-search-prepend'</span><span class="p">,</span>
-					<span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'search-query input-medium'</span>
-					<span class="p">),</span>
-					<span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'prepend'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
-					<span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'search-submit-prepend'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-					<span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Search'</span><span class="p">),</span>
-					<span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">)</span>
+						<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+							<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-search-prepend'</span><span class="p">,</span>
+							<span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+							<span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'search-query input-medium'</span>
+						<span class="p">),</span>
+						<span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+							<span class="s1">'prepend'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+							<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'buttons'</span><span class="p">,</span>
+							<span class="s1">'buttons'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+							<span class="s1">'search-submit-prepend'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+							<span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Search'</span><span class="p">),</span>
+							<span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">)</span>
+						<span class="p">)</span>
 					<span class="p">)</span>
-					<span class="p">)</span>
-					<span class="p">)</span>
-					<span class="p">))</span>
-					<span class="p">));</span>
-					<span class="c1">//Render it in your view</span>
-					<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
-					<span class="c1">//...</span>
-					</pre>
-				</div>
+			<span class="p">)</span>
+	<span class="p">))</span>
+<span class="p">));</span>
+<span class="c1">//Render it in your view</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
+<span class="c1">//...</span></pre></div>
 			</li>
 		</ul>
 		
