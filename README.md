@@ -1,4 +1,4 @@
-TwbBundle, v1.0
+TwbBundle, v1.0 (Twitter Bootstrap 2.3.2)
 =====================
 
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
@@ -23,7 +23,7 @@ Requirements
 ------------
 
 * [Zend Framework 2](https://github.com/zendframework/zf2) (latest master)
-* [Twitter Bootstrap](https://github.com/twitter/bootstrap) (latest master)
+* [Twitter Bootstrap](https://github.com/twbs/bootstrap/tree/v2.3.2) (v2.3.2)
 
 Installation
 ------------
@@ -41,7 +41,7 @@ Installation
 
     ```json
     "require": {
-        "neilime/zf2-twb-bundle": "dev-master"
+        "neilime/zf2-twb-bundle": "1.0"
     }
     ```
 
@@ -69,8 +69,8 @@ Installation
 
 ###### With __AssetsBundle__ module (easy way)
     
-* Install the [AssetsBundle module](https://github.com/neilime/zf2-assets-bundle)(latest master)
-* Install [Twitter Bootstrap](https://github.com/twitter/bootstrap)(latest master)
+* Install the [AssetsBundle module](https://github.com/neilime/zf2-twb-bundle/tree/1.0)(1.0)
+* Install [Twitter Bootstrap](https://github.com/twbs/bootstrap/tree/v2.3.2) (v2.3.2)
 * Edit the application module configuration file `module/Application/config/module.config.php`, adding the configuration fragment below:
 
     ```php
