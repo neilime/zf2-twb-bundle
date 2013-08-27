@@ -2,13 +2,6 @@
 namespace TwbBundle\Form\View\Helper;
 class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 	/**
-	 * Render a form <button> element from the provided $oElement, using content from $sButtonContent or the element's "label" attribute
-	 * @param \Zend\Form\ElementInterface $oElement
-	 * @param null|string $sButtonContent
-	 * @return string
-	 */
-
-	/**
 	 * @see \Zend\Form\View\Helper\FormButton::render()
 	 * @param \Zend\Form\ElementInterface $oElement
 	 * @param string $sButtonContent
@@ -18,9 +11,11 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 	 */
 	public function render(\Zend\Form\ElementInterface $oElement, $sButtonContent = null){
 		if($sClass = $oElement->getAttribute('class')){
-			if(!preg_match('/(\s|^)btn(\s|$)/',$sClass))$oElement->setAttribute('class',$sClass.' btn');
+			if(!preg_match('/(\s|^)btn(\s|$)/',$sClass))$sClass .= ' btn';
+			if(!preg_match('/(\s|^)btn-.*(\s|$)/',$sClass))$sClass .= ' btn-default';
+			$oElement->setAttribute('class',trim($sClass));
 		}
-		else $oElement->setAttribute('class','btn');
+		else $oElement->setAttribute('class','btn btn-default');
 
 		if(null === $sButtonContent){
 			$sButtonContent = $oElement->getLabel();

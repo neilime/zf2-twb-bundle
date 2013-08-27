@@ -1,5 +1,7 @@
-TwbBundle, v1.0 (Twitter Bootstrap 2.3.2)
+TwbBundle, v2.0 (Twitter Bootstrap v3.*)
 =====================
+
+Work in progress to supports Twitter Bootstrap v3.*
 
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
@@ -13,6 +15,11 @@ Introduction
 
 __TwbBundle__ is a module for Zend Framework 2, for easy integration of the [Twitter Bootstrap](https://github.com/twitter/bootstrap). 
 
+Contributing
+------------
+
+If you wish to contribute to TwbBundle, please read both the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
 Demonstration / exemple
 -----------------------
 
@@ -22,8 +29,8 @@ Render forms, buttons, alerts with TwbBundle : see it in action [on-line](http:/
 Requirements
 ------------
 
-* [Zend Framework 2](https://github.com/zendframework/zf2) (latest master)
-* [Twitter Bootstrap](https://github.com/twbs/bootstrap/tree/v2.3.2) (v2.3.2)
+* [Zend Framework 2](https://github.com/zendframework/zf2) (2.*)
+* [Twitter Bootstrap](https://github.com/twbs/bootstrap/tree/v2.3.2) (v3.*)
 
 Installation
 ------------
@@ -41,7 +48,7 @@ Installation
 
     ```json
     "require": {
-        "neilime/zf2-twb-bundle": "1.0"
+        "neilime/zf2-twb-bundle": "2.0"
     }
     ```
 

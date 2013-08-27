@@ -1,281 +1,190 @@
 <?php
 namespace TwbBundle\Form\View\Helper;
 class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
-	/**
-	 * @var \Zend\Form\Factory
-	 */
-	protected $formFactory;
 
 	/**
 	 * @var string
 	 */
-	protected $formLayout;
+	private static $formGroupFormat = '<div class="form-group">%s</div>';
 
 	/**
-	 * @param \Zend\Form\ElementInterface $oElement
-	 * @param string $sLabelPosition
-	 * @param boolean $bRenderErrors
-	 * @return string|\TwbBundle\Form\View\Helper\TwbBundleFormRow
+	 * @var string
 	 */
-	public function __invoke(\Zend\Form\ElementInterface $oElement = null, $sLabelPosition = null, $bRenderErrors = null,$sFormLayout = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL){
-		if($sFormLayout)$this->setFormLayout($sFormLayout);
-		else $this->formLayout = null;
-		return parent::__invoke($oElement,$sLabelPosition,$bRenderErrors);
-	}
+	private static $horizontalLayoutFormat = '%s<div class="%s">%s</div>';
 
 	/**
-	 * Utility form helper that renders a label (if it exists), an element and errors
+	 * @var string
+	 */
+	private static $helpBlockFormat = '<p class="help-block">%s</p>';
+
+	/**
+	 * @see \Zend\Form\View\Helper\FormRow::render()
 	 * @param \Zend\Form\ElementInterface $oElement
 	 * @return string
 	 */
 	public function render(\Zend\Form\ElementInterface $oElement){
-		//Form properties
-		$sType = $oElement->getAttribute('type');
-		$sFormLayout = $this->getFormLayout();
-		$bIsInlineForm = in_array($sFormLayout,array(
-			\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE,
-			\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH
+		//Retrieve element's type
+		$sElementType = $oElement->getAttribute('type');
+
+		//Retrieve expected layout
+		$aTwbOptions = $oElement->getOption('twb');
+		$sLayout = isset($aTwbOptions['layout'])?$aTwbOptions['layout']:null;
+
+		//Add form-controll class
+		if(
+			$sElementType !== 'file' //Not a "file" input
+			&& $sElementType !== 'checkbox' //Not a checkbox
+			&& $sElementType !== 'submit' //Not a "submit" button
+		){
+			if($sElementClass = $oElement->getAttribute('class')){
+				if(!preg_match('/(\s|^)form-control(\s|$)/',$sElementClass))$oElement->setAttribute('class',trim($sElementClass.' form-control'));
+			}
+			else $oElement->setAttribute('class','form-control');
+		}
+
+		//Partial rendering
+		if($this->partial)return $this->view->render($this->partial, array(
+			'element' => $oElement,
+			'label' => $this->renderLabel($oElement),
+			'labelAttributes' => $this->labelAttributes,
+			'labelPosition' => $this->labelPosition,
+			'renderErrors' => $this->renderErrors,
 		));
 
-		//Helpers
-		$oElementHelper = $this->getElementHelper();
-		$oElementErrorsHelper = $this->getElementErrorsHelper()
-		->setMessageOpenFormat('<div%s>')
-		->setMessageSeparatorString('<br/>')
-		->setMessageCloseString('</div>');
+		//Render element
+		$sElementContent = $this->renderElement($oElement).
+		//Render errors
+		$this->renderErrors($oElement).
+		//Render help block
+		$this->renderHelpBlock($oElement);
 
-		if($sType === 'hidden')$sMarkup = $oElementHelper->render($oElement).$oElementErrorsHelper->render($oElement, array('class' => 'alert alert-error'));
-		else{
-			$bElementInLabel = in_array($sType,array('checkbox'));
-
-			if(
-				$bIsInlineForm && !$bElementInLabel
-				&& !$oElement->getAttribute('placeholder')
-				&& ($sLabel = $oElement->getLabel())
-			)$oElement->setAttribute('placeholder',$sLabel);
-
-			//Buttons
-			elseif(in_array($sType,array('submit','button'))){
-				if($sClass = $oElement->getAttribute('class')){
-					if(!preg_match('/(\s|^)btn(\s|$)/',$sClass))$oElement->setAttribute('class',$sClass.' btn');
-				}
-				else $oElement->setAttribute('class','btn');
-			}
-
-			elseif($oElement instanceof \Zend\Form\Element\MultiCheckbox){
-				$aOptions = $oElement->getValueOptions();
-
-				if(empty($aOptions))throw new \DomainException(sprintf(
-					'%s requires that the element has "value_options"; none found',
-					__METHOD__
-				));
-
-				foreach($aOptions as $sKey => $aOption){
-					if(is_scalar($aOption))$aOption = array('label' => $aOption, 'value' => $sKey);
-					if(empty($aOption['label_attributes']['class']))$aOption['label_attributes']['class'] = $sType;
-					elseif(!preg_match('/(\s|^)'.preg_quote($sType).'(\s|$)/',$aOption['label_attributes']['class']))$aOption['label_attributes']['class'] .= ' '.$sType;
-					if($sFormLayout && !preg_match('/(\s|^)'.preg_quote($sFormLayout).'(\s|$)/',$aOption['label_attributes']['class']))$aOption['label_attributes']['class'] .= ' '.$sFormLayout;
-					$aOptions[$sKey] = $aOption;
-				}
-
-				$oElement->setValueOptions($aOptions);
-			}
-
-			//Render according to layout
-			switch($sFormLayout){
-				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
-
-					//Validation state
-					$sStateClass = '';
-					if(count($oElement->getMessages()))$sStateClass = 'error';
-					if(($aTwbOptions = $oElement->getOption('twb')) && !empty($aTwbOptions['state']) && $aTwbOptions['state'] !== $sStateClass)$sStateClass .= ' '.$aTwbOptions['state'];
-					if(!empty($sStateClass))$sStateClass = ' '.trim($sStateClass);
-
-					$sMarkup = '<div class="control-group'.$sStateClass.'">'.($bElementInLabel?'<div class="controls'.$sStateClass.'">'
-						.$this->renderLabel($oElement)
-						.$oElementErrorsHelper->render($oElement, array('class' => 'help-block')).
-					'</div>':$this->renderLabel($oElement).'<div class="controls'.$sStateClass.'">'
-					.$this->renderElement($oElement).$oElementErrorsHelper->render($oElement, array('class' => 'help-block')).
-					'</div>').'</div>';
-					break;
-				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH:
-				default:
-					$sMarkup = ($bElementInLabel?$this->renderLabel($oElement):$this->renderElement($oElement)).$oElementErrorsHelper->render($oElement, array('class' => 'help-block'));
-					if((!$sType || in_array($sType,array('text'))) && ($sLabel = $this->renderLabel($oElement)))$sMarkup = $sLabel.PHP_EOL.$sMarkup;
-					break;
-			}
-		}
-		return $sMarkup.PHP_EOL;
+		//Render form row
+		if(in_array($sElementType,array('checkbox')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)return $sElementContent.PHP_EOL;
+		if($sElementType === 'submit' && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)return $sElementContent.PHP_EOL;
+		return sprintf(
+			self::$formGroupFormat,
+			$sElementContent
+		).PHP_EOL;
 	}
 
 	/**
-	 * Retrieve label markup
+	 * Render element's label
 	 * @param \Zend\Form\ElementInterface $oElement
 	 * @return string
 	 */
 	protected function renderLabel(\Zend\Form\ElementInterface $oElement){
-		$sType = $oElement->getAttribute('type');
-		if(in_array($sType,array('button','submit')))return '';
-
-		$slabelOpen = $sLabelClose = '';
-		if($sLabel = $oElement->getLabel()){
-
-			//Translate label
-			if($oTranslator = $this->getTranslator())$sLabel = $oTranslator->translate($sLabel,$this->getTranslatorTextDomain());
-
-			$sLabel = $this->getEscapeHtmlHelper()->__invoke($sLabel);
-			$aLabelAttributes = $oElement->getLabelAttributes()?:$this->labelAttributes;
-
-			//Insert element in label for checkbox and radio inputs
-			if(in_array($sType,array('checkbox'))){
-				$sLabel = $this->renderElement($oElement).$sLabel;
-				$sFormLayout = $this->getFormLayout();
-				if(empty($aLabelAttributes['class'])){
-					$aLabelAttributes['class'] = $sType;
-					if($sFormLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)$aLabelAttributes['class'] .= ' '.$sFormLayout;
-				}
-				else{
-					if(!preg_match('/(\s|^)'.preg_quote($sType).'(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] .= ' '.$sType;
-					if($sFormLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE && !preg_match('/(\s|^)'.preg_quote($sFormLayout).'(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] .= ' '.$sFormLayout;
-					$aLabelAttributes['class'] = trim($aLabelAttributes['class']);
-				}
-			}
-			elseif(empty($aLabelAttributes['class']))$aLabelAttributes['class'] = 'control-label';
-			elseif(!preg_match('/(\s|^)control-label(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] .= ' control-label';
-
-			$oLabelHelper = $this->getLabelHelper();
-
-			$slabelOpen  = $oLabelHelper->openTag($aLabelAttributes);
-			$sLabelClose = $oLabelHelper->closeTag();
-		}
-		return $slabelOpen.$sLabel.$sLabelClose;
+		if(($sLabel = $oElement->getLabel()) && ($oTranslator = $this->getTranslator()))$sLabel = $oTranslator->translate($sLabel,$this->getTranslatorTextDomain());
+		return $sLabel;
 	}
 
 	/**
-	 * Render element markup
+	 * Render element
 	 * @param \Zend\Form\ElementInterface $oElement
 	 * @return string
 	 */
 	protected function renderElement(\Zend\Form\ElementInterface $oElement){
-		//Render element
-		$sElementMarkup = $this->getElementHelper()->render($oElement);
+		//Retrieve expected layout
+		$aTwbOptions = $oElement->getOption('twb');
+		$sLayout = isset($aTwbOptions['layout'])?$aTwbOptions['layout']:null;
 
-		//Process twitter bootsrap options
-		if($aOptions = $oElement->getOption('twb')){
-			//Prepend / Append
-			if(isset($aOptions['prepend']) || isset($aOptions['append'])){
-				//Prepend
-				$sClass = '';
-				if(isset($aOptions['prepend'])){
-					$sClass .= ' input-prepend';
-					$sElementMarkup = $this->renderAddOn($aOptions['prepend']).$sElementMarkup;
+		//Render label
+		if($sLabelContent = $this->renderLabel($oElement)){
+			//Multicheckbox elements have to be handled differently as the HTML standard does not allow nested labels. The semantic way is to group them inside a fieldset
+			$sElementType = $oElement->getAttribute('type');
+
+			//Checkbox & radio elements are a special case, because label is rendered by their own helper
+			if(in_array($sElementType,array('multi_checkbox','checkbox','radio'))){
+				if(!$oElement->getLabelAttributes() && $this->labelAttributes)$oElement->setLabelAttributes($this->labelAttributes);
+
+				//Render element input
+				if($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)return $this->getElementHelper()->render($oElement);
+				$sLabelOpen = $sLabelClose = $sLabelContent = '';
+			}
+
+			//Button element is a special case, because label is always rendered inside it
+			elseif($oElement instanceof \Zend\Form\Element\Button)$sLabelOpen = $sLabelClose = $sLabelContent = '';
+			else{
+				$oLabelHelper = $this->getLabelHelper();
+				$aLabelAttributes = $oElement->getLabelAttributes()?:$this->labelAttributes;
+				switch($sLayout){
+					//Hide label for "inline" layout
+					case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
+						if(empty($aLabelAttributes['class']))$aLabelAttributes['class'] = 'sr-only';
+						elseif(!preg_match('/(\s|^)sr-only(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] = trim($aLabelAttributes['class'].' sr-only');
+						break;
+
+					case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
+						if(empty($aLabelAttributes['class']))$aLabelAttributes['class'] = 'col-lg-2 control-label';
+						else{
+							if(!preg_match('/(\s|^)col-lg-2(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] = trim($aLabelAttributes['class'].' col-lg-2');
+							if(!preg_match('/(\s|^)control-label(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] = trim($aLabelAttributes['class'].' control-label');
+						}
+						break;
 				}
-				if(isset($aOptions['append'])){
-					$sClass .= ' input-append';
-					$sElementMarkup .= $this->renderAddOn($aOptions['append']);
-				}
-				$sElementMarkup = '<div class="'.$sClass.'">'.$sElementMarkup.'</div>';
+				if($aLabelAttributes)$oElement->setLabelAttributes($aLabelAttributes);
+				$sLabelOpen = $oLabelHelper->openTag($oElement);
+				$sLabelClose = $oLabelHelper->closeTag();
+				$sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
 			}
 
-			//Help-block
-			if(isset($aOptions['help-block'])){
-				if($oTranslator = $this->getTranslator())$aOptions['help-block'] = $oTranslator->translate($aOptions['help-block'],$this->getTranslatorTextDomain());
-				$sElementMarkup .= '<span class="help-block">'.$this->getEscapeHtmlHelper()->__invoke($aOptions['help-block']).'</span>';
-			}
-
-			//Help-inline
-			if(isset($aOptions['help-inline'])){
-				if(isset($oTranslator) || ($oTranslator = $this->getTranslator()))$aOptions['help-inline'] = $oTranslator->translate($aOptions['help-inline'],$this->getTranslatorTextDomain());
-				$sElementMarkup .= '<span class="help-inline">'.$this->getEscapeHtmlHelper()->__invoke($aOptions['help-inline']).'</span>';
-			}
-		}
-		return $sElementMarkup;
-	}
-
-	/**
-	 * Retrieve input AddOn markup
-	 * @param string|array $aAddOnConfig
-	 * @throws \InvalidArgumentException
-	 * @throws \DomainException
-	 * @return string
-	 */
-	protected function renderAddOn($aAddOnConfig){
-		if(is_scalar($aAddOnConfig))return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig).'</span>';
-		elseif(is_array($aAddOnConfig) && isset($aAddOnConfig['type']))switch($aAddOnConfig['type']){
-			case 'text':
-				if(!isset($aAddOnConfig['text']) || !is_scalar($aAddOnConfig['text']))throw new \InvalidArgumentException('AddOn "text" type expects string "text" configuration');
-				if($oTranslator = $this->getTranslator())$aAddOnConfig['text'] = $oTranslator->translate(
-					$aAddOnConfig['text'],
-					$this->getTranslatorTextDomain()
-				);
-				return '<span class="add-on">'.$this->getEscapeHtmlHelper()->__invoke($aAddOnConfig['text']).'</span>';
-			case 'icon':
-				if(!isset($aAddOnConfig['icon']) || !is_string($aAddOnConfig['icon']))throw new \InvalidArgumentException('AddOn "icon" type expects string "icon" configuration');
-				return '<span class="add-on"><i class="'.$this->getEscapeHtmlAttrHelper()->__invoke(trim($aAddOnConfig['icon'])).'"></i></span>';
-				break;
-			case 'buttons':
-				if(!isset($aAddOnConfig['buttons']) || !is_array($aAddOnConfig['buttons']))throw new \InvalidArgumentException('AddOn "buttons" type expects array "buttons" configuration');
-				$sMarkup = '';
-				foreach($aAddOnConfig['buttons'] as $sName => $oButton){
-					if(is_array($oButton)){
-						if(!isset($oButton['type']))$oButton['type'] = 'button';
-						if(!isset($oButton['name']) && is_scalar($sName))$oButton['name'] = $sName;
-						$oButton = $this->getFormFactory()->createElement($oButton);
+			switch($sLayout){
+				case null:
+					switch($this->labelPosition){
+						case self::LABEL_PREPEND:
+							return $sLabelOpen.$sLabelContent.$this->getElementHelper()->render($oElement).$sLabelClose;
+						case self::LABEL_APPEND:
+						default:
+							return $sLabelOpen.$this->getElementHelper()->render($oElement).$sLabelContent.$sLabelClose;
 					}
-					elseif(!($oButton instanceof \Zend\Form\Element\Button))throw new \InvalidArgumentException(sprintf(
-						'AddOn "buttons" configuration expects arrays or \Zend\Form\Element\Button, "%s" given',
-						is_object($oButton)?get_class($oButton):gettype($oButton)
-					));
-					$sMarkup .= $this->getView()->formButton($oButton);
-				}
-				return $sMarkup;
-			default:
-				throw new \DomainException('"'.$aAddOnConfig['type'].'" is not a valid AddOn type');
+				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
+					return $sLabelOpen.$sLabelContent.$sLabelClose.$this->getElementHelper()->render($oElement);
+				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
+					$sClass = 'col-lg-10';
+
+					//Element without labels
+					if(!$sLabelContent)$sClass .= ' col-lg-offset-2';
+
+					return sprintf(
+						self::$horizontalLayoutFormat,
+						$sLabelOpen.$sLabelContent.$sLabelClose,
+						$sClass,
+						$this->getElementHelper()->render($oElement)
+					);
+				default:
+					throw new \DomainException('Layout "'.$sLayout.'" is not valid');
+			}
 		}
-		else throw new \InvalidArgumentException('AddOn config expects string or array having at least "type" key');
+
+		//Render element input
+		return $this->getElementHelper()->render($oElement);
 	}
 
 	/**
-	 * @param string $sFormLayout
-	 * @throws \Exception
-	 * @return \TwbBundle\Form\View\Helper\TwbBundleCollection
-	 */
-	public function setFormLayout($sFormLayout){
-		if(!is_string($sFormLayout))throw new \Exception('Form layout expects string, "'.gettype($sFormLayout).'" given');
-		$this->formLayout = $sFormLayout;
-		return $this;
-	}
-
-	/**
+	 * Render errors
+	 * @param \Zend\Form\ElementInterface $oElement
 	 * @return string
 	 */
-	public function getFormLayout(){
-		return $this->formLayout;
+	protected function renderErrors(\Zend\Form\ElementInterface $oElement){
+		//Element have errors
+		if(count($oElement->getMessages()) && ($sInputErrorClass = $this->getInputErrorClass())){
+			if($sElementClass = $oElement->getAttribute('class')){
+				if(!preg_match('/(\s|^)'.preg_quote($sInputErrorClass,'/').'(\s|$)/',$sElementClass))$oElement->setAttribute('class',trim($sElementClass.' '.$sInputErrorClass));
+			}
+			else $oElement->setAttribute('class',$sInputErrorClass);
+		}
+		return $this->renderErrors?$this->getElementErrorsHelper()->render($oElement):'';
 	}
 
 	/**
-	 * Retrieve composed form factory, lazy-loads one if none present
-	 * @return \Zend\Form\Factory
+	 * Render element's help block
+	 * @param \Zend\Form\ElementInterface $oElement
+	 * @return string
 	 */
-	public function getFormFactory(){
-		if(null === $this->formFactory)$this->setFormFactory(new \Zend\Form\Factory());
-		return $this->formFactory;
-	}
-
-	/**
-	 * Compose a form factory to use when calling add() with a non-element/fieldset
-	 * @param \Zend\Form\Factory $oFactory
-	 * @return Form
-	 */
-
-	/**
-	 * Compose a form factory to create AddOn buttons
-	 * @param \Zend\Form\Factory $oFactory
-	 * @return \TwbBundle\Form\View\Helper\TwbBundleFormRow
-	 */
-	public function setFormFactory(\Zend\Form\Factory $oFactory){
-		$this->formFactory = $oFactory;
-		return $this;
+	protected function renderHelpBlock(\Zend\Form\ElementInterface $oElement){
+		$aTwbOptions = $oElement->getOption('twb');
+		return isset($aTwbOptions['help-block'])?sprintf(
+			self::$helpBlockFormat,
+			$this->getEscapeHtmlHelper()->__invoke($aTwbOptions['help-block'])
+		):'';
 	}
 }

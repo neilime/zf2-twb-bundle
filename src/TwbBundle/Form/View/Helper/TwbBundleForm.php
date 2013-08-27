@@ -5,10 +5,9 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
 	const LAYOUT_INLINE = 'inline';
 	const LAYOUT_SEARCH = 'search';
 
-
 	/**
-	 * Invoke as function
-	 * @param  null|FormInterface $form
+	 * @see \Zend\Form\View\Helper\Form::__invoke()
+	 * @param \Zend\Form\FormInterface $oForm
 	 * @return \TwbBundle\Form\View\Helper|string
 	 */
 	public function __invoke(\Zend\Form\FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL){
@@ -31,25 +30,23 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
     		}
     		else $oForm->setAttribute('class',$sLayoutClass);
     	}
-    	if(method_exists($oForm, 'prepare'))$oForm->prepare();
 
-    	$sFormContent = $sFormActions = '';
-    	foreach($oForm as $oElement){
-    		if($oElement instanceof \Zend\Form\FieldsetInterface)$sFormContent .= $this->getView()->formCollection(
-    			$oElement,
-    			method_exists($oElement,'useAsBaseFieldset')?!$oElement->useAsBaseFieldset():true,
-    			$sFormLayout
-    		);
-    		else{
-    			$aOptions = $oElement->getOption('twb');
-    			if(empty($aOptions['formAction']))$sFormContent .= $this->getView()->formRow($oElement,null,null,$sFormLayout);
-    			else $sFormActions .= $this->getView()->formRow($oElement,null,null,'');
+    	//Set form role
+    	if(!$oForm->getAttribute('role'))$oForm->setAttribute('role','form');
+
+    	//Define layout option to form elements
+    	if($sFormLayout)foreach($oForm as $oElement){
+    		if($aOptions = $oElement->getOptions()){
+    			if(isset($aOptions['twb'])){
+	    			if(!is_array($aOptions['twb']))throw new \LogicException('"twb" element\'s option expects an array, "'.gettype($aOptions['twb']).'" given');
+	    			$aOptions['twb']['layout'] = $sFormLayout;
+    			}
+    			else $aOptions['twb'] = array('layout' => $sFormLayout);
+    			$oElement->setOptions($aOptions);
     		}
+    		else $aOptions = array('twb' => array('layout' => $sFormLayout));
+    		$oElement->setOptions($aOptions);
     	}
-    	if(!empty($sFormActions))$sFormActions = sprintf(
-    		'<div class="form-actions">%s</div>',
-    		$sFormActions
-    	);
-    	return $this->openTag($oForm).$sFormContent.$sFormActions.$this->closeTag();
+		return parent::render($oForm);
     }
 }
