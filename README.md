@@ -1,5 +1,6 @@
-TwbBundle, v2.0 (Twitter Bootstrap v3.*)
+TwbBundle, v2.0
 =====================
+(Twitter Bootstrap v3.*)
 
 Work in progress to supports Twitter Bootstrap v3.*
 
@@ -13,7 +14,7 @@ NOTE : If you want to contribute don't hesitate, I'll review any PR.
 Introduction
 ------------
 
-__TwbBundle__ is a module for Zend Framework 2, for easy integration of the [Twitter Bootstrap](https://github.com/twitter/bootstrap). 
+__TwbBundle__ is a module for Zend Framework 2, for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap). 
 
 Contributing
 ------------
@@ -23,14 +24,14 @@ If you wish to contribute to TwbBundle, please read both the [CONTRIBUTING.md](C
 Demonstration / exemple
 -----------------------
 
-Render forms, buttons, alerts with TwbBundle : see it in action [on-line](http://neilime.github.com/zf2-twb-bundle/demo.html).
+Render forms, buttons, alerts with TwbBundle : see it in action [on-line](http://neilime.github.com/zf2-twb-bundle/2.0/demo.html).
 
 
 Requirements
 ------------
 
 * [Zend Framework 2](https://github.com/zendframework/zf2) (2.*)
-* [Twitter Bootstrap](https://github.com/twbs/bootstrap/tree/v2.3.2) (v3.*)
+* [Twitter Bootstrap](https://github.com/twbs/bootstrap) (v3.*)
 
 Installation
 ------------
@@ -40,7 +41,7 @@ Installation
 #### By cloning project
 
 1. Clone this project into your `./vendor/` directory.
-2. (Optionnal) Clone the [Twitter bootstrap project](https://github.com/twitter/bootstrap) (latest master) into your `./vendor/` directory.
+2. (Optionnal) Clone the [Twitter bootstrap project](https://github.com/twbs/bootstrap) (v3.*) into your `./vendor/` directory.
 
 #### With composer
 
@@ -102,7 +103,7 @@ Installation
 
 ###### Manually
     
-* Copy `bootstrap.css` file (available on Twitter Bootstrap website(http://twitter.github.io/bootstrap/assets/bootstrap.zip)) into your assets folder and add it in your head scripts
+* Copy `bootstrap.css` file (available on Twitter Bootstrap website(https://github.com/twbs/bootstrap/archive/v3.0.0.zip)) into your assets folder and add it in your head scripts
     
 # How to use __TwbBundle__
 
@@ -174,7 +175,7 @@ Installation
 
 ## Features
 
-__TwbBundle__ is abble to render [Twitter bootstrap demo site](http://twitter.github.com/bootstrap) forms, inputs, buttons, & alerts. (tests are written in order to cover what is showed on demo site)
+__TwbBundle__ is abble to render [Twitter bootstrap demo site](http://getbootstrap.com/) forms, inputs, buttons, & alerts. (tests are written in order to cover what is showed on demo site)
 
 ### 1. Forms
 
