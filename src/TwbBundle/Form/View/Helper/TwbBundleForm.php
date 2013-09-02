@@ -1,9 +1,14 @@
 <?php
 namespace TwbBundle\Form\View\Helper;
-class TwbBundleForm extends \Zend\Form\View\Helper\Form{
+class TwbBundleForm extends \Zend\Form\View\Helper\Form{	
 	const LAYOUT_HORIZONTAL = 'horizontal';
 	const LAYOUT_INLINE = 'inline';
 	const LAYOUT_SEARCH = 'search';
+	
+	/**
+	 * @var string
+	 */
+	private static $formRowFormat = '<div class="row">%s</div>';
 
 	/**
 	 * @see \Zend\Form\View\Helper\Form::__invoke()
@@ -34,19 +39,20 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
     	//Set form role
     	if(!$oForm->getAttribute('role'))$oForm->setAttribute('role','form');
 
-    	//Define layout option to form elements
-    	if($sFormLayout)foreach($oForm as $oElement){
-    		if($aOptions = $oElement->getOptions()){
-    			if(isset($aOptions['twb'])){
-	    			if(!is_array($aOptions['twb']))throw new \LogicException('"twb" element\'s option expects an array, "'.gettype($aOptions['twb']).'" given');
-	    			$aOptions['twb']['layout'] = $sFormLayout;
-    			}
-    			else $aOptions['twb'] = array('layout' => $sFormLayout);
-    			$oElement->setOptions($aOptions);
+    	$bHasColumnSizes = false;
+       	$sFormContent = '';
+       	$oRenderer = $this->getView();
+       	foreach($oForm as $oElement){
+    		$aOptions = $oElement->getOptions();
+    		if(!$bHasColumnSizes && !empty($aOptions['colunm-size']))$bHasColumnSizes = true;
+	    	//Define layout option to form elements
+    		if($sFormLayout){
+    			$aOptions['twb-layout'] = $sFormLayout; 
+	    		$oElement->setOptions($aOptions);
     		}
-    		else $aOptions = array('twb' => array('layout' => $sFormLayout));
-    		$oElement->setOptions($aOptions);
+    		$sFormContent .= $oElement instanceof \Zend\Form\FieldsetInterface?$oRenderer->formCollection($oElement):$oRenderer->formRow($oElement);
     	}
-		return parent::render($oForm);
+    	if($bHasColumnSizes)$sFormContent = sprintf(self::$formRowFormat,$sFormContent);
+    	return $this->openTag($oForm).$sFormContent.$this->closeTag();
     }
 }

@@ -5,7 +5,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	/**
 	 * @var string
 	 */
-	private static $formGroupFormat = '<div class="form-group">%s</div>';
+	private static $formGroupFormat = '<div class="form-group %s">%s</div>';
 
 	/**
 	 * @var string
@@ -23,24 +23,10 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	 * @return string
 	 */
 	public function render(\Zend\Form\ElementInterface $oElement){
-		//Retrieve element's type
-		$sElementType = $oElement->getAttribute('type');
+
 
 		//Retrieve expected layout
-		$aTwbOptions = $oElement->getOption('twb');
-		$sLayout = isset($aTwbOptions['layout'])?$aTwbOptions['layout']:null;
-
-		//Add form-controll class
-		if(
-			$sElementType !== 'file' //Not a "file" input
-			&& $sElementType !== 'checkbox' //Not a checkbox
-			&& $sElementType !== 'submit' //Not a "submit" button
-		){
-			if($sElementClass = $oElement->getAttribute('class')){
-				if(!preg_match('/(\s|^)form-control(\s|$)/',$sElementClass))$oElement->setAttribute('class',trim($sElementClass.' form-control'));
-			}
-			else $oElement->setAttribute('class','form-control');
-		}
+		$sLayout = $oElement->getOption('twb-layout');
 
 		//Partial rendering
 		if($this->partial)return $this->view->render($this->partial, array(
@@ -51,6 +37,14 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 			'renderErrors' => $this->renderErrors,
 		));
 
+		$sRowClass = '';
+
+		//Validation state
+		if(($sValidationState = $oElement->getOption('validation-state')))$sRowClass .= ' has-'.$sValidationState;
+
+		//Column size
+		if($iColumSize = $oElement->getOption('colunm-size'))$sRowClass .= 'col-lg-'.$iColumSize;
+
 		//Render element
 		$sElementContent = $this->renderElement($oElement).
 		//Render errors
@@ -59,10 +53,13 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 		$this->renderHelpBlock($oElement);
 
 		//Render form row
+		$sElementType = $oElement->getAttribute('type');
 		if(in_array($sElementType,array('checkbox')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)return $sElementContent.PHP_EOL;
 		if($sElementType === 'submit' && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)return $sElementContent.PHP_EOL;
+
 		return sprintf(
 			self::$formGroupFormat,
+			$sRowClass,
 			$sElementContent
 		).PHP_EOL;
 	}
@@ -84,8 +81,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	 */
 	protected function renderElement(\Zend\Form\ElementInterface $oElement){
 		//Retrieve expected layout
-		$aTwbOptions = $oElement->getOption('twb');
-		$sLayout = isset($aTwbOptions['layout'])?$aTwbOptions['layout']:null;
+		$sLayout = $oElement->getOption('twb-layout');
 
 		//Render label
 		if($sLabelContent = $this->renderLabel($oElement)){
@@ -104,8 +100,15 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 			//Button element is a special case, because label is always rendered inside it
 			elseif($oElement instanceof \Zend\Form\Element\Button)$sLabelOpen = $sLabelClose = $sLabelContent = '';
 			else{
-				$oLabelHelper = $this->getLabelHelper();
 				$aLabelAttributes = $oElement->getLabelAttributes()?:$this->labelAttributes;
+
+				//Validation state
+				if(($sValidationState = $oElement->getOption('validation-state'))){
+					if(empty($aLabelAttributes['class']))$aLabelAttributes['class'] = 'control-label';
+					elseif(!preg_match('/(\s|^)control-label(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] = trim($aLabelAttributes['class'].' control-label');
+				}
+
+				$oLabelHelper = $this->getLabelHelper();
 				switch($sLayout){
 					//Hide label for "inline" layout
 					case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
@@ -129,13 +132,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 
 			switch($sLayout){
 				case null:
-					switch($this->labelPosition){
-						case self::LABEL_PREPEND:
-							return $sLabelOpen.$sLabelContent.$this->getElementHelper()->render($oElement).$sLabelClose;
-						case self::LABEL_APPEND:
-						default:
-							return $sLabelOpen.$this->getElementHelper()->render($oElement).$sLabelContent.$sLabelClose;
-					}
+					return $sLabelOpen.$sLabelContent.$sLabelClose.$this->getElementHelper()->render($oElement);
 				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
 					return $sLabelOpen.$sLabelContent.$sLabelClose.$this->getElementHelper()->render($oElement);
 				case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
@@ -181,10 +178,9 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 	 * @return string
 	 */
 	protected function renderHelpBlock(\Zend\Form\ElementInterface $oElement){
-		$aTwbOptions = $oElement->getOption('twb');
-		return isset($aTwbOptions['help-block'])?sprintf(
+		return ($sHelpBlock = $oElement->getOption('help-block'))?sprintf(
 			self::$helpBlockFormat,
-			$this->getEscapeHtmlHelper()->__invoke($aTwbOptions['help-block'])
+			$this->getEscapeHtmlHelper()->__invoke($sHelpBlock)
 		):'';
 	}
 }

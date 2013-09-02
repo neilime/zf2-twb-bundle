@@ -22,4 +22,3 @@ To run tests:
   ```
 
   This will generate code-coverage report witch can be displayed in a browser by opening `tests/_report/index.html` file
-  

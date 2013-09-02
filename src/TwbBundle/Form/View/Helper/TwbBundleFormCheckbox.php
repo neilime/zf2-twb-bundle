@@ -38,11 +38,15 @@ class TwbBundleFormCheckbox extends \Zend\Form\View\Helper\FormCheckbox{
         //Render label and visible element
         if(($sLabel = $oElement->getLabel()) && ($oTranslator = $this->getTranslator()))$sLabel = $oTranslator->translate($sLabel,$this->getTranslatorTextDomain());
         $oLabelHelper = $this->getLabelHelper();
-        $sElementContent = $oLabelHelper->openTag($oElement->getLabelAttributes()?:null).sprintf(
+
+        $sElementContent = '';
+        if($sLabel)$sElementContent .= $oLabelHelper->openTag($oElement->getLabelAttributes()?:null);
+        $sElementContent .= sprintf(
             '<input %s%s',
             $this->createAttributesString($aAttributes),
             $sClosingBracket
-        ).'&nbsp;'.$sLabel.$oLabelHelper->closeTag();
+        );
+        if($sLabel)$sElementContent .= $sLabel.$oLabelHelper->closeTag();
 
         //Render hidden input
         if($oElement->useHiddenElement())$sElementContent = sprintf(
@@ -52,8 +56,7 @@ class TwbBundleFormCheckbox extends \Zend\Form\View\Helper\FormCheckbox{
         		'value' => $oElement->getUncheckedValue(),
         	)),$sClosingBracket
         ).$sElementContent;
-
-        return sprintf(self::$checkboxFormat,$sElementContent);
+        return $oElement->getOption('disable-twb')?$sElementContent: sprintf(self::$checkboxFormat,$sElementContent);
 	}
 
 
