@@ -5,6 +5,9 @@ return array(
 			//Alert
 			'alert' => 'TwbBundle\View\Helper\TwbBundleAlert',
 
+			//Badge
+			'badge' => 'TwbBundle\View\Helper\TwbBundleBadge',
+
 			//DropDown
 			'dropDown' => 'TwbBundle\View\Helper\TwbBundleDropDown',
 
@@ -17,7 +20,10 @@ return array(
 			'formMultiCheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox',
 			'formRadio' => 'TwbBundle\Form\View\Helper\TwbBundleFormRadio',
 			'formRow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow',
-			'formStatic' => 'TwbBundle\Form\View\Helper\TwbBundleFormStatic'
+			'formStatic' => 'TwbBundle\Form\View\Helper\TwbBundleFormStatic',
+
+			//Label
+			'label' => 'TwbBundle\View\Helper\TwbBundleLabel'
 		)
 	)
 );

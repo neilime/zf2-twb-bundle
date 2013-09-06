@@ -1,53 +1,56 @@
 <?php
 namespace TwbBundle\View\Helper;
-class TwbBundleAlert extends \Zend\I18n\View\Helper\AbstractTranslatorHelper{
+class TwbBundleAlert extends \Zend\Form\View\Helper\AbstractHelper{
 	/**
-	 * @var \Zend\View\Helper\EscapeHtmlAttr
+	 * @var string
 	 */
-	protected $escapeHtmlAttrHelper;
+	private static $alertFormat = '<div %s>%s</div>';
+
+	/**
+	 * @var string
+	 */
+	private static $dismissButtonFormat = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 
 	/**
 	 * Invoke helper as functor, proxies to {@link render()}.
 	 * @param string $sAlertMessage
-	 * @param string $sAlertClass
-	 * @param boolean $bCloseAlert
+	 * @param string|array $aAlertAttributes : [optionnal] if string, alert class
+	 * @param boolean $bDismissable
 	 * @return string|\TwbBundle\View\Helper\TwbBundleAlert
 	 */
-    public function __invoke($sAlertMessage, $sAlertClass = null, $bCloseAlert = true){
-        if(!$sAlertMessage)return $this;
-        return $this->render($sAlertMessage,$sAlertClass,$bCloseAlert);
-    }
-
-    /**
-     * Retrieve alert markup
-     * @param string $sAlertMessage
-     * @param string $sAlertClass : (optionnal)
-     * @param boolean $bCloseAlert
-     * @throws \Exception
-     * @return string
-     */
-	public function render($sAlertMessage, $sAlertClass = null, $bCloseAlert = true){
-		if(!is_scalar($sAlertMessage))throw new \Exception('Alert message expects scalar value, "'.gettype($sAlertMessage).'" given');
-		if($sAlertClass && !is_string($sAlertClass))throw new \Exception('Alert class expects string, "'.gettype($sAlertClass).'" given');
-
-		if(null !== ($oTranslator = $this->getTranslator()))$sAlertMessage = $oTranslator->translate($sAlertMessage, $this->getTranslatorTextDomain());
-
-		return sprintf(
-			'<div class="alert%s">%s%s</div>',
-			$sAlertClass?' '.$this->getEscapeHtmlAttrHelper()->__invoke($sAlertClass):'',
-			$bCloseAlert?'<button type="button" class="close" data-dismiss="alert">&times;</button>':'',
-			$sAlertMessage
-		);
+	public function __invoke($sAlertMessage = null, $aAlertAttributes = null, $bDismissable = false){
+		if(!$sAlertMessage)return $this;
+		return $this->render($sAlertMessage,$aAlertAttributes,$bDismissable);
 	}
 
 	/**
-	 * Retrieve the escapeHtmlAttr helper
-	 * @return \Zend\View\Helper\EscapeHtmlAttr
+	 * Retrieve alert markup
+	 * @param string $sAlertMessage
+	 * @param  string|array $aAlertAttributes : [optionnal] if string, alert class
+	 * @param boolean $bDismissable
+	 * @throws \InvalidArgumentException
+	 * @return string
 	 */
-	protected function getEscapeHtmlAttrHelper(){
-		if($this->escapeHtmlAttrHelper)return $this->escapeHtmlAttrHelper;
-		if(method_exists($this->view, 'plugin'))$this->escapeHtmlAttrHelper = $this->view->plugin('escapehtmlattr');
-		if(!$this->escapeHtmlAttrHelper instanceof \Zend\View\Helper\EscapeHtmlAttr)$this->escapeHtmlAttrHelper = new \Zend\View\Helper\EscapeHtmlAttr();
-		return $this->escapeHtmlAttrHelper;
+	public function render($sAlertMessage, $aAlertAttributes = null, $bDismissable = false){
+		if(!is_scalar($sAlertMessage))throw new \InvalidArgumentException('Alert message expects a scalar value, "'.gettype($sAlertMessage).'" given');
+		if(empty($aAlertAttributes))$aAlertAttributes = array('class' => 'alert');
+		elseif(is_string($aAlertAttributes))$aAlertAttributes = array('class' => $aAlertAttributes);
+		elseif(!is_array($aAlertAttributes))throw new \InvalidArgumentException('Alert attributes expects a string or an array, "'.gettype($aAlertAttributes).'" given');
+		elseif(empty($aAlertAttributes['class']))throw new \InvalidArgumentException('Alert "class" attribute is empty');
+		elseif(!is_string($aAlertAttributes['class']))throw new \InvalidArgumentException('Alert "class" attribute expects string, "'.gettype($aAlertAttributes).'" given');
+
+		if(!preg_match('/(\s|^)alert(\s|$)/',$aAlertAttributes['class']))$aAlertAttributes['class'] .= ' alert';
+		if(null !== ($oTranslator = $this->getTranslator()))$sAlertMessage = $oTranslator->translate($sAlertMessage, $this->getTranslatorTextDomain());
+
+		if($bDismissable){
+			$sAlertMessage .= self::$dismissButtonFormat;
+			if(!preg_match('/(\s|^)alert-dismissable(\s|$)/',$aAlertAttributes['class']))$aAlertAttributes['class'] .= ' alert-dismissable';
+		}
+
+		return sprintf(
+			self::$alertFormat,
+			$this->createAttributesString($aAlertAttributes),
+			$sAlertMessage
+		);
 	}
 }
