@@ -42,6 +42,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 		//Validation state
 		if(($sValidationState = $oElement->getOption('validation-state')))$sRowClass .= ' has-'.$sValidationState;
 
+                // has-error Validation state case
+                if(count($oElement->getMessages())){
+                    $sRowClass .= ' has-error';
+                }
+                
 		//Column size
 		if($iColumSize = $oElement->getOption('colunm-size'))$sRowClass .= 'col-lg-'.$iColumSize;
 
