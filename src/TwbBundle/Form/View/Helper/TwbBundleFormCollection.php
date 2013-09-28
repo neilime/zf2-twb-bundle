@@ -45,10 +45,9 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
 	
 		if($this->shouldWrap && ($sLabel = $oElement->getLabel())){
 			if(null !== ($oTranslator = $this->getTranslator()))$sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
-			$labelAttributes = ($oElement->getLabelAttributes()) ? $oElement->getLabelAttributes() : array() ;
 			$sMarkup = sprintf(
 				self::$legendFormat,
-				$this->createAttributesString($labelAttributes),
+				$this->createAttributesString($oElement->getLabelAttributes()?:array()),
 				$this->getEscapeHtmlHelper()->__invoke($sLabel)
 			).$sMarkup;
 		}
