@@ -42,10 +42,9 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 		//Validation state
 		if(($sValidationState = $oElement->getOption('validation-state')))$sRowClass .= ' has-'.$sValidationState;
 
-                // has-error Validation state case
-                if(count($oElement->getMessages())){
-                    $sRowClass .= ' has-error';
-                }
+                //"has-error" validation state case
+                if(count($oElement->getMessages()))$sRowClass .= ' has-error';
+           
                 
 		//Column size
 		if($iColumSize = $oElement->getOption('colunm-size'))$sRowClass .= 'col-lg-'.$iColumSize;
@@ -108,7 +107,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 				$aLabelAttributes = $oElement->getLabelAttributes()?:$this->labelAttributes;
 
 				//Validation state
-				if(($sValidationState = $oElement->getOption('validation-state'))){
+				if($oElement->getOption('validation-state') || count($oElement->getMessages())){
 					if(empty($aLabelAttributes['class']))$aLabelAttributes['class'] = 'control-label';
 					elseif(!preg_match('/(\s|^)control-label(\s|$)/',$aLabelAttributes['class']))$aLabelAttributes['class'] = trim($aLabelAttributes['class'].' control-label');
 				}
