@@ -38,12 +38,12 @@ Installation
 
 ### Main Setup
 
-#### By cloning project
+#### By cloning project (manual)
 
 1. Clone this project into your `./vendor/` directory.
 2. (Optionnal) Clone the [Twitter bootstrap project](https://github.com/twbs/bootstrap) (v3.*) into your `./vendor/` directory.
 
-#### With composer
+#### With composer (the faster way)
 
 1. Add this project in your composer.json:
 
