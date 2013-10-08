@@ -34,7 +34,7 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
 		$oElementHelper = $this->getElementHelper();
 		$oFieldsetHelper = $this->getFieldsetHelper();
 	
-		$sTemplateMarkup = $oElement instanceof CollectionElement && $oElement->shouldCreateTemplate()?$this->renderTemplate($oElement):'';
+		$sTemplateMarkup = $oElement instanceof \Zend\Form\Element\Collection && $oElement->shouldCreateTemplate()?$this->renderTemplate($oElement):'';
 		foreach ($oElement->getIterator() as $oElementOrFieldset){
 			if($oElementOrFieldset instanceof \Zend\Form\FieldsetInterface)$sMarkup .= $oFieldsetHelper($oElementOrFieldset);
 			elseif($oElementOrFieldset instanceof \Zend\Form\ElementInterface)$sMarkup .= $oElementHelper($oElementOrFieldset);
