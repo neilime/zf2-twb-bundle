@@ -53,7 +53,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 			if(!is_array($aDropdownOptions))throw new \LogicException('"dropdown" option expects an array, "'.gettype($aDropdownOptions).'" given');
 			if(null === $sButtonContent){
 				$sButtonContent = $oElement->getLabel();
-				if(null === $sButtonContent)throw new Exception\DomainException(sprintf(
+				if(null === $sButtonContent)throw new \DomainException(sprintf(
 					'%s expects either button content as the second argument, or that the element provided has a label value; neither found',
 					__METHOD__
 				));
@@ -62,10 +62,7 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton{
 
 			if(empty($aDropdownOptions['split'])){
 				//Class
-				if($sClass = $oElement->getAttribute('class')){
-					if(!preg_match('/(\s|^)dropdown-toggle(\s|$)/',$sClass))$oElement->setAttribute('class',trim($sClass.' dropdown-toggle'));
-				}
-				else $oElement->setAttribute('class','dropdown-toggle');
+				if(!preg_match('/(\s|^)dropdown-toggle(\s|$)/',$sClass = $oElement->getAttribute('class')))$oElement->setAttribute('class',trim($sClass.' dropdown-toggle'));
 
 				//data-toggle
 				$oElement->setAttribute('data-toggle','dropdown');

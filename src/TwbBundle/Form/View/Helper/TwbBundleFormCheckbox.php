@@ -18,11 +18,11 @@ class TwbBundleFormCheckbox extends \Zend\Form\View\Helper\FormCheckbox{
 	 * @return string
 	 */
 	public function render(\Zend\Form\ElementInterface $oElement){
-		if(!$oElement instanceof \Zend\Form\Element\Checkbox)throw new Exception\InvalidArgumentException(sprintf(
+		if(!$oElement instanceof \Zend\Form\Element\Checkbox)throw new \InvalidArgumentException(sprintf(
 			'%s requires that the element is of type Zend\Form\Element\Checkbox',
 			__METHOD__
 		));
-        if(($sName = $oElement->getName()) !== 0 && empty($sName))throw new Exception\DomainException(sprintf(
+        if(($sName = $oElement->getName()) !== 0 && empty($sName))throw new \LogicException(sprintf(
         	'%s requires that the element has an assigned name; none discovered',
         	__METHOD__
         ));

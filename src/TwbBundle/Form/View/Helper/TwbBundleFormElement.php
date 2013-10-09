@@ -97,7 +97,7 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
 				is_array($aAddOnOptions['element'])
 				|| ($aAddOnOptions['element'] instanceof \Traversable && !($aAddOnOptions['element'] instanceof \Zend\Form\ElementInterface))
 			){
-				$oFactory = \Zend\Form\Factory();
+				$oFactory = new \Zend\Form\Factory();
 				$aAddOnOptions['element'] = $oFactory->create($aAddOnOptions['element']);
 			}
 			elseif(!($aAddOnOptions['element'] instanceof \Zend\Form\ElementInterface))throw new \LogicException(sprintf(

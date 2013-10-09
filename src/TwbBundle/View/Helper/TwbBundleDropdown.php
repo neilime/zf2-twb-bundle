@@ -126,7 +126,7 @@ class TwbBundleDropDown extends \Zend\Form\View\Helper\AbstractHelper{
 	 * @return string
 	 */
 	public function renderListItems(array $aDropdownOptions){
-		if(empty($aDropdownOptions['items']))throw new \LogicException(__METHOD__.'expects "items" option');
+		if(!isset($aDropdownOptions['items']))throw new \LogicException(__METHOD__.' expects "items" option');
 		if(!is_array($aDropdownOptions['items']))throw new \LogicException('"items" option expects an array, "'.gettype($aDropdownOptions['items']).'" given');
 
 

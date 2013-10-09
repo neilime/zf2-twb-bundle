@@ -17,6 +17,7 @@ return array(
 			'formCheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormCheckbox',
 			'formCollection' => 'TwbBundle\Form\View\Helper\TwbBundleFormCollection',
 			'formElement' => 'TwbBundle\Form\View\Helper\TwbBundleFormElement',
+			'formElementErrors' => 'TwbBundle\Form\View\Helper\TwbBundleFormElementErrors',
 			'formMultiCheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox',
 			'formRadio' => 'TwbBundle\Form\View\Helper\TwbBundleFormRadio',
 			'formRow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow',
