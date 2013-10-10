@@ -77,7 +77,7 @@ class TwbBundleDropDown extends \Zend\Form\View\Helper\AbstractHelper{
 	public function renderToggle(array $aDropdownOptions){
 		// ### Dropdown toggle ###
 		if(empty($aDropdownOptions['label']))$aDropdownOptions['label'] = '';
-		elseif(!is_scalar($aDropdownOptions['label']))throw new \LogicException('"label" option expects a scalar value, "'.gettype($aDropdownOptions['label']).'" given');
+		elseif(!is_scalar($aDropdownOptions['label']))throw new \InvalidArgumentException('"label" option expects a scalar value, "'.gettype($aDropdownOptions['label']).'" given');
 		elseif(($oTranslator = $this->getTranslator()))$aDropdownOptions['label'] = $oTranslator->translate($aDropdownOptions['label'],$this->getTranslatorTextDomain());
 
 		//Dropdown toggle attributes
@@ -85,7 +85,7 @@ class TwbBundleDropDown extends \Zend\Form\View\Helper\AbstractHelper{
 		//Class
 		if(empty($aDropdownOptions['toggle_attributes']))$aDropdownOptions['toggle_attributes'] = array('class' => 'sr-only dropdown-toggle');
 		else{
-			if(!is_array($aDropdownOptions['toggle_attributes']))throw new \LogicException('"toggle_attributes" option expects an array, "'.gettype($aDropdownOptions['toggle_attributes']).'" given');
+			if(!is_array($aDropdownOptions['toggle_attributes']))throw new \InvalidArgumentException('"toggle_attributes" option expects an array, "'.gettype($aDropdownOptions['toggle_attributes']).'" given');
 			if(empty($aDropdownOptions['toggle_attributes']['class']))$aDropdownOptions['toggle_attributes']['class'] = 'sr-only dropdown-toggle';
 			else{
 				if(!preg_match('/(\s|^)sr-only(\s|$)/',$aDropdownOptions['toggle_attributes']['class']))$aDropdownOptions['toggle_attributes']['class'] .= ' sr-only';
