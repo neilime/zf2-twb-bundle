@@ -27,7 +27,7 @@ class TwbBundleFormMultiCheckboxTest extends \PHPUnit_Framework_TestCase{
 		$this->assertEquals(array('class' => 'checkbox'), $oElement->getLabelAttributes());
 	}
 	
-	public function testRenderWithNoInlindeDefinedClass(){
+	public function testRenderWithNoInlineDefinedClass(){
 		$oElement = new \Zend\Form\Element\MultiCheckbox('test-element',array('inline' => false, 'value_options' => array('test-option')));
 		$this->formMultiCheckboxHelper->render($oElement->setLabelAttributes(array('class' => 'test-element')));
 		$this->assertEquals(array('class' => 'test-element checkbox'), $oElement->getLabelAttributes());
