@@ -191,6 +191,17 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase{
 				)
 			)
 		))->add(array(
+			'name' => 'optionsRadiosNoInline',
+			'type' => 'MultiCheckbox',
+			'options' => array(
+				'value_options' => array(
+					array('label' => '1','value' => 'option1', 'attributes' => array('id' => 'noInlineCheckbox1')),
+					array('label' => '2','value' => 'option2', 'attributes' => array('id' => 'noInlineCheckbox2')),
+					array('label' => '3','value' => 'option3', 'attributes' => array('id' => 'noInlineCheckbox3'))
+				),
+				'inline' => false
+			)
+		))->add(array(
 			'name' => 'select',
 			'type' => 'select',
 			'options' => array('value_options' => array(1,2,3,4,5))
