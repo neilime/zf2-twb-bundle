@@ -52,10 +52,10 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 		//Render element
 		$sElementContent = $this->renderElement($oElement).
 		//Render errors
-		$this->renderErrors($oElement).
+		$this->renderErrors($oElement);
 		//Render help block
 		if($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
-			$this->renderHelpBlock($oElement);
+			$sElementContent .= $this->renderHelpBlock($oElement);
 		}
 
 		//Render form row
