@@ -1,7 +1,8 @@
 <?php
 namespace TwbBundle\Form\View\Helper;
-class TwbBundleForm extends \Zend\Form\View\Helper\Form{	
-	const LAYOUT_HORIZONTAL = 'horizontal';
+class TwbBundleForm extends \Zend\Form\View\Helper\Form
+{
+    const LAYOUT_HORIZONTAL = 'horizontal';
 	const LAYOUT_INLINE = 'inline';
 	const LAYOUT_SEARCH = 'search';
 	
@@ -10,13 +11,15 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
 	 */
 	private static $formRowFormat = '<div class="row">%s</div>';
 
-	/**
-	 * @see \Zend\Form\View\Helper\Form::__invoke()
-	 * @param \Zend\Form\FormInterface $oForm
-	 * @return \TwbBundle\Form\View\Helper|string
-	 */
-	public function __invoke(\Zend\Form\FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL){
-		if($oForm)return $this->render($oForm,$sFormLayout);
+    /**
+     * @see \Zend\Form\View\Helper\Form::__invoke()
+     * @param \Zend\Form\FormInterface $oForm
+     * @param string $sFormLayout
+     * @return \TwbBundle\Form\View\Helper\TwbBundleForm|string
+     */
+    public function __invoke(\Zend\Form\FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    {
+        if($oForm)return $this->render($oForm,$sFormLayout);
 		return $this;
 	}
 
@@ -24,6 +27,7 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form{
      * Render a form from the provided $oForm,
      * @see \Zend\Form\View\Helper\Form::render()
      * @param \Zend\Form\FormInterface $oForm
+     * @param string $sFormLayout
      * @return string
      */
     public function render(\Zend\Form\FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL){
