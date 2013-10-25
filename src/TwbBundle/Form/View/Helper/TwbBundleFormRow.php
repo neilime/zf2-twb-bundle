@@ -122,13 +122,14 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
             $sElementType = $oElement->getAttribute('type');
 
             //Checkbox & radio elements are a special case, because label is rendered by their own helper
-            if (in_array($sElementType, array('multi_checkbox', 'checkbox', 'radio'))) {
+            if ($sElementType === 'checkbox') {
                 if (!$oElement->getLabelAttributes() && $this->labelAttributes) $oElement->setLabelAttributes($this->labelAttributes);
 
                 //Render element input
                 if ($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) return $this->getElementHelper()->render($oElement);
                 $sLabelOpen = $sLabelClose = $sLabelContent = '';
-            } //Button element is a special case, because label is always rendered inside it
+            }
+            //Button element is a special case, because label is always rendered inside it
             elseif ($oElement instanceof \Zend\Form\Element\Button) $sLabelOpen = $sLabelClose = $sLabelContent = '';
             else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;

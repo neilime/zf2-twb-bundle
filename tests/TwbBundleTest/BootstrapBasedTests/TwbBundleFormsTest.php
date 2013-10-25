@@ -163,14 +163,13 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase{
 		))->add(array(
 			'name' => 'input-checkbox',
 			'type' => 'checkbox',
-			'options' => array('label' => 'Option one is this and that—be sure to include why it\'s great')
+			'options' => array('label' => 'Option one is this and that-be sure to include why it\'s great')
 		))->add(array(
 			'name' => 'optionsRadios',
 			'type' => 'radio',
 			'options' => array(
-				'label' => 'Option one is this and that—be sure to include why it\'s great',
 				'value_options' => array(
-					'option1' => 'Option one is this and that—be sure to include why it\'s great',
+					'option1' => 'Option one is this and that-be sure to include why it\'s great',
 					'optionsRadios2' => 'Option two can be something else and selecting it will deselect option one'
 				)
 			)
