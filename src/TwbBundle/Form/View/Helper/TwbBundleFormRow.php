@@ -94,8 +94,8 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 			//Multicheckbox elements have to be handled differently as the HTML standard does not allow nested labels. The semantic way is to group them inside a fieldset
 			$sElementType = $oElement->getAttribute('type');
 
-			//Checkbox & radio elements are a special case, because label is rendered by their own helper
-			if(in_array($sElementType,array('multi_checkbox','checkbox','radio'))){
+			//Checkbox is a special case, because label is rendered by its own helper
+			if(in_array($sElementType,array('checkbox'))){
 				if(!$oElement->getLabelAttributes() && $this->labelAttributes)$oElement->setLabelAttributes($this->labelAttributes);
 
 				//Render element input
