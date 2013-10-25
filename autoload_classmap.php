@@ -7,6 +7,7 @@ return array(
   'TwbBundle\Form\View\Helper\TwbBundleFormRow'           => __DIR__ . '/src/TwbBundle/Form/View/Helper/TwbBundleFormRow.php',
   'TwbBundle\Form\View\Helper\TwbBundleFormCheckbox'      => __DIR__ . '/src/TwbBundle/Form/View/Helper/TwbBundleFormCheckbox.php',
   'TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox' => __DIR__ . '/src/TwbBundle/Form/View/Helper/TwbBundleFormMultiCheckbox.php',
+  'TwbBundle\Form\View\Helper\TwbBundleFormElementErrors' => __DIR__ . '/src/TwbBundle/Form/View/Helper/TwbBundleFormElementErrors.php',
   'TwbBundle\Form\View\Helper\TwbBundleForm'              => __DIR__ . '/src/TwbBundle/Form/View/Helper/TwbBundleForm.php',
   'TwbBundle\Form\View\Helper\TwbBundleFormRadio'         => __DIR__ . '/src/TwbBundle/Form/View/Helper/TwbBundleFormRadio.php',
   'TwbBundle\Form\View\Helper\TwbBundleFormCollection'    => __DIR__ . '/src/TwbBundle/Form/View/Helper/TwbBundleFormCollection.php',
