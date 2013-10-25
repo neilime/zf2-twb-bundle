@@ -95,4 +95,14 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 			$this->formRowHelper->__invoke($oElement)
 		);
 	}
+
+	public function testRenderHiddenElement(){
+		$this->formRowHelper->setInputErrorClass('input-error');
+		$oElement = new \Zend\Form\Element\Hidden('input-hidden');
+		//Test content
+		$this->assertEquals(
+			'<input type="hidden" name="input-hidden" class="form-control" value="">',
+			$this->formRowHelper->__invoke($oElement)
+		);
+	}
 }

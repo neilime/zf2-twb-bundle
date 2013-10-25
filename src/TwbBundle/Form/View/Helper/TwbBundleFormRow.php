@@ -31,6 +31,12 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
      */
     public function render(\Zend\Form\ElementInterface $oElement)
     {
+    	$sElementType = $oElement->getAttribute('type');
+
+    	//Nothing to do for hidden elements
+    	if( $sElementType === 'hidden') {
+    		return parent::render($oElement);
+    	}
 
         //Retrieve expected layout
         $sLayout = $oElement->getOption('twb-layout');
@@ -78,7 +84,6 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         }
 
         //Render form row
-        $sElementType = $oElement->getAttribute('type');
         if (in_array($sElementType, array('checkbox')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) return $sElementContent . PHP_EOL;
         if ($sElementType === 'submit' && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE) return $sElementContent . PHP_EOL;
 
