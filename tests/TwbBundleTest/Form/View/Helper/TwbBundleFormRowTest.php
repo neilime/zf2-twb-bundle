@@ -14,6 +14,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
 		$oRenderer->setResolver(\TwbBundleTest\Bootstrap::getServiceManager()->get('ViewResolver'));
 		$this->formRowHelper = $oViewHelperPluginManager->get('formRow')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+		$this->formRowHelper->setPartial(null);
 	}
 
 	public function testRenderPartial(){
@@ -79,11 +80,19 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		$oReflectionMethod->invoke($this->formRowHelper,new \Zend\Form\Element('test-element',array('label' => 'test-label','twb-layout' => 'wrong')));
 	}
 
-	public function testRenderErrorsWithoutDefinedClass(){
-		$oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormRow');
-		$oReflectionMethod = $oReflectionClass->getMethod('renderErrors');
-		$oReflectionMethod->setAccessible(true);
-		$oElement = new \Zend\Form\Element('test-element');
-		$this->assertEquals('<ul class="help-block"><li>test message</li></ul>',$oReflectionMethod->invoke($this->formRowHelper,$oElement->setMessages(array('test message'))));
+	public function testRenderErrorsWithInputErrorClass(){
+		$this->formRowHelper->setInputErrorClass('input-error');
+		$oElement = new \Zend\Form\Element\Text('input-text');
+		$oElement->setAttribute('class', 'test-class');
+		$oElement->setMessages(array(
+			'This is an error message',
+			'This is an another one error message'
+		));
+
+		//Test content
+		$this->assertEquals(
+			'<div class="form-group  has-error"><input type="text" name="input-text" class="test-class input-error form-control" value=""><ul class="help-block"><li>This is an error message</li><li>This is an another one error message</li></ul></div>'.PHP_EOL,
+			$this->formRowHelper->__invoke($oElement)
+		);
 	}
 }

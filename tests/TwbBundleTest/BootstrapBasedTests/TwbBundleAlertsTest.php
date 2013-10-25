@@ -55,6 +55,4 @@ class TwbBundleAlertsTest extends \PHPUnit_Framework_TestCase{
 
 		$this->assertStringEqualsFile($this->expectedPath.'alerts-dismissable.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
-
-
 }

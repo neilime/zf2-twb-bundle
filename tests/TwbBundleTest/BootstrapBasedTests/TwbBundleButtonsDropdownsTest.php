@@ -57,6 +57,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase{
 		$oButton->setAttribute('class','btn-danger');
 		$sContent .= $this->formButtonHelper->__invoke($oButton).PHP_EOL;
 
+		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'dropdowns-single.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
 
@@ -94,6 +95,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase{
 		$oButton->setAttribute('class','btn-danger');
 		$sContent .= $this->formButtonHelper->__invoke($oButton).PHP_EOL;
 
+		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'dropdowns-split.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
 

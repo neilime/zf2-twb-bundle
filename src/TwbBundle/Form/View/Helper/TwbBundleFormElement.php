@@ -59,9 +59,9 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
         if ($aAddOnAppend || $aAddOnPrepend) {
             $sSpecialClass = '';
             //Input size
-            if ($ElementClass = $oElement->getAttribute('class')) {
-                if (preg_match('/(\s|^)input-lg(\s|$)/', $sSpecialClass)) $sSpecialClass .= ' input-group-lg';
-                elseif (preg_match('/(\s|^)input-sm(\s|$)/', $sSpecialClass)) $sSpecialClass .= ' input-group-sm';
+            if ($sElementClass = $oElement->getAttribute('class')) {
+                if (preg_match('/(\s|^)input-lg(\s|$)/', $sElementClass)) $sSpecialClass .= ' input-group-lg';
+                elseif (preg_match('/(\s|^)input-sm(\s|$)/', $sElementClass)) $sSpecialClass .= ' input-group-sm';
             }
             return sprintf(
                 self::$inputGroupFormat,

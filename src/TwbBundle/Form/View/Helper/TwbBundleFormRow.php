@@ -19,13 +19,18 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
     private static $helpBlockFormat = '<p class="help-block">%s</p>';
 
     /**
+     * The class that is added to element that have errors
+     * @var string
+     */
+    protected $inputErrorClass = '';
+
+    /**
      * @see \Zend\Form\View\Helper\FormRow::render()
      * @param \Zend\Form\ElementInterface $oElement
      * @return string
      */
     public function render(\Zend\Form\ElementInterface $oElement)
     {
-
 
         //Retrieve expected layout
         $sLayout = $oElement->getOption('twb-layout');
@@ -45,16 +50,28 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         if (($sValidationState = $oElement->getOption('validation-state'))) $sRowClass .= ' has-' . $sValidationState;
 
         //"has-error" validation state case
-        if (count($oElement->getMessages())) $sRowClass .= ' has-error';
+        if (count($oElement->getMessages())){
+        	$sRowClass .= ' has-error';
+        	//Element have errors
+        	if ($sInputErrorClass = $this->getInputErrorClass()) {
+        		if ($sElementClass = $oElement->getAttribute('class')) {
+        			if (!preg_match('/(\s|^)' . preg_quote($sInputErrorClass, '/') . '(\s|$)/', $sElementClass)) $oElement->setAttribute('class', trim($sElementClass . ' ' . $sInputErrorClass));
+        		} else $oElement->setAttribute('class', $sInputErrorClass);
+        	}
+        }
 
 
         //Column size
         if ($iColumSize = $oElement->getOption('colunm-size')) $sRowClass .= 'col-lg-' . $iColumSize;
 
         //Render element
-        $sElementContent = $this->renderElement($oElement) .
-            //Render errors
-            $this->renderErrors($oElement);
+        $sElementContent = $this->renderElement($oElement);
+
+        //Render errors
+        if ($this->renderErrors) {
+        	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
+        }
+
         //Render help block
         if ($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
             $sElementContent .= $this->renderHelpBlock($oElement);
@@ -163,22 +180,6 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
 
         //Render element input
         return $this->getElementHelper()->render($oElement);
-    }
-
-    /**
-     * Render errors
-     * @param \Zend\Form\ElementInterface $oElement
-     * @return string
-     */
-    protected function renderErrors(\Zend\Form\ElementInterface $oElement)
-    {
-        //Element have errors
-        if (count($oElement->getMessages()) && ($sInputErrorClass = $this->getInputErrorClass())) {
-            if ($sElementClass = $oElement->getAttribute('class')) {
-                if (!preg_match('/(\s|^)' . preg_quote($sInputErrorClass, '/') . '(\s|$)/', $sElementClass)) $oElement->setAttribute('class', trim($sElementClass . ' ' . $sInputErrorClass));
-            } else $oElement->setAttribute('class', $sInputErrorClass);
-        }
-        return $this->renderErrors ? $this->getElementErrorsHelper()->render($oElement) : '';
     }
 
     /**

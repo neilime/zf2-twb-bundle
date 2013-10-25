@@ -41,6 +41,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$oInput = new \Zend\Form\Element\Text('input-append-prepend',array('add-on-append' => '$','add-on-prepend' => '.00'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
+		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'input-groups-basic.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
 
@@ -65,6 +66,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-sm'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
+		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'input-groups-sizing.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
 
@@ -82,6 +84,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Radio('radio',array('value_options' => array(1 => '')))));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
+		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'input-groups-checkboxes-radios.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
 
@@ -99,6 +102,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button',array('label' => 'Go!'))));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
+		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
 
@@ -124,9 +128,9 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button',$aButtonOptions)));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
+		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons-dropdowns.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
-
 
 	/**
 	 * Test http://getbootstrap.com/components/#input-groups-buttons-segmented
@@ -151,6 +155,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button',$aButtonOptions)));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
+		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons-segmented.phtml',str_replace(PHP_EOL,"\n",$sContent));
 	}
 }
