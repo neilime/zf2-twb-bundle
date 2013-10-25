@@ -52,9 +52,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 		//Render element
 		$sElementContent = $this->renderElement($oElement).
 		//Render errors
-		$this->renderErrors($oElement).
+		$this->renderErrors($oElement);
 		//Render help block
-		$this->renderHelpBlock($oElement);
+		if($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
+			$sElementContent .= $this->renderHelpBlock($oElement);
+		}
 
 		//Render form row
 		$sElementType = $oElement->getAttribute('type');
@@ -149,7 +151,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow{
 						self::$horizontalLayoutFormat,
 						$sLabelOpen.$sLabelContent.$sLabelClose,
 						$sClass,
-						$this->getElementHelper()->render($oElement)
+						$this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement)
 					);
 				default:
 					throw new \DomainException('Layout "'.$sLayout.'" is not valid');
