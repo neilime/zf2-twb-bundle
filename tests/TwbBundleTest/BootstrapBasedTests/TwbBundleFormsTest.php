@@ -419,15 +419,20 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase{
 	public function testFormsErroredInput(){
 		$oForm = new \Zend\Form\Form();
 		$oElement = new \Zend\Form\Element\Text('input-text');
-		$oForm->add($oElement->setMessages(array(
+		$oForm->add($oElement
+		->setMessages(array(
 			'This is an error message',
 			'This is an another one error message'
 		)));
 
+		//No form layout
+		$this->assertStringEqualsFile($this->expectedPath.'forms-no-layout-errored-input.phtml',str_replace(PHP_EOL,"\n",$this->formHelper->__invoke($oForm,null)));
+
 		//Horizontal form
 		$this->assertStringEqualsFile($this->expectedPath.'forms-horizontal-errored-input.phtml',str_replace(PHP_EOL,"\n",$this->formHelper->__invoke($oForm)));
 
-		//No form layout
-		$this->assertStringEqualsFile($this->expectedPath.'forms-no-layout-errored-input.phtml',str_replace(PHP_EOL,"\n",$this->formHelper->__invoke($oForm,null)));
+		//Horizontal form / input with label
+		$oElement->setLabel('Input label');
+		$this->assertStringEqualsFile($this->expectedPath.'forms-horizontal-errored-input-with-label.phtml',str_replace(PHP_EOL,"\n",$this->formHelper->__invoke($oForm)));
 	}
 }

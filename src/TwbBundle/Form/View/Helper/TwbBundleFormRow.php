@@ -73,16 +73,6 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         //Render element
         $sElementContent = $this->renderElement($oElement);
 
-        //Render errors
-        if ($this->renderErrors) {
-        	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
-        }
-
-        //Render help block
-        if ($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
-            $sElementContent .= $this->renderHelpBlock($oElement);
-        }
-
         //Render form row
         if (in_array($sElementType, array('checkbox')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) return $sElementContent . PHP_EOL;
         if ($sElementType === 'submit' && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE) return $sElementContent . PHP_EOL;
@@ -164,28 +154,50 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
 
             switch ($sLayout) {
                 case null:
-                    return $sLabelOpen . $sLabelContent . $sLabelClose . $this->getElementHelper()->render($oElement);
                 case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-                    return $sLabelOpen . $sLabelContent . $sLabelClose . $this->getElementHelper()->render($oElement);
+                    $sElementContent =  $sLabelOpen . $sLabelContent . $sLabelClose . $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
+
+                    //Render errors
+                    if ($this->renderErrors) {
+                    	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
+                    }
+
+                    return $sElementContent;
+
                 case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
                     $sClass = 'col-lg-10';
 
                     //Element without labels
                     if (!$sLabelContent) $sClass .= ' col-lg-offset-2';
 
+                    $sElementContent = $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
+
+                    //Render errors
+                    if ($this->renderErrors) {
+                    	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
+                    }
+
                     return sprintf(
                         self::$horizontalLayoutFormat,
                         $sLabelOpen . $sLabelContent . $sLabelClose,
                         $sClass,
-                        $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement)
+                        $sElementContent
                     );
+
                 default:
                     throw new \DomainException('Layout "' . $sLayout . '" is not valid');
             }
         }
 
         //Render element input
-        return $this->getElementHelper()->render($oElement);
+        $sElementContent =  $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
+
+        //Render errors
+        if ($this->renderErrors) {
+        	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
+        }
+
+        return $sElementContent;
     }
 
     /**
