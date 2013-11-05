@@ -49,7 +49,7 @@ Installation
 
     ```json
     "require": {
-        "neilime/zf2-twb-bundle": "2.0"
+        "neilime/zf2-twb-bundle": "dev-master"
     }
     ```
 
