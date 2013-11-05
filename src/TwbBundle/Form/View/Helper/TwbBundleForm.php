@@ -31,6 +31,10 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form
      * @return string
      */
     public function render(\Zend\Form\FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL){
+	if (method_exists($oForm, 'prepare')) {
+            $oForm->prepare();
+        }
+        
     	//Set form layout class
     	if(is_string($sFormLayout)){
     		$sLayoutClass = 'form-'.$sFormLayout;
