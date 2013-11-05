@@ -424,7 +424,10 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase{
 			'This is an another one error message'
 		)));
 
-		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'forms-errored-input.phtml',str_replace(PHP_EOL,"\n",$this->formHelper->__invoke($oForm,null)));
+		//Horizontal form
+		$this->assertStringEqualsFile($this->expectedPath.'forms-horizontal-errored-input.phtml',str_replace(PHP_EOL,"\n",$this->formHelper->__invoke($oForm)));
+
+		//No form layout
+		$this->assertStringEqualsFile($this->expectedPath.'forms-no-layout-errored-input.phtml',str_replace(PHP_EOL,"\n",$this->formHelper->__invoke($oForm,null)));
 	}
 }
