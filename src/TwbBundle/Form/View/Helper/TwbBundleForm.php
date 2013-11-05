@@ -5,7 +5,7 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form
     const LAYOUT_HORIZONTAL = 'horizontal';
 	const LAYOUT_INLINE = 'inline';
 	const LAYOUT_SEARCH = 'search';
-	
+
 	/**
 	 * @var string
 	 */
@@ -31,6 +31,12 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form
      * @return string
      */
     public function render(\Zend\Form\FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL){
+
+    	//Prepare form if needed
+    	if (method_exists($oForm, 'prepare')) {
+    		$oForm->prepare();
+    	}
+
     	//Set form layout class
     	if(is_string($sFormLayout)){
     		$sLayoutClass = 'form-'.$sFormLayout;
@@ -51,7 +57,7 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form
     		if(!$bHasColumnSizes && !empty($aOptions['colunm-size']))$bHasColumnSizes = true;
 	    	//Define layout option to form elements
     		if($sFormLayout){
-    			$aOptions['twb-layout'] = $sFormLayout; 
+    			$aOptions['twb-layout'] = $sFormLayout;
 	    		$oElement->setOptions($aOptions);
     		}
     		$sFormContent .= $oElement instanceof \Zend\Form\FieldsetInterface?$oRenderer->formCollection($oElement):$oRenderer->formRow($oElement);
