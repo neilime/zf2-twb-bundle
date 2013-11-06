@@ -33,8 +33,8 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
     {
     	$sElementType = $oElement->getAttribute('type');
 
-    	//Nothing to do for hidden elements
-    	if( $sElementType === 'hidden') {
+    	//Nothing to do for hidden elements which have no messages
+    	if( $sElementType === 'hidden' && !$oElement->getMessages()) {
     		return parent::render($oElement);
     	}
 
@@ -68,7 +68,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
 
 
         //Column size
-        if ($iColumSize = $oElement->getOption('colunm-size')) $sRowClass .= 'col-lg-' . $iColumSize;
+        if ($iColumSize = $oElement->getOption('column-size')) $sRowClass .= 'col-lg-' . $iColumSize;
 
         //Render element
         $sElementContent = $this->renderElement($oElement);

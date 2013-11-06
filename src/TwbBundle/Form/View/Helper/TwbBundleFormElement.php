@@ -50,11 +50,11 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
 
         $sMarkup = $oElement instanceof \TwbBundle\Form\Element\StaticElement ? $this->getView()->formStatic()->render($oElement) : parent::render($oElement);
 
-        //Addon append
-        if ($aAddOnAppend = $oElement->getOption('add-on-append')) $sMarkup = $this->renderAddOn($aAddOnAppend) . $sMarkup;
+        //Addon prepend
+        if ($aAddOnPrepend = $oElement->getOption('add-on-prepend')) $sMarkup = $this->renderAddOn($aAddOnPrepend) . $sMarkup;
 
         //Addon append
-        if ($aAddOnPrepend = $oElement->getOption('add-on-prepend')) $sMarkup .= $this->renderAddOn($aAddOnPrepend);
+        if ($aAddOnAppend = $oElement->getOption('add-on-append')) $sMarkup .= $this->renderAddOn($aAddOnAppend);
 
         if ($aAddOnAppend || $aAddOnPrepend) {
             $sSpecialClass = '';

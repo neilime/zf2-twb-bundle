@@ -31,14 +31,14 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 	public function testBasicExample(){
 		$sContent = '';
 
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => '@'));
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => '@'));
 		$oInput->setAttribute('placeholder','Username');
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
-		$oInput = new \Zend\Form\Element\Text('input-prepend',array('add-on-prepend' => '.00'));
+		$oInput = new \Zend\Form\Element\Text('input-prepend',array('add-on-append' => '.00'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
-		$oInput = new \Zend\Form\Element\Text('input-append-prepend',array('add-on-append' => '$','add-on-prepend' => '.00'));
+		$oInput = new \Zend\Form\Element\Text('input-append-prepend',array('add-on-prepend' => '$','add-on-append' => '.00'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
@@ -52,17 +52,17 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent = '';
 
 		//Large
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => '@'));
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => '@'));
 		$oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-lg'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Default
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => '@'));
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => '@'));
 		$oInput->setAttribute('placeholder','Username');
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Small
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => '@'));
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => '@'));
 		$oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-sm'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
@@ -77,11 +77,11 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent = '';
 
 		//Checkbox
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Checkbox('checkbox')));
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => new \Zend\Form\Element\Checkbox('checkbox')));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Radio
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Radio('radio',array('value_options' => array(1 => '')))));
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => new \Zend\Form\Element\Radio('radio',array('value_options' => array(1 => '')))));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
@@ -94,12 +94,12 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 	public function testButtonAddons(){
 		$sContent = '';
 
-		//Append
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Button('append-button',array('label' => 'Go!'))));
-		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
-
 		//Prepend
 		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button',array('label' => 'Go!'))));
+		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
+
+		//Append
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Button('append-button',array('label' => 'Go!'))));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
@@ -120,12 +120,12 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 
 		$sContent = '';
 
-		//Append
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Button('append-button',$aButtonOptions)));
-		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
-
 		//Prepend
 		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button',$aButtonOptions)));
+		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
+
+		//Append
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Button('append-button',$aButtonOptions)));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
@@ -147,12 +147,12 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 
 		$sContent = '';
 
-		//Append
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Button('append-button',$aButtonOptions)));
-		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
-
 		//Prepend
 		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button',$aButtonOptions)));
+		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
+
+		//Append
+		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-append' => new \Zend\Form\Element\Button('append-button',$aButtonOptions)));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content

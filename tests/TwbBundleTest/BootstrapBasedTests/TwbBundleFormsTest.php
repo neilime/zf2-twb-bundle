@@ -374,21 +374,21 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase{
 				'type' => 'text',
 				'placeholder' => '.col-lg-2'
 			),
-			'options' => array('colunm-size' => 2)
+			'options' => array('column-size' => 2)
 		))->add(array(
 			'name' => 'input-text-col-lg-3',
 			'attributes' => array(
 				'type' => 'text',
 				'placeholder' => '.col-lg-3'
 			),
-			'options' => array('colunm-size' => 3)
+			'options' => array('column-size' => 3)
 		))->add(array(
 			'name' => 'input-text-col-lg-4',
 			'attributes' => array(
 				'type' => 'text',
 				'placeholder' => '.col-lg-4'
 			),
-			'options' => array('colunm-size' => 4)
+			'options' => array('column-size' => 4)
 		));
 
 		//Test content
