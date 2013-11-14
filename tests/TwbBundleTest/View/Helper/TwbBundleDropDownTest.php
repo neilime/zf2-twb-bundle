@@ -23,11 +23,11 @@ class TwbBundleDropDownTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testRenderToggleWithEmptyClassAttribute(){
-		$this->assertEquals('<a class="sr-only dropdown-toggle" data-toggle="dropdown" href="#"> <b class="caret"></b></a>',$this->dropDownHelper->renderToggle(array('toggle_attributes' => array('class' => ''))));
+		$this->assertEquals('<a class="sr-only dropdown-toggle" data-toggle="dropdown" role="button" href="#"> <b class="caret"></b></a>',$this->dropDownHelper->renderToggle(array('toggle_attributes' => array('class' => ''))));
 	}
 
 	public function testRenderToggleWithDefinedClassAttribute(){
-		$this->assertEquals('<a class="test-toggle sr-only dropdown-toggle" data-toggle="dropdown" href="#"> <b class="caret"></b></a>',$this->dropDownHelper->renderToggle(array('toggle_attributes' => array('class' => 'test-toggle'))));
+		$this->assertEquals('<a class="test-toggle sr-only dropdown-toggle" data-toggle="dropdown" role="button" href="#"> <b class="caret"></b></a>',$this->dropDownHelper->renderToggle(array('toggle_attributes' => array('class' => 'test-toggle'))));
 	}
 
 	public function testRenderItemWithDefinedClassAttribute(){
@@ -37,7 +37,7 @@ class TwbBundleDropDownTest extends \PHPUnit_Framework_TestCase{
 
 		//Header
 		$this->assertEquals(
-			'<li class="test-item dropdown-header">test-label</li>',
+			'<li class="test-item dropdown-header" role="presentation">test-label</li>',
 			$oReflectionMethod->invoke($this->dropDownHelper,array(
 				'type' => \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER,
 				'label' => 'test-label',
@@ -47,7 +47,7 @@ class TwbBundleDropDownTest extends \PHPUnit_Framework_TestCase{
 
 		//Divider
 		$this->assertEquals(
-			'<li class="test-item divider"></li>',
+			'<li class="test-item divider" role="presentation"></li>',
 			$oReflectionMethod->invoke($this->dropDownHelper,array(
 				'type' => \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER,
 				'attributes' => array('class' => 'test-item')
