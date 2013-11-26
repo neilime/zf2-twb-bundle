@@ -8,6 +8,7 @@ Work in progress to supports Twitter Bootstrap v3.*
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
 [![Total Downloads](https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
 [![Coverage Status](https://coveralls.io/repos/neilime/zf2-twb-bundle/badge.png)](https://coveralls.io/r/neilime/zf2-twb-bundle)
+[![Dependency Status](https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046/badge.png)](https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046)
 
 NOTE : If you want to contribute don't hesitate, I'll review any PR.
 
