@@ -7,7 +7,7 @@ Work in progress to supports Twitter Bootstrap v3.*
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
 [![Total Downloads](https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
-![Code coverage](https://raw.github.com/zf2-boiler-app/app-test/master/ressources/100%25-code-coverage.png "100% code coverage")
+[![Coverage Status](https://coveralls.io/repos/neilime/zf2-twb-bundle/badge.png)](https://coveralls.io/r/neilime/zf2-twb-bundle)
 
 NOTE : If you want to contribute don't hesitate, I'll review any PR.
 
