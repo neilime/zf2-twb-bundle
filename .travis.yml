@@ -6,7 +6,7 @@ php:
 
 before_install:
  - composer self-update
- - php composer.phar install --dev --no-interaction
+ - php composer.phar install --dev -o
 
 before_script:
  - cd tests
