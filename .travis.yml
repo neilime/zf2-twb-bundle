@@ -6,7 +6,7 @@ php:
 
 before_install:
  - composer self-update
- - php composer install --dev -o
+ - composer install --dev -o
 
 before_script:
  - cd tests
