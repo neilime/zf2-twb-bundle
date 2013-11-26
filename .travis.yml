@@ -6,11 +6,14 @@ php:
 
 before_install:
  - composer self-update
- - composer install
+ - php composer.phar install --dev --no-interaction
 
 before_script:
  - cd tests
 
 script:
+ - mkdir -p build/logs
  - phpunit
- - php ./coverage-checker.php ./clover.xml 100
+ 
+after_script:
+  - php vendor/bin/coveralls
