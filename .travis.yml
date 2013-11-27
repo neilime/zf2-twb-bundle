@@ -9,11 +9,11 @@ before_install:
  - composer install --dev -o
 
 before_script:
+ - mkdir -p build/logs
  - cd tests
 
 script:
- - mkdir -p build/logs
- - phpunit --coverage-clover build/logs/clover.xml
+ - phpunit --coverage-clover ../build/logs/clover.xml
  
 after_script:
   - php vendor/bin/coveralls -v
