@@ -12,7 +12,7 @@ class TwbBundleLabel extends \Zend\Form\View\Helper\AbstractHelper{
 	 * @param string|array $aLabelAttributes : [optionnal] if string, label class
 	 * @return string|\TwbBundle\View\Helper\TwbBundleAlert
 	 */
-    public function __invoke($sLabelMessage = null, $aLabelAttributes = 'default'){
+    public function __invoke($sLabelMessage = null, $aLabelAttributes = 'label-default'){
         if(!$sLabelMessage)return $this;
         return $this->render($sLabelMessage,$aLabelAttributes);
     }
