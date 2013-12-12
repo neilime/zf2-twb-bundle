@@ -43,7 +43,7 @@ class TwbBundleAlertsTest extends \PHPUnit_Framework_TestCase{
 		//Danger
 		$sContent .= $this->alertHelper->__invoke('<strong>Oh snap!</strong> Change a few things up and try submitting again.','alert-danger').PHP_EOL;
 
-		$this->assertStringEqualsFile($this->expectedPath.'alerts-examples.phtml',str_replace(PHP_EOL,"\n",$sContent));
+		$this->assertStringEqualsFile($this->expectedPath.'alerts-examples.phtml',$sContent);
 	}
 
 	/**
@@ -53,6 +53,6 @@ class TwbBundleAlertsTest extends \PHPUnit_Framework_TestCase{
 
 		$sContent = $this->alertHelper->__invoke('<strong>Warning!</strong> Best check yo self, you\'re not looking too good.',null,true).PHP_EOL;
 
-		$this->assertStringEqualsFile($this->expectedPath.'alerts-dismissable.phtml',str_replace(PHP_EOL,"\n",$sContent));
+		$this->assertStringEqualsFile($this->expectedPath.'alerts-dismissable.phtml',$sContent);
 	}
 }

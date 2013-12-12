@@ -42,7 +42,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'input-groups-basic.phtml',str_replace(PHP_EOL,"\n",$sContent));
+		$this->assertStringEqualsFile($this->expectedPath.'input-groups-basic.phtml',$sContent);
 	}
 
 	/**
@@ -67,7 +67,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'input-groups-sizing.phtml',str_replace(PHP_EOL,"\n",$sContent));
+		$this->assertStringEqualsFile($this->expectedPath.'input-groups-sizing.phtml',$sContent);
 	}
 
 	/**
@@ -85,7 +85,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'input-groups-checkboxes-radios.phtml',str_replace(PHP_EOL,"\n",$sContent));
+		$this->assertStringEqualsFile($this->expectedPath.'input-groups-checkboxes-radios.phtml',$sContent);
 	}
 
 	/**
@@ -103,7 +103,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons.phtml',str_replace(PHP_EOL,"\n",$sContent));
+		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons.phtml',$sContent);
 	}
 
 	/**
@@ -129,7 +129,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons-dropdowns.phtml',str_replace(PHP_EOL,"\n",$sContent));
+		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons-dropdowns.phtml',$sContent);
 	}
 
 	/**
@@ -156,6 +156,6 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons-segmented.phtml',str_replace(PHP_EOL,"\n",$sContent));
+		$this->assertStringEqualsFile($this->expectedPath.'input-groups-buttons-segmented.phtml',$sContent);
 	}
 }
