@@ -4,7 +4,19 @@ class TwbBundleLabel extends \Zend\Form\View\Helper\AbstractHelper{
 	/**
 	 * @var string
 	 */
-	private static $labelFormat = '<span %s>%s</span>';
+	private static $labelFormat = '<%s %s>%s</span>';
+
+    /**
+     * @var string
+     */
+    protected $tagName = 'span';
+
+    /**
+     * @var array
+     */
+    protected $validTagAttributes = array(
+        'href' => true,
+    );
 
 	/**
 	 * Invoke helper as functor, proxies to {@link render()}.
@@ -37,6 +49,7 @@ class TwbBundleLabel extends \Zend\Form\View\Helper\AbstractHelper{
 		if(null !== ($oTranslator = $this->getTranslator()))$sLabelMessage = $oTranslator->translate($sLabelMessage, $this->getTranslatorTextDomain());
 		return sprintf(
 			self::$labelFormat,
+            isset($aLabelAttributes['tagName'])?$aLabelAttributes['tagName']:$this->tagName,
 			$this->createAttributesString($aLabelAttributes),
 			$sLabelMessage
 		);
