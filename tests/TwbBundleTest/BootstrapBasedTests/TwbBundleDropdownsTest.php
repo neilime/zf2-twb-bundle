@@ -38,7 +38,7 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase{
 		);
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'exemple.phtml',str_replace(PHP_EOL,"\n",$this->dropdownHelper->__invoke($aDropDownOptions)));
+		$this->assertStringEqualsFile($this->expectedPath.'exemple.phtml',$this->dropdownHelper->__invoke($aDropDownOptions));
 	}
 
 	/**
@@ -54,7 +54,7 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase{
 		);
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'alignment.phtml',str_replace(PHP_EOL,"\n",$this->dropdownHelper->__invoke($aDropDownOptions)));
+		$this->assertStringEqualsFile($this->expectedPath.'alignment.phtml',$this->dropdownHelper->__invoke($aDropDownOptions));
 	}
 
 	/**
@@ -76,7 +76,7 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase{
 		);
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'headers.phtml',str_replace(PHP_EOL,"\n",$this->dropdownHelper->__invoke($aDropDownOptions)));
+		$this->assertStringEqualsFile($this->expectedPath.'headers.phtml',$this->dropdownHelper->__invoke($aDropDownOptions));
 	}
 
 
@@ -97,6 +97,6 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase{
 		);
 
 		//Test content
-		$this->assertStringEqualsFile($this->expectedPath.'disabled.phtml',str_replace(PHP_EOL,"\n",$this->dropdownHelper->__invoke($aDropDownOptions)));
+		$this->assertStringEqualsFile($this->expectedPath.'disabled.phtml',$this->dropdownHelper->__invoke($aDropDownOptions));
 	}
 }

@@ -29,7 +29,7 @@ class TwbBundleBadge extends \Zend\Form\View\Helper\AbstractHelper{
 
 		if(empty($aBadgeAttributes))$aBadgeAttributes = array('class' => 'badge');
 		else{
-			if(empty($aBadgeAttributes['class']))$aBadgeAttributes['class'] = 'dropdown';
+			if(empty($aBadgeAttributes['class']))$aBadgeAttributes['class'] = 'badge';
 			elseif(!preg_match('/(\s|^)badge(\s|$)/',$aBadgeAttributes['class']))$aBadgeAttributes['class'] .= ' badge';
 		}
 		if(null !== ($oTranslator = $this->getTranslator()))$sBadgeMessage = $oTranslator->translate($sBadgeMessage, $this->getTranslatorTextDomain());

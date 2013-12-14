@@ -66,9 +66,16 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         	}
         }
 
-
         //Column size
-        if ($iColumSize = $oElement->getOption('column-size')) $sRowClass .= 'col-lg-' . $iColumSize;
+        if (
+            ($sColumSize = $oElement->getOption('column-size'))
+            && (
+                $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL
+                || !$oElement->getLabel()
+            )
+        ) {
+            $sRowClass .= ' col-' . $sColumSize;
+        }
 
         //Render element
         $sElementContent = $this->renderElement($oElement);
@@ -139,14 +146,14 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
                         break;
 
                     case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
-                        if (empty($aLabelAttributes['class'])) $aLabelAttributes['class'] = 'col-lg-2 control-label';
+                        if (empty($aLabelAttributes['class'])) $aLabelAttributes['class'] = 'control-label';
                         else {
-                            if (!preg_match('/(\s|^)col-lg-2(\s|$)/', $aLabelAttributes['class'])) $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' col-lg-2');
                             if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
                         }
                         break;
                 }
                 if ($aLabelAttributes) $oElement->setLabelAttributes($aLabelAttributes);
+
                 $sLabelOpen = $oLabelHelper->openTag($oElement);
                 $sLabelClose = $oLabelHelper->closeTag();
                 $sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
@@ -165,17 +172,20 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
                     return $sElementContent;
 
                 case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
-                    $sClass = 'col-lg-10';
-
-                    //Element without labels
-                    if (!$sLabelContent) $sClass .= ' col-lg-offset-2';
-
                     $sElementContent = $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
 
                     //Render errors
                     if ($this->renderErrors) {
                     	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
                     }
+
+                    $sClass = '';
+
+                    //Column size
+                    if ($sColumSize = $oElement->getOption('column-size')) {
+                        $sClass .= ' col-' . $sColumSize;
+                    }
+
 
                     return sprintf(
                         self::$horizontalLayoutFormat,
