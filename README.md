@@ -15,7 +15,7 @@ NOTE : If you want to contribute don't hesitate, I'll review any PR.
 Introduction
 ------------
 
-__TwbBundle__ is a module for Zend Framework 2, for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap). 
+__TwbBundle__ is a module for Zend Framework 2, for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap).
 
 Contributing
 ------------
@@ -50,7 +50,7 @@ Installation
 
     ```json
     "require": {
-        "neilime/zf2-twb-bundle": "dev-master"
+        "neilime/zf2-twb-bundle": "2.0"
     }
     ```
 
@@ -77,7 +77,7 @@ Installation
 2. Include Twitter Bootstrap assets
 
 ###### With __AssetsBundle__ module (easy way)
-    
+
 * Install the [AssetsBundle module](https://github.com/neilime/zf2-twb-bundle/tree/1.0)(1.0)
 * Install [Twitter Bootstrap](https://github.com/twbs/bootstrap/tree/v2.3.2) (v2.3.2)
 * Edit the application module configuration file `module/Application/config/module.config.php`, adding the configuration fragment below:
@@ -97,378 +97,214 @@ Installation
 * Edit layout file `module/Application/view/layout/layout.phtml`, to render head scripts :
 
     ```php
-    //...    
+    //...
     echo $this->headScript();
     //...
     ```
 
 ###### Manually
-    
+
 * Copy `bootstrap.css` file (available on Twitter Bootstrap website(https://github.com/twbs/bootstrap/archive/v3.0.0.zip)) into your assets folder and add it in your head scripts
-    
+
 # How to use __TwbBundle__
 
-## Simple examples
+## View helpers
 
-* Render a dropdown button
+__TwbBundle__ provides view helpers helping render html elements
 
-    ```php
-    //...
-    //Create button
-    $button = new \Zend\Element\Button('test-button',array(
-        'label' => 'Action',
-        'dropdown' => array('actions' => array(
-            'Action',
-            'Another action',
-            'Something else here',
-            '-',
-            'Separated link'
-        ))
-    )));
-    //Render it in your view
-    echo $this->formButton($button);
-    //...
-    ```
+### Forms
 
-* Render a search form
+#### Form : `TwbBundle\Form\View\Helper\TwbBundleForm`
 
-    ```php
-    //...
-    //Create form
-    $form = new \Zend\Form\Form();
-    $form->add(array(
-        'name' => 'input-search-append',
-        'attributes' => array(
-            'class' => 'search-query input-medium'
-        ),
-        'options' => array('twb' => array(
-            'append' => array(
-                'type' => 'buttons',
-                'buttons' => array(
-                    'search-submit-append' => array(
-                        'options' => array('label' => 'Search'),
-                        'attributes' => array('type' => 'submit')
-                    )
-                )
-            )
-        ))
-    ))->add(array(
-        'name' => 'input-search-prepend',
-        'attributes' => array(
-            'class' => 'search-query input-medium'
-        ),
-        'options' => array('twb' => array(
-            'prepend' => array(
-                'type' => 'buttons',
-                'buttons' => array(
-                    'search-submit-prepend' => array(
-                        'options' => array('label' => 'Search'),
-                        'attributes' => array('type' => 'submit')
-                    )
-                )
-            )
-        ))
-    ));
-    //Render it in your view
-    $this->form($form,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH);
-    //...
-    ```
-
-## Features
-
-__TwbBundle__ is abble to render [Twitter bootstrap demo site](http://getbootstrap.com/) forms, inputs, buttons, & alerts. (tests are written in order to cover what is showed on demo site)
-
-### 1. Forms
-
-_Render \Zend\Form\FormInterface_
-
-#### Form layout :
-
-Layout should be defined when form view helper is invoked
-
-* None : `null`
-* Search form : `\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_SEARCH`
-* Inline form : `\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE`
-* Horizontal form (default) : `\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL`
-
-	Exemple : 
-	    
-	```php
-	//...
-	$this->form($form,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE);
-	//...    
-	```
-
-### 2. Inputs
-
-_Render \Zend\Form\ElementInterface_
-
-All elements options are defined in `twb` (array)
+Form helper can be called in a view with the view helper service `form(\Zend\Form\FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)` :
 
 ```php
-new \Zend\Form\Element('test-element',array(
-    'twb' => array(
-        /** TwbBundle options **/
-    )
-);
+$this->form(new \Zend\Form\Form());
 ```
+This helper accepts a form element as first param, and an optionnal Bootstrap defined layout style definition as second param.
+Here are the available layouts :
 
-#### Appended and / or prepended
+* `TwbBundle\Form\View\Helper::LAYOUT_HORIZONTAL` : horizontal (default)
+* `TwbBundle\Form\View\Helper::LAYOUT_INLINE` : inline
+* `TwbBundle\Form\View\Helper::LAYOUT_SEARCH` : search
 
-For all prepended / appended types : 
+The helper auto add form specific class and `form` role attributes.
+
+#### Button : `TwbBundle\Form\View\Helper\TwbBundleFormButton`
+
+Button helper can be called in a view with the view helper service `formButton(\Zend\Form\ElementInterface $oElement, $sButtonContent = null)` :
 
 ```php
-new \Zend\Form\Element('test-element',array(
-    'twb' => array(
-        'prepend' => array(
-            'type' => 'prepended type',
-            //Prepended type option
-        ),
-        'append' => array(
-            'type' => 'appended type',
-            //Appended type option
-        )
-    )
-);
+$this->formButton(new \Zend\Form\Element());
 ```
+This helper accepts a button element as first param, and an optionnal button content as second param.
+It auto add button specific class (`btn` & `btn-default` is no button class is defined) attribute.
 
-* Text :
+Button can be set as dropdown button by defined the option `dropdown` (array) to the element :
+The dropdown is rendered by the [dropdown renderer](#dropdown--twbbundleviewhelpertwbbundledropdown), it accept the folling additionnal options :
+* boolean `split` : the button element and the carret are splitted.
+* boolean `dropup` : render a dropup element instead of a dropdown
 
-    _Appended / prepended texts are translated_
+The option `disable-twb` can be passed to the element to disable rendering it in a `div` container.
 
-    ```php
-    //Prepended text
-    new \Zend\Form\Element('test-element',array(
-        'twb' => array(
-            'prepend' => array(
-                'type' => 'text',
-                'text' => 'Prepended text'
-            )
-        )
-    );
-    ```
+#### Checkbox : `TwbBundle\Form\View\Helper\TwbBundleFormCheckbox`
 
-* Icon : 
-
-    ```php
-    //Appended icon
-    new \Zend\Form\Element('test-element',array(
-        'twb' => array(
-            'append' => array(
-                'type' => 'icon',
-                'icon' => 'icon-enveloppe' //icon class
-            )
-        )
-    );
-    ```
-
-* Button(s) :
-
-    _Button options are explained [below](#buttons)._
- 
-    ```php
-    //Appended buttons
-    new \Zend\Form\Element('test-element',array(
-        'twb' => array(
-            'append' => array(
-                'type' => 'buttons',
-                'buttons' => array(
-                    'button-one' => array(
-                    	/* Button factory options, name is not mandatory if given with the array key */
-                    ),
-                    new \Zend\Form\Element\Button('button-two',array(/* Button options */))
-                )
-            )
-        )
-    );
-    ```
-
-* Or what ever you want :
-
-    ```php
-    //Appended markup
-    new \Zend\Form\Element('test-element',array(
-        'twb' => array(
-            'append' => '<span>Simple appended text</span>'
-        )
-    );
-    ```
-
-#### Form actions
-
-This option allows an element to be in form actions part
+Checkbox helper can be called in a view with the view helper service `formCheckbox(\Zend\Form\Checkbox $oElement)` :
 
 ```php
-//Element in form actions
-new \Zend\Form\Element('test-element',array(
-	'twb' => array(
-		'formAction' => true
-	)
-);
+$this->formCheckbox(new \Zend\Form\Element\Checkbox());
 ```
+This helper accepts a checkbox element as first param.
+The option `disable-twb` (boolean) can be passed to the element to disable rendering it in a `div` container.
 
-#### Help
+#### Form collection : `TwbBundle\Form\View\Helper\TwbBundleFormCollection`
 
-* Inline
-    ```php
-    new \Zend\Form\Element('test-element',array(
-        'twb' => array(
-            'help-inline' => 'Inline help text'
-        )
-    );
-    ```
-
-* Block
-    ```php
-    new \Zend\Form\Element('test-element',array(
-        'twb' => array(
-            'help-block' => 'A longer block of help text that breaks onto a new line and may extend beyond one line.'
-        )
-    );
-    ```
-
-#### Validation states
-
-Validations states are only rendered with horizontal form layout, validation status "error" is automatically added when the element contains at least one error message.
+Form collection helper can be called in a view with the view helper service `formCollection(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-//Element with "info" state
-new \Zend\Form\Element('test-element',array(
-    'twb' => array(
-        'state' => 'info'
-    )
-);
+$this->formCollection(new \Zend\Form\Element());
 ```
+This helper accepts a form collection (fieldset) element as first param.
 
-### 3. Buttons
+#### Form element : `TwbBundle\Form\View\Helper\TwbBundleFormElement`
 
-Render \Zend\Form\Element\Button
-
-#### Icons
+Form element helper can be called in a view with the view helper service `formElement(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-new \Zend\Form\Element\Button('test-button',array(
-    'twb' => array(
-        'icon' => 'icon-info'
-    )
-);
+$this->formElement(new \Zend\Form\Element());
 ```
+This helper accepts a form element as first param. This helper can render prepend and/or append add-on by setting the appropriate option `add-on-prepend` and/or `add-on-append` to the element.
+These options accept the following values :
+* `Zend\Form\ElementInterface` : the element will be rendered in the add-on
+* `scalar` : the value will be translated and rendered in the add-on
+* `array` :
+    The array accept once of the following keys :
+    * `text` (scalar) : the value will be translated and rendered in the add-on
+    * `element` (array) : An element will be created by \Zend\Form\Factory and the given array, then rendered in the add-on
+    * `element` (Zend\Form\ElementInterface) : the element will be rendered in the add-on
 
-#### Button dropdowns
+#### Form element errors : `TwbBundle\Form\View\Helper\TwbBundleFormElementErrors`
+
+Form element errors helper can be called in a view with the view helper service `formElementErrors(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-new \Zend\Form\Element\Button('test-button',array(
-    'twb' => array(
-        'dropdown' => array(
-            'actions' => array(
-                /** action options **/
-            )
-        )
-    )
-);
+$this->formElementErrors(new \Zend\Form\Element());
 ```
+This helper accepts a form element as first param. This helper render element's errors.
 
-#### Split button dropdowns
+#### Multi-Checkbox : `TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox`
+
+Multi-Checkbox helper can be called in a view with the view helper service `formMultiCheckbox(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-new \Zend\Form\Element\Button('test-button',array(
-    'twb' => array(
-        'dropdown' => array(
-            'segmented' => true,
-            'actions' => array(
-                /** action options **/
-            )
-        )
-    )
-);
+$this->formMultiCheckbox(new \Zend\Form\Element\ElementInterface());
 ```
+This helper accepts an element as first param.
+The option `inline` (boolean) can be passed to the element to display checkoxes inlined (default) or not.
 
-#### Right menus
+#### Radio : `TwbBundle\Form\View\Helper\TwbBundleFormRadio`
+
+Radio helper can be called in a view with the view helper service `formCheckbox(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-new \Zend\Form\Element\Button('test-button',array(
-    'twb' => array(
-        'dropdown' => array(
-        	'pull' => 'right',
-            'actions' => array(
-                /** action options **/
-            )
-        )
-    )
-);
+$this->formRadio(new \Zend\Form\Element\ElementInterface());
 ```
+This helper accepts an element as first param.
+The option `disable-twb` (boolean) can be passed to the element to disable rendering it in a `div` container.
 
-#### Dropup menus
+#### Form row : `TwbBundle\Form\View\Helper\TwbBundleFormRow`
+
+Form element helper can be called in a view with the view helper service `formRow(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-new \Zend\Form\Element\Button('test-button',array(
-    'twb' => array(
-        'dropup' => array(
-            /** dropup options (same as dropdown **/
-        )
-    )
-);
+$this->formRow(new \Zend\Form\Element());
 ```
+This helper accepts a form element as first param.
+The option `twb-layout` (string) can be passed to the element to render the row with a defined layout style as [form helper](#form--twbbundleformviewhelpertwbbundleform).
+The option `validation-state` (string) can be passed to the element to render the row with a defined validation state class attribute(`has-...`). If the element has messages, `has-error` class attribute is auto added.
+The option `column-size` (int) can be passed to the element to render the row with a defined column size class attribute(`col-lg-...`).
+The option `help-block` (string) can be passed to the element to render an help block translated appending the element.
 
-#### Actions options
+#### Static : `TwbBundle\Form\View\Helper\TwbBundleFormStatic`
 
-Should be `string` or `array`
+Static helper can be called in a view with the view helper service `formStatic(\Zend\Form\ElementInterface $oElement)` :
 
-* String : The label name (would be translated), href url is # + String value.
-	Exemple : 
-	```php
-	//...
-	'actions' => array(
-	    'test' //Render <li><a href="#test">test</a></li>
-	)
-	//...
-	```
-
-	You can render a `divider` by using  `-` as label name
-
-	Exemple : 
-    ```php
-    //...
-    'actions' => array(
-        '-' //Render <li class="divider"></li>
-    )
-    //...
-    ```
-
-* Array (available options):
-    - `string` label : the label name (would be translated)
-    - `string` content : markup, if `label` is defined, this option is not used
-    - `string` icon : (optionnal) the icon class to prepend to label or content
-    - `string` href : (optionnal) href for the link, default `#`
-    - ... : all attributes you want for the link element (onclick, class...)
-    
-    Exemple : 
-    ```php
-    //...
-    'actions' => array(
-        array(
-        	'label' => 'Test action',
-        	'icon' => 'icon-user',
-        	'href' => 'test.html',
-        	'class' => 'test-class'
-        ) // Render <li><a href="test.html" class="test-class"><i class="icon-user"></i> Test action</a></li>
-    )
-    //...
-    ```
-
-### 4. Alerts
-
-_Render alerts_
-
-Exemple : 
-    
 ```php
-//...
-$this->alert('Test message','alert-error');
-//...    
+$this->formStatic(new \Zend\Form\Element\ElementInterface());
 ```
+This helper accepts an element as first param.
 
-#### Params
-- `string` alert message :  (would be translated)
-- `string` alert class : (optionnal)
-- `boolean` close : show close button or not, default true
+### Mixed
+
+#### Alert : `TwbBundle\View\Helper\TwbBundleAlert`
+
+Alert helper can be called in a view with the view helper service `alert($sAlertMessage = null, $aAlertAttributes = null, $bDismissable = false)` :
+
+```php
+$this->alert('alert message',array('class' => 'alert-success');
+```
+This helper accepts a message as first param, attributes for alert container as second param (optionnal) and boolean as third param to display or not a close action to the alert message (optionnal).
+The class attribute "alert" is auto added to the alert container.
+
+#### Badge : `TwbBundle\View\Helper\TwbBundleBadge`
+
+Badge helper can be called in a view with the view helper service `badge($sBadgeMessage = null, array $aBadgeAttributes = null)` :
+
+```php
+$this->badge('badge message',array('class' => 'pull-right');
+```
+This helper accepts a message as first param, and attributes for badge container as second param (optionnal).
+The class attribute "badge" is auto added to the alert container.
+
+#### Dropdown : `TwbBundle\View\Helper\TwbBundleDropDown`
+
+Dropdown helper can be called in a view with the view helper service `dropdown(array $aDropdownOptions = null)` :
+
+```php
+$this->dropdown(array('Item #1',\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER,'Item #2'));
+```
+This helper accepts dropdown configuration as first param :
+    * `attributes` (array) : attributes for the dropdown container (optionnal)
+    * `label` (scalar) : Label content (will be translated), may be empty (optionnal)
+    * `toggle_attributes` (array) : attributes for the dropdown toggle container (optionnal)
+    * `items` (array) : list of items, should contains :
+        * `scalar` :
+            * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER` : display a divider
+            * `text` : display a text (translated) into a link (anchor attribute is the same as content)
+        * `array` : the item options :
+            * `type` (string) : the type of item
+                * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER` : render an item as header
+                It needs the following option :
+                    * `label` (scalar) content text  (translated) of the item
+               * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER` : render a divider
+               * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_LINK` : render an item as a link `<a ...>`
+                It needs the following option :
+                    * `label` (scalar) content text  (translated) of the item
+                    * `item_attributes` (array) : attributes for the item container (optionnal)
+            * `attributes` (array) : the attributes of the item container
+    * `list_attributes` (array) : attributes for the dropdown list container (optionnal)
+
+#### Label : `TwbBundle\View\Helper\TwbBundleLabel`
+
+Label helper can be called in a view with the view helper service `label($sLabelMessage  = null, array $aLabelAttributes  = 'label-default')` :
+
+```php
+$this->label('label message',array('class' => 'label-primary');
+```
+This helper accepts a message as first param, and attributes for label container as second param (optionnal).
+The class attribute "label" is auto added to the label container and "label-default" is no attributes is given. Default label container is a span, but it can be changed by passing the tag name in the attributes array :
+
+```php
+$this->label('label message',array('class' => 'label-primary','tagName' => 'a');
+```
+## Elements
+
+__TwbBundle__ provides new elements to supports Twitter Bootstrap potential.
+
+#### StaticElement : `TwbBundle\Form\Element\StaticElement`
+
+Static element is a form element witch provides `Static control` and should be rendered by [static form helper](#static--twbbundleformviewhelpertwbbundleformstatic)
+
+```php
+$this->formStatic(new \TwbBundle\Form\Element\StaticElement());
+```
