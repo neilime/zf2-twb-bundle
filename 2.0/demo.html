@@ -1,40 +1,546 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<title>TwbBundle, 2.0 - Twitter Bootstrap v3.0</title>
-	<link rel="stylesheet" href="../stylesheets/styles.css">
-	<link rel="stylesheet" href="../stylesheets/pygment_trac.css">
-	<link rel="stylesheet" href="../stylesheets/bootstrap.css">
-	<script src="../javascripts/scale.fix.js"></script>
-	<script src="../javascripts/jquery.js"></script>
-	<script src="../javascripts/bootstrap.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>TwbBundle, 2.0 - Twitter Bootstrap v3.0</title>
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="../javascripts/scale.fix.js"></script>
+    <script src="../javascripts/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
 <div class="wrapper">
-	<header>
-		<h1 class="header">TwbBundle, 2.0</h1>
-		<p class="header">Zend Framework 2 module for easy integration of Twitter Bootstrap v3.0</p>
-		<ul>
-			<li><a class="buttons home" href="../index.html">Home</a></li>
-			<li><a class="buttons installation" href="installation.html">Install / How to</a></li>
-	        <li><a class="buttons form" href="#forms">View forms</a></li>
-	        <li><a class="buttons button" href="#buttons">View buttons</a></li>
-	        <li><a class="buttons alerts" href="#alerts">View alerts</a></li>
-		</ul>
-		<p class="header">This project is maintained by <a class="header name" href="https://github.com/neilime">Neilime</a></p>
-	</header>
-	<section>
-		<h1>TwbBundle, 2.0 - Demonstration</h1>
-	</section>
-	<footer>
-		<p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-	</footer>
+    <header style="width: 270px;">
+        <h1 class="header">TwbBundle, 2.0</h1>
+        <p class="header">Zend Framework 2 module for easy integration of Twitter Bootstrap v3.0</p>
+        <ul>
+            <li><a class="buttons home" href="../index.html">Home</a></li>
+            <li><a class="buttons installation" href="installation.html">Install / How to</a></li>
+            <li><a class="buttons form" href="#forms">View forms</a></li>
+            <li><a class="buttons button" href="#buttons">View buttons</a></li>
+            <li><a class="buttons alerts" href="#alerts">View alerts</a></li>
+        </ul>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/neilime">Neilime</a></p>
+    </header>
+    <section>
+        <h1>TwbBundle, 2.0 - Demonstration</h1>
+
+        <h3 id="forms"><a href="http://getbootstrap.com/css/#forms">Forms</a></h3>
+        <br/><br/>
+
+        <h4><a href="http://getbootstrap.com/css/#forms-example">Basic example</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-example-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-example-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-example-sample">
+                <br/>
+                <form action="" method="POST" role="form"><div class="form-group "><label for="exampleInputEmail1">Email address</label><input name="input-email" type="email" placeholder="Enter email" id="exampleInputEmail1" class="form-control" value=""></div>
+                    <div class="form-group "><label for="exampleInputPassword1">Password</label><input name="input-password" type="password" placeholder="Password" id="exampleInputPassword1" class="form-control" value=""></div>
+                    <div class="form-group "><label for="exampleInputFile">File input</label><input name="input-file" type="file" id="exampleInputFile"><p class="help-block">Example block-level help text here.</p></div>
+                    <div class="checkbox"><input type="hidden" name="input-checkbox" value="0"><label><input type="checkbox" name="input-checkbox" value="1">Check me out</label></div>
+                    <div class="form-group "><button type="submit" name="button-submit" class="btn btn-default" value="">Submit</button></div>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-example-source"><div class="highlight"><pre>
+<span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-email'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Enter email'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'exampleInputEmail1'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Email address'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-password'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'exampleInputPassword1'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">,)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-file'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'file'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'exampleInputFile'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'File input'</span><span class="p">,</span>
+        <span class="s1">'help-block'</span> <span class="o">=&gt;</span> <span class="s1">'Example block-level help text here.'</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-checkbox'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Check me out'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'button-submit'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'button'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Submit'</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span>, null<span class="p">);</span>
+            </pre></div></div>
+        </div>
+        <br/>
+        <h4><a href="http://getbootstrap.com/css/#forms-inline">Inline form</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-inline-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-inline-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-inline-sample">
+                <br/>
+                <form action="" method="POST" class="form-inline" role="form"><div class="form-group "><label class="sr-only" for="exampleInputEmail2">Email address</label><input name="input-email" type="email" placeholder="Enter email" id="exampleInputEmail2" class="form-control" value=""></div>
+                    <div class="form-group "><label class="sr-only" for="exampleInputPassword2">Password</label><input name="input-password" type="password" placeholder="Password" id="exampleInputPassword2" class="form-control" value=""></div>
+                    <div class="checkbox"><input type="hidden" name="input-checkbox" value="0"><label><input type="checkbox" name="input-checkbox" value="1">Remember me</label></div>
+                    <button type="submit" name="button-submit" class="btn btn-default" value="">Sign in</button>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-inline-source"><div class="highlight"><pre>
+                <span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-email'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Enter email'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'exampleInputEmail2'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Email address'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-password'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'exampleInputPassword2'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-checkbox'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Remember me'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'button-submit'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'button'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Sign in'</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">,</span> <span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_INLINE</span><span class="p">);</span>
+            </pre></div></div>
+        </div>
+        <br/>
+        <h4><a href="http://getbootstrap.com/css/#forms-horizontal">Horizontal form</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-horizontal-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-horizontal-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-horizontal-sample">
+                <br/>
+                <form action="" method="POST" class="form-horizontal" role="form">
+                    <div class="row">
+                        <div class="form-group "><label class="col-sm-2 control-label" for="inputEmail1">Email</label><div class=" col-sm-10"><input name="input-email" type="email" placeholder="Enter email" id="inputEmail1" class="form-control" value=""></div></div>
+                        <div class="form-group "><label class="col-sm-2 control-label" for="inputPassword1">Password</label><div class=" col-sm-10"><input name="input-password" type="password" placeholder="Password" id="inputPassword1" class="form-control" value=""></div></div>
+                        <div class="form-group "><div class=" col-sm-10 col-sm-offset-2"><div class="checkbox"><input type="hidden" name="input-checkbox" value="0"><label><input type="checkbox" name="input-checkbox" value="1">Remember me</label></div></div></div>
+                        <div class="form-group "><div class=" col-sm-10 col-sm-offset-2"><button type="submit" name="button-submit" class="btn btn-default" value="">Sign in</button></div></div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-horizontal-source"><div class="highlight"><pre>
+                <span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-email'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Enter email'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inputEmail1'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span><span class="p">,</span>
+    <span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'sm-10'</span><span class="p">,</span>
+    <span class="s1">'label_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'col-sm-2'</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-password'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inputPassword1'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">,</span><span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'sm-10'</span><span class="p">,</span><span class="s1">'label_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'col-sm-2'</span><span class="p">))</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-checkbox'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Remember me'</span><span class="p">,</span><span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'sm-10 col-sm-offset-2'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'button-submit'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'button'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Sign in'</span><span class="p">,</span><span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'sm-10 col-sm-offset-2'</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">);</span>
+            </pre></div></div>
+        </div>
+        <br/>
+        <h4><a href="http://getbootstrap.com/css/#forms-controls">Supported form</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-controls-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-controls-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-controls-sample">
+                <br/>
+                <form action="" method="POST" role="form">
+                    <div class="form-group "><input name="input-text" type="text" placeholder="Text input" class="form-control" value=""></div>
+                    <div class="form-group "><textarea name="input-text-area" class="form-control"></textarea></div>
+                    <div class="checkbox"><input type="hidden" name="input-checkbox" value="0"><label><input type="checkbox" name="input-checkbox" value="1">Option one is this and that-be sure to include why it's great</label></div>
+                    <div class="form-group "><div class="radio"><label><input type="radio" name="optionsRadios" value="option1">Option one is this and that-be sure to include why it&#039;s great</label></div><div class="radio"><label><input type="radio" name="optionsRadios" value="optionsRadios2">Option two can be something else and selecting it will deselect option one</label></div></div>
+                    <div class="form-group "><label class="checkbox-inline"><input type="checkbox" name="optionsRadios[]" id="inlineCheckbox1" value="option1">1</label><label class="checkbox-inline"><input type="checkbox" name="optionsRadios[]" id="inlineCheckbox2" value="option2">2</label><label class="checkbox-inline"><input type="checkbox" name="optionsRadios[]" id="inlineCheckbox3" value="option3">3</label></div>
+                    <div class="form-group "><label class="checkbox"><input type="checkbox" name="optionsRadiosNoInline[]" id="noInlineCheckbox1" value="option1">1</label><label class="checkbox"><input type="checkbox" name="optionsRadiosNoInline[]" id="noInlineCheckbox2" value="option2">2</label><label class="checkbox"><input type="checkbox" name="optionsRadiosNoInline[]" id="noInlineCheckbox3" value="option3">3</label></div>
+                    <div class="form-group "><select name="select" class="form-control"><option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                    <option value="4">5</option></select></div>
+                    <div class="form-group "><select name="multiple-select[]" multiple="multiple" class="form-control"><option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                    <option value="4">5</option></select></div>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-controls-source"><div class="highlight"><pre>
+                <span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Text input'</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-area'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'textarea'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'row'</span> <span class="o">=&gt;</span> <span class="mi">3</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-checkbox'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Option one is this and that-be sure to include why it\'s great'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'optionsRadios'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'radio'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'option1'</span> <span class="o">=&gt;</span> <span class="s1">'Option one is this and that-be sure to include why it\'s great'</span><span class="p">,</span>
+            <span class="s1">'optionsRadios2'</span> <span class="o">=&gt;</span> <span class="s1">'Option two can be something else and selecting it will deselect option one'</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'optionsRadios'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'MultiCheckbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span><span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'option1'</span><span class="p">,</span> <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inlineCheckbox1'</span><span class="p">)),</span>
+            <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span><span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'option2'</span><span class="p">,</span> <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inlineCheckbox2'</span><span class="p">)),</span>
+            <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'3'</span><span class="p">,</span><span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'option3'</span><span class="p">,</span> <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inlineCheckbox3'</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'optionsRadiosNoInline'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'MultiCheckbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span><span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'option1'</span><span class="p">,</span> <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'noInlineCheckbox1'</span><span class="p">)),</span>
+            <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span><span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'option2'</span><span class="p">,</span> <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'noInlineCheckbox2'</span><span class="p">)),</span>
+            <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'3'</span><span class="p">,</span><span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'option3'</span><span class="p">,</span> <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'noInlineCheckbox3'</span><span class="p">))</span>
+        <span class="p">),</span>
+        <span class="s1">'inline'</span> <span class="o">=&gt;</span> <span class="k">false</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'select'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'select'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'multiple-select'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'select'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)),</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'multiple'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+            </pre></div></div>
+        </div>
+        <br/>
+        <h4><a href="http://getbootstrap.com/css/#forms-controls-static">Static form</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-controls-static-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-controls-static-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-controls-static-sample">
+                <form action="" method="POST" class="form-horizontal" role="form">
+                    <div class="row"><div class="form-group "><label class="col-lg-2 control-label" for="static-element">Email</label><div class=" col-lg-10"><p class="form-control-static">email@example.com</p></div></div>
+                        <div class="form-group "><label class="col-lg-2 control-label" for="inputPassword">Password</label><div class=" col-lg-10"><input name="input-password" type="password" placeholder="Password" id="inputPassword" class="form-control" value=""></div></div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-controls-static-source"><div class="highlight"><pre>
+                <span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'static-element'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'\TwbBundle\Form\Element\StaticElement'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'email@example.com'</span><span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span><span class="p">,</span><span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'lg-10'</span><span class="p">,</span><span class="s1">'label_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'col-lg-2'</span><span class="p">))</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-password'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inputPassword'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">,</span><span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'lg-10'</span><span class="p">,</span><span class="s1">'label_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'col-lg-2'</span><span class="p">))</span>
+<span class="p">));</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">);</span>
+            </pre></div></div>
+        </div>
+        <br/>
+        <h4><a href="http://getbootstrap.com/css/#forms-control-states">Form states</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-controls-states-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-controls-states-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-controls-states-sample">
+                <br/>
+                <form action="" method="POST" role="form">
+                    <div class="form-group "><input name="input-text-disabled" type="text" placeholder="Disabled input here..." id="disabledInput" class="form-control" value=""></div>
+                    <fieldset disabled="disabled"><div class="form-group "><label for="disabledTextInput">Disabled input</label><input name="fieldset-disabled[input-text-disabled]" type="text" placeholder="Disabled input" id="disabledTextInput" class="form-control" value=""></div>
+                    <div class="form-group "><label for="disabled-select">Disabled select menu</label><select name="fieldset-disabled[disabled-select]" id="disabled-select" class="form-control"><option value="">Disabled select</option></select></div>
+                    <div class="checkbox"><input type="hidden" name="fieldset-disabled[input-checkbox]" value="0"><label><input type="checkbox" name="fieldset-disabled[input-checkbox]" value="1">Can't check this</label></div>
+                    <div class="form-group "><button type="submit" name="fieldset-disabled[button-submit]" class="btn-primary btn" value="">Submit</button></div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-controls-states-source"><div class="highlight"><pre>
+                <span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-disabled'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Disabled input here...'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'disabledInput'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+
+<span class="nv">$oFieldset</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Fieldset</span><span class="p">(</span><span class="s1">'fieldset-disabled'</span><span class="p">);</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$oFieldset</span><span class="o">-&gt;</span><span class="na">setAttributes</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'disabled'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-disabled'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Disabled input'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'disabledTextInput'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Disabled input'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'disabled-select'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'select'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Disabled select menu'</span><span class="p">,</span>
+        <span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">''</span> <span class="o">=&gt;</span> <span class="s1">'Disabled select'</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'disabled-select'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-checkbox'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Can\'t check this'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'button-submit'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'button'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">,</span> <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'btn-primary'</span><span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Submit'</span><span class="p">)</span>
+<span class="p">)));</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+            </pre></div></div>
+        </div>
+        <br/>
+        <h4><a href="http://getbootstrap.com/css/#forms-validation">Validation states</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-validation-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-validation-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-validation-sample">
+                <br/>
+                <form action="" method="POST" role="form">
+                    <div class="form-group  has-success"><label class="control-label" for="inputSuccess">Input with success</label><input name="input-text-success" type="text" id="inputSuccess" class="form-control" value=""></div>
+                    <div class="form-group  has-warning"><label class="control-label" for="inputWarning">Input with warning</label><input name="input-text-warning" type="text" id="inputWarning" class="form-control" value=""></div>
+                    <div class="form-group  has-error"><label class="control-label" for="inputError">Input with error</label><input name="input-text-error" type="text" id="inputError" class="form-control" value=""></div>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-validation-source"><div class="highlight"><pre>
+                <span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-success'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inputSuccess'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with success'</span><span class="p">,</span>
+        <span class="s1">'validation-state'</span> <span class="o">=&gt;</span> <span class="s1">'success'</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-warning'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inputWarning'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with warning'</span><span class="p">,</span>
+        <span class="s1">'validation-state'</span> <span class="o">=&gt;</span> <span class="s1">'warning'</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-error'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'inputError'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with error'</span><span class="p">,</span>
+        <span class="s1">'validation-state'</span> <span class="o">=&gt;</span> <span class="s1">'error'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+            </pre></div></div>
+        </div>
+        <br/>
+        <h4><a href="http://getbootstrap.com/css/#forms-control-sizes">Control sizing</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-controls-sizes-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-controls-sizes-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-controls-sizes-sample">
+                <br/>
+                <form action="" method="POST" role="form">
+                    <div class="form-group "><input name="input-text-lg" type="text" placeholder=".input-lg" class="input-lg form-control" value=""></div>
+                    <div class="form-group "><input name="input-text-default" type="text" placeholder="Default input" class="form-control" value=""></div>
+                    <div class="form-group "><input name="input-text-sm" type="text" placeholder=".input-sm" class="input-sm form-control" value=""></div>
+                    <div class="form-group "><select name="lg-select" class="input-lg form-control"><option value="">.input-lg</option></select></div>
+                    <div class="form-group "><select name="default-select" class="form-control"><option value="">Default select</option></select></div>
+                    <div class="form-group "><select name="sm-select" class="input-sm form-control"><option value="">.input-sm</option></select></div>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-controls-sizes-source"><div class="highlight"><pre>
+                <span class="c1">//Height sizing</span>
+<span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-lg'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'.input-lg'</span><span class="p">,</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-lg'</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-default'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Default input'</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-sm'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'.input-sm'</span><span class="p">,</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-sm'</span>
+    <span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'lg-select'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'select'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">''</span> <span class="o">=&gt;</span> <span class="s1">'.input-lg'</span><span class="p">)),</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-lg'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'default-select'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'select'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">''</span> <span class="o">=&gt;</span> <span class="s1">'Default select'</span><span class="p">))</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'sm-select'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'select'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">''</span> <span class="o">=&gt;</span> <span class="s1">'.input-sm'</span><span class="p">)),</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-sm'</span><span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+
+<span class="c1">//Column sizing</span>
+<span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-col-lg-2'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'.col-lg-2'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'lg-2'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-col-lg-3'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'.col-lg-3'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'lg-3'</span><span class="p">)</span>
+<span class="p">))</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text-col-lg-4'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'.col-lg-4'</span>
+    <span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'column-size'</span> <span class="o">=&gt;</span> <span class="s1">'lg-4'</span><span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">,</span> <span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_INLINE</span><span class="p">);</span>
+            </pre></div></div>
+        </div>
+        <br/>
+        <h4><a href="http://getbootstrap.com/css/#forms-help-text">Help text</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#forms-help-text-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#forms-help-text-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="forms-help-text-sample">
+                <br/>
+                <form action="" method="POST" role="form">
+                    <div class="form-group "><input name="input-text" type="text" class="form-control" value=""><p class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</p></div>
+                </form>
+            </div>
+            <div class="tab-pane" id="forms-help-text-source"><div class="highlight highlight-php"><pre><span class="nv">$oForm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
+<span class="nv">$oForm</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'input-text'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">),</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'help-block'</span> <span class="o">=&gt;</span> <span class="s1">'A block of help text that breaks onto a new line and may extend beyond one line.'</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+
+</pre></div></div>
+        </div>
+    </section>
+    <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+    </footer>
 </div>
 <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 </body>

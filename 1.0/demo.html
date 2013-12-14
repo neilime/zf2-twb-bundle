@@ -34,8 +34,8 @@
 		<p>
 			This demonstration page shows how to render Twitter Boostrap elements.
 			For each elements, you can see how to do it in "Source" tabs. These are supposed to be run into a view file.
-		</p>        
-		<h3 id="forms">Forms</h3>        
+		</p>
+		<h3 id="forms">Forms</h3>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#forms-sample" data-toggle="tab">Sample</a></li>
 			<li><a href="#forms-source" data-toggle="tab">Source</a></li>
@@ -48,13 +48,13 @@
 				<button type="submit" name="legend[button-submit]" class="btn" value="">Submit</button>
 				</fieldset></form>
 				<hr/>
-		
+
 				<h4>Search form</h4>
 				<form action="" method="POST" class="form-search"><input name="input-text" class="search-query input-medium" type="text" value="">
 				<button type="submit" name="button-submit" class="btn" value="">Search</button>
 				</form>
 				<hr/>
-		
+
 				<h4>Inline form</h4>
 				<form action="" method="POST" class="form-inline"><input name="input-text-email" class="input-small" placeholder="Email" type="text" value="">
 				<input name="input-text-password" class="input-small" placeholder="Password" type="text" value="">
@@ -62,7 +62,7 @@
 				<button type="submit" name="button-submit" class="btn" value="">Sign in</button>
 				</form>
 				<hr/>
-		
+
 				<h4>Horizontal form</h4>
 				<form action="" method="POST" class="form-horizontal"><div class="control-group"><label class="control-label">Email</label><div class="controls"><input name="input-text-email" class="input-small" placeholder="Email" type="text" value=""></div></div>
 				<div class="control-group"><label class="control-label">Password</label><div class="controls"><input name="input-text-password" class="input-small" placeholder="Password" type="text" value=""></div></div>
@@ -70,21 +70,21 @@
 				<div class="control-group"><div class="controls"><button type="submit" name="button-submit" class="btn" value="">Sign in</button></div></div>
 				</form>
 				<hr/>
-		
+
 				<h4>Prepended and appended inputs</h4>
 				<div class=" input-prepend"><span class="add-on">@</span><input name="input-text" type="text" value=""></div>
 				<div class=" input-append"><input name="input-text" type="text" value=""><span class="add-on">.00</span></div>
 				<hr/>
-		
+
 				<h4>Combined</h4>
 				<div class=" input-prepend input-append"><span class="add-on">$</span><input name="input-text" type="text" value=""><span class="add-on">.00</span></div>
 				<hr/>
-		
+
 				<h4>Buttons instead of text</h4>
 				<div class=" input-append"><input name="input-text" type="text" value=""><button type="button" name="go" class="btn" value="">Go!</button></div>
 				<div class=" input-append"><input name="input-text" type="text" value=""><button type="button" name="search" class="btn" value="">Search</button><button type="button" name="options" class="btn" value="">Options</button></div>
 				<hr/>
-		
+
 				<h4>Button dropdowns</h4>
 				<div class=" input-prepend"><div class="btn-group"><button type="button" name="action" class="btn dropdown-toggle" data-toggle="dropdown" value="">Action
 				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
@@ -110,7 +110,7 @@
 				<li class="divider"></li>
 				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div></div>
 				<hr/>
-		
+
 				<h4>Segmented dropdown groups</h4>
 				<div class=" input-prepend"><div class="btn-group"><button type="button" name="action" class="btn" value="">Action</button><button type="button" name="caret" class="btn dropdown-toggle" data-toggle="dropdown" value="">
 				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
@@ -125,27 +125,27 @@
 				<li class="divider"></li>
 				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div></div>
 				<hr/>
-		
+
 				<h4>Appended search button</h4>
 				<form action="" method="POST" class="form-search"><div class=" input-append"><input name="input-search-append" class="search-query input-medium" type="text" value=""><button type="submit" name="search-submit-append" class="btn" value="">Search</button></div>
 				<div class=" input-prepend"><button type="submit" name="search-submit-prepend" class="btn" value="">Search</button><input name="input-search-prepend" class="search-query input-medium" type="text" value=""></div>
 				</form>
 				<hr/>
-		
+
 				<h4>Form actions</h4>
 				<form action="" method="POST"><div class="form-actions"><button type="submit" name="button-submit" class="btn-primary btn" value="">Save changes</button>
 				<button type="button" name="button-cancel" class="btn" value="">Cancel</button>
 				</div></form>
 				<hr/>
-		
+
 				<h4>Help text</h4>
 				<input name="input-text" type="text" value=""><span class="help-inline">Inline help text</span>
 				<hr/>
-		
+
 				<h4>Block help</h4>
 				<input name="input-text" type="text" value=""><span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
 				<hr/>
-		
+
 				<h4>Validation states</h4>
 				<form class="form-horizontal">
 				<div class="control-group warning"><label class="control-label">Input with warning</label><div class="controls warning"><input name="input-text" type="text" value=""><span class="help-inline">Something may have gone wrong</span></div></div>
@@ -155,7 +155,7 @@
 				</form>
 				<hr/>
 			</div>
-			
+
 			<div class="tab-pane" id="forms-source">
 				<h4>Default style</h4>
 				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
@@ -193,7 +193,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Search form</h4>
 				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
 				<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
@@ -215,7 +215,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Inline form</h4>
 				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
 				<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
@@ -253,7 +253,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_INLINE</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Horizontal form</h4>
 				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
 				<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
@@ -297,7 +297,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Prepended and appended inputs</h4>
 				<div class="highlight"><pre><span class="nv">$elementPrepend</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
@@ -315,7 +315,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementAppend</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Combined</h4>
 				<div class="highlight"><pre><span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
@@ -327,7 +327,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Buttons instead of text</h4>
 				<div class="highlight"><pre><span class="nv">$elementOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
@@ -354,7 +354,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementTwo</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Button dropdowns</h4>
 				<div class="highlight"><pre><span class="nv">$elementPrepend</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
@@ -417,7 +417,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementCombined</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-				
+
 				<h4>Segmented dropdown groups</h4>
 				<div class="highlight"><pre><span class="nv">$elementPrepend</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
@@ -455,7 +455,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$elementAppend</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-				
+
 				<h4>Appended search button</h4>
 				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
 				<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
@@ -488,7 +488,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_SEARCH</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Form actions</h4>
 				<div class="highlight"><pre><span class="nv">$form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">();</span>
 				<span class="nv">$form</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
@@ -513,7 +513,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="nv">$form</span><span class="p">,</span><span class="k">null</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Help text</h4>
 				<div class="highlight"><pre><span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
@@ -524,7 +524,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Block help</h4>
 				<div class="highlight"><pre><span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span>
@@ -535,7 +535,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Validation states</h4>
 				<div class="highlight"><pre><span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
@@ -545,7 +545,7 @@
 				<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with warning'</span>
 				<span class="p">));</span>
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
-		
+
 				<span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
 				<span class="s1">'help-inline'</span> <span class="o">=&gt;</span> <span class="s1">'Please correct the error'</span><span class="p">,</span>
@@ -554,7 +554,7 @@
 				<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with error'</span>
 				<span class="p">));</span>
 				<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
-		
+
 				<span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
 				<span class="s1">'help-inline'</span> <span class="o">=&gt;</span> <span class="s1">'Username is taken'</span><span class="p">,</span>
@@ -563,7 +563,7 @@
 				<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Input with info'</span>
 				<span class="p">));</span>
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="nv">$element</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_HORIZONTAL</span><span class="p">);</span>
-		
+
 				<span class="nv">$element</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'input-text'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'twb'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
 				<span class="s1">'help-inline'</span> <span class="o">=&gt;</span> <span class="s1">'Woohoo!'</span><span class="p">,</span>
@@ -576,7 +576,7 @@
 				<hr/>
 			</div>
 		</div>
-		
+
 		<h3 id="buttons">Buttons</h3>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#buttons-sample" data-toggle="tab">Sample</a></li>
@@ -587,16 +587,16 @@
 				<h4>Default</h4>
 				<button type="button" name="button-default" class="btn" value="">Default</button>
 				<hr/>
-		
+
 				<h4>Primary</h4>
 				<button type="button" name="button-primary" class="btn-primary btn" value="">Primary</button>
 				<hr/>
-		
+
 				<h4>Icon</h4>
 				<button type="button" name="button-icon" class="btn" value=""><i class="icon-star"></i> </button>
 				<button type="button" name="button-icon-label" class="btn" value=""><i class="icon-star"></i> Star</button>
 				<hr/>
-		
+
 				<h4>Dropdown</h4>
 				<div class="btn-group"><button type="button" name="action" class="btn dropdown-toggle" data-toggle="dropdown" value="">Action
 				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
@@ -607,14 +607,14 @@
 				<hr/>
 		
 				<h4>Dropdown in a button group</h4>
-				<div class="btn-group"><button type="button" name="button-icon-label-segmented-dropdown" class="btn-primary btn" value=""><i class="icon-user&#x20;icon-white"></i> User</button><button type="button" name="caret" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" value="">
+				<div class="btn-group"><button type="button" name="button-icon-label-segmented-dropdown" class="btn-primary btn" value=""><i class="icon-user&#x20 icon-white"></i> User</button><button type="button" name="caret" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" value="">
 				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
 				<li><a href="#"><i class="icon-trash"></i> Belete</a></li>
 				<li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
 				<li class="divider"></li>
-				<li><a href="#Make&#x20;admin">Make admin</a></li></ul></div>	
-				<hr/>	
-		
+				<li><a href="#Make&#x20;admin">Make admin</a></li></ul></div>
+				<hr/>
+
 				<h4>Dropup menus</h4>
 				<div class="btn-group dropup"><button type="button" name="segmented-dropup" class="btn" value="">Dropup</button><button type="button" name="caret" class="btn dropdown-toggle" data-toggle="dropdown" value="">
 				<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#Action">Action</a></li>
@@ -630,7 +630,7 @@
 				<li><a href="#Separated&#x20;link">Separated link</a></li></ul></div>
 				<hr/>
 			</div>
-			
+
 			<div class="tab-pane" id="buttons-source">
 				<h4>Default</h4>
 				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
@@ -639,7 +639,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Primary</h4>
 				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-primary'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Primary'</span>
@@ -648,7 +648,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Icon</h4>
 				<div class="highlight"><pre><span class="nv">$oButtonIcon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-icon'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
@@ -662,7 +662,7 @@
 				<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButtonIconLabel</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Dropdown</h4>
 				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'dropdown'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Action'</span><span class="p">,</span>
@@ -675,7 +675,7 @@
 				<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Dropdown in a button group</h4>
 				<div class="highlight"><pre><span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-icon-label-segmented-dropdown'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'User'</span><span class="p">,</span>
@@ -697,7 +697,7 @@
 				<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Dropup menus</h4>
 				<div class="highlight"><pre><span class="nv">$dropup</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'segmented-dropup'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
 				<span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropup'</span><span class="p">,</span>
@@ -724,7 +724,7 @@
 				<hr/>
 			</div>
 		</div>
-		
+
 		<h3 id="alerts">Alerts</h3>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#alerts-sample" data-toggle="tab">Sample</a></li>
@@ -735,23 +735,23 @@
 				<h4>Default</h4>
 				<div class="alert"><button type="button" class="close" data-dismiss="alert">&times;</button>Test message</div>
 				<hr/>
-		
+
 				<h4>Block</h4>
 				<div class="alert alert-block"><button type="button" class="close" data-dismiss="alert">&times;</button><h4>Warning!</h4><p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p></div>
 				<hr/>
-		
+
 				<h4>Error or danger</h4>
 				<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Oh snap!</strong> Change a few things up and try submitting again.</div>
 				<hr/>
-		
+
 				<h4>Success</h4>
 				<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Well done!</strong> You successfully read this important alert message.</div>
 				<hr/>
-		
+
 				<h4>Information</h4>
 				<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>
 				<hr/>
-		
+
 				<h4>Without close button</h4>
 				<div class="alert">Test message</div>
 				<hr/>
@@ -761,7 +761,7 @@
 				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span><span class="s1">'Test message'</span><span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Block</h4>
 				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span>
 				<span class="s1">'&lt;h4&gt;Warning!&lt;/h4&gt;&lt;p&gt;Best check yo self, you\'re not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/p&gt;'</span><span class="p">,</span>
@@ -769,7 +769,7 @@
 				<span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Error or danger</h4>
 				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span>
 				<span class="s1">'&lt;strong&gt;Oh snap!&lt;/strong&gt; Change a few things up and try submitting again.'</span><span class="p">,</span>
@@ -777,7 +777,7 @@
 				<span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Success</h4>
 				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span>
 				<span class="s1">'&lt;strong&gt;Well done!&lt;/strong&gt; You successfully read this important alert message.'</span><span class="p">,</span>
@@ -785,7 +785,7 @@
 				<span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Information</h4>
 				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span>
 				<span class="s1">'&lt;strong&gt;Heads up!&lt;/strong&gt; This alert needs your attention, but it\'s not super important.'</span><span class="p">,</span>
@@ -793,7 +793,7 @@
 				<span class="p">);</span>
 				</pre></div>
 				<hr/>
-		
+
 				<h4>Without close button</h4>
 				<div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span><span class="s1">'Test message'</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="k">false</span><span class="p">);</span>
 				</pre></div>
