@@ -116,6 +116,28 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	/**
+	 * Test http://getbootstrap.com/css/#buttons-active
+	 */
+	public function testButtonsActive(){
+		$sContent = '';
+
+		$oButton = new \Zend\Form\Element\Button('large-button-primary-active',array('label' => 'Primary button'));
+		$oButton->setAttributes(array(
+                    'class' => 'btn-primary btn-lg active',
+		));
+		$sContent .= $this->formButtonHelper->__invoke($oButton).PHP_EOL;
+
+		$oButton = new \Zend\Form\Element\Button('large-button-default-active',array('label' => 'Button'));
+		$oButton->setAttributes(array(
+                    'class' => 'btn-lg active',
+		));
+		$sContent .= $this->formButtonHelper->__invoke($oButton).PHP_EOL;
+
+		//Test content
+		$this->assertStringEqualsFile($this->expectedPath.'active.phtml',$sContent);
+	}
+
+	/**
 	 * Test http://getbootstrap.com/css/#buttons-disabled
 	 */
 	public function testButtonsDisabled(){
@@ -123,15 +145,15 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase{
 
 		$oButton = new \Zend\Form\Element\Button('large-button-primary-disabled',array('label' => 'Primary button'));
 		$oButton->setAttributes(array(
-			'class' => 'btn-primary btn-lg',
-			'disabled' => true
+                    'class' => 'btn-primary btn-lg',
+                    'disabled' => true
 		));
 		$sContent .= $this->formButtonHelper->__invoke($oButton).PHP_EOL;
 
 		$oButton = new \Zend\Form\Element\Button('large-button-default-disabled',array('label' => 'Button'));
 		$oButton->setAttributes(array(
-			'class' => 'btn-lg',
-			'disabled' => true
+                    'class' => 'btn-lg',
+                    'disabled' => true
 		));
 		$sContent .= $this->formButtonHelper->__invoke($oButton).PHP_EOL;
 
