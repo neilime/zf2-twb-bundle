@@ -33,7 +33,14 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
 		if($oElement instanceof \IteratorAggregate){
 			$oElementHelper = $this->getElementHelper();
 			$oFieldsetHelper = $this->getFieldsetHelper();
+            $sElementLayout = $oElement->getOption('twb-layout');
 			foreach($oElement->getIterator() as $oElementOrFieldset){
+                if ($sElementLayout) {
+                    $aOptions = $oElementOrFieldset->getOptions();
+                    $aOptions['twb-layout'] = $sElementLayout;
+                    $oElementOrFieldset->setOptions($aOptions);
+                }
+
 				if($oElementOrFieldset instanceof \Zend\Form\FieldsetInterface)$sMarkup .= $oFieldsetHelper($oElementOrFieldset);
 				elseif($oElementOrFieldset instanceof \Zend\Form\ElementInterface)$sMarkup .= $oElementHelper($oElementOrFieldset);
 			}
