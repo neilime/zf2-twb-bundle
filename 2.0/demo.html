@@ -23,9 +23,13 @@
         <ul>
             <li><a class="buttons home" href="../index.html">Home</a></li>
             <li><a class="buttons installation" href="installation.html">Install / How to</a></li>
-            <li><a class="buttons form" href="#forms">View forms</a></li>
-            <li><a class="buttons button" href="#buttons">View buttons</a></li>
-            <li><a class="buttons alerts" href="#alerts">View alerts</a></li>
+            <li><a class="buttons form" href="#forms">Forms</a></li>
+            <li><a class="buttons button" href="#buttons">Buttons</a></li>
+            <li><a class="buttons dropdown" href="#dropdowns">Dropdowns</a></li>
+            <li><a class="buttons dropdown" href="#btn-dropdowns">Buttons dropdowns</a></li>
+            <li><a class="buttons input" href="#input-groups"> Input groups</a></li>
+
+            <li><a class="buttons alerts" href="#alerts">Alerts</a></li>
         </ul>
         <p class="header">This project is maintained by <a class="header name" href="https://github.com/neilime">Neilime</a></p>
     </header>
@@ -710,6 +714,508 @@
 <span class="p">));</span>
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
 </pre></div></div>
+        </div>
+        <br/>
+        <h2 id="dropdowns"><a href="http://getbootstrap.com/components/#dropdowns" target="blank">Dropdowns</a></h2>
+        <br/><br/>
+
+        <h4><a href="http://getbootstrap.com/components/#dropdowns-example" target="blank">Exemple</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#dropdowns-example-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#dropdowns-example-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="dropdowns-example-sample">
+                <br/>
+                <div class="clearfix dropdown"><a class="sr-only dropdown-toggle" data-toggle="dropdown" role="button" href="#" id="dropdownMenu1">Dropdown <b class="caret"></b></a><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+            </div>
+            <div class="tab-pane" id="dropdowns-example-source"><div class="highlight highlight-php"><pre><span class="nv">$aDropDownOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropdown'</span><span class="p">,</span>
+  <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">,</span>
+  <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'clearfix'</span><span class="p">),</span>
+  <span class="s1">'list_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'aria-labelledby'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">),</span>
+  <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Action'</span><span class="p">,</span>
+    <span class="s1">'Another action'</span><span class="p">,</span>
+    <span class="s1">'Something else here'</span><span class="p">,</span>
+    <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span>
+    <span class="s1">'Separated link'</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dropDown</span><span class="p">(</span><span class="nv">$aDropDownOptions</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#dropdowns-alignment" target="blank">Alignment options</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#dropdowns-alignment-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#dropdowns-alignment-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="dropdowns-alignment-sample">
+                <br/>
+                <div class="clearfix dropdown"><a class="sr-only dropdown-toggle" data-toggle="dropdown" role="button" href="#" id="dropdownMenu1">Dropdown <b class="caret"></b></a><ul class="pull-right dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+            </div>
+            <div class="tab-pane" id="dropdowns-alignment-source"><div class="highlight highlight-php"><pre><span class="nv">$aDropDownOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropdown'</span><span class="p">,</span>
+  <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">,</span>
+  <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'clearfix'</span><span class="p">),</span>
+  <span class="s1">'list_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'aria-labelledby'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">,</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">),</span>
+  <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Action'</span><span class="p">,</span>
+    <span class="s1">'Another action'</span><span class="p">,</span>
+    <span class="s1">'Something else here'</span><span class="p">,</span>
+    <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span>
+    <span class="s1">'Separated link'</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dropDown</span><span class="p">(</span><span class="nv">$aDropDownOptions</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#dropdowns-headers" target="blank">Headers</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#dropdowns-headers-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#dropdowns-headers-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="dropdowns-headers-sample">
+                <br/>
+                <div class="clearfix dropdown"><a class="sr-only dropdown-toggle" data-toggle="dropdown" role="button" href="#" id="dropdownMenu1">Dropdown <b class="caret"></b></a><ul class="dropdown-menu" role="menu"><li role="presentation" class="dropdown-header">Dropdown header</li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation" class="dropdown-header">Dropdown header</li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+            </div>
+            <div class="tab-pane" id="dropdowns-headers-source"><div class="highlight highlight-php"><pre><span class="nv">$aDropDownOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropdown'</span><span class="p">,</span>
+  <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">,</span>
+  <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'clearfix'</span><span class="p">),</span>
+  <span class="s1">'list_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'aria-labelledby'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">),</span>
+  <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+      <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_HEADER</span><span class="p">,</span>
+      <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropdown header'</span>
+    <span class="p">),</span>
+    <span class="s1">'Action'</span><span class="p">,</span><span class="s1">'Another action'</span><span class="p">,</span><span class="s1">'Something else here'</span><span class="p">,</span>
+    <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span>
+      <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_HEADER</span><span class="p">,</span>
+      <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropdown header'</span>
+    <span class="p">),</span>
+    <span class="s1">'Separated link'</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dropDown</span><span class="p">(</span><span class="nv">$aDropDownOptions</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#dropdowns-disabled" target="blank">Disabled menu items</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#dropdowns-disabled-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#dropdowns-disabled-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="dropdowns-disabled-sample">
+                <br/>
+                <div class="clearfix dropdown"><a class="sr-only dropdown-toggle" data-toggle="dropdown" role="button" href="#" id="dropdownMenu1">Dropdown <b class="caret"></b></a><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Regular link</a></li>
+                <li class="disabled" role="presentation"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another link</a></li>
+                </ul></div>
+            </div>
+            <div class="tab-pane" id="dropdowns-disabled-source"><div class="highlight highlight-php"><pre><span class="nv">$aDropDownOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropdown'</span><span class="p">,</span>
+  <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">,</span>
+  <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'clearfix'</span><span class="p">),</span>
+  <span class="s1">'list_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'aria-labelledby'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">),</span>
+  <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Regular link'</span><span class="p">,</span>
+    <span class="s1">'Disabled link'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'disabled'</span><span class="p">)),</span>
+    <span class="s1">'Another link'</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dropDown</span><span class="p">(</span><span class="nv">$aDropDownOptions</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+        <h2 id="btn-dropdowns"><a href="http://getbootstrap.com/components/#btn-dropdowns" target="blank">Button dropdowns</a></h2>
+        <br/><br/>
+
+        <h4><a href="http://getbootstrap.com/components/#btn-dropdowns-single" target="blank">Single button dropdowns</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#btn-dropdowns-single-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#btn-dropdowns-single-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="btn-dropdowns-single-sample">
+                <br/>
+                <div class="btn-group "><button type="button" name="default" class="btn btn-default dropdown-toggle" data-toggle="dropdown" value="">Default <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="primary" class="btn-primary btn dropdown-toggle" data-toggle="dropdown" value="">Primary <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="success" class="btn-success btn dropdown-toggle" data-toggle="dropdown" value="">Success <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="info" class="btn-info btn dropdown-toggle" data-toggle="dropdown" value="">Info <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="warning" class="btn-warning btn dropdown-toggle" data-toggle="dropdown" value="">Warning <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="danger" class="btn-danger btn dropdown-toggle" data-toggle="dropdown" value="">Danger <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+            </div>
+            <div class="tab-pane" id="btn-dropdowns-single-source"><div class="highlight highlight-php"><pre><span class="nv">$aDropDownOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s1">'Action'</span><span class="p">,</span>
+    <span class="s1">'Another action'</span><span class="p">,</span>
+    <span class="s1">'Something else here'</span><span class="p">,</span>
+    <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span>
+    <span class="s1">'Separated link'</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Default'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'primary'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Primary'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-primary'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'success'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Success'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-success'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'info'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Info'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-info'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'warning'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Warning'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-warning'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'danger'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Danger'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-danger'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#btn-dropdowns-split" target="blank">Split button dropdowns</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#btn-dropdowns-split-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#btn-dropdowns-split-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="btn-dropdowns-split-sample">
+                <br/>
+                <div class="btn-group "><button type="button" name="default" class="btn btn-default" value="">Default</button><button type="button" class="dropdown-toggle btn btn-default" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="primary" class="btn-primary btn" value="">Primary</button><button type="button" class="dropdown-toggle btn-primary btn" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="success" class="btn-success btn" value="">Success</button><button type="button" class="dropdown-toggle btn-success btn" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="info" class="btn-info btn" value="">Info</button><button type="button" class="dropdown-toggle btn-info btn" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="warning" class="btn-warning btn" value="">Warning</button><button type="button" class="dropdown-toggle btn-warning btn" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="danger" class="btn-danger btn" value="">Danger</button><button type="button" class="dropdown-toggle btn-danger btn" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+            </div>
+            <div class="tab-pane" id="btn-dropdowns-split-source"><div class="highlight highlight-php"><pre><span class="nv">$aDropDownOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'split'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+  <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Action'</span><span class="p">,</span>
+    <span class="s1">'Another action'</span><span class="p">,</span>
+    <span class="s1">'Something else here'</span><span class="p">,</span>
+    <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span>
+    <span class="s1">'Separated link'</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Default'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'primary'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Primary'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-primary'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'success'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Success'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-success'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'info'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Info'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-info'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'warning'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Warning'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-warning'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'danger'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Danger'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-danger'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#btn-dropdowns-sizing" target="blank">Sizing</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#btn-dropdowns-sizing-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#btn-dropdowns-sizing-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="btn-dropdowns-sizing-sample">
+                <br/>
+                <div class="btn-group "><button type="button" name="large-button-default" class="btn-lg btn btn-default dropdown-toggle" data-toggle="dropdown" value="">Large button <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="small-button-default" class="btn-sm btn btn-default dropdown-toggle" data-toggle="dropdown" value="">Small button <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group "><button type="button" name="extra-small-button-default" class="btn-xs btn btn-default dropdown-toggle" data-toggle="dropdown" value="">Extra small button <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+            </div>
+            <div class="tab-pane" id="btn-dropdowns-sizing-source"><div class="highlight highlight-php"><pre><span class="nv">$aDropDownOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Action'</span><span class="p">,</span>
+    <span class="s1">'Another action'</span><span class="p">,</span>
+    <span class="s1">'Something else here'</span><span class="p">,</span>
+    <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span>
+    <span class="s1">'Separated link'</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">//Large</span>
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'large-button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Large button'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-lg'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="c1">//Small</span>
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'small-button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Small button'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-sm'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="c1">//Extra small</span>
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'extra-small-button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Extra small button'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-xs'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#btn-dropdowns-dropup" target="blank">Dropup variation</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#btn-dropdowns-dropup-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#btn-dropdowns-dropup-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="btn-dropdowns-dropup-sample">
+                <br/>
+                <div class="btn-group dropup"><button type="button" name="default" class="btn btn-default" value="">Dropup</button><button type="button" class="dropdown-toggle btn btn-default" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+                <div class="btn-group dropup"><button type="button" name="primary" class="btn-primary btn" value="">Right dropup</button><button type="button" class="dropdown-toggle btn-primary btn" data-toggle="dropdown"><span class="caret"></span></button><ul class="pull-right dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                </ul></div>
+            </div>
+            <div class="tab-pane" id="btn-dropdowns-dropup-source"><div class="highlight highlight-php"><pre><span class="nv">$aDropDownOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'dropup'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+  <span class="s1">'split'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+  <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'Action'</span><span class="p">,</span>
+    <span class="s1">'Another action'</span><span class="p">,</span>
+    <span class="s1">'Something else here'</span><span class="p">,</span>
+    <span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span>
+    <span class="s1">'Separated link'</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropup'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="nv">$aDropDownOptions</span><span class="p">[</span><span class="s1">'list_attributes'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">);</span>
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'primary'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Right dropup'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="nv">$aDropDownOptions</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-primary'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+
+        <br/>
+        <h2 id="input-groups"><a href="http://getbootstrap.com/components/#input-groups" target="blank">Input groups</a></h2>
+        <br/><br/>
+
+        <h4><a href="http://getbootstrap.com/components/#input-groups-basic" target="blank">Basic example</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#input-groups-basic-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#input-groups-basic-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="input-groups-basic-sample">
+                <br/>
+            </div>
+            <div class="tab-pane" id="input-groups-basic-source"></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#input-groups-basic" target="blank">Basic example</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#input-groups-basic-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#input-groups-basic-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="input-groups-basic-sample">
+                <br/>
+            </div>
+            <div class="tab-pane" id="input-groups-basic-source"></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#input-groups-sizing" target="blank">Sizing</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#input-groups-sizing-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#input-groups-sizing-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="input-groups-sizing-sample">
+                <br/>
+            </div>
+            <div class="tab-pane" id="input-groups-sizing-source"></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#input-groups-checkboxes-radios" target="blank">Checkboxes and radio addons</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#input-groups-checkboxes-radios-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#input-groups-checkboxes-radios-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="input-groups-checkboxes-radios-sample">
+                <br/>
+            </div>
+            <div class="tab-pane" id="input-groups-checkboxes-radios-source"></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#input-groups-buttons" target="blank">Button addons</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#input-groups-buttons-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#input-groups-buttons-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="input-groups-buttons-sample">
+                <br/>
+            </div>
+            <div class="tab-pane" id="input-groups-buttons-source"></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#input-groups-buttons-dropdowns" target="blank">Buttons with dropdowns</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#input-groups-buttons-dropdowns-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#input-groups-buttons-dropdowns-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="input-groups-buttons-dropdowns-sample">
+                <br/>
+            </div>
+            <div class="tab-pane" id="input-groups-buttons-dropdowns-source"></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#input-groups-buttons-segmented" target="blank">Segmented buttons</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#input-groups-buttons-segmented-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#input-groups-buttons-segmented-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="input-groups-buttons-segmented-sample">
+                <br/>
+            </div>
+            <div class="tab-pane" id="input-groups-buttons-segmented-source"></div>
         </div>
         <br/>
     </section>

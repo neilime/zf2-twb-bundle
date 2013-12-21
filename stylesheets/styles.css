@@ -245,7 +245,7 @@ header ul {
 
 header li {
 	list-style-type: none;
-  width:132px;
+  /*width:132px;*/
   height:15px;
 	margin-bottom: 12px;
 	line-height: 1em;
@@ -313,6 +313,15 @@ a.button {
 a.form {
 	background: url(../images/form.png) no-repeat 1px;
 }
+
+a.dropdown {
+	background: url(../images/dropdown.png) no-repeat 1px;
+}
+
+a.input {
+	background: url(../images/input.png) no-repeat 1px;
+}
+
 
 a.buttons:hover {
 	color: #fff;
@@ -424,4 +433,28 @@ footer {
     font-size:12pt;
     color:#444;
   }
+}
+
+#dropdowns-example-sample > .dropdown > .dropdown-menu {
+    display: block;
+    margin-bottom: 5px;
+    position: static;
+}
+
+#dropdowns-alignment-sample > .dropdown > .dropdown-menu {
+    display: block;
+    margin-bottom: 5px;
+    position: static;
+}
+
+#dropdowns-headers-sample > .dropdown > .dropdown-menu {
+    display: block;
+    margin-bottom: 5px;
+    position: static;
+}
+
+#dropdowns-disabled-sample > .dropdown > .dropdown-menu {
+    display: block;
+    margin-bottom: 5px;
+    position: static;
 }
