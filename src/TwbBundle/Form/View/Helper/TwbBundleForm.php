@@ -19,8 +19,10 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form
      */
     public function __invoke(\Zend\Form\FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL)
     {
-        if($oForm)return $this->render($oForm,$sFormLayout);
-		return $this;
+        if ($oForm) {
+            return $this->render($oForm, $sFormLayout);
+        }
+        return $this;
 	}
 
     /**
@@ -40,29 +42,39 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form
     	//Set form layout class
     	if(is_string($sFormLayout)){
     		$sLayoutClass = 'form-'.$sFormLayout;
-    		if($sFormClass = $oForm->getAttribute('class')){
-    			if(!preg_match('/(\s|^)'.preg_quote($sLayoutClass,'/').'(\s|$)/',$sFormClass))$oForm->setAttribute('class',trim($sFormClass.' '.$sLayoutClass));
-    		}
-    		else $oForm->setAttribute('class',$sLayoutClass);
-    	}
+    		if ($sFormClass = $oForm->getAttribute('class')) {
+                if (!preg_match('/(\s|^)' . preg_quote($sLayoutClass, '/') . '(\s|$)/', $sFormClass)) {
+                    $oForm->setAttribute('class', trim($sFormClass . ' ' . $sLayoutClass));
+                }
+            }
+            else {
+                $oForm->setAttribute('class', $sLayoutClass);
+            }
+        }
 
     	//Set form role
-    	if(!$oForm->getAttribute('role'))$oForm->setAttribute('role','form');
+    	if (!$oForm->getAttribute('role')) {
+            $oForm->setAttribute('role', 'form');
+        }
 
-    	$bHasColumnSizes = false;
+        $bHasColumnSizes = false;
        	$sFormContent = '';
        	$oRenderer = $this->getView();
        	foreach($oForm as $oElement){
     		$aOptions = $oElement->getOptions();
-    		if(!$bHasColumnSizes && !empty($aOptions['column-size']))$bHasColumnSizes = true;
-	    	//Define layout option to form elements
+    		if (!$bHasColumnSizes && !empty($aOptions['column-size'])) {
+                $bHasColumnSizes = true;
+            }
+            //Define layout option to form elements
     		if($sFormLayout){
     			$aOptions['twb-layout'] = $sFormLayout;
 	    		$oElement->setOptions($aOptions);
     		}
     		$sFormContent .= $oElement instanceof \Zend\Form\FieldsetInterface?$oRenderer->formCollection($oElement):$oRenderer->formRow($oElement);
     	}
-    	if($bHasColumnSizes)$sFormContent = sprintf(self::$formRowFormat,$sFormContent);
-    	return $this->openTag($oForm).$sFormContent.$this->closeTag();
+    	if ($bHasColumnSizes && $sFormLayout !== self::LAYOUT_HORIZONTAL) {
+            $sFormContent = sprintf(self::$formRowFormat, $sFormContent);
+        }
+        return $this->openTag($oForm).$sFormContent.$this->closeTag();
     }
 }

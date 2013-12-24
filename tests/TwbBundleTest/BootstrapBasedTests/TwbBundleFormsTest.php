@@ -281,6 +281,9 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase{
 
 		//Test content
 		$this->assertStringEqualsFile($this->expectedPath.'control-states-form.phtml',$this->formHelper->__invoke($oForm,null));
+
+        //Test content
+		$this->assertStringEqualsFile($this->expectedPath.'control-states-form-horizontal.phtml',$this->formHelper->__invoke($oForm));
 	}
 
 	/**

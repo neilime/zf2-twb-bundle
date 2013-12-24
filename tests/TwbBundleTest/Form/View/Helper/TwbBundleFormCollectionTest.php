@@ -15,7 +15,7 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase{
 		$this->formCollectionHelper = $oViewHelperPluginManager->get('formCollection')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
 
-	public function testRenderWithSohouldWrap(){
+	public function testRenderWithShoulddWrap(){
 		$this->formCollectionHelper->setShouldWrap(true);
 		$this->assertEquals(
 			'<fieldset ><legend >test-element</legend></fieldset>',
