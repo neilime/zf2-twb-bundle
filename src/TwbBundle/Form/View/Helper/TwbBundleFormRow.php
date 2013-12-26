@@ -126,7 +126,8 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
                 if ($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) return $this->getElementHelper()->render($oElement);
             }
             //Button element is a special case, because label is always rendered inside it
-            elseif (!$oElement instanceof \Zend\Form\Element\Button) {
+            elseif ($oElement instanceof \Zend\Form\Element\Button) $sLabelContent = '';
+            else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
 
                 //Validation state
