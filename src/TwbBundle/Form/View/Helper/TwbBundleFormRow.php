@@ -71,7 +71,6 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
             ($sColumSize = $oElement->getOption('column-size'))
             && (
                 $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL
-                || !$oElement->getLabel()
             )
         ) {
             $sRowClass .= ' col-' . $sColumSize;
@@ -114,6 +113,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         $sLayout = $oElement->getOption('twb-layout');
 
         //Render label
+        $sLabelOpen = $sLabelClose = $sLabelContent = '';
         if ($sLabelContent = $this->renderLabel($oElement)) {
             //Multicheckbox elements have to be handled differently as the HTML standard does not allow nested labels. The semantic way is to group them inside a fieldset
             $sElementType = $oElement->getAttribute('type');
@@ -124,10 +124,9 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
 
                 //Render element input
                 if ($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) return $this->getElementHelper()->render($oElement);
-                $sLabelOpen = $sLabelClose = $sLabelContent = '';
             }
             //Button element is a special case, because label is always rendered inside it
-            elseif ($oElement instanceof \Zend\Form\Element\Button) $sLabelOpen = $sLabelClose = $sLabelContent = '';
+            elseif ($oElement instanceof \Zend\Form\Element\Button) $sLabelContent = '';
             else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
 
@@ -158,56 +157,45 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
                 $sLabelClose = $oLabelHelper->closeTag();
                 $sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
             }
-
-            switch ($sLayout) {
-                case null:
-                case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-                    $sElementContent =  $sLabelOpen . $sLabelContent . $sLabelClose . $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
-
-                    //Render errors
-                    if ($this->renderErrors) {
-                    	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
-                    }
-
-                    return $sElementContent;
-
-                case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
-                    $sElementContent = $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
-
-                    //Render errors
-                    if ($this->renderErrors) {
-                    	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
-                    }
-
-                    $sClass = '';
-
-                    //Column size
-                    if ($sColumSize = $oElement->getOption('column-size')) {
-                        $sClass .= ' col-' . $sColumSize;
-                    }
-
-
-                    return sprintf(
-                        self::$horizontalLayoutFormat,
-                        $sLabelOpen . $sLabelContent . $sLabelClose,
-                        $sClass,
-                        $sElementContent
-                    );
-
-                default:
-                    throw new \DomainException('Layout "' . $sLayout . '" is not valid');
-            }
         }
 
-        //Render element input
-        $sElementContent =  $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
+        switch ($sLayout) {
+            case null:
+            case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
+                $sElementContent =  $sLabelOpen . $sLabelContent . $sLabelClose . $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
 
-        //Render errors
-        if ($this->renderErrors) {
-        	$sElementContent .= $this->getElementErrorsHelper()->render($oElement);
+                //Render errors
+                if ($this->renderErrors) {
+                    $sElementContent .= $this->getElementErrorsHelper()->render($oElement);
+                }
+
+                return $sElementContent;
+
+            case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
+                $sElementContent = $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
+
+                //Render errors
+                if ($this->renderErrors) {
+                    $sElementContent .= $this->getElementErrorsHelper()->render($oElement);
+                }
+
+                $sClass = '';
+
+                //Column size
+                if ($sColumSize = $oElement->getOption('column-size')) {
+                    $sClass .= ' col-' . $sColumSize;
+                }
+
+                return sprintf(
+                    self::$horizontalLayoutFormat,
+                    $sLabelOpen . $sLabelContent . $sLabelClose,
+                    $sClass,
+                    $sElementContent
+                );
+
+            default:
+                throw new \DomainException('Layout "' . $sLayout . '" is not valid');
         }
-
-        return $sElementContent;
     }
 
     /**
