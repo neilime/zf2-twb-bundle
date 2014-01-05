@@ -36,6 +36,8 @@
     <section>
         <h1>TwbBundle, 2.0 - Demonstration</h1>
 
+        This demonstration page shows how to render Twitter Boostrap elements. For each elements, you can see how to do it in "Source" tabs. These are supposed to be run into a view file.
+
         <h2 id="forms"><a href="http://getbootstrap.com/css/#forms" target="blank">Forms</a></h2>
         <br/><br/>
 
@@ -1136,21 +1138,22 @@
         <div class="tab-content">
             <div class="tab-pane active" id="input-groups-basic-sample">
                 <br/>
-            </div>
-            <div class="tab-pane" id="input-groups-basic-source"></div>
-        </div>
-        <br/>
-
-        <h4><a href="http://getbootstrap.com/components/#input-groups-basic" target="blank">Basic example</a></h4>
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#input-groups-basic-sample" data-toggle="tab">Sample</a></li>
-            <li><a href="#input-groups-basic-source" data-toggle="tab">Source</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="input-groups-basic-sample">
+                <div class="input-group "><span class="input-group-addon">@</span><input type="text" name="input-username" placeholder="Username" class="form-control" value=""></div>
                 <br/>
+                <div class="input-group "><input type="text" name="input-prepend" class="form-control" value=""><span class="input-group-addon">.00</span></div>
+                <br/>
+                <div class="input-group "><span class="input-group-addon">$</span><input type="text" name="input-append-prepend" class="form-control" value=""><span class="input-group-addon">.00</span></div>
             </div>
-            <div class="tab-pane" id="input-groups-basic-source"></div>
+            <div class="tab-pane" id="input-groups-basic-source"><div class="highlight highlight-php"><pre><span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="s1">'@'</span><span class="p">));</span>
+<span class="nv">$oInput</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'placeholder'</span><span class="p">,</span><span class="s1">'Username'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;br/&gt;'</span><span class="p">;</span>
+
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-prepend'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-append'</span> <span class="o">=&gt;</span> <span class="s1">'.00'</span><span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;br/&gt;'</span><span class="p">;</span>
+
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-append-prepend'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="s1">'$'</span><span class="p">,</span><span class="s1">'add-on-append'</span> <span class="o">=&gt;</span> <span class="s1">'.00'</span><span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;br/&gt;'</span><span class="p">;</span>
+</pre></div></div>
         </div>
         <br/>
 
@@ -1162,8 +1165,27 @@
         <div class="tab-content">
             <div class="tab-pane active" id="input-groups-sizing-sample">
                 <br/>
+                <div class="input-group input-group-lg"><span class="input-group-addon">@</span><input type="text" name="input-username" placeholder="Username" class="input-lg form-control" value=""></div>
+                <br/>
+                <div class="input-group "><span class="input-group-addon">@</span><input type="text" name="input-username" placeholder="Username" class="form-control" value=""></div>
+                <br/>
+                <div class="input-group input-group-sm"><span class="input-group-addon">@</span><input type="text" name="input-username" placeholder="Username" class="input-sm form-control" value=""></div>
             </div>
-            <div class="tab-pane" id="input-groups-sizing-source"></div>
+            <div class="tab-pane" id="input-groups-sizing-source"><div class="highlight highlight-php"><pre><span class="c1">//Large</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="s1">'@'</span><span class="p">));</span>
+<span class="nv">$oInput</span><span class="o">-&gt;</span><span class="na">setAttributes</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span> <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-lg'</span><span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;br/&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Default</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="s1">'@'</span><span class="p">));</span>
+<span class="nv">$oInput</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'placeholder'</span><span class="p">,</span><span class="s1">'Username'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;br/&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Small</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="s1">'@'</span><span class="p">));</span>
+<span class="nv">$oInput</span><span class="o">-&gt;</span><span class="na">setAttributes</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Username'</span><span class="p">,</span> <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'input-sm'</span><span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;br/&gt;'</span><span class="p">;</span>
+</pre></div></div>
         </div>
         <br/>
 
@@ -1175,8 +1197,30 @@
         <div class="tab-content">
             <div class="tab-pane active" id="input-groups-checkboxes-radios-sample">
                 <br/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group "><span class="input-group-addon"><input type="hidden" name="checkbox" value="0"><input type="checkbox" name="checkbox" value="1"></span><input type="text" name="input-username" class="form-control" value=""></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group "><span class="input-group-addon"><input type="radio" name="radio" value="1"></span><input type="text" name="input-username" class="form-control" value=""></div>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane" id="input-groups-checkboxes-radios-source"></div>
+            <div class="tab-pane" id="input-groups-checkboxes-radios-source"><div class="highlight highlight-php"><pre><span class="k">echo</span> <span class="s1">'&lt;div class="row"&gt;&lt;div class="col-lg-6"&gt;'</span><span class="p">;</span>
+<span class="c1">//Checkbox</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span>
+  <span class="s1">'input-username'</span><span class="p">,</span>
+  <span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Checkbox</span><span class="p">(</span><span class="s1">'checkbox'</span><span class="p">))</span>
+<span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;/div&gt;&lt;div class="col-lg-6"&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Radio</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span>
+  <span class="s1">'input-username'</span><span class="p">,</span>
+  <span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Radio</span><span class="p">(</span><span class="s1">'radio'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'value_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">))))</span>
+<span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;/div&gt;&lt;/div&gt;'</span><span class="p">;</span>
+</pre></div></div>
         </div>
         <br/>
 
@@ -1188,8 +1232,18 @@
         <div class="tab-content">
             <div class="tab-pane active" id="input-groups-buttons-sample">
                 <br/>
+                <div class="input-group "><span class="input-group-btn"><button type="button" name="prepend-button" class="btn btn-default" value="">Go!</button></span><input type="text" name="input-username" class="form-control" value=""></div>
+                <br/>
+                <div class="input-group "><input type="text" name="input-username" class="form-control" value=""><span class="input-group-btn"><button type="button" name="append-button" class="btn btn-default" value="">Go!</button></span></div>
             </div>
-            <div class="tab-pane" id="input-groups-buttons-source"></div>
+            <div class="tab-pane" id="input-groups-buttons-source"><div class="highlight highlight-php"><pre><span class="c1">//Prepend</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'prepend-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Go!'</span><span class="p">))));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;br/&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Append</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-append'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'append-button'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Go!'</span><span class="p">))));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">);</span>
+</pre></div></div>
         </div>
         <br/>
 
@@ -1201,8 +1255,43 @@
         <div class="tab-content">
             <div class="tab-pane active" id="input-groups-buttons-dropdowns-sample">
                 <br/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group "><div class="input-group-btn"><button type="button" name="prepend-button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" value="">Action <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                        </ul></div><input type="text" name="input-username" class="form-control" value=""></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group "><input type="text" name="input-username" class="form-control" value=""><div class="input-group-btn"><button type="button" name="append-button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" value="">Action <b class="caret"></b></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                        </ul></div></div>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane" id="input-groups-buttons-dropdowns-source"></div>
+            <div class="tab-pane" id="input-groups-buttons-dropdowns-source"><div class="highlight highlight-php"><pre><span class="nv">$aButtonOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Action'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropdown'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'clearfix'</span><span class="p">),</span>
+    <span class="s1">'list_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'aria-labelledby'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">),</span>
+    <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Action'</span><span class="p">,</span><span class="s1">'Another action'</span><span class="p">,</span><span class="s1">'Something else here'</span><span class="p">,</span><span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span><span class="s1">'Separated link'</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">echo</span> <span class="s1">'&lt;div class="row"&gt;&lt;div class="col-lg-6"&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Prepend</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'prepend-button'</span><span class="p">,</span><span class="nv">$aButtonOptions</span><span class="p">)));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;/div&gt;&lt;div class="col-lg-6"&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Append</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-append'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'append-button'</span><span class="p">,</span><span class="nv">$aButtonOptions</span><span class="p">)));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;/div&gt;&lt;/div&gt;'</span><span class="p">;</span>
+</pre></div></div>
         </div>
         <br/>
 
@@ -1214,8 +1303,44 @@
         <div class="tab-content">
             <div class="tab-pane active" id="input-groups-buttons-segmented-sample">
                 <br/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group "><div class="input-group-btn"><button type="button" name="prepend-button" class="btn btn-default" value="">Action</button><button type="button" class="dropdown-toggle btn btn-default" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                        </ul></div><input type="text" name="input-username" class="form-control" value=""></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group "><input type="text" name="input-username" class="form-control" value=""><div class="input-group-btn"><button type="button" name="append-button" class="btn btn-default" value="">Action</button><button type="button" class="dropdown-toggle btn btn-default" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li role="presentation"><a href="#" role="menuitem" tabindex="-1">Action</a></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Another action</a></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Separated link</a></li>
+                        </ul></div></div>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane" id="input-groups-buttons-segmented-source"></div>
+            <div class="tab-pane" id="input-groups-buttons-segmented-source"><div class="highlight highlight-php"><pre><span class="nv">$aButtonOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Action'</span><span class="p">,</span><span class="s1">'dropdown'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Dropdown'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">,</span>
+    <span class="s1">'split'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'clearfix'</span><span class="p">),</span>
+    <span class="s1">'list_attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'aria-labelledby'</span> <span class="o">=&gt;</span> <span class="s1">'dropdownMenu1'</span><span class="p">),</span>
+    <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Action'</span><span class="p">,</span><span class="s1">'Another action'</span><span class="p">,</span><span class="s1">'Something else here'</span><span class="p">,</span><span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span><span class="s1">'Separated link'</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">echo</span> <span class="s1">'&lt;div class="row"&gt;&lt;div class="col-lg-6"&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Prepend</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-prepend'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'prepend-button'</span><span class="p">,</span><span class="nv">$aButtonOptions</span><span class="p">)));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;/div&gt;&lt;div class="col-lg-6"&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Append</span>
+<span class="nv">$oInput</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Text</span><span class="p">(</span><span class="s1">'input-username'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'add-on-append'</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'append-button'</span><span class="p">,</span><span class="nv">$aButtonOptions</span><span class="p">)));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="nv">$oInput</span><span class="p">)</span><span class="o">.</span><span class="s1">'&lt;/div&gt;&lt;/div&gt;'</span><span class="p">;</span>
+</pre></div></div>
         </div>
         <br/>
     </section>
