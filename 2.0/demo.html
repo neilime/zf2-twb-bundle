@@ -25,6 +25,7 @@
             <li><a class="buttons installation" href="installation.html">Install / How to</a></li>
             <li><a class="buttons form" href="#forms">Forms</a></li>
             <li><a class="buttons button" href="#buttons">Buttons</a></li>
+            <li><a class="buttons glyphicons" href="#glyphicons">Glyphicons</a></li>
             <li><a class="buttons dropdown" href="#dropdowns">Dropdowns</a></li>
             <li><a class="buttons dropdown" href="#btn-dropdowns">Buttons dropdowns</a></li>
             <li><a class="buttons input" href="#input-groups"> Input groups</a></li>
@@ -717,7 +718,86 @@
 <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
 </pre></div></div>
         </div>
+
         <br/>
+        <h2 id="glyphicons"><a href="http://getbootstrap.com/components/#glyphicons" target="blank">Glyphicons</a></h2>
+        <br/><br/>
+
+        <h4><a href="http://getbootstrap.com/components/#glyphicons-how-to-use" target="blank">How to use</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#glyphicons-how-to-use-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#glyphicons-how-to-use-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="glyphicons-how-to-use-sample">
+                <br/>
+                <span class="glyphicon glyphicon-search"></span>
+            </div>
+            <div class="tab-pane" id="glyphicons-how-to-use-source"><div class="highlight highlight-php"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">glyphicon</span><span class="p">(</span><span class="s1">'search'</span><span class="p">);</span>
+</pre></div></div>
+        </div>
+        <br/>
+
+        <h4><a href="http://getbootstrap.com/components/#glyphicons-examples" target="blank">Examples</a></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#glyphicons-examples-sample" data-toggle="tab">Sample</a></li>
+            <li><a href="#glyphicons-examples-source" data-toggle="tab">Source</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="glyphicons-examples-sample">
+                <br/>
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group">
+                        <button type="button" name="align-left" class="btn btn-default" value=""><span class="glyphicon glyphicon-align-left"></span></button>
+                        <button type="button" name="align-left" class="btn btn-default" value=""><span class="glyphicon glyphicon-align-center"></span></button>
+                        <button type="button" name="align-left" class="btn btn-default" value=""><span class="glyphicon glyphicon-align-right"></span></button>
+                    </div>
+                </div>
+                <br/>
+                <div class="btn-toolbar" role="toolbar">
+                    <button type="button" name="large-button-default" class="btn-lg btn btn-default" value=""><span class="glyphicon glyphicon-star"></span> Star</button>
+                    <button type="button" name="button-default" class="btn btn-default" value=""><span class="glyphicon glyphicon-star"></span> Star</button>
+                    <button type="button" name="small-button-default" class="btn-sm btn btn-default" value=""><span class="glyphicon glyphicon-star"></span> Star</button>
+                    <button type="button" name="extra-small-button-default" class="btn-xs btn btn-default" value=""><span class="glyphicon glyphicon-star"></span> Star</button>
+                </div>
+            </div>
+            <div class="tab-pane" id="glyphicons-examples-source"><div class="highlight highlight-php"><pre><span class="k">echo</span> <span class="s1">'&lt;div class="btn-toolbar" role="toolbar"&gt;&lt;div class="btn-group"&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Align left</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'align-left'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'glyphicon'</span> <span class="o">=&gt;</span> <span class="s1">'align-left'</span><span class="p">)));</span>
+
+<span class="c1">//Align center</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'align-left'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'glyphicon'</span> <span class="o">=&gt;</span> <span class="s1">'align-center'</span><span class="p">)));</span>
+
+<span class="c1">//Align right</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'align-left'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'glyphicon'</span> <span class="o">=&gt;</span> <span class="s1">'align-right'</span><span class="p">)));</span>
+
+<span class="k">echo</span> <span class="s1">'&lt;/div&gt;&lt;/div&gt;&lt;br/&gt;&lt;div class="btn-toolbar" role="toolbar"&gt;'</span><span class="p">;</span>
+
+<span class="c1">//Large</span>
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'large-button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Star'</span><span class="p">,</span> <span class="s1">'glyphicon'</span> <span class="o">=&gt;</span> <span class="s1">'star'</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-lg'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="c1">//Default</span>
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Star'</span><span class="p">,</span> <span class="s1">'glyphicon'</span> <span class="o">=&gt;</span> <span class="s1">'star'</span><span class="p">));</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="c1">//Small</span>
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'small-button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Star'</span><span class="p">,</span> <span class="s1">'glyphicon'</span> <span class="o">=&gt;</span> <span class="s1">'star'</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-sm'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="c1">//Extra small</span>
+<span class="nv">$oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'extra-small-button-default'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Star'</span><span class="p">,</span> <span class="s1">'glyphicon'</span> <span class="o">=&gt;</span> <span class="s1">'star'</span><span class="p">));</span>
+<span class="nv">$oButton</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span><span class="s1">'btn-xs'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="nv">$oButton</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">;</span>
+</pre></div></div>
+        </div>
+        <br/>
+
         <h2 id="dropdowns"><a href="http://getbootstrap.com/components/#dropdowns" target="blank">Dropdowns</a></h2>
         <br/><br/>
 

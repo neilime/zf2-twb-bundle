@@ -310,6 +310,10 @@ a.button {
 	background: url(../images/button.png) no-repeat 1px;
 }
 
+a.glyphicons {
+	background: url(../images/glyphicon.png) no-repeat 1px;
+}
+
 a.form {
 	background: url(../images/form.png) no-repeat 1px;
 }
