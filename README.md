@@ -140,10 +140,18 @@ $this->formButton(new \Zend\Form\Element());
 This helper accepts a button element as first param, and an optionnal button content as second param.
 It auto add button specific class (`btn` & `btn-default` is no button class is defined) attribute.
 
+The option `glyphicon` (string or array) can be defined to render a glyphicon into the element :
+The glyphicon is rendered by the [glyphicon renderer](#glyphicon--twbbundleviewhelpertwbbundleglyphicon).
+
+If the option is a string, it should be the name of the icon (e.g. "star", "search" ...), the glyphicon will prepend the label if exists. If the option is an array, it accept the folling options :
+* string `icon` : the name of the icon (e.g. "star", "search" ...).
+* string `position` : (optionnal) the position of the glyphicon to prepend or append the button content, `\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_PREPEND` (the default) and `\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_APPEND`.
+* array `attributes` : (optionnal) the additional attributes to the glyphicon element
+
 Button can be set as dropdown button by defined the option `dropdown` (array) to the element :
 The dropdown is rendered by the [dropdown renderer](#dropdown--twbbundleviewhelpertwbbundledropdown), it accept the folling additionnal options :
 * boolean `split` : the button element and the carret are splitted.
-* boolean `dropup` : render a dropup element instead of a dropdown
+* boolean `dropup` : render a dropup element instead of a dropdown.
 
 The option `disable-twb` can be passed to the element to disable rendering it in a `div` container.
 
@@ -254,7 +262,17 @@ Badge helper can be called in a view with the view helper service `badge($sBadge
 $this->badge('badge message',array('class' => 'pull-right');
 ```
 This helper accepts a message as first param, and attributes for badge container as second param (optionnal).
-The class attribute "badge" is auto added to the alert container.
+The class attribute "badge" is auto added to the badge container.
+
+#### Glyphicon : `TwbBundle\View\Helper\TwbBundleGlyphicon`
+
+Glyphicon helper can be called in a view with the view helper service `glyphicon($sGlyphicon = null, array $aGlyphiconAttributes = null)` :
+
+```php
+$this->glyphicon('star',array('class' => 'pull-right');
+```
+This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for glyphicon element as second param (optionnal).
+The class attribute "glyphicon" is auto added to the glyphicon container.
 
 #### Dropdown : `TwbBundle\View\Helper\TwbBundleDropDown`
 

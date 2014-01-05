@@ -31,11 +31,11 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 	public function testBasicExample(){
 		$sContent = '';
 
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => '@'));
+		$oInput = new \Zend\Form\Element\Text('input-prepend',array('add-on-prepend' => '@'));
 		$oInput->setAttribute('placeholder','Username');
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
-		$oInput = new \Zend\Form\Element\Text('input-prepend',array('add-on-append' => '.00'));
+		$oInput = new \Zend\Form\Element\Text('input-append',array('add-on-append' => '.00'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		$oInput = new \Zend\Form\Element\Text('input-append-prepend',array('add-on-prepend' => '$','add-on-append' => '.00'));
@@ -52,17 +52,17 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase{
 		$sContent = '';
 
 		//Large
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => '@'));
+		$oInput = new \Zend\Form\Element\Text('input-prepend',array('add-on-prepend' => '@'));
 		$oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-lg'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Default
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => '@'));
+		$oInput = new \Zend\Form\Element\Text('input-prepend',array('add-on-prepend' => '@'));
 		$oInput->setAttribute('placeholder','Username');
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 
 		//Small
-		$oInput = new \Zend\Form\Element\Text('input-username',array('add-on-prepend' => '@'));
+		$oInput = new \Zend\Form\Element\Text('input-prepend',array('add-on-prepend' => '@'));
 		$oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-sm'));
 		$sContent .= $this->formElementHelper->__invoke($oInput).PHP_EOL;
 

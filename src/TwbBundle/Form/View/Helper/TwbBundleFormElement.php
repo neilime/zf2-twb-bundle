@@ -6,7 +6,7 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
     /**
      * @var string
      */
-    private static $addonFormat = '<span class="%s">%s</span>';
+    private static $addonFormat = '<%s class="%s">%s</%s>';
 
 
     /**
@@ -87,11 +87,16 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
         elseif (!is_array($aAddOnOptions)) throw new \InvalidArgumentException('Addon options expects an array or a scalar value, "' . gettype($aAddOnOptions) . '" given');
 
         $sMarkup = '';
+        $sAddonTagName = 'span';
         $sAddonClass = '';
         if (!empty($aAddOnOptions['text'])) {
-            if (!is_scalar($aAddOnOptions['text'])) throw new \LogicException('"text" option expects a scalar value, "' . gettype($aAddOnOptions['text']) . '" given');
-            elseif (($oTranslator = $this->getTranslator())) $sMarkup .= $oTranslator->translate($aAddOnOptions['text'], $this->getTranslatorTextDomain());
-            else $sMarkup .= $aAddOnOptions['text'];
+            if (!is_scalar($aAddOnOptions['text'])) {
+                throw new \LogicException('"text" option expects a scalar value, "' . gettype($aAddOnOptions['text']) . '" given');
+            } elseif (($oTranslator = $this->getTranslator())) {
+                $sMarkup .= $oTranslator->translate($aAddOnOptions['text'], $this->getTranslatorTextDomain());
+            } else {
+                $sMarkup .= $aAddOnOptions['text'];
+            }
             $sAddonClass .= ' input-group-addon';
         } elseif (!empty($aAddOnOptions['element'])) {
             if (
@@ -100,16 +105,26 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
             ) {
                 $oFactory = new \Zend\Form\Factory();
                 $aAddOnOptions['element'] = $oFactory->create($aAddOnOptions['element']);
-            } elseif (!($aAddOnOptions['element'] instanceof \Zend\Form\ElementInterface)) throw new \LogicException(sprintf(
-                '"element" option expects an instanceof \Zend\Form\ElementInterface, "%s" given',
-                is_object($aAddOnOptions['element']) ? get_class($aAddOnOptions['element']) : gettype($aAddOnOptions['element'])
-            ));
+            } elseif (!($aAddOnOptions['element'] instanceof \Zend\Form\ElementInterface)) {
+                throw new \LogicException(sprintf(
+                    '"element" option expects an instanceof \Zend\Form\ElementInterface, "%s" given', is_object($aAddOnOptions['element']) ? get_class($aAddOnOptions['element']) : gettype($aAddOnOptions['element'])
+                ));
+            }
             $aAddOnOptions['element']->setOptions(array_merge($aAddOnOptions['element']->getOptions(), array('disable-twb' => true)));
             $sMarkup .= $this->render($aAddOnOptions['element']);
-            $sAddonClass .= $aAddOnOptions['element'] instanceof \Zend\Form\Element\Button ? ' input-group-btn' : ' input-group-addon';
+
+            if($aAddOnOptions['element'] instanceof \Zend\Form\Element\Button) {
+                $sAddonClass .= ' input-group-btn';
+                //Element contains dropdown, so add-on container must be a "div"
+                if ($aAddOnOptions['element']->getOption('dropdown')) {
+                    $sAddonTagName = 'div';
+                }
+            } else {
+                $sAddonClass .= ' input-group-addon';
+            }
         }
 
-        return sprintf(self::$addonFormat, trim($sAddonClass), $sMarkup);
+        return sprintf(self::$addonFormat, $sAddonTagName, trim($sAddonClass), $sMarkup, $sAddonTagName);
     }
 
     /**

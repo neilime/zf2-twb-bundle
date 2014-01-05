@@ -16,4 +16,5 @@ return array(
   'TwbBundle\View\Helper\TwbBundleAlert'                  => __DIR__ . '/src/TwbBundle/View/Helper/TwbBundleAlert.php',
   'TwbBundle\View\Helper\TwbBundleLabel'                  => __DIR__ . '/src/TwbBundle/View/Helper/TwbBundleLabel.php',
   'TwbBundle\View\Helper\TwbBundleBadge'                  => __DIR__ . '/src/TwbBundle/View/Helper/TwbBundleBadge.php',
+  'TwbBundle\View\Helper\TwbBundleGlyphicon'              => __DIR__ . '/src/TwbBundle/View/Helper/TwbBundleGlyphicon.php',
 );

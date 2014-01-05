@@ -61,6 +61,16 @@ class TTwbBundleFormElementTest extends \PHPUnit_Framework_TestCase{
 		$oReflectionMethod->invoke($this->formElementHelper,array('element' => new \stdClass()));
 	}
 
+	/**
+	 * @expectedException \LogicException
+	 */
+	public function testRenderAddOnWithWrongTypeText(){
+		$oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
+		$oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
+		$oReflectionMethod->setAccessible(true);
+		$oReflectionMethod->invoke($this->formElementHelper,array('text' => new \stdClass()));
+	}
+
 	public function testSetTranslatorEnabled(){
 		$this->assertSame($this->formElementHelper,$this->formElementHelper->setTranslatorEnabled(false));
 		$this->assertFalse($this->formElementHelper->isTranslatorEnabled());

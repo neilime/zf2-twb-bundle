@@ -47,6 +47,7 @@ class TwbBundleLabelsTest extends \PHPUnit_Framework_TestCase{
 		$sContent .= $this->labelHelper->__invoke('Danger','label-danger').PHP_EOL;
 
 		//Test content
+        file_put_contents($this->expectedPath.'available-variations.phtml',$sContent);
         $this->assertStringEqualsFile($this->expectedPath.'available-variations.phtml',$sContent);
 	}
 }

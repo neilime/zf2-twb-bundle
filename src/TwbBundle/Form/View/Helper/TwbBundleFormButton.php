@@ -5,6 +5,16 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton
     /**
      * @var string
      */
+    const GLYPHICON_PREPEND = 'prepend';
+
+    /**
+     * @var string
+     */
+    const GLYPHICON_APPEND = 'append';
+
+    /**
+     * @var string
+     */
     private static $dropdownContainerFormat = '<div class="btn-group %s">%s</div>';
 
     /**
@@ -34,9 +44,14 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton
     public function render(\Zend\Form\ElementInterface $oElement, $sButtonContent = null)
     {
         if ($sClass = $oElement->getAttribute('class')) {
-            if (!preg_match('/(\s|^)btn(\s|$)/', $sClass)) $sClass .= ' btn';
-            if (!preg_match('/(\s|^)btn-.*(\s|$)/', $sClass)) $sClass .= ' btn-default';
-            else {
+
+            if (!preg_match('/(\s|^)btn(\s|$)/', $sClass)) {
+                $sClass .= ' btn';
+            }
+
+            if (!preg_match('/(\s|^)btn-.*(\s|$)/', $sClass)) {
+                $sClass .= ' btn-default';
+            } else {
                 $bHasOption = false;
                 foreach (self::$buttonOptions as $sButtonOption) {
                     if (preg_match('/(\s|^)btn-' . $sButtonOption . '.*(\s|$)/', $sClass)) {
@@ -44,37 +59,94 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton
                         break;
                     }
                 }
-                if (!$bHasOption) $sClass .= ' btn-default';
+                if (!$bHasOption) {
+                    $sClass .= ' btn-default';
+                }
             }
             $oElement->setAttribute('class', trim($sClass));
-        } else $oElement->setAttribute('class', 'btn btn-default');
+        } else {
+            $oElement->setAttribute('class', 'btn btn-default');
+        }
+
+        //Retrieve glyphicon options
+        $aGlyphiconOptions = $oElement->getOption('glyphicon');
+
+        //Define button content
+        if (null === $sButtonContent) {
+            $sButtonContent = $oElement->getLabel();
+            if (null === $sButtonContent && !$aGlyphiconOptions) {
+                throw new \DomainException(sprintf(
+                    '%s expects either button content as the second argument, ' .
+                    'or that the element provided has a label value or a glyphicon option; neither found',
+                    __METHOD__
+                ));
+            }
+
+            if (null !== ($oTranslator = $this->getTranslator())) {
+                $sButtonContent = $oTranslator->translate(
+                    $sButtonContent, $this->getTranslatorTextDomain()
+                );
+            }
+        }
+
+        $sButtonContent = $this->getEscapeHtmlHelper()->__invoke($sButtonContent);
+
+        //Glyphicon
+        if ($aGlyphiconOptions) {
+            if(is_scalar($aGlyphiconOptions)) {
+                $aGlyphiconOptions = array(
+                    'icon' => $aGlyphiconOptions,
+                    'position' => self::GLYPHICON_PREPEND
+                );
+            } elseif(!is_array($aGlyphiconOptions)){
+                throw new \LogicException('"glyphicon" button option expects a scalar value or an array, "' . gettype($aGlyphiconOptions) . '" given');
+            } elseif(!is_scalar($aGlyphiconOptions['icon'])){
+                throw new \LogicException('Glyphicon "icon" option expects a scalar value, "' . gettype($aGlyphiconOptions['icon']) . '" given');
+            } elseif(empty($aGlyphiconOptions['position'])){
+                $aGlyphiconOptions['position'] = 'prepend';
+            } elseif(!is_string($aGlyphiconOptions['position'])){
+                throw new \LogicException('Glyphicon "position" option expects a string, "' . gettype($aGlyphiconOptions['position']) . '" given');
+            } elseif($aGlyphiconOptions['position'] !== self::GLYPHICON_PREPEND && $aGlyphiconOptions['position'] !== self::GLYPHICON_APPEND){
+                throw new \LogicException('Glyphicon "position" option allows "'.self::GLYPHICON_PREPEND.'" or "'.self::GLYPHICON_APPEND.'", "' . $aGlyphiconOptions['position'] . '" given');
+            }
+
+            if ($sButtonContent) {
+                if($aGlyphiconOptions['position'] === self::GLYPHICON_PREPEND) {
+                    $sButtonContent = $this->getView()->glyphicon($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null).' '.$sButtonContent;
+                }
+                else {
+                    $sButtonContent .= ' '.$this->getView()->glyphicon($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null);
+                }
+            }
+            else{
+                $sButtonContent = $this->getView()->glyphicon($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null);
+            }
+        }
 
         //Dropdown button
         if ($aDropdownOptions = $oElement->getOption('dropdown')) {
-            if (!is_array($aDropdownOptions)) throw new \LogicException('"dropdown" option expects an array, "' . gettype($aDropdownOptions) . '" given');
-            if (null === $sButtonContent) {
-                $sButtonContent = $oElement->getLabel();
-                if (null === $sButtonContent) throw new \DomainException(sprintf(
-                    '%s expects either button content as the second argument, or that the element provided has a label value; neither found',
-                    __METHOD__
-                ));
-                if (null !== ($oTranslator = $this->getTranslator())) $sButtonContent = $oTranslator->translate($sButtonContent, $this->getTranslatorTextDomain());
+            if (!is_array($aDropdownOptions)) {
+                throw new \LogicException('"dropdown" option expects an array, "' . gettype($aDropdownOptions) . '" given');
             }
 
             if (empty($aDropdownOptions['split'])) {
                 //Class
-                if (!preg_match('/(\s|^)dropdown-toggle(\s|$)/', $sClass = $oElement->getAttribute('class'))) $oElement->setAttribute('class', trim($sClass . ' dropdown-toggle'));
+                if (!preg_match('/(\s|^)dropdown-toggle(\s|$)/', $sClass = $oElement->getAttribute('class'))) {
+                    $oElement->setAttribute('class', trim($sClass . ' dropdown-toggle'));
+                }
 
                 //data-toggle
                 $oElement->setAttribute('data-toggle', 'dropdown');
-                $sMarkup = $this->openTag($oElement)
-                    . sprintf(self::$dropdownToggleFormat, $this->getEscapeHtmlHelper()->__invoke($sButtonContent))
-                    . $this->closeTag();
+                $sMarkup = $this->openTag($oElement) . sprintf(self::$dropdownToggleFormat, $sButtonContent) . $this->closeTag();
             } //Ad caret element
-            else $sMarkup = parent::render($oElement, $sButtonContent) . sprintf(self::$dropdownCaretFormat, $oElement->getAttribute('class'));
+            else {
+                $sMarkup = $this->openTag($oElement) . $sButtonContent . $this->closeTag() . sprintf(self::$dropdownCaretFormat, $oElement->getAttribute('class'));
+            }
 
             //No container
-            if ($oElement->getOption('disable-twb')) return $sMarkup . $this->getView()->dropdown()->renderListItems($aDropdownOptions);
+            if ($oElement->getOption('disable-twb')) {
+                return $sMarkup . $this->getView()->dropdown()->renderListItems($aDropdownOptions);
+            }
 
             //Render button + dropdown
             return sprintf(
@@ -86,6 +158,6 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton
             );
         }
 
-        return parent::render($oElement, $sButtonContent);
+        return $this->openTag($oElement) . $sButtonContent . $this->closeTag();
     }
 }
