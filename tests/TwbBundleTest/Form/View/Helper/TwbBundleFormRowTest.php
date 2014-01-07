@@ -33,7 +33,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		->setLabelAttributes(array('class' => 'test-label-class'));
 
 		$this->assertEquals(
-			'<label class="test-label-class control-label" for="test-element">test-label</label><input name="test-element" class="form-control" type="text" value="">',
+			'<label class="test-label-class control-label">test-label</label><input name="test-element" class="form-control" type="text" value="">',
 			$oReflectionMethod->invoke($this->formRowHelper,$oElement)
 		);
 	}
@@ -49,7 +49,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		->setLabelAttributes(array('class' => 'test-label-class'));
 
 		$this->assertEquals(
-			'<label class="test-label-class sr-only" for="test-element">test-label</label><input name="test-element" class="form-control" type="text" value="">',
+			'<label class="test-label-class sr-only">test-label</label><input name="test-element" class="form-control" type="text" value="">',
 			$oReflectionMethod->invoke($this->formRowHelper,$oElement)
 		);
 	}
@@ -65,7 +65,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase{
 		->setLabelAttributes(array('class' => 'test-label-class'));
 
 		$this->assertEquals(
-			'<label class="test-label-class control-label" for="test-element">test-label</label><div class=""><input name="test-element" class="form-control" type="text" value=""></div>',
+			'<label class="test-label-class control-label">test-label</label><div class=""><input name="test-element" class="form-control" type="text" value=""></div>',
 			$oReflectionMethod->invoke($this->formRowHelper,$oElement)
 		);
 	}

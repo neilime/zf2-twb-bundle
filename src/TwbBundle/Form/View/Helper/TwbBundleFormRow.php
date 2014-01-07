@@ -177,7 +177,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
                     $oElement->setLabelAttributes($aLabelAttributes);
                 }
 
-                $sLabelOpen = $oLabelHelper->openTag($oElement);
+                $sLabelOpen = $oLabelHelper->openTag($oElement->getAttribute('id') ? $oElement : $aLabelAttributes);
                 $sLabelClose = $oLabelHelper->closeTag();
                 $sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
             }
