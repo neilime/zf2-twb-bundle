@@ -42,13 +42,15 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         $sLayout = $oElement->getOption('twb-layout');
 
         //Partial rendering
-        if ($this->partial) return $this->view->render($this->partial, array(
-            'element' => $oElement,
-            'label' => $this->renderLabel($oElement),
-            'labelAttributes' => $this->labelAttributes,
-            'labelPosition' => $this->labelPosition,
-            'renderErrors' => $this->renderErrors,
-        ));
+        if ($this->partial) {
+            return $this->view->render($this->partial, array(
+                'element' => $oElement,
+                'label' => $this->renderLabel($oElement),
+                'labelAttributes' => $this->labelAttributes,
+                'labelPosition' => $this->labelPosition,
+                'renderErrors' => $this->renderErrors,
+            ));
+        }
 
         $sRowClass = '';
 
@@ -61,9 +63,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         	//Element have errors
         	if ($sInputErrorClass = $this->getInputErrorClass()) {
         		if ($sElementClass = $oElement->getAttribute('class')) {
-        			if (!preg_match('/(\s|^)' . preg_quote($sInputErrorClass, '/') . '(\s|$)/', $sElementClass)) $oElement->setAttribute('class', trim($sElementClass . ' ' . $sInputErrorClass));
-        		} else $oElement->setAttribute('class', $sInputErrorClass);
-        	}
+                    if (!preg_match('/(\s|^)' . preg_quote($sInputErrorClass, '/') . '(\s|$)/', $sElementClass)) {
+                        $oElement->setAttribute('class', trim($sElementClass . ' ' . $sInputErrorClass));
+                    }
+                } else $oElement->setAttribute('class', $sInputErrorClass);
+            }
         }
 
         //Column size
@@ -80,8 +84,12 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         $sElementContent = $this->renderElement($oElement);
 
         //Render form row
-        if (in_array($sElementType, array('checkbox')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) return $sElementContent . PHP_EOL;
-        if ($sElementType === 'submit' && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE) return $sElementContent . PHP_EOL;
+        if (in_array($sElementType, array('checkbox')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
+            return $sElementContent . PHP_EOL;
+        }
+        if ($sElementType === 'submit' && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE) {
+            return $sElementContent . PHP_EOL;
+        }
 
         return sprintf(
             self::$formGroupFormat,
@@ -97,7 +105,9 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
      */
     protected function renderLabel(\Zend\Form\ElementInterface $oElement)
     {
-        if (($sLabel = $oElement->getLabel()) && ($oTranslator = $this->getTranslator())) $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
+        if (($sLabel = $oElement->getLabel()) && ($oTranslator = $this->getTranslator())) {
+            $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
+        }
         return $sLabel;
     }
 
@@ -123,35 +133,49 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
                 if (!$oElement->getLabelAttributes() && $this->labelAttributes) $oElement->setLabelAttributes($this->labelAttributes);
 
                 //Render element input
-                if ($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) return $this->getElementHelper()->render($oElement);
+                if ($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
+                    return $this->getElementHelper()->render($oElement);
+                }
             }
             //Button element is a special case, because label is always rendered inside it
-            elseif ($oElement instanceof \Zend\Form\Element\Button) $sLabelContent = '';
-            else {
+            elseif ($oElement instanceof \Zend\Form\Element\Button) {
+                $sLabelContent = '';
+            } else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
 
                 //Validation state
                 if ($oElement->getOption('validation-state') || count($oElement->getMessages())) {
-                    if (empty($aLabelAttributes['class'])) $aLabelAttributes['class'] = 'control-label';
-                    elseif (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
+                    if (empty($aLabelAttributes['class'])) {
+                        $aLabelAttributes['class'] = 'control-label';
+                    } elseif (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
+                        $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
+                    }
                 }
 
                 $oLabelHelper = $this->getLabelHelper();
                 switch ($sLayout) {
                     //Hide label for "inline" layout
                     case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-                        if (empty($aLabelAttributes['class'])) $aLabelAttributes['class'] = 'sr-only';
-                        elseif (!preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                        if (empty($aLabelAttributes['class'])) {
+                            $aLabelAttributes['class'] = 'sr-only';
+                        } elseif (!preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
+                            $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                        }
                         break;
 
                     case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
-                        if (empty($aLabelAttributes['class'])) $aLabelAttributes['class'] = 'control-label';
-                        else {
-                            if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
+                        if (empty($aLabelAttributes['class'])) {
+                            $aLabelAttributes['class'] = 'control-label';
+                        } else {
+                            if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
+                                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
+                            }
                         }
                         break;
                 }
-                if ($aLabelAttributes) $oElement->setLabelAttributes($aLabelAttributes);
+                if ($aLabelAttributes) {
+                    $oElement->setLabelAttributes($aLabelAttributes);
+                }
 
                 $sLabelOpen = $oLabelHelper->openTag($oElement);
                 $sLabelClose = $oLabelHelper->closeTag();

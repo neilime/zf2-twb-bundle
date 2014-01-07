@@ -65,9 +65,9 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form
     		if (!$bHasColumnSizes && !empty($aOptions['column-size'])) {
                 $bHasColumnSizes = true;
             }
-            //Define layout option to form elements
-    		if($sFormLayout){
-    			$aOptions['twb-layout'] = $sFormLayout;
+            //Define layout option to form elements if not already defined
+    		if($sFormLayout && empty($aOptions['twb-layout'])){
+                $aOptions['twb-layout'] = $sFormLayout;
 	    		$oElement->setOptions($aOptions);
     		}
     		$sFormContent .= $oElement instanceof \Zend\Form\FieldsetInterface?$oRenderer->formCollection($oElement):$oRenderer->formRow($oElement);
