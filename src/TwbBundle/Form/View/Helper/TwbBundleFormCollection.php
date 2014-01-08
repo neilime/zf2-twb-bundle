@@ -30,13 +30,14 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
 		if(!method_exists($oRenderer, 'plugin'))return '';
 
 		$sMarkup = '';
+        $sElementLayout = $oElement->getOption('twb-layout');
 		if($oElement instanceof \IteratorAggregate){
 			$oElementHelper = $this->getElementHelper();
 			$oFieldsetHelper = $this->getFieldsetHelper();
-            $sElementLayout = $oElement->getOption('twb-layout');
+
 			foreach($oElement->getIterator() as $oElementOrFieldset){
-                if ($sElementLayout) {
-                    $aOptions = $oElementOrFieldset->getOptions();
+                $aOptions = $oElementOrFieldset->getOptions();
+                if ($sElementLayout && empty($aOptions['twb-layout'])) {
                     $aOptions['twb-layout'] = $sElementLayout;
                     $oElementOrFieldset->setOptions($aOptions);
                 }
@@ -55,6 +56,20 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
 				$this->getEscapeHtmlHelper()->__invoke($sLabel)
 			).$sMarkup;
 		}
+
+        //Set form layout class
+    	if($sElementLayout){
+    		$sLayoutClass = 'form-'.$sElementLayout;
+    		if ($sElementClass = $oElement->getAttribute('class')) {
+                if (!preg_match('/(\s|^)' . preg_quote($sLayoutClass, '/') . '(\s|$)/', $sElementClass)) {
+                    $oElement->setAttribute('class', trim($sElementClass . ' ' . $sLayoutClass));
+                }
+            }
+            else {
+                $oElement->setAttribute('class', $sLayoutClass);
+            }
+        }
+
 		return sprintf(
 			self::$fieldsetFormat,
 			$this->createAttributesString($oElement->getAttributes()),
