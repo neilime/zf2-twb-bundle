@@ -44,8 +44,6 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase{
             'twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE,
             'options' => array(
                 'twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE,
-                'should_create_template' => true,
-                'allow_add' => true,
                 'target_element' => $oFieldset
             )
         ));
