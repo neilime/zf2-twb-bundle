@@ -23,8 +23,10 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase{
 		);
 	}
 
-    public function testRenderInlineFieldset(){
+    public function testRenderInlineFieldsetWithAlreadyDefinedClass(){
         $oFieldset = new \Zend\Form\Fieldset('inline-fieldset',array('twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
+        $oFieldset->setAttribute('class', 'test-class');
+
         $oFieldset->add(array(
             'name' => 'input-one',
             'attributes' => array('placeholder' => 'input-one'),
