@@ -15,11 +15,29 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase{
 		$this->formCollectionHelper = $oViewHelperPluginManager->get('formCollection')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
 
-	public function testRenderWithShoulddWrap(){
+	public function testRenderWithShouldWrap(){
 		$this->formCollectionHelper->setShouldWrap(true);
 		$this->assertEquals(
 			'<fieldset ><legend >test-element</legend></fieldset>',
 			$this->formCollectionHelper->render(new \Zend\Form\Element(null,array('label' => 'test-element')))
+		);
+	}
+
+	public function testRenderWithShouldCreateTemplate(){
+        $oElement = new \Zend\Form\Element('test');
+        $oForm = new \Zend\Form\Form();
+        $oForm->add(array(
+            'name' => 'test-collection',
+            'type' => 'Zend\Form\Element\Collection',
+            'options' => array(
+                'should_create_template' => true,
+                'target_element' => $oElement
+            )
+        ));
+
+		$this->assertEquals(
+			'<fieldset ><div class="form-group "><input name="0" class="form-control" type="text" value=""></div>'.PHP_EOL.'<span data-template="DATA_TEMPLATE"></span></fieldset>',
+			preg_replace('/<span data-template="[^"]+"><\/span>/', '<span data-template="DATA_TEMPLATE"></span>', $this->formCollectionHelper->render($oForm->get('test-collection')))
 		);
 	}
 

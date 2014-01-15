@@ -42,15 +42,22 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection{
                     $oElementOrFieldset->setOptions($aOptions);
                 }
 
-				if($oElementOrFieldset instanceof \Zend\Form\FieldsetInterface)$sMarkup .= $oFieldsetHelper($oElementOrFieldset);
-				elseif($oElementOrFieldset instanceof \Zend\Form\ElementInterface)$sMarkup .= $oElementHelper($oElementOrFieldset);
-			}
-			if($oElement instanceof \Zend\Form\Element\Collection && $oElement->shouldCreateTemplate())$sMarkup .= $this->renderTemplate($oElement);
-		}
+				if ($oElementOrFieldset instanceof \Zend\Form\FieldsetInterface) {
+                    $sMarkup .= $oFieldsetHelper($oElementOrFieldset);
+                } elseif ($oElementOrFieldset instanceof \Zend\Form\ElementInterface) {
+                    $sMarkup .= $oElementHelper($oElementOrFieldset);
+                }
+            }
+			if ($oElement instanceof \Zend\Form\Element\Collection && $oElement->shouldCreateTemplate()) {
+                $sMarkup .= $this->renderTemplate($oElement);
+            }
+        }
 
 		if($this->shouldWrap && ($sLabel = $oElement->getLabel())){
-			if(null !== ($oTranslator = $this->getTranslator()))$sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
-			$sMarkup = sprintf(
+			if (null !== ($oTranslator = $this->getTranslator())) {
+                $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
+            }
+            $sMarkup = sprintf(
 				self::$legendFormat,
 				$this->createAttributesString($oElement->getLabelAttributes()?:array()),
 				$this->getEscapeHtmlHelper()->__invoke($sLabel)
