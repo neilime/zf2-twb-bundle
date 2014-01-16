@@ -13,7 +13,7 @@ before_script:
  - cd tests
 
 script:
- - phpunit --coverage-clover ../build/logs/clover.xml
+ - phpunit
  
 after_script:
   - php vendor/bin/coveralls -v
