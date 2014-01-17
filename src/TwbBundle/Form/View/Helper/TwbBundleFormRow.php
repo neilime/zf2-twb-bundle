@@ -123,7 +123,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         $sLayout = $oElement->getOption('twb-layout');
 
         //Render label
-        $sLabelOpen = $sLabelClose = $sLabelContent = '';
+        $sLabelOpen = $sLabelClose = $sLabelContent = $sElementType = '';
         if ($sLabelContent = $this->renderLabel($oElement)) {
             //Multicheckbox elements have to be handled differently as the HTML standard does not allow nested labels. The semantic way is to group them inside a fieldset
             $sElementType = $oElement->getAttribute('type');
@@ -208,6 +208,16 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
                 //Column size
                 if ($sColumSize = $oElement->getOption('column-size')) {
                     $sClass .= ' col-' . $sColumSize;
+                }
+
+                // Checkbox elements are a  special case. They don't need to render a label again
+                if ($sElementType === 'checkbox') {
+                    return sprintf(
+                        self::$horizontalLayoutFormat,
+                        '',
+                        $sClass,
+                        $sElementContent
+                    );
                 }
 
                 return sprintf(
