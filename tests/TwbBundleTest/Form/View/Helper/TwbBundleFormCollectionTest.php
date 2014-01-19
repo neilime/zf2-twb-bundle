@@ -43,7 +43,7 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase{
 
     public function testRenderInlineFieldsetWithAlreadyDefinedClass(){
         $oFieldset = new \Zend\Form\Fieldset('inline-fieldset',array('twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
-        $oFieldset->setAttribute('class', 'test-class');
+        $oFieldset->setAttributes(array('id' => 'inline-fieldset', 'class' => 'test-class'));
 
         $oFieldset->add(array(
             'name' => 'input-one',
@@ -55,20 +55,18 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase{
             'options' => array('label' => '')
         ));
 
-        $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
-            'type' => 'Zend\Form\Element\Collection',
-            'name' => 'inline-fieldset',
+        $oCollection = new \Zend\Form\Element\Collection('inline-collection',array(
             'twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE,
-            'options' => array(
-                'twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE,
-                'target_element' => $oFieldset
-            )
+            'target_element' => $oFieldset
         ));
+        $oCollection->setAttributes(array('id' => 'inline-collection'));
+
+        $oForm = new \Zend\Form\Form();
+        $oForm->add($oCollection);
 
         $this->assertStringEqualsFile(
 			__DIR__.DIRECTORY_SEPARATOR.'../../../../_files/expected-fieldsets/inline-fieldset.html',
-			$this->formCollectionHelper->__invoke($oForm->get('inline-fieldset'),true,'inline')
+			$this->formCollectionHelper->__invoke($oForm->get('inline-collection'),false)
 		);
     }
 }
