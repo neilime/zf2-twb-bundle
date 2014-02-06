@@ -6,13 +6,13 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
     /**
      * @var string
      */
-    private static $addonFormat = '<%s class="%s">%s</%s>';
+    protected static $addonFormat = '<%s class="%s">%s</%s>';
 
 
     /**
      * @var string
      */
-    private static $inputGroupFormat = '<div class="input-group %s">%s</div>';
+    protected static $inputGroupFormat = '<div class="input-group %s">%s</div>';
 
     /**
      * Translator (optional)
