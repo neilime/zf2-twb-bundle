@@ -7,7 +7,7 @@ use Zend\Form\FormInterface as ZendFormFormInterface;
 
 class TwbBundleFormErrors extends ZendFormViewHelperAbstractHelper
 {
-    protected static $defaultErrorText = 'There were errors in the form submission';
+    protected $defaultErrorText = 'There were errors in the form submission';
     protected $messageOpenFormat = '<h4>%s</h4><ul><li>';
     protected $messageCloseString = '</li></ul>';
     protected $messageSeparatorString = '</li><li>';
@@ -15,8 +15,9 @@ class TwbBundleFormErrors extends ZendFormViewHelperAbstractHelper
     /**
      * Invoke as function
      *
-     * @param  ZendFormFormInterface $form The form object
-     * @return Form
+     * @param ZendFormFormInterface $form
+     * @param string $message
+     * @param string $dismissable
      */
     public function __invoke(ZendFormFormInterface $form = null, $message = null, $dismissable = false)
     {
@@ -25,7 +26,7 @@ class TwbBundleFormErrors extends ZendFormViewHelperAbstractHelper
         }
 
         if (!$message) {
-            $message = self::$defaultErrorText;
+            $message = $this->defaultErrorText;
         }
 
         if ($form->hasValidated() && !$form->isValid()) {
@@ -50,6 +51,7 @@ class TwbBundleFormErrors extends ZendFormViewHelperAbstractHelper
         $messagesArray = array();
 
         foreach ($form->getMessages() as $fieldName => $messages) {
+            error_log(get_class($form->get($fieldName)));
             foreach ($messages as $validatorName => $message) {
                 if ($form->get($fieldName)->getAttribute('id')) {
                     $messagesArray[] = sprintf(
