@@ -23,6 +23,9 @@ return array(
 			'formRow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow',
 			'formStatic' => 'TwbBundle\Form\View\Helper\TwbBundleFormStatic',
 
+		    //Form Errors
+            'formErrors' => 'TwbBundle\Form\View\Helper\TwbBundleFormErrors',
+
 			//Glyphicon
 			'glyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
 
