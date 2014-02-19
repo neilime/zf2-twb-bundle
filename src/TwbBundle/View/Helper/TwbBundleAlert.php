@@ -43,7 +43,7 @@ class TwbBundleAlert extends \Zend\Form\View\Helper\AbstractHelper{
 		if(null !== ($oTranslator = $this->getTranslator()))$sAlertMessage = $oTranslator->translate($sAlertMessage, $this->getTranslatorTextDomain());
 
 		if($bDismissable){
-			$sAlertMessage .= self::$dismissButtonFormat;
+			$sAlertMessage = self::$dismissButtonFormat . $sAlertMessage;
 			if(!preg_match('/(\s|^)alert-dismissable(\s|$)/',$aAlertAttributes['class']))$aAlertAttributes['class'] .= ' alert-dismissable';
 		}
 
