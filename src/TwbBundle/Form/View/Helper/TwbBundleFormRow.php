@@ -87,7 +87,9 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow
         if (in_array($sElementType, array('checkbox')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
             return $sElementContent . PHP_EOL;
         }
-        if ($sElementType === 'submit' && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE) {
+        if (($sElementType === 'submit' || $sElementType === 'button' || $sElementType === 'reset')
+			&& $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE
+		) {
             return $sElementContent . PHP_EOL;
         }
 
