@@ -5,3 +5,5 @@
 /vendor
 /nbproject/private/
 /nbproject/
+nbactions.xml
+nb-configuration.xml

@@ -42,7 +42,7 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
         //Add form-controll class
         $sElementType = $oElement->getAttribute('type');
 
-        if (!in_array($sElementType, array('file', 'checkbox', 'radio', 'submit', 'multi_checkbox', 'static', 'button'))) {
+        if (!in_array($sElementType, array('file', 'checkbox', 'radio', 'submit', 'multi_checkbox', 'static', 'button', 'reset'))) {
             if ($sElementClass = $oElement->getAttribute('class')) {
                 if (!preg_match('/(\s|^)form-control(\s|$)/', $sElementClass)) $oElement->setAttribute('class', trim($sElementClass . ' form-control'));
             } else $oElement->setAttribute('class', 'form-control');
