@@ -19,7 +19,8 @@ class TwbBundleAlert extends \Zend\Form\View\Helper\AbstractHelper{
 	 * @return string|\TwbBundle\View\Helper\TwbBundleAlert
 	 */
 	public function __invoke($sAlertMessage = null, $aAlertAttributes = null, $bDismissable = false){
-		if(!$sAlertMessage)return $this;
+		if($sAlertMessage === null) return $this;
+		if($sAlertMessage === '' || $sAlertMessage === false) return '';
 		return $this->render($sAlertMessage,$aAlertAttributes,$bDismissable);
 	}
 
