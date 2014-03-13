@@ -16,7 +16,7 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
 
     /**
      * Translator (optional)
-     * @var \Zend\I18n\Translator\Translator
+     * @var \Zend\I18n\Translator\TranslatorInterface
      */
     protected $translator;
 
@@ -130,11 +130,11 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
     /**
      * Sets translator to use in helper
      * @see \Zend\I18n\Translator\TranslatorAwareInterface::setTranslator()
-     * @param \Zend\I18n\Translator\Translator $oTranslator : [optional] translator. Default is null, which sets no translator.
+     * @param \Zend\I18n\Translator\TranslatorInterface $oTranslator : [optional] translator. Default is null, which sets no translator.
      * @param string $sTextDomain : [optional] text domain Default is null, which skips setTranslatorTextDomain
      * @return \TwbBundle\Form\View\Helper\TwbBundleFormElement
      */
-    public function setTranslator(\Zend\I18n\Translator\Translator $oTranslator = null, $sTextDomain = null)
+    public function setTranslator(\Zend\I18n\Translator\TranslatorInterface $oTranslator = null, $sTextDomain = null)
     {
         $this->translator = $oTranslator;
         if (null !== $sTextDomain) $this->setTranslatorTextDomain($sTextDomain);
@@ -144,7 +144,7 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
     /**
      * Returns translator used in helper
      * @see \Zend\I18n\Translator\TranslatorAwareInterface::getTranslator()
-     * @return null|\Zend\I18n\Translator\Translator
+     * @return null|\Zend\I18n\Translator\TranslatorInterface
      */
     public function getTranslator()
     {
