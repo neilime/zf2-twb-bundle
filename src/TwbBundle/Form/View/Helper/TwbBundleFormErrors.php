@@ -1,12 +1,9 @@
 <?php
+
 namespace TwbBundle\Form\View\Helper;
 
-use Zend\Form\View\Helper\AbstractHelper as ZendFormViewHelperAbstractHelper;
-use Zend\Form\FieldsetInterface as ZendFormFieldsetInterface;
-use Zend\Form\FormInterface as ZendFormFormInterface;
+class TwbBundleFormErrors extends \Zend\Form\View\Helper\AbstractHelper {
 
-class TwbBundleFormErrors extends ZendFormViewHelperAbstractHelper
-{
     protected $defaultErrorText = 'There were errors in the form submission';
     protected $messageOpenFormat = '<h4>%s</h4><ul><li>';
     protected $messageCloseString = '</li></ul>';
@@ -14,24 +11,23 @@ class TwbBundleFormErrors extends ZendFormViewHelperAbstractHelper
 
     /**
      * Invoke as function
-     *
-     * @param ZendFormFormInterface $form
-     * @param string $message
-     * @param string $dismissable
+     * @param \Zend\Form\FormInterface $oForm
+     * @param string $sMessage
+     * @param string $bDismissable
+     * @return string|null
      */
-    public function __invoke(ZendFormFormInterface $form = null, $message = null, $dismissable = false)
-    {
-        if (!$form) {
+    public function __invoke(\Zend\Form\FormInterface $oForm = null, $sMessage = null, $bDismissable = false) {
+        if (!$oForm) {
             return $this;
         }
 
-        if (!$message) {
-            $message = $this->defaultErrorText;
+        if (!$sMessage) {
+            $sMessage = $this->defaultErrorText;
         }
 
-        if ($form->hasValidated() && !$form->isValid()) {
+        if ($oForm->hasValidated() && !$oForm->isValid()) {
 
-            return $this->render($form, $message, $dismissable);
+            return $this->render($oForm, $sMessage, $bDismissable);
         }
 
         return null;
@@ -39,51 +35,37 @@ class TwbBundleFormErrors extends ZendFormViewHelperAbstractHelper
 
     /**
      * Renders the error messages.
-     *
-     * @param ZendFormFormInterface $form
-     *
-     * return string
+     * @param \Zend\Form\FormInterface $oForm
+     * @return string
      */
-    public function render(ZendFormFormInterface $form, $message, $dismissable = false)
-    {
-        $errorHtml = sprintf($this->messageOpenFormat, $message);
+    public function render(\Zend\Form\FormInterface $oForm, $sMessage, $bDismissable = false) {
+        $errorHtml = sprintf($this->messageOpenFormat, $sMessage);
 
-        $messagesArray = array();
+        $sMessagesArray = array();
 
-        foreach ($form->getMessages() as $fieldName => $messages) {
-            error_log(get_class($form->get($fieldName)));
-            foreach ($messages as $validatorName => $message) {
-                if ($form->get($fieldName)->getAttribute('id')) {
-                    $messagesArray[] = sprintf(
-                        '<a href="#%s">%s</a>',
-                        $form->get($fieldName)->getAttribute('id'),
-                        $form->get($fieldName)->getLabel() . ': ' . $message
+        foreach ($oForm->getMessages() as $fieldName => $sMessages) {
+            foreach ($sMessages as $sMessage) {
+                if ($oForm->get($fieldName)->getAttribute('id')) {
+                    $sMessagesArray[] = sprintf(
+                            '<a href="#%s">%s</a>', $oForm->get($fieldName)->getAttribute('id'), $oForm->get($fieldName)->getLabel() . ': ' . $sMessage
                     );
                 } else {
-                    $messagesArray[] = $form->get($fieldName)->getLabel() . ': ' . $message;
+                    $sMessagesArray[] = $oForm->get($fieldName)->getLabel() . ': ' . $sMessage;
                 }
             }
         }
 
-        $messageString = implode($this->messageSeparatorString, $messagesArray);
-
-        $errorHtml = $errorHtml . $messageString . $this->messageCloseString;
-
-        $errorHtml = $this->dangerAlert($errorHtml, $dismissable);
-
-        return $errorHtml;
+        return $this->dangerAlert($errorHtml . implode($this->messageSeparatorString, $sMessagesArray) . $this->messageCloseString, $bDismissable);
     }
 
     /**
      * Creates and returns a "danger" alert.
-     *
      * @param string  $content
-     * @param boolean $dismissable
-     *
-     * return string
+     * @param boolean $bDismissable
+     * @return string
      */
-    public function dangerAlert($content, $dismissable = false)
-    {
-        return $this->getView()->alert($content, array('class' => 'alert-danger'), $dismissable);
+    public function dangerAlert($content, $bDismissable = false) {
+        return $this->getView()->alert($content, array('class' => 'alert-danger'), $bDismissable);
     }
+
 }

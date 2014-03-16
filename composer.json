@@ -16,16 +16,6 @@
     "support": {
         "issues": "https://github.com/neilime/zf2-twb-bundle/issues"
     },
-    "repositories":[
-        {
-            "type": "package",
-            "package": {
-                "version": "dev-master",
-                "name": "twitter/bootstrap",
-                "source": {"url": "https://github.com/twitter/bootstrap.git","type": "git","reference": "master"}
-            }
-        }
-    ],
     "suggest": {
         "neilime/zf2-assets-bundle": "Bundling & caching Twitter Bootstrap assets",
         "twitter/bootstrap": "Twitter bootstrap assets"

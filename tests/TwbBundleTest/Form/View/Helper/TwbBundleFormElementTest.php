@@ -1,89 +1,107 @@
 <?php
+
 namespace TwbBundleTest\Form\View\Helper;
-class TTwbBundleFormElementTest extends \PHPUnit_Framework_TestCase{
-	/**
-	 * @var \TwbBundle\Form\View\Helper\TwbBundleFormElement
-	 */
-	protected $formElementHelper;
 
-	/**
-	 * @see \PHPUnit_Framework_TestCase::setUp()
-	 */
-	public function setUp(){
-		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
-		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
-		$this->formElementHelper = $oViewHelperPluginManager->get('formElement')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
-	}
+class TTwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 */
-	public function testRenderAddOnWithWrongTypeOption(){
-		$oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
-		$oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
-		$oReflectionMethod->setAccessible(true);
-		$oReflectionMethod->invoke($this->formElementHelper,new \stdClass());
-	}
+    /**
+     * @var \TwbBundle\Form\View\Helper\TwbBundleFormElement
+     */
+    protected $formElementHelper;
 
-	public function testRenderAddOnWithoutTranslator(){
-		$oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
-		$oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
-		$oReflectionMethod->setAccessible(true);
+    /**
+     * @see \PHPUnit_Framework_TestCase::setUp()
+     */
+    public function setUp() {
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+        $oRenderer = new \Zend\View\Renderer\PhpRenderer();
+        $this->formElementHelper = $oViewHelperPluginManager->get('formElement')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+    }
 
-		//Unset tranlator
-		$this->assertSame($this->formElementHelper,$this->formElementHelper->setTranslator(null));
-		$this->assertFalse($this->formElementHelper->hasTranslator());
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testRenderAddOnWithEmptuOption() {
+        $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
+        $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
+        $oReflectionMethod->setAccessible(true);
+        $oReflectionMethod->invoke($this->formElementHelper, '');
+    }
 
-		$this->assertEquals('<span class="input-group-addon">test</span>',$oReflectionMethod->invoke($this->formElementHelper,'test'));
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testRenderAddOnWithWrongTypeOption() {
+        $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
+        $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
+        $oReflectionMethod->setAccessible(true);
+        $oReflectionMethod->invoke($this->formElementHelper, new \stdClass());
+    }
 
-		//Set translator
-		$this->assertSame($this->formElementHelper,$this->formElementHelper->setTranslator(\TwbBundleTest\Bootstrap::getServiceManager()->get('MVCTranslator')));
-		$this->assertTrue($this->formElementHelper->hasTranslator());
-	}
+    public function testRenderAddOnWithoutTranslator() {
+        $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
+        $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
+        $oReflectionMethod->setAccessible(true);
 
-	public function testRenderAddOnWithElementAsArray(){
-		$oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
-		$oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
-		$oReflectionMethod->setAccessible(true);
-		$this->assertEquals(
-			'<span class="input-group-addon"><input name="test-element" class="form-control" type="text" value=""></span>',
-			$oReflectionMethod->invoke($this->formElementHelper,array('element' => array('name' => 'test-element')))
-		);
-	}
+        //Unset tranlator
+        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslator(null));
+        $this->assertFalse($this->formElementHelper->hasTranslator());
 
-	/**
-	 * @expectedException \LogicException
-	 */
-	public function testRenderAddOnWithWrongTypeElement(){
-		$oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
-		$oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
-		$oReflectionMethod->setAccessible(true);
-		$oReflectionMethod->invoke($this->formElementHelper,array('element' => new \stdClass()));
-	}
+        $this->assertEquals('<span class="input-group-addon">test</span>', $oReflectionMethod->invoke($this->formElementHelper, 'test'));
 
-	/**
-	 * @expectedException \LogicException
-	 */
-	public function testRenderAddOnWithWrongTypeText(){
-		$oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
-		$oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
-		$oReflectionMethod->setAccessible(true);
-		$oReflectionMethod->invoke($this->formElementHelper,array('text' => new \stdClass()));
-	}
+        //Set translator
+        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslator(\TwbBundleTest\Bootstrap::getServiceManager()->get('MVCTranslator')));
+        $this->assertTrue($this->formElementHelper->hasTranslator());
+    }
 
-	public function testSetTranslatorEnabled(){
-		$this->assertSame($this->formElementHelper,$this->formElementHelper->setTranslatorEnabled(false));
-		$this->assertFalse($this->formElementHelper->isTranslatorEnabled());
+    public function testRenderAddOnWithElementAsArray() {
+        $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
+        $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
+        $oReflectionMethod->setAccessible(true);
+        $this->assertEquals(
+                '<span class="input-group-addon"><input name="test-element" class="form-control" type="text" value=""></span>', $oReflectionMethod->invoke($this->formElementHelper, array('element' => array('name' => 'test-element')))
+        );
+    }
 
-		$this->assertSame($this->formElementHelper,$this->formElementHelper->setTranslatorEnabled(true));
-		$this->assertTrue($this->formElementHelper->isTranslatorEnabled());
-	}
+    /**
+     * @expectedException \LogicException
+     */
+    public function testRenderAddOnWithWrongTypeElement() {
+        $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
+        $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
+        $oReflectionMethod->setAccessible(true);
+        $oReflectionMethod->invoke($this->formElementHelper, array('element' => new \stdClass()));
+    }
 
-	public function testSetTranslatorTextDomain(){
-		$this->assertSame($this->formElementHelper,$this->formElementHelper->setTranslatorTextDomain('test'));
-		$this->assertEquals('test',$this->formElementHelper->getTranslatorTextDomain());
+    /**
+     * @expectedException \LogicException
+     */
+    public function testRenderAddOnWithWrongTypeText() {
+        $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
+        $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
+        $oReflectionMethod->setAccessible(true);
+        $oReflectionMethod->invoke($this->formElementHelper, array('text' => new \stdClass()));
+    }
 
-		$this->assertSame($this->formElementHelper,$this->formElementHelper->setTranslatorTextDomain());
-		$this->assertEquals('default',$this->formElementHelper->getTranslatorTextDomain());
-	}
+    public function testSetTranslatorEnabled() {
+        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslatorEnabled(false));
+        $this->assertFalse($this->formElementHelper->isTranslatorEnabled());
+
+        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslatorEnabled(true));
+        $this->assertTrue($this->formElementHelper->isTranslatorEnabled());
+    }
+
+    public function testSetTranslatorWithTextDomain() {
+        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslator($this->formElementHelper->getTranslator(), 'test'));
+        $this->assertEquals('test', $this->formElementHelper->getTranslatorTextDomain());
+    }
+
+    public function testSetTranslatorTextDomain() {
+        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslatorTextDomain('test'));
+        $this->assertEquals('test', $this->formElementHelper->getTranslatorTextDomain());
+
+        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslatorTextDomain());
+        $this->assertEquals('default', $this->formElementHelper->getTranslatorTextDomain());
+    }
+
 }
