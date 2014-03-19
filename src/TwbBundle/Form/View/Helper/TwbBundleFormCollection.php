@@ -2,6 +2,8 @@
 
 namespace TwbBundle\Form\View\Helper;
 
+use Zend\Form\Element\Collection as CollectionElement;
+
 class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection {
 
     /**
@@ -89,4 +91,19 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection {
         return $sMarkup;
     }
 
+    /**
+     * Only render a template
+     *
+     * @param CollectionElement $collection
+     * @return string
+     */
+    public function renderTemplate(CollectionElement $collection)
+    {
+        if($sElementLayout = $collection->getOption('twb-layout')) {
+            $elementOrFieldset = $collection->getTemplateElement();
+            $elementOrFieldset->setOption('twb-layout', $sElementLayout);
+        }
+
+        return parent::renderTemplate($collection);
+    }
 }
