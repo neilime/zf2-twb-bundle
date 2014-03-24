@@ -50,7 +50,7 @@ Installation
 
     ```json
     "require": {
-        "neilime/zf2-twb-bundle": "2.2.*@stable"
+        "neilime/zf2-twb-bundle": "2.*@stable"
     }
     ```
 
