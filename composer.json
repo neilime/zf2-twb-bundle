@@ -21,7 +21,7 @@
         "twitter/bootstrap": "Twitter bootstrap assets"
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.3.2",
         "zendframework/zendframework": "2.3.*@stable"
     },
     "require-dev": {
