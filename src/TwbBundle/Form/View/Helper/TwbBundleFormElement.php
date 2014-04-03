@@ -33,6 +33,22 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
     protected $translatorEnabled = true;
 
     /**
+     * Instance map to view helper
+     *
+     * @var array
+     */
+    protected $classMap = array(
+        'Zend\Form\Element\Button'             => 'formbutton',
+        'Zend\Form\Element\Captcha'            => 'formcaptcha',
+        'Zend\Form\Element\Csrf'               => 'formhidden',
+        'Zend\Form\Element\Collection'         => 'formcollection',
+        'Zend\Form\Element\DateTimeSelect'     => 'formdatetimeselect',
+        'Zend\Form\Element\DateSelect'         => 'formdateselect',
+        'Zend\Form\Element\MonthSelect'        => 'formmonthselect',
+        'TwbBundle\Form\Element\StaticElement' => 'formStatic',
+    );
+
+    /**
      * Render an element
      * @param \Zend\Form\ElementInterface $oElement
      * @return string
@@ -51,7 +67,7 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
             }
         }
 
-        $sMarkup = $oElement instanceof \TwbBundle\Form\Element\StaticElement ? $this->getView()->formStatic()->render($oElement) : parent::render($oElement);
+        $sMarkup = parent::render($oElement);
 
         //Addon prepend
         if ($aAddOnPrepend = $oElement->getOption('add-on-prepend')) {
