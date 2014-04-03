@@ -1,5 +1,7 @@
 <?php
 namespace TwbBundle\Form\View\Helper;
+
+use Zend\Form\LabelAwareInterface;
 class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton
 {
     /**
@@ -89,7 +91,10 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton
             }
         }
 
-        $sButtonContent = $this->getEscapeHtmlHelper()->__invoke($sButtonContent);
+        if (! $oElement instanceof LabelAwareInterface || ! $oElement->getLabelOption('disable_html_escape')) {
+            $escapeHtmlHelper = $this->getEscapeHtmlHelper();
+            $sButtonContent = $escapeHtmlHelper($sButtonContent);
+        }
 
         //Glyphicon
         if ($aGlyphiconOptions) {
