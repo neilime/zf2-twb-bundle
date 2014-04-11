@@ -24,6 +24,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
      * @var string
      */
     protected $inputErrorClass = '';
+    
+    /**
+     * @var string
+     */
+    protected $requiredFormat = null;
 
     /**
      * @see \Zend\Form\View\Helper\FormRow::render()
@@ -184,6 +189,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                 $sLabelClose = $oLabelHelper->closeTag();
                 $sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
             }
+        }
+        
+        //Add required string if element is required
+        if ($this->requiredFormat && $oElement->getAttribute('required') && strpos($this->requiredFormat, $sLabelContent) === false) {
+            $sLabelContent .= $this->requiredFormat;
         }
 
         switch ($sLayout) {
