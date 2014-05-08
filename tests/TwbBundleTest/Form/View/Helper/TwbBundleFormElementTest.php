@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TTwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @var \TwbBundle\Form\View\Helper\TwbBundleFormElement

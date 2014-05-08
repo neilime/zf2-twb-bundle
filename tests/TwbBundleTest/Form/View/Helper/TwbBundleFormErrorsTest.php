@@ -1,56 +1,82 @@
 <?php
+
 namespace TwbBundleTest\Form\View\Helper;
 
-use TwbBundle\Form\View\Helper\TwbBundleFormErrors as TwbBundleFormErrors;
+class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
 
-class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase
-{
     /**
      * Contains an instance of TwbBundleFormErrors.
-     *
-     * @var TwbBundleFormErrors
+     * @var \TwbBundle\Form\View\Helper\TwbBundleFormErrors
      */
     protected $formErrorsHelper = null;
 
-    public function testInvokeWithoutFormReturnsObject()
-    {
-        $helper = $this->getFormErrorsHelper();
-
-        $this->assertInstanceOf('TwbBundle\Form\View\Helper\TwbBundleFormErrors', $helper());
+    public function setUp() {
+        $this->getFormErrorsHelper();
     }
 
-    public function testInvokeWithFormCallsRender()
-    {
+    /**
+     * Enforces that the correct helpers is being initialised.
+     * @param \TwbBundle\Form\View\Helper\TwbBundleFormErrors $oFormErrorsHelper
+     * @return \TwbBundleTest\Form\View\Helper\TwbBundleFormErrorsTest
+     */
+    public function setFormErrorsHelper(\TwbBundle\Form\View\Helper\TwbBundleFormErrors $oFormErrorsHelper = null) {
+        $this->formErrorsHelper = $oFormErrorsHelper;
+        return $this;
+    }
+
+    /**
+     * Gets or initialises the correct helper for this test.
+     * @return \TwbBundle\Form\View\Helper\TwbBundleFormErrors
+     */
+    public function getFormErrorsHelper() {
+        if (null === $this->formErrorsHelper) {
+            $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+            $oRenderer = new \Zend\View\Renderer\PhpRenderer();
+            $oRenderer->setResolver(\TwbBundleTest\Bootstrap::getServiceManager()->get('ViewResolver'));
+            $helper = $oViewHelperPluginManager->get('formErrors')
+                    ->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+
+            $this->setFormErrorsHelper($helper);
+        }
+
+        return $this->formErrorsHelper;
+    }
+
+    public function testInvokeWithoutFormReturnsObject() {
+        $oHelper = $this->getFormErrorsHelper();
+        $this->assertInstanceOf('TwbBundle\Form\View\Helper\TwbBundleFormErrors', $oHelper());
+    }
+
+    public function testInvokeWithFormCallsRender() {
         $form = $this->getMock('\Zend\Form\Form', array('hasValidated', 'isValid'), array(), '', false);
         $form->expects($this->exactly(1))
-             ->method('hasValidated')
-             ->will($this->returnValue(true));
+                ->method('hasValidated')
+                ->will($this->returnValue(true));
         $form->expects($this->atLeastOnce())
-             ->method('isValid')
-             ->will($this->returnValue(false));
+                ->method('isValid')
+                ->will($this->returnValue(false));
 
         $this->assertInstanceOf('\Zend\Form\Form', $form);
 
         $helper = $this->getMock('TwbBundle\Form\View\Helper\TwbBundleFormErrors', array('render'));
         $helper->expects($this->atLeastOnce())
-               ->method('render')
-               ->with($this->identicalTo($form), 'There were errors in the form submission', false /* default */)
-               ->will($this->returnValue('return value'));
+                ->method('render')
+                ->with($this->identicalTo($form), 'There were errors in the form submission', false /* default */)
+                ->will($this->returnValue('return value'));
 
         $this->assertInstanceOf('TwbBundle\Form\View\Helper\TwbBundleFormErrors', $helper());
 
         $this->assertEquals('return value', $helper($form));
     }
 
-    public function testInvokeWithFormNoErrorsReturnsNull()
-    {
+    public function testInvokeWithFormNoErrorsReturnsNull() {
         $form = $this->getMock('\Zend\Form\Form', array('hasValidated', 'isValid'), array(), '', false);
         $form->expects($this->exactly(1))
-             ->method('hasValidated')
-             ->will($this->returnValue(true));
+                ->method('hasValidated')
+                ->will($this->returnValue(true));
         $form->expects($this->atLeastOnce())
-             ->method('isValid')
-             ->will($this->returnValue(true));
+                ->method('isValid')
+                ->will($this->returnValue(true));
 
         $this->assertInstanceOf('\Zend\Form\Form', $form);
 
@@ -60,8 +86,7 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(null, $helper($form));
     }
 
-    public function testCorrectHtmlMarkupBasedOnErrorMessagesArray()
-    {
+    public function testCorrectHtmlMarkupBasedOnErrorMessagesArray() {
         $helper = $this->getFormErrorsHelper();
 
         /**
@@ -69,17 +94,17 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase
          */
         $this->assertInstanceOf('\TwbBundle\Form\View\Helper\TwbBundleFormErrors', $helper);
 
-        $messagesArray = array (
-            'firstName' => array (
+        $messagesArray = array(
+            'firstName' => array(
                 'isEmpty' => 'Value is required and can\'t be empty',
             ),
-            'lastName' => array (
+            'lastName' => array(
                 'isEmpty' => 'Value is required and can\'t be empty',
             ),
-            'category' => array (
+            'category' => array(
                 'isEmpty' => 'Value is required and can\'t be empty',
             ),
-            'dob' => array (
+            'dob' => array(
                 'dateInvalidDate' => 'The input does not appear to be a valid date',
             ),
         );
@@ -97,12 +122,12 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase
 
         $element2 = $this->getMock('\Zend\Form\Element', array('getAttribute', 'getLabel'), array(), '', false);
         $element2->expects($this->atLeastOnce())
-                 ->method('getAttribute')
-                 ->with($this->equalTo('id'))
-                 ->will($this->returnValue(null));
+                ->method('getAttribute')
+                ->with($this->equalTo('id'))
+                ->will($this->returnValue(null));
         $element2->expects($this->atLeastOnce())
-                 ->method('getLabel')
-                 ->will($this->returnValue('Date of Birth'));
+                ->method('getLabel')
+                ->will($this->returnValue('Date of Birth'));
 
         $this->assertInstanceOf('\Zend\Form\Element', $element2);
 
@@ -115,68 +140,25 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase
 
         $form = $this->getMock('\Zend\Form\Form', array('getMessages', 'get'), array(), '', false);
         $form->expects($this->exactly(1))
-             ->method('getMessages')
-             ->will($this->returnValue($messagesArray));
+                ->method('getMessages')
+                ->will($this->returnValue($messagesArray));
         $form->expects($this->atLeastOnce())
-             ->method('get')
-             ->will($this->returnValueMap($map));
+                ->method('get')
+                ->will($this->returnValueMap($map));
 
         $this->assertInstanceOf('\Zend\Form\Form', $form);
 
         $output = $helper->render($form, 'Errors below', false);
 
-        $ex = '<div class="alert-danger alert">'
-            . '<h4>Errors below</h4><ul><li>'
-            . '<a href="#someId">First Name: Value is required and can\'t be empty</a></li><li>'
-            . '<a href="#someId">Last Name: Value is required and can\'t be empty</a></li><li>'
-            . '<a href="#someId">Category: Value is required and can\'t be empty</a></li><li>'
-            . 'Date of Birth: The input does not appear to be a valid date'
-            . '</li></ul></div>';
+        $ex = '<div class="alert-danger&#x20;alert">'
+                . '<h4>Errors below</h4><ul><li>'
+                . '<a href="#someId">First Name: Value is required and can\'t be empty</a></li><li>'
+                . '<a href="#someId">Last Name: Value is required and can\'t be empty</a></li><li>'
+                . '<a href="#someId">Category: Value is required and can\'t be empty</a></li><li>'
+                . 'Date of Birth: The input does not appear to be a valid date'
+                . '</li></ul></div>';
 
         $this->assertEquals($ex, $output);
     }
 
-    /**
-     * Sets up the fixture, for example, open a network connection.
-     * This method is called before a test is executed.
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        $this->getFormErrorsHelper();
-    }
-
-    /**
-     * Enforces that the correct helpers is being initialised.
-     *
-     * @param TwbBundleFormErrors $formErrorsHelper
-     *
-     * @return \TwbBundleTest\Form\View\Helper\TwbBundleFormErrorsTest
-     */
-    public function setFormErrorsHelper(TwbBundleFormErrors $formErrorsHelper = null)
-    {
-        $this->formErrorsHelper = $formErrorsHelper;
-        return $this;
-    }
-
-    /**
-     * Gets or initialises the correct helper for this test.
-     *
-     * @return \TwbBundle\Form\View\Helper\TwbBundleFormErrors
-     */
-    public function getFormErrorsHelper()
-    {
-        if (null === $this->formErrorsHelper) {
-            $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
-            $oRenderer = new \Zend\View\Renderer\PhpRenderer();
-            $oRenderer->setResolver(\TwbBundleTest\Bootstrap::getServiceManager()->get('ViewResolver'));
-            $helper = $oViewHelperPluginManager->get('formErrors')
-                                               ->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
-
-            $this->setFormErrorsHelper($helper);
-        }
-
-        return $this->formErrorsHelper;
-    }
 }

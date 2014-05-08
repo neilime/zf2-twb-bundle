@@ -147,4 +147,15 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'radio-horizontal-layout.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
+    /**
+     * @param string $sExpectedFile
+     * @param string $sActualString
+     * @param string $sMessage
+     * @param boolean $bCanonicalize
+     * @param boolean $bIgnoreCase
+     */
+    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+        return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
+    }
+
 }
