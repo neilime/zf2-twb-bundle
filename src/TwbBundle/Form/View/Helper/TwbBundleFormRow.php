@@ -12,7 +12,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
     /**
      * @var string
      */
-    private static $horizontalLayoutFormat = '%s<div class="%s">%s</div>';
+    private static $horizontalLayoutFormat = '<div class="%s">%s</div>';
 
     /**
      * @var string
@@ -24,7 +24,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
      * @var string
      */
     protected $inputErrorClass = '';
-    
+
     /**
      * @var string
      */
@@ -81,9 +81,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
 
         //Column size
         if (
-                ($sColumSize = $oElement->getOption('column-size')) && (
-                $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL
-                )
+                ($sColumSize = $oElement->getOption('column-size')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL
         ) {
             $sRowClass .= ' col-' . $sColumSize;
         }
@@ -190,7 +188,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                 $sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
             }
         }
-        
+
         //Add required string if element is required
         if ($this->requiredFormat && $oElement->getAttribute('required') && strpos($this->requiredFormat, $sLabelContent) === false) {
             $sLabelContent .= $this->requiredFormat;
@@ -199,7 +197,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
         switch ($sLayout) {
             case null:
             case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-                $sElementContent = $sLabelOpen . $sLabelContent . $sLabelClose . $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
+                if ($this->getLabelPosition() === self::LABEL_PREPEND) {
+                    $sElementContent = $sLabelOpen . $sLabelContent . $sLabelClose . $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
+                } else {
+                    $sElementContent = $this->getElementHelper()->render($oElement) . $sLabelOpen . $sLabelContent . $sLabelClose . $this->renderHelpBlock($oElement);
+                }
 
                 //Render errors
                 if ($this->renderErrors) {
@@ -226,13 +228,19 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                 // Checkbox elements are a  special case. They don't need to render a label again
                 if ($sElementType === 'checkbox') {
                     return sprintf(
-                            self::$horizontalLayoutFormat, '', $sClass, $sElementContent
+                            self::$horizontalLayoutFormat, $sClass, $sElementContent
                     );
                 }
 
-                return sprintf(
-                        self::$horizontalLayoutFormat, $sLabelOpen . $sLabelContent . $sLabelClose, $sClass, $sElementContent
-                );
+                if ($this->getLabelPosition() === self::LABEL_PREPEND) {
+                    return $sLabelOpen . $sLabelContent . $sLabelClose . sprintf(
+                                    self::$horizontalLayoutFormat, $sClass, $sElementContent
+                    );
+                } else {
+                    return sprintf(
+                                    self::$horizontalLayoutFormat, $sClass, $sElementContent
+                            ) . $sLabelOpen . $sLabelContent . $sLabelClose;
+                }
 
             default:
                 throw new \DomainException('Layout "' . $sLayout . '" is not valid');
