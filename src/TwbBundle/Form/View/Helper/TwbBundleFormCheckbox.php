@@ -5,11 +5,6 @@ namespace TwbBundle\Form\View\Helper;
 class TwbBundleFormCheckbox extends \Zend\Form\View\Helper\FormCheckbox {
 
     /**
-     * @var string
-     */
-    private static $checkboxFormat = '<div class="checkbox">%s</div>';
-
-    /**
      * Form label helper instance
      * @var \Zend\Form\View\Helper\FormLabel
      */
@@ -44,21 +39,29 @@ class TwbBundleFormCheckbox extends \Zend\Form\View\Helper\FormCheckbox {
             $aAttributes['checked'] = 'checked';
         }
 
-        //Render label and visible element
-        if (($sLabel = $oElement->getLabel()) && ($oTranslator = $this->getTranslator())) {
-            $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
-        }
-        $oLabelHelper = $this->getLabelHelper();
+        //Render label
+        $sLabelOpen = $sLabelClose = $sLabelContent = '';
 
-        $sElementContent = '';
-        if ($sLabel) {
-            $sElementContent .= $oLabelHelper->openTag($oElement->getLabelAttributes() ? : null);
+        //Render label and visible element
+        if ($sLabelContent = $oElement->getLabel()) {
+            if ($oTranslator = $this->getTranslator()) {
+                $sLabelContent = $oTranslator->translate($sLabelContent, $this->getTranslatorTextDomain());
+            }
+
+
+            $oLabelHelper = $this->getLabelHelper();
+            $sLabelOpen = $oLabelHelper->openTag($oElement->getLabelAttributes() ? : null);
+            $sLabelClose = $oLabelHelper->closeTag();
         }
-        $sElementContent .= sprintf(
-                '<input %s%s', $this->createAttributesString($aAttributes), $sClosingBracket
-        );
-        if ($sLabel) {
-            $sElementContent .= $sLabel . $oLabelHelper->closeTag();
+
+        //Render checkbox
+        $sElementContent = sprintf('<input %s%s', $this->createAttributesString($aAttributes), $sClosingBracket);
+
+        //Add label markup
+        if ($this->getLabelPosition($oElement) === \Zend\Form\View\Helper\FormRow::LABEL_PREPEND) {
+            $sElementContent = $sLabelOpen . ($sLabelContent ? rtrim($sLabelContent) . ' ' : '') . $sElementContent . $sLabelClose;
+        } else {
+            $sElementContent = $sLabelOpen . $sElementContent . ($sLabelContent ? ' ' . ltrim($sLabelContent) : '') . $sLabelClose;
         }
 
         //Render hidden input
@@ -70,7 +73,15 @@ class TwbBundleFormCheckbox extends \Zend\Form\View\Helper\FormCheckbox {
                             )), $sClosingBracket
                     ) . $sElementContent;
         }
-        return $oElement->getOption('disable-twb') ? $sElementContent : sprintf(self::$checkboxFormat, $sElementContent);
+        return $sElementContent;
+    }
+
+    /**
+     * Get the label position
+     * @return string
+     */
+    public function getLabelPosition(\Zend\Form\Element\Checkbox $oElement) {
+        return $oElement->getLabelOption('position')? : \Zend\Form\View\Helper\FormRow::LABEL_APPEND;
     }
 
     /**

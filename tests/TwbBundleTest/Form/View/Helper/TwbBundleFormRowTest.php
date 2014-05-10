@@ -124,11 +124,11 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
 
     public function testRendeCheckboxWithDefinedLabelAttributes() {
         $oElement = new \Zend\Form\Element\Checkbox('test-checkbox');
-        $oElement->setLabel('Test checkobx');
+        $oElement->setLabel('Test checkbox');
         $this->formRowHelper->setLabelAttributes(array('class' => 'test-class'));
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'checkobx-defined-label-attributes.phtml', $this->formRowHelper->__invoke($oElement));
+        $this->assertStringEqualsFile($this->expectedPath . 'checkbox-defined-label-attributes.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
     public function testRendeRadiosWithHorizontalLayout() {

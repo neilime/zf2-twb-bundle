@@ -7,17 +7,22 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
     /**
      * @var string
      */
-    private static $formGroupFormat = '<div class="form-group %s">%s</div>';
+    protected static $formGroupFormat = '<div class="form-group %s">%s</div>';
 
     /**
      * @var string
      */
-    private static $horizontalLayoutFormat = '<div class="%s">%s</div>';
+    protected static $horizontalLayoutFormat = '<div class="%s">%s</div>';
 
     /**
      * @var string
      */
-    private static $helpBlockFormat = '<p class="help-block">%s</p>';
+    protected static $checkboxFormat = '<div class="checkbox">%s</div>';
+
+    /**
+     * @var string
+     */
+    protected static $helpBlockFormat = '<p class="help-block">%s</p>';
 
     /**
      * The class that is added to element that have errors
@@ -90,7 +95,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
         $sElementContent = $this->renderElement($oElement);
 
         //Render form row
-        if (in_array($sElementType, array('checkbox')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
+        if ($sElementType === 'checkbox' && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
             return $sElementContent . PHP_EOL;
         }
         if (($sElementType === 'submit' || $sElementType === 'button' || $sElementType === 'reset') && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE
@@ -131,20 +136,8 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
             //Multicheckbox elements have to be handled differently as the HTML standard does not allow nested labels. The semantic way is to group them inside a fieldset
             $sElementType = $oElement->getAttribute('type');
 
-            //Checkbox & radio elements are a special case, because label is rendered by their own helper
-            if ($sElementType === 'checkbox') {
-                if (!$oElement->getLabelAttributes() && $this->labelAttributes) {
-                    $oElement->setLabelAttributes($this->labelAttributes);
-                }
-
-                //Render element input
-                if ($sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
-                    return $this->getElementHelper()->render($oElement);
-                }
-                $sLabelContent = '';
-            }
             //Button element is a special case, because label is always rendered inside it
-            elseif ($oElement instanceof \Zend\Form\Element\Button) {
+            if ($oElement instanceof \Zend\Form\Element\Button) {
                 $sLabelContent = '';
             } else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
@@ -162,10 +155,12 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                 switch ($sLayout) {
                     //Hide label for "inline" layout
                     case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-                        if (empty($aLabelAttributes['class'])) {
-                            $aLabelAttributes['class'] = 'sr-only';
-                        } elseif (!preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
-                            $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                        if ($sElementType !== 'checkbox') {
+                            if (empty($aLabelAttributes['class'])) {
+                                $aLabelAttributes['class'] = 'sr-only';
+                            } elseif (!preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
+                                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                            }
                         }
                         break;
 
@@ -197,11 +192,22 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
         switch ($sLayout) {
             case null:
             case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-                if ($this->getLabelPosition() === self::LABEL_PREPEND) {
-                    $sElementContent = $sLabelOpen . $sLabelContent . $sLabelClose . $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
+
+                $sElementContent = $this->getElementHelper()->render($oElement);
+
+                // Checkbox elements are a special case, element is already rendered into label
+                if ($sElementType === 'checkbox') {
+                    $sElementContent = sprintf(self::$checkboxFormat, $sElementContent);
                 } else {
-                    $sElementContent = $this->getElementHelper()->render($oElement) . $sLabelOpen . $sLabelContent . $sLabelClose . $this->renderHelpBlock($oElement);
+                    if ($this->getLabelPosition() === self::LABEL_PREPEND) {
+                        $sElementContent = $sLabelOpen . $sLabelContent . $sLabelClose . $sElementContent;
+                    } else {
+                        $sElementContent = $sElementContent . $sLabelOpen . $sLabelContent . $sLabelClose;
+                    }
                 }
+
+                //Render help block
+                $sElementContent .= $this->renderHelpBlock($oElement);
 
                 //Render errors
                 if ($this->renderErrors) {
@@ -225,10 +231,10 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                     $sClass .= ' col-' . $sColumSize;
                 }
 
-                // Checkbox elements are a  special case. They don't need to render a label again
+                // Checkbox elements are a special case, element is rendered into label
                 if ($sElementType === 'checkbox') {
                     return sprintf(
-                            self::$horizontalLayoutFormat, $sClass, $sElementContent
+                            self::$horizontalLayoutFormat, $sClass, sprintf(self::$checkboxFormat, $sElementContent)
                     );
                 }
 
