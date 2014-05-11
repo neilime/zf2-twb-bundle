@@ -160,10 +160,16 @@ The option `disable-twb` can be passed to the element to disable rendering it in
 Checkbox helper can be called in a view with the view helper service `formCheckbox(\Zend\Form\Checkbox $oElement)` :
 
 ```php
-$this->formCheckbox(new \Zend\Form\Element\Checkbox());
+$this->formCheckbox(new \Zend\Form\Element\Checkbox('checkbox-input'));
 ```
-This helper accepts a checkbox element as first param.
-The option `disable-twb` (boolean) can be passed to the element to disable rendering it in a `div` container.
+This helper accepts a checkbox element as first param. As the input is rendered into a label element, the label position (append by default) can passed as an option
+
+```php
+$this->formCheckbox(new \Zend\Form\Element\Checkbox('checkbox-input',array(
+    'label' => 'Prepend label',
+    'label_options' => array('position' => \Zend\Form\View\Helper\FormRow::LABEL_PREPEND)
+)));
+```
 
 #### Form collection : `TwbBundle\Form\View\Helper\TwbBundleFormCollection`
 
@@ -263,6 +269,16 @@ $this->badge('badge message',array('class' => 'pull-right');
 ```
 This helper accepts a message as first param, and attributes for badge container as second param (optionnal).
 The class attribute "badge" is auto added to the badge container.
+
+#### Button group : `TwbBundle\View\Helper\TwbBundleButtonGroup`
+
+Button group helper can be called in a view with the view helper service `buttonGroup(array $aButtons = null, array $aButtonGroupOptions = null)` :
+
+```php
+$this->buttonGroup(array(new \Zend\Form\Element\Button('left', array('label' => 'Left'))),array('class' => 'pull-right');
+```
+This helper accepts an array of buttons as first param, and attributes for button group container as second param (optionnal).
+The buttons can be instance of `\Zend\Form\Element\Button` or array containing data to build an element with the `\Zend\Form\Factory`
 
 #### Glyphicon : `TwbBundle\View\Helper\TwbBundleGlyphicon`
 
