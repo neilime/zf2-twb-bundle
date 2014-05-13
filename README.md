@@ -22,7 +22,7 @@ Contributing
 
 If you wish to contribute to TwbBundle, please read both the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
-Demonstration / exemple
+Demonstration / example
 -----------------------
 
 Render forms, buttons, alerts with TwbBundle : see it in action [on-line](http://neilime.github.com/zf2-twb-bundle/2.0/demo.html).
