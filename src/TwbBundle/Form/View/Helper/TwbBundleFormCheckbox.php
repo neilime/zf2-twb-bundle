@@ -18,6 +18,10 @@ class TwbBundleFormCheckbox extends \Zend\Form\View\Helper\FormCheckbox {
      * @return string
      */
     public function render(\Zend\Form\ElementInterface $oElement) {
+        if ($oElement->getOption('disable-twb')) {
+            return parent::render($oElement);
+        }
+
         if (!$oElement instanceof \Zend\Form\Element\Checkbox) {
             throw new \InvalidArgumentException(sprintf(
                     '%s requires that the element is of type Zend\Form\Element\Checkbox', __METHOD__
