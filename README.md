@@ -256,7 +256,7 @@ This helper accepts an element as first param.
 Alert helper can be called in a view with the view helper service `alert($sAlertMessage = null, $aAlertAttributes = null, $bDismissable = false)` :
 
 ```php
-$this->alert('alert message',array('class' => 'alert-success');
+$this->alert('alert message',array('class' => 'alert-success'));
 ```
 This helper accepts a message as first param, attributes for alert container as second param (optionnal) and boolean as third param to display or not a close action to the alert message (optionnal).
 The class attribute "alert" is auto added to the alert container.
@@ -266,7 +266,7 @@ The class attribute "alert" is auto added to the alert container.
 Badge helper can be called in a view with the view helper service `badge($sBadgeMessage = null, array $aBadgeAttributes = null)` :
 
 ```php
-$this->badge('badge message',array('class' => 'pull-right');
+$this->badge('badge message',array('class' => 'pull-right'));
 ```
 This helper accepts a message as first param, and attributes for badge container as second param (optionnal).
 The class attribute "badge" is auto added to the badge container.
@@ -276,7 +276,7 @@ The class attribute "badge" is auto added to the badge container.
 Button group helper can be called in a view with the view helper service `buttonGroup(array $aButtons = null, array $aButtonGroupOptions = null)` :
 
 ```php
-$this->buttonGroup(array(new \Zend\Form\Element\Button('left', array('label' => 'Left'))),array('class' => 'pull-right');
+$this->buttonGroup(array(new \Zend\Form\Element\Button('left', array('label' => 'Left'))),array('class' => 'pull-right'));
 ```
 This helper accepts an array of buttons as first param, and attributes for button group container as second param (optionnal).
 The buttons can be instance of `\Zend\Form\Element\Button` or array containing data to build an element with the `\Zend\Form\Factory`
@@ -286,7 +286,7 @@ The buttons can be instance of `\Zend\Form\Element\Button` or array containing d
 Glyphicon helper can be called in a view with the view helper service `glyphicon($sGlyphicon = null, array $aGlyphiconAttributes = null)` :
 
 ```php
-$this->glyphicon('star',array('class' => 'pull-right');
+$this->glyphicon('star',array('class' => 'pull-right'));
 ```
 This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for glyphicon element as second param (optionnal).
 The class attribute "glyphicon" is auto added to the glyphicon container.
@@ -324,13 +324,13 @@ This helper accepts dropdown configuration as first param :
 Label helper can be called in a view with the view helper service `label($sLabelMessage  = null, array $aLabelAttributes  = 'label-default')` :
 
 ```php
-$this->label('label message',array('class' => 'label-primary');
+$this->label('label message',array('class' => 'label-primary'));
 ```
 This helper accepts a message as first param, and attributes for label container as second param (optionnal).
 The class attribute "label" is auto added to the label container and "label-default" is no attributes is given. Default label container is a span, but it can be changed by passing the tag name in the attributes array :
 
 ```php
-$this->label('label message',array('class' => 'label-primary','tagName' => 'a');
+$this->label('label message',array('class' => 'label-primary','tagName' => 'a'));
 ```
 ## Elements
 
