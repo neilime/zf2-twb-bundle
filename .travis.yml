@@ -1,19 +1,21 @@
 language: php
 
 php:
- - 5.3
- - 5.4
+ - "5.3"
+ - "5.4"
 
 before_install:
+# Set the GitHub OAuth token to make use of the 6000 per hour rate limit
+ - mkdir -p ~/.composer
+ - cp .travis.composer.json ~/.composer/config.json
+# Update composer
  - composer self-update
+# Install project
  - composer install --dev -o
 
 before_script:
- - mkdir -p build/logs
  - cd tests
-
-script:
- - phpunit -c ./ --coverage-text --coverage-clover ../build/logs/clover.xml
  
-after_script:
-  - php vendor/bin/coveralls -v
+script:
+ - phpunit -d max_execution_time=0
+ - php ./coverage-checker.php ./clover.xml 100
