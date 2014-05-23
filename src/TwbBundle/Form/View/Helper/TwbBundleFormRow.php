@@ -86,7 +86,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
 
         //Column size
         if (
-                ($sColumSize = $oElement->getOption('column-size')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL
+                ($sColumSize = $oElement->getOption('column-size')) && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE
         ) {
             $sRowClass .= ' col-' . $sColumSize;
         }
@@ -191,31 +191,6 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
 
         switch ($sLayout) {
             case null:
-            case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-
-                $sElementContent = $this->getElementHelper()->render($oElement);
-
-                // Checkbox elements are a special case, element is already rendered into label
-                if ($sElementType === 'checkbox') {
-                    $sElementContent = sprintf(self::$checkboxFormat, $sElementContent);
-                } else {
-                    if ($this->getLabelPosition() === self::LABEL_PREPEND) {
-                        $sElementContent = $sLabelOpen . $sLabelContent . $sLabelClose . $sElementContent;
-                    } else {
-                        $sElementContent = $sElementContent . $sLabelOpen . $sLabelContent . $sLabelClose;
-                    }
-                }
-
-                //Render help block
-                $sElementContent .= $this->renderHelpBlock($oElement);
-
-                //Render errors
-                if ($this->renderErrors) {
-                    $sElementContent .= $this->getElementErrorsHelper()->render($oElement);
-                }
-
-                return $sElementContent;
-
             case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
                 $sElementContent = $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
 
@@ -247,6 +222,32 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                                     self::$horizontalLayoutFormat, $sClass, $sElementContent
                             ) . $sLabelOpen . $sLabelContent . $sLabelClose;
                 }
+            case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
+
+                $sElementContent = $this->getElementHelper()->render($oElement);
+
+                // Checkbox elements are a special case, element is already rendered into label
+                if ($sElementType === 'checkbox') {
+                    $sElementContent = sprintf(self::$checkboxFormat, $sElementContent);
+                } else {
+                    if ($this->getLabelPosition() === self::LABEL_PREPEND) {
+                        $sElementContent = $sLabelOpen . $sLabelContent . $sLabelClose . $sElementContent;
+                    } else {
+                        $sElementContent = $sElementContent . $sLabelOpen . $sLabelContent . $sLabelClose;
+                    }
+                }
+
+                //Render help block
+                $sElementContent .= $this->renderHelpBlock($oElement);
+
+                //Render errors
+                if ($this->renderErrors) {
+                    $sElementContent .= $this->getElementErrorsHelper()->render($oElement);
+                }
+
+                return $sElementContent;
+
+           
 
             default:
                 throw new \DomainException('Layout "' . $sLayout . '" is not valid');
