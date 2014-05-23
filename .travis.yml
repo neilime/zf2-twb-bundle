@@ -11,7 +11,7 @@ before_install:
 # Update composer
  - composer self-update
 # Install project
- - composer install --dev -o
+ - composer install --prefer-dist --dev
 
 before_script:
  - cd tests
