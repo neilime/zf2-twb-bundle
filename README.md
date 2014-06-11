@@ -299,25 +299,25 @@ Dropdown helper can be called in a view with the view helper service `dropdown(a
 $this->dropdown(array('Item #1',\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER,'Item #2'));
 ```
 This helper accepts dropdown configuration as first param :
-    * `attributes` (array) : attributes for the dropdown container (optionnal)
-    * `label` (scalar) : Label content (will be translated), may be empty (optionnal)
-    * `toggle_attributes` (array) : attributes for the dropdown toggle container (optionnal)
-    * `items` (array) : list of items, should contains :
-        * `scalar` :
-            * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER` : display a divider
-            * `text` : display a text (translated) into a link (anchor attribute is the same as content)
-        * `array` : the item options :
-            * `type` (string) : the type of item
-                * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER` : render an item as header
-                It needs the following option :
-                    * `label` (scalar) content text  (translated) of the item
-               * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER` : render a divider
-               * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_LINK` : render an item as a link `<a ...>`
-                It needs the following option :
-                    * `label` (scalar) content text  (translated) of the item
-                    * `item_attributes` (array) : attributes for the item container (optionnal)
-            * `attributes` (array) : the attributes of the item container
-    * `list_attributes` (array) : attributes for the dropdown list container (optionnal)
+ * `attributes` (array) : attributes for the dropdown container (optionnal)
+ * `label` (scalar) : Label content (will be translated), may be empty (optionnal)
+ * `toggle_attributes` (array) : attributes for the dropdown toggle container (optionnal)
+ * `items` (array) : list of items, should contains :
+  * `scalar` :
+   * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER` : display a divider
+   * `text` : display a text (translated) into a link (anchor attribute is the same as content)
+  * `array` : the item options :
+   * `type` (string) : the type of item
+    * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER` : render an item as header
+    It needs the following option :
+     * `label` (scalar) content text  (translated) of the item
+      * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER` : render a divider
+      * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_LINK` : render an item as a link `<a ...>`
+    It needs the following option :
+     * `label` (scalar) content text  (translated) of the item
+     * `item_attributes` (array) : attributes for the item container (optionnal)
+   * `attributes` (array) : the attributes of the item container
+ * `list_attributes` (array) : attributes for the dropdown list container (optionnal)
 
 #### Label : `TwbBundle\View\Helper\TwbBundleLabel`
 
