@@ -180,7 +180,13 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
 
                 $sLabelOpen = $oLabelHelper->openTag($oElement->getAttribute('id') ? $oElement : $aLabelAttributes);
                 $sLabelClose = $oLabelHelper->closeTag();
-                $sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
+                
+                // Allow label html escape desable
+                //$sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
+                
+                if (! $oElement instanceof \Zend\Form\LabelAwareInterface || ! $oElement->getLabelOption('disable_html_escape')) {
+                	$sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
+                }
             }
         }
 
