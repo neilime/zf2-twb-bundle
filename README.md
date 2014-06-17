@@ -240,6 +240,15 @@ The option `validation-state` (string) can be passed to the element to render th
 The option `column-size` (int) can be passed to the element to render the row with a defined column size class attribute(`col-lg-...`).
 The option `help-block` (string) can be passed to the element to render an help block translated appending the element.
 
+You can allow the label html rendering after toggling off escape :
+
+```php
+$this->formRow(new \Zend\Form\Element('my-element',  array(
+    'label' => 'My <i>Label</i> :', 
+    'label_options' => array('disable_html_escape' => true)
+)));
+```
+
 #### Static : `TwbBundle\Form\View\Helper\TwbBundleFormStatic`
 
 Static helper can be called in a view with the view helper service `formStatic(\Zend\Form\ElementInterface $oElement)` :
