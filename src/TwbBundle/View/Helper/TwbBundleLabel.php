@@ -4,7 +4,7 @@ class TwbBundleLabel extends \Zend\Form\View\Helper\AbstractHelper{
 	/**
 	 * @var string
 	 */
-	private static $labelFormat = '<%s %s>%s</span>';
+	private static $labelFormat = '<%s %s>%s</%1$s>';
 
     /**
      * @var string
