@@ -26,6 +26,8 @@ return array(
             'formErrors' => 'TwbBundle\Form\View\Helper\TwbBundleFormErrors',
             //Glyphicon
             'glyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
+            //FontAwesome
+            'fontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
             //Label
             'label' => 'TwbBundle\View\Helper\TwbBundleLabel'
         )
