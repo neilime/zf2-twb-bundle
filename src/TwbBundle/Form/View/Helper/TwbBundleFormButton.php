@@ -71,7 +71,11 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton
         }
 
         //Retrieve glyphicon options
-        $aGlyphiconOptions = $oElement->getOption('glyphicon');
+        if (null !== ($aGlyphiconOptions = $oElement->getOption('glyphicon'))) {
+            $helperMethod = 'glyphicon';
+        } elseif (null !== ($aGlyphiconOptions = $oElement->getOption('fontAwesome'))) {
+            $helperMethod = 'fontAwesome';
+        }
 
         //Define button content
         if (null === $sButtonContent) {
@@ -117,14 +121,14 @@ class TwbBundleFormButton extends \Zend\Form\View\Helper\FormButton
 
             if ($sButtonContent) {
                 if($aGlyphiconOptions['position'] === self::GLYPHICON_PREPEND) {
-                    $sButtonContent = $this->getView()->glyphicon($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null).' '.$sButtonContent;
+                    $sButtonContent = $this->getView()->{$helperMethod}($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null).' '.$sButtonContent;
                 }
                 else {
-                    $sButtonContent .= ' '.$this->getView()->glyphicon($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null);
+                    $sButtonContent .= ' '.$this->getView()->{$helperMethod}($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null);
                 }
             }
             else{
-                $sButtonContent = $this->getView()->glyphicon($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null);
+                $sButtonContent = $this->getView()->{$helperMethod}($aGlyphiconOptions['icon'],isset($aGlyphiconOptions['attributes'])?$aGlyphiconOptions['attributes']:null);
             }
         }
 
