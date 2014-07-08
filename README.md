@@ -104,7 +104,7 @@ Installation
 
 ###### Manually
 
-* Copy `bootstrap.css` file (available on Twitter Bootstrap website(https://github.com/twbs/bootstrap/archive/v3.0.0.zip)) into your assets folder and add it in your head scripts
+* Copy `bootstrap.css` file (available on Twitter Bootstrap website(https://github.com/twbs/bootstrap/archive/v3.0.0.zip) into your assets folder and add it in your head scripts
 
 # How to use __TwbBundle__
 
