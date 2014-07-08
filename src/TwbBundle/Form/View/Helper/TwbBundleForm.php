@@ -5,7 +5,6 @@ class TwbBundleForm extends \Zend\Form\View\Helper\Form
 {
     const LAYOUT_HORIZONTAL = 'horizontal';
     const LAYOUT_INLINE = 'inline';
-    const LAYOUT_SEARCH = 'search';
 
     /**
      * @var string
