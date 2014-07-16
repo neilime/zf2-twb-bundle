@@ -300,6 +300,16 @@ $this->glyphicon('star',array('class' => 'pull-right'));
 This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for glyphicon element as second param (optionnal).
 The class attribute "glyphicon" is auto added to the glyphicon container.
 
+#### FontAwesome : `TwbBundle\View\Helper\TwbBundleFontAwesome`
+
+FontAwesome helper can be called in a view with the view helper service `fontAwesome($sFontAwesome = null, array $aFontAwesomeAttributes = null)` :
+
+```php
+$this->fontAwesome('star',array('class' => 'pull-right'));
+```
+This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for fontAwesome element as second param (optionnal).
+The class attribute "fa" is auto added to the fontAwesome container.
+
 #### Dropdown : `TwbBundle\View\Helper\TwbBundleDropDown`
 
 Dropdown helper can be called in a view with the view helper service `dropdown(array $aDropdownOptions = null)` :
