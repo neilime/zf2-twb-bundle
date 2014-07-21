@@ -1,8 +1,6 @@
 TwbBundle, v2.0
 =====================
-(Twitter Bootstrap v3.*)
-
-Work in progress to supports Twitter Bootstrap v3.*
+(Supports Twitter Bootstrap v3.*)
 
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
 [![Coverage Status](https://coveralls.io/repos/neilime/zf2-twb-bundle/badge.png)](https://coveralls.io/r/neilime/zf2-twb-bundle)
