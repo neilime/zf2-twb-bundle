@@ -1,61 +1,515 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<title>TwbBundle</title>
-	
-	<link rel="stylesheet" href="stylesheets/styles.css">
-	<link rel="stylesheet" href="stylesheets/pygment_trac.css">
-	<script src="javascripts/scale.fix.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-</head>
-<body>
-<div class="wrapper">
-	<header>
-		<h1 class="header">TwbBundle</h1>
-		<p class="header">Zend Framework 2 module for easy integration of Twitter Bootstrap</p>
-		<ul>
-			<li class="download"><a class="buttons" href="https://github.com/neilime/zf2-twb-bundle/zipball/master">Download ZIP</a></li>
-			<li class="download"><a class="buttons" href="https://github.com/neilime/zf2-twb-bundle/tarball/master">Download TAR</a></li>
-			<li><a class="buttons github" href="https://github.com/neilime/zf2-twb-bundle">View On GitHub</a></li>
-		</ul>
-		<p class="header">This project is maintained by <a class="header name" href="https://github.com/neilime">Neilime</a></p>
-	</header>
-	<section>
-      	<h1>TwbBundle</h1>
-		<p>
-			<a href="https://travis-ci.org/neilime/zf2-twb-bundle"><img src="https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master" alt="Build Status" style="max-width:100%;"></a>
-			<a href="https://packagist.org/packages/neilime/zf2-twb-bundle"><img src="https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png" alt="Latest Stable Version" style="max-width:100%;"></a>
-			<a href="https://packagist.org/packages/neilime/zf2-twb-bundle"><img src="https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png" alt="Total Downloads" style="max-width:100%;"></a>
-			<a href="https://raw.github.com/zf2-boiler-app/app-test/master/ressources/100%25-code-coverage.png" target="_blank"><img src="https://raw.github.com/zf2-boiler-app/app-test/master/ressources/100%25-code-coverage.png" alt="Code coverage" title="100% code coverage" style="max-width:100%;"></a>
-		</p>
-		<p>NOTE : If you want to contribute don't hesitate, I'll review any PR.</p>
-		<h2>Introduction</h2>
-		<p><strong>TwbBundle</strong> is a module for Zend Framework 2, for easy integration of the <a href="http://getbootstrap.com/">Twitter Bootstrap</a>. </p>
-		<h2>Demonstration / exemple</h2>
-		<div>
-			Render forms, buttons, alerts with TwbBundle, see it in action on-line:
-			<ul>
-				<li><a href="http://neilime.github.com/zf2-twb-bundle/2.0/demo.html">Twitter Bootstrap v3.0</a></li>
-				<li><a href="http://neilime.github.com/zf2-twb-bundle/1.0/demo.html">Twitter Bootstrap v2.3.2</a></li>
-			</ul>
-		</div>
-		<h2>Installation / How to</h2>
-		<div>
-			<ul>
-				<li><a href="http://neilime.github.com/zf2-twb-bundle/2.0/installation.html">Twitter Bootstrap v3.0</a></li>
-				<li><a href="http://neilime.github.com/zf2-twb-bundle/1.0/installation.html">Twitter Bootstrap v2.3.2</a></li>
-			</ul>
-		</div>
-	</section>
-	<footer>
-		<p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-	</footer>
-</div>
-<!--[if !IE]><script>fixScale(document);</script><![endif]-->
-</body>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Zf2-twb-bundle by neilime</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Zf2-twb-bundle</h1>
+        <h2>Zend Framework 2 module for easy integration of Twitter Bootstrap</h2>
+        <a href="https://github.com/neilime/zf2-twb-bundle" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="twbbundle-v20" class="anchor" href="#twbbundle-v20"><span class="octicon octicon-link"></span></a>TwbBundle, v2.0</h1>
+
+<p>(Twitter Bootstrap v3.*)</p>
+
+<p>Work in progress to supports Twitter Bootstrap v3.*</p>
+
+<p><a href="https://travis-ci.org/neilime/zf2-twb-bundle"><img src="https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/r/neilime/zf2-twb-bundle"><img src="https://coveralls.io/repos/neilime/zf2-twb-bundle/badge.png" alt="Coverage Status"></a>
+<a href="https://packagist.org/packages/neilime/zf2-twb-bundle"><img src="https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/neilime/zf2-twb-bundle"><img src="https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png" alt="Total Downloads"></a>
+<a href="https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046"><img src="https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046/badge.png" alt="Dependency Status"></a></p>
+
+<p>NOTE : If you want to contribute don't hesitate, I'll review any PR.</p>
+
+<h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p><strong>TwbBundle</strong> is a module for Zend Framework 2, for easy integration of the <a href="https://github.com/twbs/bootstrap">Twitter Bootstrap v3.*</a>.</p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>If you wish to contribute to TwbBundle, please read both the <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> file.</p>
+
+<h2>
+<a name="demonstration--example" class="anchor" href="#demonstration--example"><span class="octicon octicon-link"></span></a>Demonstration / example</h2>
+
+<p>Render forms, buttons, alerts with TwbBundle : see it in action <a href="http://neilime.github.com/zf2-twb-bundle/2.0/demo.html">on-line</a>.</p>
+
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>
+<a href="https://github.com/zendframework/zf2">Zend Framework 2</a> (2.*)</li>
+<li>
+<a href="https://github.com/twbs/bootstrap">Twitter Bootstrap</a> (v3.*)</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a name="main-setup" class="anchor" href="#main-setup"><span class="octicon octicon-link"></span></a>Main Setup</h3>
+
+<h4>
+<a name="by-cloning-project-manual" class="anchor" href="#by-cloning-project-manual"><span class="octicon octicon-link"></span></a>By cloning project (manual)</h4>
+
+<ol>
+<li>Clone this project into your <code>./vendor/</code> directory.</li>
+<li>(Optionnal) Clone the <a href="https://github.com/twbs/bootstrap">Twitter bootstrap project</a> (v3.*) into your <code>./vendor/</code> directory.</li>
+</ol><h4>
+<a name="with-composer-the-faster-way" class="anchor" href="#with-composer-the-faster-way"><span class="octicon octicon-link"></span></a>With composer (the faster way)</h4>
+
+<ol>
+<li>
+<p>Add this project in your composer.json:</p>
+
+<div class="highlight highlight-json"><pre><span class="s2">"require"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">"neilime/zf2-twb-bundle"</span><span class="p">:</span> <span class="s2">"2.*@stable"</span>
+<span class="p">}</span>
+</pre></div>
+</li>
+<li>
+<p>Now tell composer to download <strong>TwbBundle</strong> by running the command:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>php composer.phar update
+</pre></div>
+</li>
+</ol><h4>
+<a name="post-installation" class="anchor" href="#post-installation"><span class="octicon octicon-link"></span></a>Post installation</h4>
+
+<ol>
+<li>
+<p>Enabling it in your <code>application.config.php</code> file.</p>
+
+<div class="highlight highlight-php"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'modules'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="c1">// ...</span>
+        <span class="s1">'TwbBundle'</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="c1">// ...</span>
+<span class="p">);</span>
+</pre></div>
+</li>
+<li><p>Include Twitter Bootstrap assets</p></li>
+</ol><h6>
+<a name="with-assetsbundle-module-easy-way" class="anchor" href="#with-assetsbundle-module-easy-way"><span class="octicon octicon-link"></span></a>With <strong>AssetsBundle</strong> module (easy way)</h6>
+
+<ul>
+<li>Install the <a href="https://github.com/neilime/zf2-twb-bundle/tree/1.0">AssetsBundle module</a>(1.0)</li>
+<li>Install <a href="https://github.com/twbs/bootstrap/tree/v2.3.2">Twitter Bootstrap</a> (v2.3.2)</li>
+<li>
+<p>Edit the application module configuration file <code>module/Application/config/module.config.php</code>, adding the configuration fragment below:</p>
+
+<div class="highlight highlight-php"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="c1">//...</span>
+     <span class="s1">'asset_bundle'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+         <span class="s1">'assets'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+             <span class="s1">'less'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'@zfRootPath/vendor/twitter/bootstrap/less/bootstrap.less'</span><span class="p">)</span>
+         <span class="p">)</span>
+     <span class="p">),</span>
+     <span class="c1">//...</span>
+ <span class="p">);</span>
+</pre></div>
+</li>
+<li>
+<p>Edit layout file <code>module/Application/view/layout/layout.phtml</code>, to render head scripts :</p>
+
+<div class="highlight highlight-php"><pre><span class="c1">//...</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headScript</span><span class="p">();</span>
+<span class="c1">//...</span>
+</pre></div>
+</li>
+</ul><h6>
+<a name="manually" class="anchor" href="#manually"><span class="octicon octicon-link"></span></a>Manually</h6>
+
+<ul>
+<li>Copy <code>bootstrap.css</code> file (available on Twitter Bootstrap website(<a href="https://github.com/twbs/bootstrap/archive/v3.0.0.zip">https://github.com/twbs/bootstrap/archive/v3.0.0.zip</a>) into your assets folder and add it in your head scripts</li>
+</ul><h1>
+<a name="how-to-use-twbbundle" class="anchor" href="#how-to-use-twbbundle"><span class="octicon octicon-link"></span></a>How to use <strong>TwbBundle</strong>
+</h1>
+
+<h2>
+<a name="view-helpers" class="anchor" href="#view-helpers"><span class="octicon octicon-link"></span></a>View helpers</h2>
+
+<p><strong>TwbBundle</strong> provides view helpers helping render html elements</p>
+
+<h3>
+<a name="forms" class="anchor" href="#forms"><span class="octicon octicon-link"></span></a>Forms</h3>
+
+<h4>
+<a name="form--twbbundleformviewhelpertwbbundleform" class="anchor" href="#form--twbbundleformviewhelpertwbbundleform"><span class="octicon octicon-link"></span></a>Form : <code>TwbBundle\Form\View\Helper\TwbBundleForm</code>
+</h4>
+
+<p>Form helper can be called in a view with the view helper service <code>form(\Zend\Form\FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts a form element as first param, and an optionnal Bootstrap defined layout style definition as second param.
+Here are the available layouts :</p>
+
+<ul>
+<li>
+<code>TwbBundle\Form\View\Helper::LAYOUT_HORIZONTAL</code> : horizontal (default)</li>
+<li>
+<code>TwbBundle\Form\View\Helper::LAYOUT_INLINE</code> : inline</li>
+</ul><p>The helper auto add form specific class and <code>form</code> role attributes.</p>
+
+<h4>
+<a name="button--twbbundleformviewhelpertwbbundleformbutton" class="anchor" href="#button--twbbundleformviewhelpertwbbundleformbutton"><span class="octicon octicon-link"></span></a>Button : <code>TwbBundle\Form\View\Helper\TwbBundleFormButton</code>
+</h4>
+
+<p>Button helper can be called in a view with the view helper service <code>formButton(\Zend\Form\ElementInterface $oElement, $sButtonContent = null)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts a button element as first param, and an optionnal button content as second param.
+It auto add button specific class (<code>btn</code> &amp; <code>btn-default</code> is no button class is defined) attribute.</p>
+
+<p>The option <code>glyphicon</code> (string or array) can be defined to render a glyphicon into the element :
+The glyphicon is rendered by the <a href="#glyphicon--twbbundleviewhelpertwbbundleglyphicon">glyphicon renderer</a>.</p>
+
+<p>If the option is a string, it should be the name of the icon (e.g. "star", "search" ...), the glyphicon will prepend the label if exists. If the option is an array, it accept the folling options :</p>
+
+<ul>
+<li>string <code>icon</code> : the name of the icon (e.g. "star", "search" ...).</li>
+<li>string <code>position</code> : (optionnal) the position of the glyphicon to prepend or append the button content, <code>\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_PREPEND</code> (the default) and <code>\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_APPEND</code>.</li>
+<li>array <code>attributes</code> : (optionnal) the additional attributes to the glyphicon element</li>
+</ul><p>Button can be set as dropdown button by defined the option <code>dropdown</code> (array) to the element :
+The dropdown is rendered by the <a href="#dropdown--twbbundleviewhelpertwbbundledropdown">dropdown renderer</a>, it accept the folling additionnal options :</p>
+
+<ul>
+<li>boolean <code>split</code> : the button element and the carret are splitted.</li>
+<li>boolean <code>dropup</code> : render a dropup element instead of a dropdown.</li>
+</ul><p>The option <code>disable-twb</code> can be passed to the element to disable rendering it in a <code>div</code> container.</p>
+
+<h4>
+<a name="checkbox--twbbundleformviewhelpertwbbundleformcheckbox" class="anchor" href="#checkbox--twbbundleformviewhelpertwbbundleformcheckbox"><span class="octicon octicon-link"></span></a>Checkbox : <code>TwbBundle\Form\View\Helper\TwbBundleFormCheckbox</code>
+</h4>
+
+<p>Checkbox helper can be called in a view with the view helper service <code>formCheckbox(\Zend\Form\Checkbox $oElement)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Checkbox</span><span class="p">(</span><span class="s1">'checkbox-input'</span><span class="p">));</span>
+</pre></div>
+
+<p>This helper accepts a checkbox element as first param. As the input is rendered into a label element, the label position (append by default) can passed as an option
+The option <code>disable-twb</code> (boolean) can be passed to the element to disable rendering it in a <code>label</code>.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Checkbox</span><span class="p">(</span><span class="s1">'checkbox-input'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Prepend label'</span><span class="p">,</span>
+    <span class="s1">'label_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="nx">\Zend\Form\View\Helper\FormRow</span><span class="o">::</span><span class="na">LABEL_PREPEND</span><span class="p">)</span>
+<span class="p">)));</span>
+</pre></div>
+
+<h4>
+<a name="form-collection--twbbundleformviewhelpertwbbundleformcollection" class="anchor" href="#form-collection--twbbundleformviewhelpertwbbundleformcollection"><span class="octicon octicon-link"></span></a>Form collection : <code>TwbBundle\Form\View\Helper\TwbBundleFormCollection</code>
+</h4>
+
+<p>Form collection helper can be called in a view with the view helper service <code>formCollection(\Zend\Form\ElementInterface $oElement)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCollection</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts a form collection (fieldset) element as first param.</p>
+
+<h4>
+<a name="form-element--twbbundleformviewhelpertwbbundleformelement" class="anchor" href="#form-element--twbbundleformviewhelpertwbbundleformelement"><span class="octicon octicon-link"></span></a>Form element : <code>TwbBundle\Form\View\Helper\TwbBundleFormElement</code>
+</h4>
+
+<p>Form element helper can be called in a view with the view helper service <code>formElement(\Zend\Form\ElementInterface $oElement)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts a form element as first param. This helper can render prepend and/or append add-on by setting the appropriate option <code>add-on-prepend</code> and/or <code>add-on-append</code> to the element.
+These options accept the following values :</p>
+
+<ul>
+<li>
+<code>Zend\Form\ElementInterface</code> : the element will be rendered in the add-on</li>
+<li>
+<code>scalar</code> : the value will be translated and rendered in the add-on</li>
+<li>
+<code>array</code> :
+The array accept once of the following keys :
+
+<ul>
+<li>
+<code>text</code> (scalar) : the value will be translated and rendered in the add-on</li>
+<li>
+<code>element</code> (array) : An element will be created by \Zend\Form\Factory and the given array, then rendered in the add-on</li>
+<li>
+<code>element</code> (Zend\Form\ElementInterface) : the element will be rendered in the add-on</li>
+</ul>
+</li>
+</ul><h4>
+<a name="form-element-errors--twbbundleformviewhelpertwbbundleformelementerrors" class="anchor" href="#form-element-errors--twbbundleformviewhelpertwbbundleformelementerrors"><span class="octicon octicon-link"></span></a>Form element errors : <code>TwbBundle\Form\View\Helper\TwbBundleFormElementErrors</code>
+</h4>
+
+<p>Form element errors helper can be called in a view with the view helper service <code>formElementErrors(\Zend\Form\ElementInterface $oElement)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElementErrors</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts a form element as first param. This helper render element's errors.</p>
+
+<h4>
+<a name="multi-checkbox--twbbundleformviewhelpertwbbundleformmulticheckbox" class="anchor" href="#multi-checkbox--twbbundleformviewhelpertwbbundleformmulticheckbox"><span class="octicon octicon-link"></span></a>Multi-Checkbox : <code>TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox</code>
+</h4>
+
+<p>Multi-Checkbox helper can be called in a view with the view helper service <code>formMultiCheckbox(\Zend\Form\ElementInterface $oElement)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formMultiCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts an element as first param.
+The option <code>inline</code> (boolean) can be passed to the element to display checkoxes inlined (default) or not.</p>
+
+<h4>
+<a name="radio--twbbundleformviewhelpertwbbundleformradio" class="anchor" href="#radio--twbbundleformviewhelpertwbbundleformradio"><span class="octicon octicon-link"></span></a>Radio : <code>TwbBundle\Form\View\Helper\TwbBundleFormRadio</code>
+</h4>
+
+<p>Radio helper can be called in a view with the view helper service <code>formCheckbox(\Zend\Form\ElementInterface $oElement)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRadio</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts an element as first param.
+The option <code>disable-twb</code> (boolean) can be passed to the element to disable rendering it in a <code>div</code> container.</p>
+
+<h4>
+<a name="form-row--twbbundleformviewhelpertwbbundleformrow" class="anchor" href="#form-row--twbbundleformviewhelpertwbbundleformrow"><span class="octicon octicon-link"></span></a>Form row : <code>TwbBundle\Form\View\Helper\TwbBundleFormRow</code>
+</h4>
+
+<p>Form element helper can be called in a view with the view helper service <code>formRow(\Zend\Form\ElementInterface $oElement)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts a form element as first param.
+The option <code>twb-layout</code> (string) can be passed to the element to render the row with a defined layout style as <a href="#form--twbbundleformviewhelpertwbbundleform">form helper</a>.
+The option <code>validation-state</code> (string) can be passed to the element to render the row with a defined validation state class attribute(<code>has-...</code>). If the element has messages, <code>has-error</code> class attribute is auto added.
+The option <code>column-size</code> (int) can be passed to the element to render the row with a defined column size class attribute(<code>col-lg-...</code>).
+The option <code>help-block</code> (string) can be passed to the element to render an help block translated appending the element.</p>
+
+<p>You can allow the label html rendering after toggling off escape :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'my-element'</span><span class="p">,</span>  <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'My &lt;i&gt;Label&lt;/i&gt; :'</span><span class="p">,</span> 
+    <span class="s1">'label_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'disable_html_escape'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">)));</span>
+</pre></div>
+
+<h4>
+<a name="static--twbbundleformviewhelpertwbbundleformstatic" class="anchor" href="#static--twbbundleformviewhelpertwbbundleformstatic"><span class="octicon octicon-link"></span></a>Static : <code>TwbBundle\Form\View\Helper\TwbBundleFormStatic</code>
+</h4>
+
+<p>Static helper can be called in a view with the view helper service <code>formStatic(\Zend\Form\ElementInterface $oElement)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formStatic</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
+</pre></div>
+
+<p>This helper accepts an element as first param.</p>
+
+<h3>
+<a name="mixed" class="anchor" href="#mixed"><span class="octicon octicon-link"></span></a>Mixed</h3>
+
+<h4>
+<a name="alert--twbbundleviewhelpertwbbundlealert" class="anchor" href="#alert--twbbundleviewhelpertwbbundlealert"><span class="octicon octicon-link"></span></a>Alert : <code>TwbBundle\View\Helper\TwbBundleAlert</code>
+</h4>
+
+<p>Alert helper can be called in a view with the view helper service <code>alert($sAlertMessage = null, $aAlertAttributes = null, $bDismissable = false)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span><span class="s1">'alert message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'alert-success'</span><span class="p">));</span>
+</pre></div>
+
+<p>This helper accepts a message as first param, attributes for alert container as second param (optionnal) and boolean as third param to display or not a close action to the alert message (optionnal).
+The class attribute "alert" is auto added to the alert container.</p>
+
+<h4>
+<a name="badge--twbbundleviewhelpertwbbundlebadge" class="anchor" href="#badge--twbbundleviewhelpertwbbundlebadge"><span class="octicon octicon-link"></span></a>Badge : <code>TwbBundle\View\Helper\TwbBundleBadge</code>
+</h4>
+
+<p>Badge helper can be called in a view with the view helper service <code>badge($sBadgeMessage = null, array $aBadgeAttributes = null)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">badge</span><span class="p">(</span><span class="s1">'badge message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
+</pre></div>
+
+<p>This helper accepts a message as first param, and attributes for badge container as second param (optionnal).
+The class attribute "badge" is auto added to the badge container.</p>
+
+<h4>
+<a name="button-group--twbbundleviewhelpertwbbundlebuttongroup" class="anchor" href="#button-group--twbbundleviewhelpertwbbundlebuttongroup"><span class="octicon octicon-link"></span></a>Button group : <code>TwbBundle\View\Helper\TwbBundleButtonGroup</code>
+</h4>
+
+<p>Button group helper can be called in a view with the view helper service <code>buttonGroup(array $aButtons = null, array $aButtonGroupOptions = null)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buttonGroup</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'left'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Left'</span><span class="p">))),</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
+</pre></div>
+
+<p>This helper accepts an array of buttons as first param, and attributes for button group container as second param (optionnal).
+The buttons can be instance of <code>\Zend\Form\Element\Button</code> or array containing data to build an element with the <code>\Zend\Form\Factory</code></p>
+
+<h4>
+<a name="glyphicon--twbbundleviewhelpertwbbundleglyphicon" class="anchor" href="#glyphicon--twbbundleviewhelpertwbbundleglyphicon"><span class="octicon octicon-link"></span></a>Glyphicon : <code>TwbBundle\View\Helper\TwbBundleGlyphicon</code>
+</h4>
+
+<p>Glyphicon helper can be called in a view with the view helper service <code>glyphicon($sGlyphicon = null, array $aGlyphiconAttributes = null)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">glyphicon</span><span class="p">(</span><span class="s1">'star'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
+</pre></div>
+
+<p>This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for glyphicon element as second param (optionnal).
+The class attribute "glyphicon" is auto added to the glyphicon container.</p>
+
+<h4>
+<a name="fontawesome--twbbundleviewhelpertwbbundlefontawesome" class="anchor" href="#fontawesome--twbbundleviewhelpertwbbundlefontawesome"><span class="octicon octicon-link"></span></a>FontAwesome : <code>TwbBundle\View\Helper\TwbBundleFontAwesome</code>
+</h4>
+
+<p>FontAwesome helper can be called in a view with the view helper service <code>fontAwesome($sFontAwesome = null, array $aFontAwesomeAttributes = null)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fontAwesome</span><span class="p">(</span><span class="s1">'star'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
+</pre></div>
+
+<p>This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for fontAwesome element as second param (optionnal).
+The class attribute "fa" is auto added to the fontAwesome container.</p>
+
+<h4>
+<a name="dropdown--twbbundleviewhelpertwbbundledropdown" class="anchor" href="#dropdown--twbbundleviewhelpertwbbundledropdown"><span class="octicon octicon-link"></span></a>Dropdown : <code>TwbBundle\View\Helper\TwbBundleDropDown</code>
+</h4>
+
+<p>Dropdown helper can be called in a view with the view helper service <code>dropdown(array $aDropdownOptions = null)</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dropdown</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Item #1'</span><span class="p">,</span><span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span><span class="s1">'Item #2'</span><span class="p">));</span>
+</pre></div>
+
+<p>This helper accepts dropdown configuration as first param :</p>
+
+<ul>
+<li>
+<code>attributes</code> (array) : attributes for the dropdown container (optionnal)</li>
+<li>
+<code>label</code> (scalar) : Label content (will be translated), may be empty (optionnal)</li>
+<li>
+<code>toggle_attributes</code> (array) : attributes for the dropdown toggle container (optionnal)</li>
+<li>
+<code>items</code> (array) : list of items, should contains :
+
+<ul>
+<li>
+<code>scalar</code> :</li>
+<li>
+<code>\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER</code> : display a divider</li>
+<li>
+<code>text</code> : display a text (translated) into a link (anchor attribute is the same as content)</li>
+<li>
+<code>array</code> : the item options :</li>
+<li>
+<code>type</code> (string) : the type of item</li>
+<li>
+<code>\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER</code> : render an item as header
+It needs the following option :
+
+<ul>
+<li>
+<code>label</code> (scalar) content text  (translated) of the item</li>
+<li>
+<code>\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER</code> : render a divider</li>
+<li>
+<code>\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_LINK</code> : render an item as a link <code>&lt;a ...&gt;</code>
+It needs the following option :</li>
+<li>
+<code>label</code> (scalar) content text  (translated) of the item</li>
+<li>
+<code>item_attributes</code> (array) : attributes for the item container (optionnal)</li>
+</ul>
+</li>
+<li>
+<code>attributes</code> (array) : the attributes of the item container</li>
+</ul>
+</li>
+<li>
+<code>list_attributes</code> (array) : attributes for the dropdown list container (optionnal)</li>
+</ul><h4>
+<a name="label--twbbundleviewhelpertwbbundlelabel" class="anchor" href="#label--twbbundleviewhelpertwbbundlelabel"><span class="octicon octicon-link"></span></a>Label : <code>TwbBundle\View\Helper\TwbBundleLabel</code>
+</h4>
+
+<p>Label helper can be called in a view with the view helper service <code>label($sLabelMessage  = null, array $aLabelAttributes  = 'label-default')</code> :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span><span class="p">(</span><span class="s1">'label message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'label-primary'</span><span class="p">));</span>
+</pre></div>
+
+<p>This helper accepts a message as first param, and attributes for label container as second param (optionnal).
+The class attribute "label" is auto added to the label container and "label-default" is no attributes is given. Default label container is a span, but it can be changed by passing the tag name in the attributes array :</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span><span class="p">(</span><span class="s1">'label message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'label-primary'</span><span class="p">,</span><span class="s1">'tagName'</span> <span class="o">=&gt;</span> <span class="s1">'a'</span><span class="p">));</span>
+</pre></div>
+
+<h2>
+<a name="elements" class="anchor" href="#elements"><span class="octicon octicon-link"></span></a>Elements</h2>
+
+<p><strong>TwbBundle</strong> provides new elements to supports Twitter Bootstrap potential.</p>
+
+<h4>
+<a name="staticelement--twbbundleformelementstaticelement" class="anchor" href="#staticelement--twbbundleformelementstaticelement"><span class="octicon octicon-link"></span></a>StaticElement : <code>TwbBundle\Form\Element\StaticElement</code>
+</h4>
+
+<p>Static element is a form element witch provides <code>Static control</code> and should be rendered by <a href="#static--twbbundleformviewhelpertwbbundleformstatic">static form helper</a></p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formStatic</span><span class="p">(</span><span class="k">new</span> <span class="nx">\TwbBundle\Form\Element\StaticElement</span><span class="p">());</span>
+</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/neilime/zf2-twb-bundle/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/neilime/zf2-twb-bundle/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/neilime/zf2-twb-bundle"></a> is maintained by <a href="https://github.com/neilime">neilime</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-53063406-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
 </html>
