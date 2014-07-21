@@ -126,7 +126,6 @@ Here are the available layouts :
 
 * `TwbBundle\Form\View\Helper::LAYOUT_HORIZONTAL` : horizontal (default)
 * `TwbBundle\Form\View\Helper::LAYOUT_INLINE` : inline
-* `TwbBundle\Form\View\Helper::LAYOUT_SEARCH` : search
 
 The helper auto add form specific class and `form` role attributes.
 
