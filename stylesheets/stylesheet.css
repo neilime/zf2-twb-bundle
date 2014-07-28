@@ -89,6 +89,10 @@ header h2 {
   letter-spacing: 0;
 }
 
+header .inner{
+    width: 986px;
+}
+
 .inner {
   position: relative;
   width: 940px;
@@ -129,13 +133,13 @@ aside#sidebar p.repo-owner a {
 }
 
 a.button {
-  width: 134px;
-  height: 58px;
+  width: 202px;
+  height: 79px;
   line-height: 1.2;
   font-size: 23px;
   color: #fff;
   padding-left: 68px;
-  padding-top: 22px;
+  padding-top: 20px;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
 }
 a.button small {
@@ -149,17 +153,32 @@ header a.button {
   background: transparent url(../images/github-button.png) 0 0 no-repeat;
 }
 
-  header a.button:hover {
+header a.button:hover{
+    text-decoration: none;
+    color: #000000;
+}
+
+header a.button:hover {
     background-position: 0 -81px;
 }
 
 aside a.button {
-  width: 138px;
+  width: 200px;
+  height: 78px;
   padding-left: 64px;
   display: block;
   background: transparent url(../images/download-button.png) 0 0 no-repeat;
-  margin-bottom: 20px;
+  margin-bottom: 13px;
   font-size: 21px;
+}
+
+aside a.button.demo-button {
+    padding-left: 75px;
+    background-image: url(../images/demo-button.png);
+}
+
+aside a.button.demo-button span{
+    line-height: 39px;
 }
 
 aside form{
@@ -168,6 +187,8 @@ aside form{
 
 aside a.button:hover {
     background-position: 0 -79px;
+    text-decoration: none;
+    color: #000000;
 }
 
 
