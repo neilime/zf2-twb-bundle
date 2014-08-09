@@ -17,7 +17,7 @@ __TwbBundle__ is a module for Zend Framework 2, for easy integration of the [Twi
 Contributing
 ------------
 
-If you wish to contribute to TwbBundle, please read both the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+If you wish to contribute to TwbBundle, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 Demonstration / example
 -----------------------
