@@ -23,7 +23,7 @@ If you wish to contribute to TwbBundle, please read both the [CONTRIBUTING.md](C
 Demonstration / example
 -----------------------
 
-Render forms, buttons, alerts with TwbBundle : see it in action [on-line](neilime.github.io/zf2-twb-bundle/demo.html).
+Render forms, buttons, alerts with TwbBundle : see it in action [on-line](http://neilime.github.io/zf2-twb-bundle/demo.html).
 
 
 Requirements
