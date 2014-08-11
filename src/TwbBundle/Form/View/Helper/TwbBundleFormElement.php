@@ -54,12 +54,10 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
      * @return string
      */
     public function render(\Zend\Form\ElementInterface $oElement) {
-        //Add form-controll class
+        // Add form-controll class
         $sElementType = $oElement->getAttribute('type');
-
         if (
-            !in_array($sElementType, array('file', 'checkbox', 'radio', 'submit', 'multi_checkbox', 'static', 'button', 'reset'))
-            && !($oElement instanceof \Zend\Form\Element\Collection)
+                !in_array($sElementType, array('file', 'checkbox', 'radio', 'submit', 'multi_checkbox', 'static', 'button', 'reset')) && !($oElement instanceof \Zend\Form\Element\Collection)
         ) {
             if ($sElementClass = $oElement->getAttribute('class')) {
                 if (!preg_match('/(\s|^)form-control(\s|$)/', $sElementClass)) {
@@ -72,19 +70,19 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
 
         $sMarkup = parent::render($oElement);
 
-        //Addon prepend
+        // Addon prepend
         if ($aAddOnPrepend = $oElement->getOption('add-on-prepend')) {
             $sMarkup = $this->renderAddOn($aAddOnPrepend) . $sMarkup;
         }
 
-        //Addon append
+        // Addon append
         if ($aAddOnAppend = $oElement->getOption('add-on-append')) {
             $sMarkup .= $this->renderAddOn($aAddOnAppend);
         }
 
         if ($aAddOnAppend || $aAddOnPrepend) {
             $sSpecialClass = '';
-            //Input size
+            // Input size
             if ($sElementClass = $oElement->getAttribute('class')) {
                 if (preg_match('/(\s|^)input-lg(\s|$)/', $sElementClass)) {
                     $sSpecialClass .= ' input-group-lg';

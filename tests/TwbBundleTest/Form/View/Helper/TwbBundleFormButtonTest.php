@@ -51,6 +51,12 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
+    public function testRenderWithEmptyFontAwesomePositionOption() {
+        $this->assertEquals(
+                '<button name="test" class="btn&#x20;btn-default" type="submit" value=""><span class="fa&#x20;fa-test"></span></button>', $this->formButtonHelper->render(new \Zend\Form\Element('test', array('fontAwesome' => array('icon' => 'test'))))
+        );
+    }
+
     /**
      * @expectedException \LogicException
      */

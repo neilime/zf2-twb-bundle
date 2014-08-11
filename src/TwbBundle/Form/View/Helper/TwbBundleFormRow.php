@@ -70,7 +70,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
         }
 
         //"has-error" validation state case
-        if (count($oElement->getMessages())) {
+        if ($oElement->getMessages()) {
             $sRowClass .= ' has-error';
             //Element have errors
             if ($sInputErrorClass = $this->getInputErrorClass()) {
@@ -103,9 +103,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
             return $sElementContent . PHP_EOL;
         }
 
-        return sprintf(
-                        self::$formGroupFormat, $sRowClass, $sElementContent
-                ) . PHP_EOL;
+        return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . PHP_EOL;
     }
 
     /**
@@ -143,7 +141,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
 
                 //Validation state
-                if ($oElement->getOption('validation-state') || count($oElement->getMessages())) {
+                if ($oElement->getOption('validation-state') || $oElement->getMessages()) {
                     if (empty($aLabelAttributes['class'])) {
                         $aLabelAttributes['class'] = 'control-label';
                     } elseif (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
@@ -180,12 +178,12 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
 
                 $sLabelOpen = $oLabelHelper->openTag($oElement->getAttribute('id') ? $oElement : $aLabelAttributes);
                 $sLabelClose = $oLabelHelper->closeTag();
-                
+
                 // Allow label html escape desable
                 //$sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
-                
-                if (! $oElement instanceof \Zend\Form\LabelAwareInterface || ! $oElement->getLabelOption('disable_html_escape')) {
-                	$sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
+
+                if (!$oElement instanceof \Zend\Form\LabelAwareInterface || !$oElement->getLabelOption('disable_html_escape')) {
+                    $sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
                 }
             }
         }
