@@ -1,7 +1,7 @@
 <?php
 
 //File to process
-$sFileToProcess = __DIR__ . DIRECTORY_SEPARATOR . 'index.html';
+$sFileToProcess = __DIR__ . DIRECTORY_SEPARATOR . 'demo.html';
 
 
 // Heading tags regex
@@ -22,7 +22,7 @@ file_put_contents($sFileToProcess, preg_replace_callback($sHeadingTagsRegex, fun
             }
         }, file_get_contents($sFileToProcess)));
 
-if (preg_match_all($sHeadingTagsRegex, file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'index.html'), $aHeadings)) {
+if (preg_match_all($sHeadingTagsRegex, file_get_contents($sFileToProcess), $aHeadings)) {
     $sMenu = '<ul class="nav">' . PHP_EOL;
     $iCurrentTag = 1;
     foreach ($aHeadings[1] as $iKey => $sHTag) {
