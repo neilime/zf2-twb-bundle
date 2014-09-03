@@ -138,7 +138,11 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
             if ($oElement instanceof \Zend\Form\Element\Button) {
                 $sLabelContent = '';
             } else {
-                $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
+                if (false !== $oElement->getOption('global-label-attributes')) {
+                    $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
+                } else {
+                    $aLabelAttributes = array();
+                }
 
                 //Validation state
                 if ($oElement->getOption('validation-state') || $oElement->getMessages()) {
