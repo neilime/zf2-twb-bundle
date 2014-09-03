@@ -85,9 +85,13 @@ class TwbBundleFormRadio extends \Zend\Form\View\Helper\FormRadio {
             //Option label
             $sLabel = isset($aOptionspec['label']) ? $aOptionspec['label'] : '';
             if ($sLabel) {
-                $aLabelAttributes = $aGlobalLabelAttributes;
-                if (isset($aOptionspec['label_attributes'])) {
-                    $aLabelAttributes = isset($aLabelAttributes) ? array_merge($aLabelAttributes, $aOptionspec['label_attributes']) : $aOptionspec['label_attributes'];
+                $aLabelAttributes = array();
+                if (true === $oElement->getOption('global-label-attributes')) {
+                    $aLabelAttributes = isset($aOptionspec['label_attributes']) ? $aOptionspec['label_attributes'] : array();
+                } elseif (isset($aOptionspec['label_attributes'])) {
+                    $aLabelAttributes = isset($aGlobalLabelAttributes) ? array_merge($aGlobalLabelAttributes, $aOptionspec['label_attributes']) : $aOptionspec['label_attributes'];
+                } else {
+                    $aLabelAttributes = $aGlobalLabelAttributes;
                 }
                 if (null !== ($oTranslator = $this->getTranslator())) {
                     $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
