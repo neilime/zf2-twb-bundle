@@ -184,7 +184,9 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
                 //Parse radio label attributes
                 $aLabelAttributes = $this->parseLabelAttributes($oElement, $aLabelAttributes);
-                $oElement->setLabelAttributes($aLabelAttributes);
+                if ($aLabelAttributes) {
+                    $oElement->setLabelAttributes($aLabelAttributes);
+                }
                 if (false === $oElement->getOption('global-label-attributes')) {
                     //Parse global label attributes
                     $aGlobalLabelAttributes = $this->parseLabelAttributes($oElement, array());
