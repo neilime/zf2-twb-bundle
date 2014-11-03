@@ -89,16 +89,22 @@ class TwbBundleFormRadio extends \Zend\Form\View\Helper\FormRadio {
                 if (isset($aOptionspec['label_attributes'])) {
                     $aLabelAttributes = isset($aLabelAttributes) ? array_merge($aLabelAttributes, $aOptionspec['label_attributes']) : $aOptionspec['label_attributes'];
                 }
+
                 if (null !== ($oTranslator = $this->getTranslator())) {
                     $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
                 }
+
+                if (!($oElement instanceof \Zend\Form\LabelAwareInterface) || !$oElement->getLabelOption('disable_html_escape')) {
+                    $sLabel = $this->getEscapeHtmlHelper()->__invoke($sLabel);
+                }
+
                 switch ($this->getLabelPosition()) {
                     case self::LABEL_PREPEND:
-                        $sOptionMarkup = sprintf($oLabelHelper->openTag($aLabelAttributes) . '%s%s' . $oLabelHelper->closeTag(), $this->getEscapeHtmlHelper()->__invoke($sLabel), $sOptionMarkup);
+                        $sOptionMarkup = sprintf($oLabelHelper->openTag($aLabelAttributes) . '%s%s' . $oLabelHelper->closeTag(), $sLabel, $sOptionMarkup);
                         break;
                     case self::LABEL_APPEND:
                     default:
-                        $sOptionMarkup = sprintf($oLabelHelper->openTag($aLabelAttributes) . '%s%s' . $oLabelHelper->closeTag(), $sOptionMarkup, $this->getEscapeHtmlHelper()->__invoke($sLabel));
+                        $sOptionMarkup = sprintf($oLabelHelper->openTag($aLabelAttributes) . '%s%s' . $oLabelHelper->closeTag(), $sOptionMarkup, $sLabel);
                         break;
                 }
             }

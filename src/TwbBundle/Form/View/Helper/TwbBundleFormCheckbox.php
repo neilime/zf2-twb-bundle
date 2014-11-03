@@ -52,7 +52,6 @@ class TwbBundleFormCheckbox extends \Zend\Form\View\Helper\FormCheckbox {
                 $sLabelContent = $oTranslator->translate($sLabelContent, $this->getTranslatorTextDomain());
             }
 
-
             $oLabelHelper = $this->getLabelHelper();
             $sLabelOpen = $oLabelHelper->openTag($oElement->getLabelAttributes() ? : null);
             $sLabelClose = $oLabelHelper->closeTag();
