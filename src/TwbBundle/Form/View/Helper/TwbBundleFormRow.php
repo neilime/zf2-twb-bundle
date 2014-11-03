@@ -163,11 +163,13 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                         break;
 
                     case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
-                        if (empty($aLabelAttributes['class'])) {
-                            $aLabelAttributes['class'] = 'control-label';
-                        } else {
-                            if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
+                        if ($sElementType !== 'checkbox') {
+                            if (empty($aLabelAttributes['class'])) {
+                                $aLabelAttributes['class'] = 'control-label';
+                            } else {
+                                if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
+                                    $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
+                                }
                             }
                         }
                         break;
