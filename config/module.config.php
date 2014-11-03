@@ -14,6 +14,7 @@ return array(
             //Form
             'form' => 'TwbBundle\Form\View\Helper\TwbBundleForm',
             'formButton' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
+            'formSubmit' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
             'formCheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormCheckbox',
             'formCollection' => 'TwbBundle\Form\View\Helper\TwbBundleFormCollection',
             'formElement' => 'TwbBundle\Form\View\Helper\TwbBundleFormElement',

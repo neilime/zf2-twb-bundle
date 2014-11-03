@@ -135,7 +135,7 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
             $sElementType = $oElement->getAttribute('type');
 
             //Button element is a special case, because label is always rendered inside it
-            if ($oElement instanceof \Zend\Form\Element\Button) {
+            if (($oElement instanceof \Zend\Form\Element\Button) or ($oElement instanceof \Zend\Form\Element\Submit)) {
                 $sLabelContent = '';
             } else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
