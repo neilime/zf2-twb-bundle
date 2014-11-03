@@ -24,4 +24,4 @@ script:
  - cd ..
 
 after_script:
- - php vendor/bin/coveralls --verbose
+ - php vendor/bin/coveralls --verbose --config
