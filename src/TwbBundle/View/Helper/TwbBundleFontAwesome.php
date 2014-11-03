@@ -7,6 +7,7 @@
 
 namespace TwbBundle\View\Helper;
 
+use InvalidArgumentException;
 use Zend\Form\View\Helper\AbstractHelper;
 
 /**
@@ -24,7 +25,7 @@ class TwbBundleFontAwesome extends AbstractHelper
      * Invoke helper as functor, proxies to {@link render()}.
      * @param string $sFontAwesome
      * @param array $aFontAwesomeAttributes : [optionnal]
-     * @return string|\TwbBundle\View\Helper\TwbBundleFontAwesome
+     * @return string|TwbBundleFontAwesome
      */
     public function __invoke($sFontAwesome = null, array $aFontAwesomeAttributes = null)
     {
@@ -38,7 +39,7 @@ class TwbBundleFontAwesome extends AbstractHelper
      * Retrieve fontAwesome markup
      * @param string $sFontAwesome
      * @param  array $aFontAwesomeAttributes : [optionnal]
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return string
      */
     public function render($sFontAwesome, array $aFontAwesomeAttributes = null)
@@ -76,4 +77,4 @@ class TwbBundleFontAwesome extends AbstractHelper
             $this->createAttributesString($aFontAwesomeAttributes)
         );
     }
-} 
+}

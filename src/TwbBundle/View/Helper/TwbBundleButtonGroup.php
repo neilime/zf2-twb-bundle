@@ -2,8 +2,14 @@
 
 namespace TwbBundle\View\Helper;
 
-class TwbBundleButtonGroup extends \Zend\Form\View\Helper\AbstractHelper {
+use Traversable;
+use LogicException;
+use Zend\Form\View\Helper\AbstractHelper;
+use Zend\Form\ElementInterface;
+use Zend\Form\Factory;
 
+class TwbBundleButtonGroup extends AbstractHelper
+{
     /**
      * @var string
      */
@@ -15,16 +21,17 @@ class TwbBundleButtonGroup extends \Zend\Form\View\Helper\AbstractHelper {
     protected static $buttonGroupJustifiedFormat = '<div class="btn-group">%s</div>';
 
     /**
-     * @var \TwbBundle\Form\View\Helper\TwbBundleFormElement
+     * @var TwbBundleFormElement
      */
     protected $formElementHelper;
 
     /**
      * @param array $aButtons
      * @param array $aButtonGroupOptions
-     * @return \TwbBundle\View\Helper\TwbBundleButtonGroup|string
+     * @return TwbBundleButtonGroup|string
      */
-    public function __invoke(array $aButtons = null, array $aButtonGroupOptions = null) {
+    public function __invoke(array $aButtons = null, array $aButtonGroupOptions = null)
+    {
         return $aButtons ? $this->render($aButtons, $aButtonGroupOptions) : $this;
     }
 
@@ -32,16 +39,19 @@ class TwbBundleButtonGroup extends \Zend\Form\View\Helper\AbstractHelper {
      * Render button groups markup
      * @param array $aButtons
      * @param array $aButtonGroupOptions
-     * @throws \LogicException
+     * @throws LogicException
      * @return string
      */
-    public function render(array $aButtons, array $aButtonGroupOptions = null) {
-        // ### Button group container attributes ###
+    public function render(array $aButtons, array $aButtonGroupOptions = null)
+    {
+        /*
+         * Button group container attributes
+         */
         if (empty($aButtonGroupOptions['attributes'])) {
             $aButtonGroupOptions['attributes'] = array('class' => 'btn-group');
         } else {
             if (!is_array($aButtonGroupOptions['attributes'])) {
-                throw new \LogicException('"attributes" option expects an array, "' . gettype($aButtonGroupOptions['attributes']) . '" given');
+                throw new LogicException('"attributes" option expects an array, "' . gettype($aButtonGroupOptions['attributes']) . '" given');
             }
             if (empty($aButtonGroupOptions['attributes']['class'])) {
                 $aButtonGroupOptions['attributes']['class'] = 'btn-group';
@@ -50,14 +60,18 @@ class TwbBundleButtonGroup extends \Zend\Form\View\Helper\AbstractHelper {
             }
         }
 
-        // ### Render button group ###
-
+        /*
+         * Render button group
+         */
         return sprintf(
-                self::$buttonGroupContainerFormat,
-                //Container attributes
-                $this->createAttributesString($aButtonGroupOptions['attributes']),
-                //Buttons
-                $this->renderButtons($aButtons, strpos($aButtonGroupOptions['attributes']['class'], 'btn-group-justified') !== false)
+            self::$buttonGroupContainerFormat,
+            //Container attributes
+            $this->createAttributesString($aButtonGroupOptions['attributes']),
+            //Buttons
+            $this->renderButtons(
+                $aButtons,
+                strpos($aButtonGroupOptions['attributes']['class'], 'btn-group-justified') !== false
+            )
         );
     }
 
@@ -66,17 +80,19 @@ class TwbBundleButtonGroup extends \Zend\Form\View\Helper\AbstractHelper {
      * @param array $aButtons
      * @return string
      */
-    protected function renderButtons(array $aButtons, $bJustified = false) {
+    protected function renderButtons(array $aButtons, $bJustified = false)
+    {
         $sMarkup = '';
         foreach ($aButtons as $oButton) {
-            if (
-                    is_array($oButton) || ($oButton instanceof \Traversable && !($oButton instanceof \Zend\Form\ElementInterface))
+            if (is_array($oButton) ||
+                ($oButton instanceof Traversable &&
+                !($oButton instanceof ElementInterface))
             ) {
-                $oFactory = new \Zend\Form\Factory();
+                $oFactory = new Factory();
                 $oButton = $oFactory->create($oButton);
-            } elseif (!($oButton instanceof \Zend\Form\ElementInterface)) {
-                throw new \LogicException(sprintf(
-                        'Button expects an instanceof \Zend\Form\ElementInterface or an array / \Traversable, "%s" given', is_object($oButton) ? get_class($oButton) : gettype($oButton)
+            } elseif (!($oButton instanceof ElementInterface)) {
+                throw new LogicException(sprintf(
+                    'Button expects an instanceof Zend\Form\ElementInterface or an array / Traversable, "%s" given', is_object($oButton) ? get_class($oButton) : gettype($oButton)
                 ));
             }
 
@@ -88,17 +104,17 @@ class TwbBundleButtonGroup extends \Zend\Form\View\Helper\AbstractHelper {
     }
 
     /**
-     * @return \TwbBundle\Form\View\Helper\TwbBundleFormElement
+     * @return TwbBundleFormElement
      */
-    public function getFormElementHelper() {
-        if ($this->formElementHelper instanceof \TwbBundle\Form\View\Helper\TwbBundleFormElement) {
+    public function getFormElementHelper()
+    {
+        if ($this->formElementHelper instanceof TwbBundleFormElement) {
             return $this->formElementHelper;
         }
         if (method_exists($this->view, 'plugin')) {
             return $this->formElementHelper = $this->view->plugin('form_element');
         }
 
-        return $this->formElementHelper = new \TwbBundle\Form\View\Helper\TwbBundleFormElement();
+        return $this->formElementHelper = new TwbBundleFormElement();
     }
-
 }
