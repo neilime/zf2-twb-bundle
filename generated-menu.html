@@ -5,103 +5,79 @@
             <li><a href="#zend-framework-2-module-for-easy-integration-of-twitter-bootstrap" style="font-size:14px;">&nbsp;&nbsp;Zend Framework 2 module for easy integration of Twitter Bootstrap</a></li>
         </ul>
     </li>
-    <li><a href="#twbbundle-v2-0-demonstration" style="font-size:15px;font-weight:bold">TwbBundle, v2.0 - Demonstration</a></li>
+    <li><a href="#twbbundle-v2-0" style="font-size:15px;font-weight:bold">TwbBundle, v2.0</a></li>
     <li>
         <ul class="nav">
-            <li><a href="#forms" style="font-size:14px;">&nbsp;&nbsp;Forms</a></li>
+            <li><a href="#introduction" style="font-size:14px;">&nbsp;&nbsp;Introduction</a></li>
+            <li><a href="#contributing" style="font-size:14px;">&nbsp;&nbsp;Contributing</a></li>
+            <li><a href="#demonstration-example" style="font-size:14px;">&nbsp;&nbsp;Demonstration / example</a></li>
+            <li><a href="#requirements" style="font-size:14px;">&nbsp;&nbsp;Requirements</a></li>
+            <li><a href="#installation" style="font-size:14px;">&nbsp;&nbsp;Installation</a></li>
             <li>
                 <ul class="nav">
+                    <li><a href="#main-setup" style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;Main Setup</a></li>
                     <li>
                         <ul class="nav">
-                            <li><a href="#basic-example" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic example</a></li>
-                            <li><a href="#inline-form" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inline form</a></li>
-                            <li><a href="#horizontal-form" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Horizontal form</a></li>
-                            <li><a href="#supported-form" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supported form</a></li>
-                            <li><a href="#static-form" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Static form</a></li>
-                            <li><a href="#form-states" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form states</a></li>
-                            <li><a href="#validation-states" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Validation states</a></li>
-                            <li><a href="#control-sizing" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Control sizing</a></li>
-                            <li><a href="#help-text" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Help text</a></li>
+                            <li><a href="#by-cloning-project-manual" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By cloning project (manual)</a></li>
+                            <li><a href="#with-composer-the-faster-way" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;With composer (the faster way)</a></li>
+                            <li><a href="#post-installation" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Post installation</a></li>
+                            <li>
+                                <ul class="nav">
+                                    <li>
+                                        <ul class="nav">
+                                            <li><a href="#with-assetsbundle-module-easy-way" style="font-size:10px;font-style:italic;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;With AssetsBundle module (easy way)</a></li>
+                                            <li><a href="#manually" style="font-size:10px;font-style:italic;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manually</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li><a href="#buttons" style="font-size:14px;">&nbsp;&nbsp;Buttons</a></li>
+        </ul>
+    </li>
+    <li><a href="#how-to-use-twbbundle" style="font-size:15px;font-weight:bold">How to use TwbBundle</a></li>
+    <li>
+        <ul class="nav">
+            <li><a href="#view-helpers" style="font-size:14px;">&nbsp;&nbsp;View helpers</a></li>
             <li>
                 <ul class="nav">
+                    <li><a href="#forms" style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;Forms</a></li>
                     <li>
                         <ul class="nav">
-                            <li><a href="#options" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Options</a></li>
-                            <li><a href="#sizes" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sizes</a></li>
-                            <li><a href="#active-state" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active state</a></li>
-                            <li><a href="#disabled-state" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Disabled state</a></li>
+                            <li><a href="#form-twbbundle-form-view-helper-twbbundleform" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form : TwbBundle\Form\View\Helper\TwbBundleForm</a></li>
+                            <li><a href="#button-twbbundle-form-view-helper-twbbundleformbutton" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button : TwbBundle\Form\View\Helper\TwbBundleFormButton</a></li>
+                            <li><a href="#checkbox-twbbundle-form-view-helper-twbbundleformcheckbox" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checkbox : TwbBundle\Form\View\Helper\TwbBundleFormCheckbox</a></li>
+                            <li><a href="#form-collection-twbbundle-form-view-helper-twbbundleformcollection" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form collection : TwbBundle\Form\View\Helper\TwbBundleFormCollection</a></li>
+                            <li><a href="#form-element-twbbundle-form-view-helper-twbbundleformelement" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form element : TwbBundle\Form\View\Helper\TwbBundleFormElement</a></li>
+                            <li><a href="#form-element-errors-twbbundle-form-view-helper-twbbundleformelementerrors" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form element errors : TwbBundle\Form\View\Helper\TwbBundleFormElementErrors</a></li>
+                            <li><a href="#multi-checkbox-twbbundle-form-view-helper-twbbundleformmulticheckbox" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multi-Checkbox : TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox</a></li>
+                            <li><a href="#radio-twbbundle-form-view-helper-twbbundleformradio" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Radio : TwbBundle\Form\View\Helper\TwbBundleFormRadio</a></li>
+                            <li><a href="#form-row-twbbundle-form-view-helper-twbbundleformrow" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form row : TwbBundle\Form\View\Helper\TwbBundleFormRow</a></li>
+                            <li><a href="#static-twbbundle-form-view-helper-twbbundleformstatic" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Static : TwbBundle\Form\View\Helper\TwbBundleFormStatic</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#mixed" style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;Mixed</a></li>
+                    <li>
+                        <ul class="nav">
+                            <li><a href="#alert-twbbundle-view-helper-twbbundlealert" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alert : TwbBundle\View\Helper\TwbBundleAlert</a></li>
+                            <li><a href="#badge-twbbundle-view-helper-twbbundlebadge" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Badge : TwbBundle\View\Helper\TwbBundleBadge</a></li>
+                            <li><a href="#button-group-twbbundle-view-helper-twbbundlebuttongroup" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button group : TwbBundle\View\Helper\TwbBundleButtonGroup</a></li>
+                            <li><a href="#glyphicon-twbbundle-view-helper-twbbundleglyphicon" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Glyphicon : TwbBundle\View\Helper\TwbBundleGlyphicon</a></li>
+                            <li><a href="#fontawesome-twbbundle-view-helper-twbbundlefontawesome" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FontAwesome : TwbBundle\View\Helper\TwbBundleFontAwesome</a></li>
+                            <li><a href="#dropdown-twbbundle-view-helper-twbbundledropdown" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dropdown : TwbBundle\View\Helper\TwbBundleDropDown</a></li>
+                            <li><a href="#label-twbbundle-view-helper-twbbundlelabel" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Label : TwbBundle\View\Helper\TwbBundleLabel</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li><a href="#glyphicons" style="font-size:14px;">&nbsp;&nbsp;Glyphicons</a></li>
+            <li><a href="#elements" style="font-size:14px;">&nbsp;&nbsp;Elements</a></li>
             <li>
                 <ul class="nav">
                     <li>
                         <ul class="nav">
-                            <li><a href="#how-to-use" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How to use</a></li>
-                            <li><a href="#examples" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Examples</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="#dropdowns" style="font-size:14px;">&nbsp;&nbsp;Dropdowns</a></li>
-            <li>
-                <ul class="nav">
-                    <li>
-                        <ul class="nav">
-                            <li><a href="#exemple" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exemple</a></li>
-                            <li><a href="#alignment-options" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alignment options</a></li>
-                            <li><a href="#headers" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Headers</a></li>
-                            <li><a href="#disabled-menu-items" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Disabled menu items</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="#button-dropdowns" style="font-size:14px;">&nbsp;&nbsp;Button dropdowns</a></li>
-            <li>
-                <ul class="nav">
-                    <li>
-                        <ul class="nav">
-                            <li><a href="#single-button-dropdowns" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Single button dropdowns</a></li>
-                            <li><a href="#split-button-dropdowns" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Split button dropdowns</a></li>
-                            <li><a href="#sizing" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sizing</a></li>
-                            <li><a href="#dropup-variation" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dropup variation</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="#input-groups" style="font-size:14px;">&nbsp;&nbsp;Input groups</a></li>
-            <li>
-                <ul class="nav">
-                    <li>
-                        <ul class="nav">
-                            <li><a href="#basic-example" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic example</a></li>
-                            <li><a href="#sizing" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sizing</a></li>
-                            <li><a href="#checkboxes-and-radio-addons" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checkboxes and radio addons</a></li>
-                            <li><a href="#button-addons" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button addons</a></li>
-                            <li><a href="#buttons-with-dropdowns" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buttons with dropdowns</a></li>
-                            <li><a href="#segmented-buttons" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Segmented buttons</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="#button-groups" style="font-size:14px;">&nbsp;&nbsp;Button groups</a></li>
-            <li>
-                <ul class="nav">
-                    <li>
-                        <ul class="nav">
-                            <li><a href="#basic-example" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic example</a></li>
-                            <li><a href="#button-toolbar" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Button toolbar</a></li>
-                            <li><a href="#sizing" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sizing</a></li>
-                            <li><a href="#nesting" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nesting</a></li>
-                            <li><a href="#vertical-variation" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vertical variation</a></li>
-                            <li><a href="#justified-button-groups" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Justified button groups</a></li>
+                            <li><a href="#staticelement-twbbundle-form-element-staticelement" style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StaticElement : TwbBundle\Form\Element\StaticElement</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -28,9 +28,11 @@
 
     <div id="content-wrapper">
       <div class="inner clearfix">
-        <section id="main-content">
+          <section id="main-content">
           <h1 id="twbbundle-v2-0">
 <a name="twbbundle-v20" class="anchor" href="#twbbundle-v20"><span class="octicon octicon-link"></span></a>TwbBundle, v2.0</h1>
+
+<p>(Supports Twitter Bootstrap v3.*)</p>
 
 <p><a href="https://travis-ci.org/neilime/zf2-twb-bundle"><img src="https://travis-ci.org/neilime/zf2-twb-bundle.png?branch=master" alt="Build Status"></a>
 <a href="https://packagist.org/packages/neilime/zf2-twb-bundle"><img src="https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png" alt="Latest Stable Version"></a>
@@ -38,6 +40,8 @@
 <a href="https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046"><img src="https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046/badge.png" alt="Dependency Status"></a></p>
 
 <p>NOTE : If you want to contribute don't hesitate, I'll review any PR.</p>
+
+<p><a href="https://pledgie.com/campaigns/26667"><img alt="Support the project" src="https://pledgie.com/campaigns/26667.png?skin_name=chrome" border="0"><br></a></p>
 
 <h2 id="introduction">
 <a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
@@ -62,7 +66,9 @@
 <a href="https://github.com/zendframework/zf2">Zend Framework 2</a> (2.*)</li>
 <li>
 <a href="https://github.com/twbs/bootstrap">Twitter Bootstrap</a> (v3.*)</li>
-</ul><h2 id="installation">
+</ul>
+
+<h2 id="installation">
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <h3 id="main-setup">
@@ -74,7 +80,9 @@
 <ol>
 <li>Clone this project into your <code>./vendor/</code> directory.</li>
 <li>(Optionnal) Clone the <a href="https://github.com/twbs/bootstrap">Twitter bootstrap project</a> (v3.*) into your <code>./vendor/</code> directory.</li>
-</ol><h4 id="with-composer-the-faster-way">
+</ol>
+
+<h4 id="with-composer-the-faster-way">
 <a name="with-composer-the-faster-way" class="anchor" href="#with-composer-the-faster-way"><span class="octicon octicon-link"></span></a>With composer (the faster way)</h4>
 
 <ol>
@@ -92,14 +100,17 @@
 <div class="highlight highlight-bash"><pre><span class="nv">$ </span>php composer.phar update
 </pre></div>
 </li>
-</ol><h4 id="post-installation">
+</ol>
+
+<h4 id="post-installation">
 <a name="post-installation" class="anchor" href="#post-installation"><span class="octicon octicon-link"></span></a>Post installation</h4>
 
 <ol>
 <li>
 <p>Enabling it in your <code>application.config.php</code> file.</p>
 
-<div class="highlight highlight-php"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">return</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'modules'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
         <span class="c1">// ...</span>
         <span class="s1">'TwbBundle'</span><span class="p">,</span>
@@ -109,7 +120,9 @@
 </pre></div>
 </li>
 <li><p>Include Twitter Bootstrap assets</p></li>
-</ol><h6 id="with-assetsbundle-module-easy-way">
+</ol>
+
+<h6 id="with-assetsbundle-module-easy-way">
 <a name="with-assetsbundle-module-easy-way" class="anchor" href="#with-assetsbundle-module-easy-way"><span class="octicon octicon-link"></span></a>With <strong>AssetsBundle</strong> module (easy way)</h6>
 
 <ul>
@@ -118,7 +131,8 @@
 <li>
 <p>Edit the application module configuration file <code>module/Application/config/module.config.php</code>, adding the configuration fragment below:</p>
 
-<div class="highlight highlight-php"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">return</span> <span class="k">array</span><span class="p">(</span>
     <span class="c1">//...</span>
      <span class="s1">'asset_bundle'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
          <span class="s1">'assets'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
@@ -132,17 +146,22 @@
 <li>
 <p>Edit layout file <code>module/Application/view/layout/layout.phtml</code>, to render head scripts :</p>
 
-<div class="highlight highlight-php"><pre><span class="c1">//...</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="c1">//...</span>
 <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">headScript</span><span class="p">();</span>
 <span class="c1">//...</span>
 </pre></div>
 </li>
-</ul><h6 id="manually">
+</ul>
+
+<h6 id="manually">
 <a name="manually" class="anchor" href="#manually"><span class="octicon octicon-link"></span></a>Manually</h6>
 
 <ul>
 <li>Copy <code>bootstrap.css</code> file (available on Twitter Bootstrap website(<a href="https://github.com/twbs/bootstrap/archive/v3.0.0.zip">https://github.com/twbs/bootstrap/archive/v3.0.0.zip</a>) into your assets folder and add it in your head scripts</li>
-</ul><h1 id="how-to-use-twbbundle">
+</ul>
+
+<h1 id="how-to-use-twbbundle">
 <a name="how-to-use-twbbundle" class="anchor" href="#how-to-use-twbbundle"><span class="octicon octicon-link"></span></a>How to use <strong>TwbBundle</strong>
 </h1>
 
@@ -158,9 +177,16 @@
 <a name="form--twbbundleformviewhelpertwbbundleform" class="anchor" href="#form--twbbundleformviewhelpertwbbundleform"><span class="octicon octicon-link"></span></a>Form : <code>TwbBundle\Form\View\Helper\TwbBundleForm</code>
 </h4>
 
-<p>Form helper can be called in a view with the view helper service <code>form(\Zend\Form\FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)</code> :</p>
+<p>Form helper can be called in a view with the view helper service <code>form(\Zend\Form\FormInterface $oForm = null, $sFormLayout = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Form</span><span class="p">());</span>
+</pre></div>
+
+<p>Open form tag with a specific layout :</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="nx">\TwbBundle\Form\View\Helper\TwbBundleForm</span><span class="o">::</span><span class="na">LAYOUT_INLINE</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">openTag</span><span class="p">(</span><span class="nv">$oForm</span><span class="p">);</span>
 </pre></div>
 
 <p>This helper accepts a form element as first param, and an optionnal Bootstrap defined layout style definition as second param.
@@ -171,7 +197,9 @@ Here are the available layouts :</p>
 <code>TwbBundle\Form\View\Helper::LAYOUT_HORIZONTAL</code> : horizontal (default)</li>
 <li>
 <code>TwbBundle\Form\View\Helper::LAYOUT_INLINE</code> : inline</li>
-</ul><p>The helper auto add form specific class and <code>form</code> role attributes.</p>
+</ul>
+
+<p>The helper auto add form specific class and <code>form</code> role attributes.</p>
 
 <h4 id="button-twbbundle-form-view-helper-twbbundleformbutton">
 <a name="button--twbbundleformviewhelpertwbbundleformbutton" class="anchor" href="#button--twbbundleformviewhelpertwbbundleformbutton"><span class="octicon octicon-link"></span></a>Button : <code>TwbBundle\Form\View\Helper\TwbBundleFormButton</code>
@@ -179,7 +207,8 @@ Here are the available layouts :</p>
 
 <p>Button helper can be called in a view with the view helper service <code>formButton(\Zend\Form\ElementInterface $oElement, $sButtonContent = null)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formButton</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
 </pre></div>
 
 <p>This helper accepts a button element as first param, and an optionnal button content as second param.
@@ -194,13 +223,17 @@ The glyphicon is rendered by the <a href="#glyphicon--twbbundleviewhelpertwbbund
 <li>string <code>icon</code> : the name of the icon (e.g. "star", "search" ...).</li>
 <li>string <code>position</code> : (optionnal) the position of the glyphicon to prepend or append the button content, <code>\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_PREPEND</code> (the default) and <code>\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_APPEND</code>.</li>
 <li>array <code>attributes</code> : (optionnal) the additional attributes to the glyphicon element</li>
-</ul><p>Button can be set as dropdown button by defined the option <code>dropdown</code> (array) to the element :
+</ul>
+
+<p>Button can be set as dropdown button by defined the option <code>dropdown</code> (array) to the element :
 The dropdown is rendered by the <a href="#dropdown--twbbundleviewhelpertwbbundledropdown">dropdown renderer</a>, it accept the folling additionnal options :</p>
 
 <ul>
 <li>boolean <code>split</code> : the button element and the carret are splitted.</li>
 <li>boolean <code>dropup</code> : render a dropup element instead of a dropdown.</li>
-</ul><p>The option <code>disable-twb</code> can be passed to the element to disable rendering it in a <code>div</code> container.</p>
+</ul>
+
+<p>The option <code>disable-twb</code> can be passed to the element to disable rendering it in a <code>div</code> container.</p>
 
 <h4 id="checkbox-twbbundle-form-view-helper-twbbundleformcheckbox">
 <a name="checkbox--twbbundleformviewhelpertwbbundleformcheckbox" class="anchor" href="#checkbox--twbbundleformviewhelpertwbbundleformcheckbox"><span class="octicon octicon-link"></span></a>Checkbox : <code>TwbBundle\Form\View\Helper\TwbBundleFormCheckbox</code>
@@ -208,13 +241,15 @@ The dropdown is rendered by the <a href="#dropdown--twbbundleviewhelpertwbbundle
 
 <p>Checkbox helper can be called in a view with the view helper service <code>formCheckbox(\Zend\Form\Checkbox $oElement)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Checkbox</span><span class="p">(</span><span class="s1">'checkbox-input'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Checkbox</span><span class="p">(</span><span class="s1">'checkbox-input'</span><span class="p">));</span>
 </pre></div>
 
 <p>This helper accepts a checkbox element as first param. As the input is rendered into a label element, the label position (append by default) can passed as an option
 The option <code>disable-twb</code> (boolean) can be passed to the element to disable rendering it in a <code>label</code>.</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Checkbox</span><span class="p">(</span><span class="s1">'checkbox-input'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Checkbox</span><span class="p">(</span><span class="s1">'checkbox-input'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span>
     <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Prepend label'</span><span class="p">,</span>
     <span class="s1">'label_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="nx">\Zend\Form\View\Helper\FormRow</span><span class="o">::</span><span class="na">LABEL_PREPEND</span><span class="p">)</span>
 <span class="p">)));</span>
@@ -226,7 +261,8 @@ The option <code>disable-twb</code> (boolean) can be passed to the element to di
 
 <p>Form collection helper can be called in a view with the view helper service <code>formCollection(\Zend\Form\ElementInterface $oElement)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCollection</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formCollection</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
 </pre></div>
 
 <p>This helper accepts a form collection (fieldset) element as first param.</p>
@@ -237,7 +273,8 @@ The option <code>disable-twb</code> (boolean) can be passed to the element to di
 
 <p>Form element helper can be called in a view with the view helper service <code>formElement(\Zend\Form\ElementInterface $oElement)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElement</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
 </pre></div>
 
 <p>This helper accepts a form element as first param. This helper can render prepend and/or append add-on by setting the appropriate option <code>add-on-prepend</code> and/or <code>add-on-append</code> to the element.
@@ -261,13 +298,16 @@ The array accept once of the following keys :
 <code>element</code> (Zend\Form\ElementInterface) : the element will be rendered in the add-on</li>
 </ul>
 </li>
-</ul><h4 id="form-element-errors-twbbundle-form-view-helper-twbbundleformelementerrors">
+</ul>
+
+<h4 id="form-element-errors-twbbundle-form-view-helper-twbbundleformelementerrors">
 <a name="form-element-errors--twbbundleformviewhelpertwbbundleformelementerrors" class="anchor" href="#form-element-errors--twbbundleformviewhelpertwbbundleformelementerrors"><span class="octicon octicon-link"></span></a>Form element errors : <code>TwbBundle\Form\View\Helper\TwbBundleFormElementErrors</code>
 </h4>
 
 <p>Form element errors helper can be called in a view with the view helper service <code>formElementErrors(\Zend\Form\ElementInterface $oElement)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElementErrors</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formElementErrors</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
 </pre></div>
 
 <p>This helper accepts a form element as first param. This helper render element's errors.</p>
@@ -278,7 +318,8 @@ The array accept once of the following keys :
 
 <p>Multi-Checkbox helper can be called in a view with the view helper service <code>formMultiCheckbox(\Zend\Form\ElementInterface $oElement)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formMultiCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formMultiCheckbox</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
 </pre></div>
 
 <p>This helper accepts an element as first param.
@@ -290,7 +331,8 @@ The option <code>inline</code> (boolean) can be passed to the element to display
 
 <p>Radio helper can be called in a view with the view helper service <code>formCheckbox(\Zend\Form\ElementInterface $oElement)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRadio</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRadio</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
 </pre></div>
 
 <p>This helper accepts an element as first param.
@@ -302,7 +344,8 @@ The option <code>disable-twb</code> (boolean) can be passed to the element to di
 
 <p>Form element helper can be called in a view with the view helper service <code>formRow(\Zend\Form\ElementInterface $oElement)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">());</span>
 </pre></div>
 
 <p>This helper accepts a form element as first param.
@@ -313,7 +356,8 @@ The option <code>help-block</code> (string) can be passed to the element to rend
 
 <p>You can allow the label html rendering after toggling off escape :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'my-element'</span><span class="p">,</span>  <span class="k">array</span><span class="p">(</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formRow</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element</span><span class="p">(</span><span class="s1">'my-element'</span><span class="p">,</span>  <span class="k">array</span><span class="p">(</span>
     <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'My &lt;i&gt;Label&lt;/i&gt; :'</span><span class="p">,</span>
     <span class="s1">'label_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'disable_html_escape'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">)</span>
 <span class="p">)));</span>
@@ -325,7 +369,8 @@ The option <code>help-block</code> (string) can be passed to the element to rend
 
 <p>Static helper can be called in a view with the view helper service <code>formStatic(\Zend\Form\ElementInterface $oElement)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formStatic</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formStatic</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\ElementInterface</span><span class="p">());</span>
 </pre></div>
 
 <p>This helper accepts an element as first param.</p>
@@ -339,7 +384,8 @@ The option <code>help-block</code> (string) can be passed to the element to rend
 
 <p>Alert helper can be called in a view with the view helper service <code>alert($sAlertMessage = null, $aAlertAttributes = null, $bDismissable = false)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span><span class="s1">'alert message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'alert-success'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">alert</span><span class="p">(</span><span class="s1">'alert message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'alert-success'</span><span class="p">));</span>
 </pre></div>
 
 <p>This helper accepts a message as first param, attributes for alert container as second param (optionnal) and boolean as third param to display or not a close action to the alert message (optionnal).
@@ -351,7 +397,8 @@ The class attribute "alert" is auto added to the alert container.</p>
 
 <p>Badge helper can be called in a view with the view helper service <code>badge($sBadgeMessage = null, array $aBadgeAttributes = null)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">badge</span><span class="p">(</span><span class="s1">'badge message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">badge</span><span class="p">(</span><span class="s1">'badge message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
 </pre></div>
 
 <p>This helper accepts a message as first param, and attributes for badge container as second param (optionnal).
@@ -363,7 +410,8 @@ The class attribute "badge" is auto added to the badge container.</p>
 
 <p>Button group helper can be called in a view with the view helper service <code>buttonGroup(array $aButtons = null, array $aButtonGroupOptions = null)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buttonGroup</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'left'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Left'</span><span class="p">))),</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">buttonGroup</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">\Zend\Form\Element\Button</span><span class="p">(</span><span class="s1">'left'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Left'</span><span class="p">))),</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
 </pre></div>
 
 <p>This helper accepts an array of buttons as first param, and attributes for button group container as second param (optionnal).
@@ -375,7 +423,8 @@ The buttons can be instance of <code>\Zend\Form\Element\Button</code> or array c
 
 <p>Glyphicon helper can be called in a view with the view helper service <code>glyphicon($sGlyphicon = null, array $aGlyphiconAttributes = null)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">glyphicon</span><span class="p">(</span><span class="s1">'star'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">glyphicon</span><span class="p">(</span><span class="s1">'star'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
 </pre></div>
 
 <p>This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for glyphicon element as second param (optionnal).
@@ -387,7 +436,8 @@ The class attribute "glyphicon" is auto added to the glyphicon container.</p>
 
 <p>FontAwesome helper can be called in a view with the view helper service <code>fontAwesome($sFontAwesome = null, array $aFontAwesomeAttributes = null)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fontAwesome</span><span class="p">(</span><span class="s1">'star'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fontAwesome</span><span class="p">(</span><span class="s1">'star'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'pull-right'</span><span class="p">));</span>
 </pre></div>
 
 <p>This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for fontAwesome element as second param (optionnal).
@@ -399,7 +449,8 @@ The class attribute "fa" is auto added to the fontAwesome container.</p>
 
 <p>Dropdown helper can be called in a view with the view helper service <code>dropdown(array $aDropdownOptions = null)</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dropdown</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Item #1'</span><span class="p">,</span><span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span><span class="s1">'Item #2'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dropdown</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Item #1'</span><span class="p">,</span><span class="nx">\TwbBundle\View\Helper\TwbBundleDropDown</span><span class="o">::</span><span class="na">TYPE_ITEM_DIVIDER</span><span class="p">,</span><span class="s1">'Item #2'</span><span class="p">));</span>
 </pre></div>
 
 <p>This helper accepts dropdown configuration as first param :</p>
@@ -449,19 +500,23 @@ It needs the following option :</li>
 </li>
 <li>
 <code>list_attributes</code> (array) : attributes for the dropdown list container (optionnal)</li>
-</ul><h4 id="label-twbbundle-view-helper-twbbundlelabel">
+</ul>
+
+<h4 id="label-twbbundle-view-helper-twbbundlelabel">
 <a name="label--twbbundleviewhelpertwbbundlelabel" class="anchor" href="#label--twbbundleviewhelpertwbbundlelabel"><span class="octicon octicon-link"></span></a>Label : <code>TwbBundle\View\Helper\TwbBundleLabel</code>
 </h4>
 
 <p>Label helper can be called in a view with the view helper service <code>label($sLabelMessage  = null, array $aLabelAttributes  = 'label-default')</code> :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span><span class="p">(</span><span class="s1">'label message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'label-primary'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span><span class="p">(</span><span class="s1">'label message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'label-primary'</span><span class="p">));</span>
 </pre></div>
 
 <p>This helper accepts a message as first param, and attributes for label container as second param (optionnal).
 The class attribute "label" is auto added to the label container and "label-default" is no attributes is given. Default label container is a span, but it can be changed by passing the tag name in the attributes array :</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span><span class="p">(</span><span class="s1">'label message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'label-primary'</span><span class="p">,</span><span class="s1">'tagName'</span> <span class="o">=&gt;</span> <span class="s1">'a'</span><span class="p">));</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">label</span><span class="p">(</span><span class="s1">'label message'</span><span class="p">,</span><span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'label-primary'</span><span class="p">,</span><span class="s1">'tagName'</span> <span class="o">=&gt;</span> <span class="s1">'a'</span><span class="p">));</span>
 </pre></div>
 
 <h2 id="elements">
@@ -475,10 +530,11 @@ The class attribute "label" is auto added to the label container and "label-defa
 
 <p>Static element is a form element witch provides <code>Static control</code> and should be rendered by <a href="#static--twbbundleformviewhelpertwbbundleformstatic">static form helper</a></p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formStatic</span><span class="p">(</span><span class="k">new</span> <span class="nx">\TwbBundle\Form\Element\StaticElement</span><span class="p">());</span>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formStatic</span><span class="p">(</span><span class="k">new</span> <span class="nx">\TwbBundle\Form\Element\StaticElement</span><span class="p">());</span>
 </pre></div>
         </section>
-
+          
         <aside id="sidebar">
 			<a href="demo.html" class="button demo-button">
               <span>Demo</span>

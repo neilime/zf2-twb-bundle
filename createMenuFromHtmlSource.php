@@ -1,7 +1,7 @@
 <?php
 
 //File to process
-$sFileToProcess = __DIR__ . DIRECTORY_SEPARATOR . 'demo.html';
+$sFileToProcess = __DIR__ . DIRECTORY_SEPARATOR . 'index.html';
 
 
 // Heading tags regex
