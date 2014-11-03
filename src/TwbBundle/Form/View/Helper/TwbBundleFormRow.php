@@ -117,6 +117,49 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
         }
         return $sLabel;
     }
+    
+    
+
+    /**
+     * Parse label attributes
+     * @param \Zend\Form\ElementInterface $oElement
+     * @param array $aLabelAttributes
+     */
+    protected function parseLabelAttributes(\Zend\Form\ElementInterface $oElement, $aLabelAttributes)
+    {
+        //Validation state
+        if ($oElement->getOption('validation-state') || count($oElement->getMessages())) {
+            if (empty($aLabelAttributes['class'])) {
+                $aLabelAttributes['class'] = 'control-label';
+            } elseif (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
+                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
+            }
+        }
+
+        switch ($oElement->getOption('twb-layout')) {
+            //Hide label for "inline" layout
+            case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
+                if ($oElement->getAttribute('type') !== 'checkbox') {
+                    if (empty($aLabelAttributes['class'])) {
+                        $aLabelAttributes['class'] = 'sr-only';
+                    } elseif (!preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
+                        $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                    }
+                }
+                break;
+
+            case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
+                if (empty($aLabelAttributes['class'])) {
+                    $aLabelAttributes['class'] = 'control-label';
+                } else {
+                    if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
+                        $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
+                    }
+                }
+                break;
+        }
+        return $aLabelAttributes;
+    }
 
     /**
      * Render element
@@ -139,44 +182,20 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
                 $sLabelContent = '';
             } else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
-
-                //Validation state
-                if ($oElement->getOption('validation-state') || $oElement->getMessages()) {
-                    if (empty($aLabelAttributes['class'])) {
-                        $aLabelAttributes['class'] = 'control-label';
-                    } elseif (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
-                        $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
-                    }
-                }
-
-                $oLabelHelper = $this->getLabelHelper();
-                switch ($sLayout) {
-                    //Hide label for "inline" layout
-                    case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
-                        if ($sElementType !== 'checkbox') {
-                            if (empty($aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = 'sr-only';
-                            } elseif (!preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
-                            }
-                        }
-                        break;
-
-                    case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
-                        if (empty($aLabelAttributes['class'])) {
-                            $aLabelAttributes['class'] = 'control-label';
-                        } else {
-                            if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
-                            }
-                        }
-                        break;
-                }
+                //Parse radio label attributes
+                $aLabelAttributes = $this->parseLabelAttributes($oElement, $aLabelAttributes);
                 if ($aLabelAttributes) {
                     $oElement->setLabelAttributes($aLabelAttributes);
                 }
+                if (false === $oElement->getOption('global-label-attributes')) {
+                    //Parse global label attributes
+                    $aGlobalLabelAttributes = $this->parseLabelAttributes($oElement, array());
+                } else {
+                    $aGlobalLabelAttributes = $aLabelAttributes;
+                }
 
-                $sLabelOpen = $oLabelHelper->openTag($oElement->getAttribute('id') ? $oElement : $aLabelAttributes);
+                $oLabelHelper = $this->getLabelHelper();
+                $sLabelOpen = $oLabelHelper->openTag($oElement->getAttribute('id') ? $oElement : $aGlobalLabelAttributes);
                 $sLabelClose = $oLabelHelper->closeTag();
 
                 // Allow label html escape desable
