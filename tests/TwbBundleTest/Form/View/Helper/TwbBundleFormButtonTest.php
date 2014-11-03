@@ -73,7 +73,7 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase {
 
     public function testRenderWithAppendGlyphiconPositionOption() {
         $this->assertEquals(
-                '<button name="test" class="btn&#x20;btn-default" type="submit" value="">test <span class="glyphicon&#x20;glyphicon-test"></span></button>', $this->formButtonHelper->render(new \Zend\Form\Element('test', array('label' => 'test', 'glyphicon' => array('icon' => 'test', 'position' => \TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_APPEND))))
+                '<button name="test" class="btn&#x20;btn-default" type="submit" value="">test <span class="glyphicon&#x20;glyphicon-test"></span></button>', $this->formButtonHelper->render(new \Zend\Form\Element('test', array('label' => 'test', 'glyphicon' => array('icon' => 'test', 'position' => \TwbBundle\Form\View\Helper\TwbBundleFormButton::ICON_APPEND))))
         );
     }
 
