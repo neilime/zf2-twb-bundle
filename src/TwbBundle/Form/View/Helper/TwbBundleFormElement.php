@@ -163,7 +163,7 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
      * @param string $sTextDomain : [optional] text domain Default is null, which skips setTranslatorTextDomain
      * @return \TwbBundle\Form\View\Helper\TwbBundleFormElement
      */
-    public function setTranslator(\Zend\I18n\Translator\TranslatorInterface $oTranslator = null, $sTextDomain = null) {
+    public function setTranslator(\Zend\I18n\Translator\Translator $oTranslator = null, $sTextDomain = null) {
         $this->translator = $oTranslator;
         if (null !== $sTextDomain) {
             $this->setTranslatorTextDomain($sTextDomain);
