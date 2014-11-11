@@ -382,7 +382,7 @@ $this->label('label message',array('class' => 'label-primary','tagName' => 'a'))
 
 ## Ignore custom view helpers
 
-Add the following to any of your config files
+By default, this module tries to add form-control class to every form element. There are some elements, like checkboxes, radios and buttons, that does not use that class in bootstrap. This config allows you to tell the render method to ignore your custom form view helper and do NOT add that class. 
 
     return [
         'twbbundle' => [
