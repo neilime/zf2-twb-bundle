@@ -95,6 +95,7 @@ Installation
      );
      ```
 
+
 * Edit layout file `module/Application/view/layout/layout.phtml`, to render head scripts :
 
     ```php
@@ -378,6 +379,20 @@ The class attribute "label" is auto added to the label container and "label-defa
 <?php
 $this->label('label message',array('class' => 'label-primary','tagName' => 'a'));
 ```
+
+## Ignore custom view helpers
+
+Add the following to any of your config files
+
+    return [
+        'twbbundle' => [
+            'ignoredViewHelpers' => [
+                'viewhelpername'
+            ]
+        ]
+    ];
+
+
 ## Elements
 
 __TwbBundle__ provides new elements to supports Twitter Bootstrap potential.
