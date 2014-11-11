@@ -2,12 +2,14 @@
 namespace TwbBundle\Form\View\Helper;
 
 use Zend\Form\ElementInterface;
+use Zend\View\Helper\AbstractHelper;
 
-class TwbBundleFormStatic extends \Zend\Form\View\Helper\AbstractHelper{
-	/**
-	 * @var string
-	 */
-	private static $staticFormat = '<p class="form-control-static">%s</p>';
+class TwbBundleFormStatic extends AbstractHelper
+{
+    /**
+     * @var string
+     */
+    private static $staticFormat = '<p class="form-control-static">%s</p>';
 
     /**
      * Invoke helper as functor
@@ -26,12 +28,13 @@ class TwbBundleFormStatic extends \Zend\Form\View\Helper\AbstractHelper{
         return $this->render($element);
     }
 
-	/**
-	 * @see \Zend\Form\View\Helper\AbstractHelper::render()
-	 * @param ElementInterface $oElement
-	 * @return string
-	 */
-	public function render(ElementInterface $oElement){
-		return sprintf(self::$staticFormat,$oElement->getValue());
-	}
+    /**
+     * @see \Zend\Form\View\Helper\AbstractHelper::render()
+     * @param ElementInterface $oElement
+     * @return string
+     */
+    public function render(ElementInterface $oElement)
+    {
+        return sprintf(self::$staticFormat, $oElement->getValue());
+    }
 }

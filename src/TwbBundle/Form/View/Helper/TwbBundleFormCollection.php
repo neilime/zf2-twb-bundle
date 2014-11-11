@@ -3,9 +3,11 @@
 namespace TwbBundle\Form\View\Helper;
 
 use Zend\Form\Element\Collection as CollectionElement;
+use Zend\Form\View\Helper\FormCollection;
+use Zend\Form\ElementInterface;
 
-class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection {
-
+class TwbBundleFormCollection extends FormCollection
+{
     /**
      * @var string
      */
@@ -29,7 +31,8 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection {
      * @param \Zend\Form\ElementInterface $oElement
      * @return string
      */
-    public function render(\Zend\Form\ElementInterface $oElement) {
+    public function render(ElementInterface $oElement)
+    {
         $oRenderer = $this->getView();
         if (!method_exists($oRenderer, 'plugin')) {
             return '';
@@ -68,8 +71,8 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection {
                 }
 
                 $sMarkup = sprintf(
-                                self::$legendFormat, ($sAttributes = $this->createAttributesString($oElement->getLabelAttributes()? : array())) ? ' ' . $sAttributes : '', $this->getEscapeHtmlHelper()->__invoke($sLabel)
-                        ) . $sMarkup;
+                        self::$legendFormat, ($sAttributes = $this->createAttributesString($oElement->getLabelAttributes()? : array())) ? ' ' . $sAttributes : '', $this->getEscapeHtmlHelper()->__invoke($sLabel)
+                ) . $sMarkup;
             }
 
             //Set form layout class
@@ -99,7 +102,7 @@ class TwbBundleFormCollection extends \Zend\Form\View\Helper\FormCollection {
      */
     public function renderTemplate(CollectionElement $collection)
     {
-        if($sElementLayout = $collection->getOption('twb-layout')) {
+        if ($sElementLayout = $collection->getOption('twb-layout')) {
             $elementOrFieldset = $collection->getTemplateElement();
             $elementOrFieldset->setOption('twb-layout', $sElementLayout);
         }

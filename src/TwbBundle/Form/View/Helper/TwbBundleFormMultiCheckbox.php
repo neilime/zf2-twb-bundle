@@ -2,14 +2,19 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-class TwbBundleFormMultiCheckbox extends \Zend\Form\View\Helper\FormMultiCheckbox {
+use Zend\Form\View\Helper\FormMultiCheckbox;
+use Zend\Form\ElementInterface;
+
+class TwbBundleFormMultiCheckbox extends FormMultiCheckbox
+{
 
     /**
      * @see \Zend\Form\View\Helper\FormMultiCheckbox::render()
      * @param \Zend\Form\ElementInterface $oElement
      * @return string
      */
-    public function render(\Zend\Form\ElementInterface $oElement) {
+    public function render(ElementInterface $oElement)
+    {
 
         $aElementOptions = $oElement->getOptions();
 
@@ -26,5 +31,4 @@ class TwbBundleFormMultiCheckbox extends \Zend\Form\View\Helper\FormMultiCheckbo
 
         return $bNoInline ? '<div class="checkbox">' . parent::render($oElement) . '</div>' : parent::render($oElement);
     }
-
 }

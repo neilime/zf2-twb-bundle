@@ -1,8 +1,25 @@
 <?php
 
 return array(
-    'view_helpers' => array(
-        'invokables' => array(
+    'twbbundle' => array (
+        'ignoredViewHelpers' => array (
+            'file',
+            'checkbox',
+            'radio',
+            'submit',
+            'multi_checkbox',
+            'static',
+            'button',
+            'reset'
+        )
+    ),
+    'service_manager' => array (
+        'factories' => array (
+            'TwbBundle\Options\ModuleOptions' => 'TwbBundle\Options\Factory\ModuleOptionsFactory'
+        )
+    ),
+    'view_helpers' => array (
+        'invokables' => array (
             //Alert
             'alert' => 'TwbBundle\View\Helper\TwbBundleAlert',
             //Badge
@@ -17,7 +34,6 @@ return array(
             'formSubmit' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
             'formCheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormCheckbox',
             'formCollection' => 'TwbBundle\Form\View\Helper\TwbBundleFormCollection',
-            'formElement' => 'TwbBundle\Form\View\Helper\TwbBundleFormElement',
             'formElementErrors' => 'TwbBundle\Form\View\Helper\TwbBundleFormElementErrors',
             'formMultiCheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox',
             'formRadio' => 'TwbBundle\Form\View\Helper\TwbBundleFormRadio',
@@ -31,6 +47,9 @@ return array(
             'fontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
             //Label
             'label' => 'TwbBundle\View\Helper\TwbBundleLabel'
+        ),
+        'factories' => array (
+            'formElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
         )
-    )
+    ),
 );

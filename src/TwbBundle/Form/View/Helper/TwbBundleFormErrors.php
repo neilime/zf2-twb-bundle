@@ -2,7 +2,11 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-class TwbBundleFormErrors extends \Zend\Form\View\Helper\AbstractHelper {
+use Zend\Form\View\Helper\AbstractHelper;
+use Zend\Form\FormInterface;
+
+class TwbBundleFormErrors extends AbstractHelper
+{
 
     protected $defaultErrorText = 'There were errors in the form submission';
     protected $messageOpenFormat = '<h4>%s</h4><ul><li>';
@@ -16,7 +20,8 @@ class TwbBundleFormErrors extends \Zend\Form\View\Helper\AbstractHelper {
      * @param string $bDismissable
      * @return string|null
      */
-    public function __invoke(\Zend\Form\FormInterface $oForm = null, $sMessage = null, $bDismissable = false) {
+    public function __invoke(FormInterface $oForm = null, $sMessage = null, $bDismissable = false)
+    {
         if (!$oForm) {
             return $this;
         }
@@ -38,7 +43,8 @@ class TwbBundleFormErrors extends \Zend\Form\View\Helper\AbstractHelper {
      * @param \Zend\Form\FormInterface $oForm
      * @return string
      */
-    public function render(\Zend\Form\FormInterface $oForm, $sMessage, $bDismissable = false) {
+    public function render(FormInterface $oForm, $sMessage, $bDismissable = false)
+    {
         $errorHtml = sprintf($this->messageOpenFormat, $sMessage);
 
         $sMessagesArray = array();
@@ -47,7 +53,9 @@ class TwbBundleFormErrors extends \Zend\Form\View\Helper\AbstractHelper {
             foreach ($sMessages as $sMessage) {
                 if ($oForm->get($fieldName)->getAttribute('id')) {
                     $sMessagesArray[] = sprintf(
-                            '<a href="#%s">%s</a>', $oForm->get($fieldName)->getAttribute('id'), $oForm->get($fieldName)->getLabel() . ': ' . $sMessage
+                        '<a href="#%s">%s</a>',
+                        $oForm->get($fieldName)->getAttribute('id'),
+                        $oForm->get($fieldName)->getLabel() . ': ' . $sMessage
                     );
                 } else {
                     $sMessagesArray[] = $oForm->get($fieldName)->getLabel() . ': ' . $sMessage;
@@ -55,7 +63,12 @@ class TwbBundleFormErrors extends \Zend\Form\View\Helper\AbstractHelper {
             }
         }
 
-        return $this->dangerAlert($errorHtml . implode($this->messageSeparatorString, $sMessagesArray) . $this->messageCloseString, $bDismissable);
+        return $this->dangerAlert(
+            $errorHtml .
+            implode($this->messageSeparatorString, $sMessagesArray) .
+            $this->messageCloseString,
+            $bDismissable
+        );
     }
 
     /**
@@ -64,8 +77,8 @@ class TwbBundleFormErrors extends \Zend\Form\View\Helper\AbstractHelper {
      * @param boolean $bDismissable
      * @return string
      */
-    public function dangerAlert($content, $bDismissable = false) {
+    public function dangerAlert($content, $bDismissable = false)
+    {
         return $this->getView()->alert($content, array('class' => 'alert-danger'), $bDismissable);
     }
-
 }

@@ -2,7 +2,12 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-class TwbBundleFormRadio extends \Zend\Form\View\Helper\FormRadio {
+use Zend\Form\View\Helper\FormRadio;
+use Zend\Form\ElementInterface;
+use Zend\Form\Element\MultiCheckbox;
+
+class TwbBundleFormRadio extends FormRadio
+{
 
     /**
      * Separator for checkbox elements
@@ -20,7 +25,8 @@ class TwbBundleFormRadio extends \Zend\Form\View\Helper\FormRadio {
      * @param \Zend\Form\ElementInterface $oElement
      * @return string
      */
-    public function render(\Zend\Form\ElementInterface $oElement) {
+    public function render(ElementInterface $oElement)
+    {
         if ($oElement->getOption('disable-twb')) {
             $sSeparator = $this->separator;
             $this->separator = '';
@@ -39,7 +45,12 @@ class TwbBundleFormRadio extends \Zend\Form\View\Helper\FormRadio {
      * @param array $aAttributes
      * @return string
      */
-    protected function renderOptions(\Zend\Form\Element\MultiCheckbox $oElement, array $aOptions, array $aSelectedOptions, array $aAttributes) {
+    protected function renderOptions(
+        MultiCheckbox $oElement,
+        array $aOptions,
+        array $aSelectedOptions,
+        array $aAttributes
+    ) {
         $iIterator = 0;
         $aGlobalLabelAttributes = $oElement->getLabelAttributes()? : $this->labelAttributes;
         $sMarkup = '';
@@ -112,5 +123,4 @@ class TwbBundleFormRadio extends \Zend\Form\View\Helper\FormRadio {
         }
         return $sMarkup;
     }
-
 }
