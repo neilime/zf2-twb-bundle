@@ -95,6 +95,7 @@ Installation
      );
      ```
 
+
 * Edit layout file `module/Application/view/layout/layout.phtml`, to render head scripts :
 
     ```php
@@ -378,6 +379,20 @@ The class attribute "label" is auto added to the label container and "label-defa
 <?php
 $this->label('label message',array('class' => 'label-primary','tagName' => 'a'));
 ```
+
+## Ignore custom view helpers
+
+By default, this module tries to add form-control class to every form element. There are some elements, like checkboxes, radios and buttons, that does not use that class in bootstrap. This config allows you to tell the render method to ignore your custom form view helper and do NOT add that class. 
+
+    return [
+        'twbbundle' => [
+            'ignoredViewHelpers' => [
+                'viewhelpername'
+            ]
+        ]
+    ];
+
+
 ## Elements
 
 __TwbBundle__ provides new elements to supports Twitter Bootstrap potential.
