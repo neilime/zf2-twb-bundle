@@ -56,7 +56,15 @@ class TwbBundleFormCollection extends FormCollection
                 if ($oElementOrFieldset instanceof \Zend\Form\FieldsetInterface) {
                     $sMarkup .= $oFieldsetHelper($oElementOrFieldset);
                 } elseif ($oElementOrFieldset instanceof \Zend\Form\ElementInterface) {
-                    $sMarkup .= $oElementHelper($oElementOrFieldset);
+                	if ($oElementOrFieldset->getOption('twb-row-open')) {
+						$sMarkup .= '<div class="row">' . PHP_EOL;
+					}
+
+					$sMarkup .= $oElementHelper($oElementOrFieldset);
+
+					if ($oElementOrFieldset->getOption('twb-row-close')) {
+						$sMarkup .= '</div>' . PHP_EOL;
+					}
                 }
             }
             if ($oElement instanceof \Zend\Form\Element\Collection && $oElement->shouldCreateTemplate()) {
