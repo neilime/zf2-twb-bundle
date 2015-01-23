@@ -258,6 +258,10 @@ The option `validation-state` (string) can be passed to the element to render th
 The option `column-size` (int) can be passed to the element to render the row with a defined column size class attribute(`col-lg-...`).
 The option `help-block` (string) can be passed to the element to render an help block translated appending the element.
 
+If you like to wrap elements into a <div class="row"> in case you want X number of elements on the same line the option `twb-row-open` (bool) can be passed to the element where the row must start and will be printed before the element is rendered. It could be you have to provide the `column-size` in combination with this option.
+The option `twb-row-close` (bool) can be passed to the element to close the earlier opened row and will be printed after the elements is rendered.
+Note: closing earlier opened rows is your responsibility.
+
 You can allow the label html rendering after toggling off escape :
 
 ```php
