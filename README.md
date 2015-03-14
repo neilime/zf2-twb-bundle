@@ -150,13 +150,14 @@ $this->formButton(new \Zend\Form\Element());
 This helper accepts a button element as first param, and an optionnal button content as second param.
 It auto add button specific class (`btn` & `btn-default` is no button class is defined) attribute.
 
-The option `glyphicon` (string or array) can be defined to render a glyphicon into the element :
+The option `glyphicon` (string or array) and `fontAwesome` (string or array) can be defined to render a glyphicon or a fontAwesome icon into the element :
 The glyphicon is rendered by the [glyphicon renderer](#glyphicon--twbbundleviewhelpertwbbundleglyphicon).
+The fontAwesome is rendered by the [fontAwesome renderer](#fontawesome--twbbundleviewhelpertwbbundlefontawesome).
 
 If the option is a string, it should be the name of the icon (e.g. "star", "search" ...), the glyphicon will prepend the label if exists. If the option is an array, it accept the folling options :
 * string `icon` : the name of the icon (e.g. "star", "search" ...).
-* string `position` : (optionnal) the position of the glyphicon to prepend or append the button content, `\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_PREPEND` (the default) and `\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_APPEND`.
-* array `attributes` : (optionnal) the additional attributes to the glyphicon element
+* string `position` : (optional) the position of the glyphicon to prepend or append the button content, `\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_PREPEND` (the default) and `\TwbBundle\Form\View\Helper\TwbBundleFormButton::GLYPHICON_APPEND`.
+* array `attributes` : (optional) the additional attributes to the glyphicon element
 
 Button can be set as dropdown button by defined the option `dropdown` (array) to the element :
 The dropdown is rendered by the [dropdown renderer](#dropdown--twbbundleviewhelpertwbbundledropdown), it accept the folling additionnal options :
