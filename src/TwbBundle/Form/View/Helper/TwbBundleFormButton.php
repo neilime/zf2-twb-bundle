@@ -91,7 +91,7 @@ class TwbBundleFormButton extends FormButton
             if (null === $sButtonContent && !$aIconOptions) {
                 throw new DomainException(sprintf(
                     '%s expects either button content as the second argument, ' .
-                    'or that the element provided has a label value or a glyphicon option; neither found',
+                    'or that the element provided has a label value, a glyphicon option, or a fontAwesome option; none found',
                     __METHOD__
                 ));
             }
@@ -122,7 +122,7 @@ class TwbBundleFormButton extends FormButton
             
             if (!is_array($aIconOptions)) {
                 throw new LogicException(sprintf(
-                    '"glyphicon" button option expects a scalar value or an array, "%s" given',
+                    '"glyphicon" and "fontAwesome" button option expects a scalar value or an array, "%s" given',
                     is_object($aIconOptions) ? get_class($aIconOptions) : gettype($aIconOptions)
                 ));
             }
@@ -139,17 +139,17 @@ class TwbBundleFormButton extends FormButton
             
             if (!is_scalar($icon)) {
                 throw new LogicException(sprintf(
-                    'Glyphicon "icon" option expects a scalar value, "%s" given',
+                    'Glyphicon and fontAwesome "icon" option expects a scalar value, "%s" given',
                     is_object($icon) ? get_class($icon) : gettype($icon)
                 ));
             } elseif (!is_string($position)) {
                 throw new LogicException(sprintf(
-                    'Glyphicon "position" option expects a string, "%s" given',
+                    'Glyphicon and fontAwesome "position" option expects a string, "%s" given',
                     is_object($position) ? get_class($position) : gettype($position)
                 ));
             } elseif ($position !== self::ICON_PREPEND && $position !== self::ICON_APPEND) {
                 throw new LogicException(sprintf(
-                    'Glyphicon "position" option allows "'.self::ICON_PREPEND.'" or "'.self::ICON_APPEND.'", "%s" given',
+                    'Glyphicon and fontAwesome "position" option allows "'.self::ICON_PREPEND.'" or "'.self::ICON_APPEND.'", "%s" given',
                     is_object($position) ? get_class($position) : gettype($position)
                 ));
             }
