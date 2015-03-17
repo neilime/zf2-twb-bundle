@@ -40,7 +40,7 @@ class TwbBundleFormButton extends FormButton
      * Allowed button options
      * @var array
      */
-    protected static $buttonOptions = array('default', 'primary', 'success', 'info', 'warning', 'danger');
+    protected static $buttonOptions = array('default', 'primary', 'success', 'info', 'warning', 'danger', 'link');
 
     /**
      * @see FormButton::render()
