@@ -2,6 +2,9 @@
 
 namespace TwbBundleTest;
 
+use TwbBundle\Form\View\Helper\TwbBundleForm;
+use Zend\Form\Form;
+
 /**
  * Test forms rendering
  * Based on http://getbootstrap.com/css/#forms
@@ -33,42 +36,42 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testBasicExample() {
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'input-email',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'email',
                 'placeholder' => 'Enter email',
                 'id' => 'exampleInputEmail1'
-            ),
-            'options' => array('label' => 'Email address')
-        ))->add(array(
+            ],
+            'options' => ['label' => 'Email address']
+        ])->add([
             'name' => 'input-password',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'password',
                 'placeholder' => 'Password',
                 'id' => 'exampleInputPassword1'
-            ),
-            'options' => array('label' => 'Password',)
-        ))->add(array(
+            ],
+            'options' => ['label' => 'Password',]
+        ])->add([
             'name' => 'input-file',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'file',
                 'id' => 'exampleInputFile'
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'File input',
                 'help-block' => 'Example block-level help text here.'
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'input-checkbox',
             'type' => 'checkbox',
-            'options' => array('label' => 'Check me out')
-        ))->add(array(
+            'options' => ['label' => 'Check me out']
+        ])->add([
             'name' => 'button-submit',
             'type' => 'button',
-            'attributes' => array('type' => 'submit'),
-            'options' => array('label' => 'Submit')
-        ));
+            'attributes' => ['type' => 'submit'],
+            'options' => ['label' => 'Submit']
+        ]);
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'basic-example.phtml', $this->formHelper->__invoke($oForm, null));
@@ -79,32 +82,32 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testInlineForm() {
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'input-email',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'email',
                 'placeholder' => 'Enter email',
                 'id' => 'exampleInputEmail2'
-            ),
-            'options' => array('label' => 'Email address')
-        ))->add(array(
+            ],
+            'options' => ['label' => 'Email address']
+        ])->add([
             'name' => 'input-password',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'password',
                 'placeholder' => 'Password',
                 'id' => 'exampleInputPassword2'
-            ),
-            'options' => array('label' => 'Password')
-        ))->add(array(
+            ],
+            'options' => ['label' => 'Password']
+        ])->add([
             'name' => 'input-checkbox',
             'type' => 'checkbox',
-            'options' => array('label' => 'Remember me')
-        ))->add(array(
+            'options' => ['label' => 'Remember me']
+        ])->add([
             'name' => 'button-submit',
             'type' => 'button',
-            'attributes' => array('type' => 'submit'),
-            'options' => array('label' => 'Sign in')
-        ));
+            'attributes' => ['type' => 'submit'],
+            'options' => ['label' => 'Sign in']
+        ]);
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'inline-form.phtml', $this->formHelper->__invoke($oForm, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
@@ -114,40 +117,40 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/css/#forms-horizontal
      */
     public function testHorizontalform() {
-        $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm = new Form();
+        $oForm->add([
             'name' => 'input-email',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'email',
                 'placeholder' => 'Enter email',
                 'id' => 'inputEmail1'
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Email',
                 'column-size' => 'sm-10',
-                'label_attributes' => array('class' => 'col-sm-2')
-            )
-        ))->add(array(
+                'label_attributes' => ['class' => 'col-sm-2']
+            ]
+        ])->add([
             'name' => 'input-password',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'password',
                 'placeholder' => 'Password',
                 'id' => 'inputPassword1'
-            ),
-            'options' => array('label' => 'Password', 'column-size' => 'sm-10', 'label_attributes' => array('class' => 'col-sm-2'))
-        ))->add(array(
+            ],
+            'options' => ['label' => 'Password', 'column-size' => 'sm-10', 'label_attributes' => ['class' => 'col-sm-2']]
+        ])->add([
             'name' => 'input-checkbox',
             'type' => 'checkbox',
-            'options' => array('label' => 'Remember me', 'column-size' => 'sm-10 col-sm-offset-2')
-        ))->add(array(
+            'options' => ['label' => 'Remember me', 'column-size' => 'sm-10 col-sm-offset-2']
+        ])->add([
             'name' => 'button-submit',
             'type' => 'button',
-            'attributes' => array('type' => 'submit'),
-            'options' => array('label' => 'Sign in', 'column-size' => 'sm-10 col-sm-offset-2')
-        ));
+            'attributes' => ['type' => 'submit'],
+            'options' => ['label' => 'Sign in', 'column-size' => 'sm-10 col-sm-offset-2']
+        ]);
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'horizontal-form.phtml', $this->formHelper->__invoke($oForm));
+        $this->assertStringEqualsFile($this->expectedPath . 'horizontal-form.phtml', $this->formHelper->__invoke($oForm, TwbBundleForm::LAYOUT_HORIZONTAL));
     }
 
     /**
@@ -155,62 +158,62 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testSupportedControlsform() {
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'input-text',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'placeholder' => 'Text input',
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'input-text-area',
             'type' => 'textarea',
-            'attributes' => array(
+            'attributes' => [
                 'row' => 3
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'input-checkbox',
             'type' => 'checkbox',
-            'options' => array('label' => 'Option one is this and that-be sure to include why it\'s great')
-        ))->add(array(
+            'options' => ['label' => 'Option one is this and that-be sure to include why it\'s great']
+        ])->add([
             'name' => 'optionsRadios',
             'type' => 'radio',
-            'options' => array(
-                'value_options' => array(
+            'options' => [
+                'value_options' => [
                     'option1' => 'Option one is this and that-be sure to include why it\'s great',
                     'optionsRadios2' => 'Option two can be something else and selecting it will deselect option one'
-                )
-            )
-        ))->add(array(
+                ]
+            ]
+        ])->add([
             'name' => 'optionsRadiosNoInline',
             'type' => 'MultiCheckbox',
-            'options' => array(
-                'value_options' => array(
-                    array('label' => '1', 'value' => 'option1', 'attributes' => array('id' => 'noInlineCheckbox1')),
-                    array('label' => '2', 'value' => 'option2', 'attributes' => array('id' => 'noInlineCheckbox2')),
-                    array('label' => '3', 'value' => 'option3', 'attributes' => array('id' => 'noInlineCheckbox3'))
-                )
-            )
-        ))->add(array(
+            'options' => [
+                'value_options' => [
+                    ['label' => '1', 'value' => 'option1', 'attributes' => ['id' => 'noInlineCheckbox1']],
+                    ['label' => '2', 'value' => 'option2', 'attributes' => ['id' => 'noInlineCheckbox2']],
+                    ['label' => '3', 'value' => 'option3', 'attributes' => ['id' => 'noInlineCheckbox3']]
+                ]
+            ]
+        ])->add([
             'name' => 'optionsRadios',
             'type' => 'MultiCheckbox',
-            'options' => array(
-                'value_options' => array(
-                    array('label' => '1', 'value' => 'option1', 'attributes' => array('id' => 'inlineCheckbox1')),
-                    array('label' => '2', 'value' => 'option2', 'attributes' => array('id' => 'inlineCheckbox2')),
-                    array('label' => '3', 'value' => 'option3', 'attributes' => array('id' => 'inlineCheckbox3'))
-                ),
+            'options' => [
+                'value_options' => [
+                    ['label' => '1', 'value' => 'option1', 'attributes' => ['id' => 'inlineCheckbox1']],
+                    ['label' => '2', 'value' => 'option2', 'attributes' => ['id' => 'inlineCheckbox2']],
+                    ['label' => '3', 'value' => 'option3', 'attributes' => ['id' => 'inlineCheckbox3']]
+                ],
                 'inline' => true
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'select',
             'type' => 'select',
-            'options' => array('value_options' => array(1, 2, 3, 4, 5))
-        ))->add(array(
+            'options' => ['value_options' => [1, 2, 3, 4, 5]]
+        ])->add([
             'name' => 'multiple-select',
             'type' => 'select',
-            'options' => array('value_options' => array(1, 2, 3, 4, 5)),
-            'attributes' => array('multiple' => true)
-        ));
+            'options' => ['value_options' => [1, 2, 3, 4, 5]],
+            'attributes' => ['multiple' => true]
+        ]);
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'supported-controls-form.phtml', $this->formHelper->__invoke($oForm, null));
@@ -218,21 +221,21 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
 
     public function testRenderMultiCheckboxInlineWithLabel() {
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'optionsRadios',
             'type' => 'MultiCheckbox',
-            'options' => array(
+            'options' => [
                 'label' => 'Test label',
                 'column-size' => 'sm-10',
-                'label_attributes' => array('class' => 'col-sm-2'),
-                'value_options' => array(
-                    array('label' => '1', 'value' => 'option1', 'attributes' => array('id' => 'inlineCheckbox1')),
-                    array('label' => '2', 'value' => 'option2', 'attributes' => array('id' => 'inlineCheckbox2')),
-                    array('label' => '3', 'value' => 'option3', 'attributes' => array('id' => 'inlineCheckbox3'))
-                ),
+                'label_attributes' => ['class' => 'col-sm-2'],
+                'value_options' => [
+                    ['label' => '1', 'value' => 'option1', 'attributes' => ['id' => 'inlineCheckbox1']],
+                    ['label' => '2', 'value' => 'option2', 'attributes' => ['id' => 'inlineCheckbox2']],
+                    ['label' => '3', 'value' => 'option3', 'attributes' => ['id' => 'inlineCheckbox3']]
+                ],
                 'inline' => true
-            )
-        ));
+            ]
+        ]);
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'multi-checkbox-inline.phtml', $this->formHelper->__invoke($oForm));
     }
@@ -242,20 +245,20 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testStaticControlform() {
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'static-element',
             'type' => '\TwbBundle\Form\Element\StaticElement',
-            'attributes' => array('value' => 'email@example.com'),
-            'options' => array('label' => 'Email', 'column-size' => 'lg-10', 'label_attributes' => array('class' => 'col-lg-2'))
-        ))->add(array(
+            'attributes' => ['value' => 'email@example.com'],
+            'options' => ['label' => 'Email', 'column-size' => 'lg-10', 'label_attributes' => ['class' => 'col-lg-2']]
+        ])->add([
             'name' => 'input-password',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'password',
                 'placeholder' => 'Password',
                 'id' => 'inputPassword'
-            ),
-            'options' => array('label' => 'Password', 'column-size' => 'lg-10', 'label_attributes' => array('class' => 'col-lg-2'))
-        ));
+            ],
+            'options' => ['label' => 'Password', 'column-size' => 'lg-10', 'label_attributes' => ['class' => 'col-lg-2']]
+        ]);
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'static-control-form.phtml', $this->formHelper->__invoke($oForm));
@@ -266,48 +269,48 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testControlStatesform() {
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'input-text-disabled',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'placeholder' => 'Disabled input here...',
                 'id' => 'disabledInput'
-            )
-        ));
+            ]
+        ]);
 
         $oFieldset = new \Zend\Form\Fieldset('fieldset-disabled');
-        $oForm->add($oFieldset->setAttributes(array('disabled' => true))->add(array(
+        $oForm->add($oFieldset->setAttributes(['disabled' => true])->add([
                     'name' => 'input-text-disabled',
-                    'attributes' => array(
+                    'attributes' => [
                         'type' => 'text',
                         'placeholder' => 'Disabled input',
                         'id' => 'disabledTextInput'
-                    ),
-                    'options' => array('label' => 'Disabled input')
-                ))->add(array(
+                    ],
+                    'options' => ['label' => 'Disabled input']
+                ])->add([
                     'name' => 'disabled-select',
                     'type' => 'select',
-                    'options' => array(
+                    'options' => [
                         'label' => 'Disabled select menu',
-                        'value_options' => array('' => 'Disabled select')
-                    ),
-                    'attributes' => array('id' => 'disabled-select')
-                ))->add(array(
+                        'value_options' => ['' => 'Disabled select']
+                    ],
+                    'attributes' => ['id' => 'disabled-select']
+                ])->add([
                     'name' => 'input-checkbox',
                     'type' => 'checkbox',
-                    'options' => array('label' => 'Can\'t check this')
-                ))->add(array(
+                    'options' => ['label' => 'Can\'t check this']
+                ])->add([
                     'name' => 'button-submit',
                     'type' => 'button',
-                    'attributes' => array('type' => 'submit', 'class' => 'btn-primary'),
-                    'options' => array('label' => 'Submit')
-        )));
+                    'attributes' => ['type' => 'submit', 'class' => 'btn-primary'],
+                    'options' => ['label' => 'Submit']
+        ]));
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'control-states-form.phtml', $this->formHelper->__invoke($oForm, null));
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'control-states-form-horizontal.phtml', $this->formHelper->__invoke($oForm));
+        $this->assertStringEqualsFile($this->expectedPath . 'control-states-form-horizontal.phtml', $this->formHelper->__invoke($oForm, TwbBundleForm::LAYOUT_HORIZONTAL));
     }
 
     /**
@@ -315,37 +318,37 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testFormsValidation() {
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'input-text-success',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'id' => 'inputSuccess'
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Input with success',
                 'validation-state' => 'success'
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'input-text-warning',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'id' => 'inputWarning'
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Input with warning',
                 'validation-state' => 'warning'
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'input-text-error',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'id' => 'inputError'
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Input with error',
                 'validation-state' => 'error'
-            )
-        ));
+            ]
+        ]);
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'forms-validation.phtml', $this->formHelper->__invoke($oForm, null));
@@ -358,69 +361,69 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
 
         //Height sizing
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'input-text-lg',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'placeholder' => '.input-lg',
                 'class' => 'input-lg'
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'input-text-default',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'placeholder' => 'Default input'
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'input-text-sm',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'placeholder' => '.input-sm',
                 'class' => 'input-sm'
-            )
-        ))->add(array(
+            ]
+        ])->add([
             'name' => 'lg-select',
             'type' => 'select',
-            'options' => array('value_options' => array('' => '.input-lg')),
-            'attributes' => array('class' => 'input-lg')
-        ))->add(array(
+            'options' => ['value_options' => ['' => '.input-lg']],
+            'attributes' => ['class' => 'input-lg']
+        ])->add([
             'name' => 'default-select',
             'type' => 'select',
-            'options' => array('value_options' => array('' => 'Default select'))
-        ))->add(array(
+            'options' => ['value_options' => ['' => 'Default select']]
+        ])->add([
             'name' => 'sm-select',
             'type' => 'select',
-            'options' => array('value_options' => array('' => '.input-sm')),
-            'attributes' => array('class' => 'input-sm')
-        ));
+            'options' => ['value_options' => ['' => '.input-sm']],
+            'attributes' => ['class' => 'input-sm']
+        ]);
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'forms-control-sizes-height.phtml', $this->formHelper->__invoke($oForm, null));
 
         //Column sizing
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'input-text-col-lg-2',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'placeholder' => '.col-lg-2'
-            ),
-            'options' => array('column-size' => 'lg-2')
-        ))->add(array(
+            ],
+            'options' => ['column-size' => 'lg-2']
+        ])->add([
             'name' => 'input-text-col-lg-3',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'placeholder' => '.col-lg-3'
-            ),
-            'options' => array('column-size' => 'lg-3')
-        ))->add(array(
+            ],
+            'options' => ['column-size' => 'lg-3']
+        ])->add([
             'name' => 'input-text-col-lg-4',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'placeholder' => '.col-lg-4'
-            ),
-            'options' => array('column-size' => 'lg-4')
-        ));
+            ],
+            'options' => ['column-size' => 'lg-4']
+        ]);
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'forms-control-sizes-column.phtml', $this->formHelper->__invoke($oForm, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
@@ -431,13 +434,13 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testFormsHelpText() {
         $oForm = new \Zend\Form\Form();
-        $oForm->add(array(
+        $oForm->add([
             'name' => 'input-text',
-            'attributes' => array('type' => 'text'),
-            'options' => array(
+            'attributes' => ['type' => 'text'],
+            'options' => [
                 'help-block' => 'A block of help text that breaks onto a new line and may extend beyond one line.'
-            )
-        ));
+            ]
+        ]);
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'forms-help-text.phtml', $this->formHelper->__invoke($oForm, null));
@@ -450,23 +453,23 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
         $oForm = new \Zend\Form\Form();
         $oElement = new \Zend\Form\Element\Text('input-text');
         $oForm->add($oElement
-                        ->setMessages(array(
+                        ->setMessages([
                             'This is an error message',
                             'This is an another one error message'
-        )));
+        ]));
 
         //No form layout
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-no-layout-errored-input.phtml', $this->formHelper->__invoke($oForm, null));
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-no-layout-errored-input.phtml', $this->formHelper->__invoke($oForm));
 
         //Horizontal form
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input.phtml', $this->formHelper->__invoke($oForm));
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input.phtml', $this->formHelper->__invoke($oForm, TwbBundleForm::LAYOUT_HORIZONTAL));
 
         //Horizontal form / input with label
         $oElement
-                ->setOptions(array('column-size' => 'lg-10'))
+                ->setOptions(['column-size' => 'lg-10'])
                 ->setLabel('Input label')
-                ->setLabelAttributes(array('class' => 'col-lg-2'));
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input-with-label.phtml', $this->formHelper->__invoke($oForm));
+                ->setLabelAttributes(['class' => 'col-lg-2']);
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input-with-label.phtml', $this->formHelper->__invoke($oForm, TwbBundleForm::LAYOUT_HORIZONTAL));
     }
 
     /**
