@@ -483,7 +483,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bIgnoreCase
      */
     public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
-        return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
+        parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
 
 }
