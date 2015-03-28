@@ -19,13 +19,13 @@ class TwbBundleFormMultiCheckbox extends FormMultiCheckbox
         // For inline multi-checkbox
         if (isset($aElementOptions['inline']) && $aElementOptions['inline'] == true) {
             $this->setSeparator('');
-            $oElement->setLabelAttributes(['class' => 'checkbox-inline']);
+            $oElement->setLabelAttributes(array('class' => 'checkbox-inline'));
 
             return sprintf('%s', parent::render($oElement));
         }
 
         $this->setSeparator('</div><div class="checkbox">');
-        $oElement->setLabelAttributes(['class' => 'checkbox']);
+        $oElement->setLabelAttributes(array('class' => 'checkbox'));
 
         return sprintf('<div class="checkbox">%s</div>', parent::render($oElement));
     }
