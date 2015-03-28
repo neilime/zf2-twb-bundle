@@ -3,7 +3,10 @@
 namespace TwbBundleTest;
 
 use TwbBundle\Form\View\Helper\TwbBundleForm;
+use Zend\Form\Element\Text;
+use Zend\Form\Fieldset;
 use Zend\Form\Form;
+use Zend\View\Renderer\PhpRenderer;
 
 /**
  * Test forms rendering
@@ -26,8 +29,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      */
     public function setUp() {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-forms' . DIRECTORY_SEPARATOR;
-        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
-        $oRenderer = new \Zend\View\Renderer\PhpRenderer();
+        $oViewHelperPluginManager = Bootstrap::getServiceManager()->get('view_helper_manager');
+        $oRenderer = new PhpRenderer();
         $this->formHelper = $oViewHelperPluginManager->get('form')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
@@ -35,7 +38,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/css/#forms-example
      */
     public function testBasicExample() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'input-email',
             'attributes' => [
@@ -81,7 +84,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/css/#forms-inline
      */
     public function testInlineForm() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'input-email',
             'attributes' => [
@@ -157,7 +160,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/css/#forms-controls
      */
     public function testSupportedControlsform() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'input-text',
             'attributes' => [
@@ -220,7 +223,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testRenderMultiCheckboxInlineWithLabel() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'optionsRadios',
             'type' => 'MultiCheckbox',
@@ -244,7 +247,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/css/#forms-controls-static
      */
     public function testStaticControlform() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'static-element',
             'type' => '\TwbBundle\Form\Element\StaticElement',
@@ -268,7 +271,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/css/#forms-control-states
      */
     public function testControlStatesform() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'input-text-disabled',
             'attributes' => [
@@ -278,7 +281,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
             ]
         ]);
 
-        $oFieldset = new \Zend\Form\Fieldset('fieldset-disabled');
+        $oFieldset = new Fieldset('fieldset-disabled');
         $oForm->add($oFieldset->setAttributes(['disabled' => true])->add([
                     'name' => 'input-text-disabled',
                     'attributes' => [
@@ -317,7 +320,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/css/#forms-validation
      */
     public function testFormsValidation() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'input-text-success',
             'attributes' => [
@@ -360,7 +363,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     public function testFormsControlSizes() {
 
         //Height sizing
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'input-text-lg',
             'attributes' => [
@@ -401,7 +404,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'forms-control-sizes-height.phtml', $this->formHelper->__invoke($oForm, null));
 
         //Column sizing
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'input-text-col-lg-2',
             'attributes' => [
@@ -433,7 +436,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/css/#forms-help-text
      */
     public function testFormsHelpText() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new Form();
         $oForm->add([
             'name' => 'input-text',
             'attributes' => ['type' => 'text'],
@@ -450,8 +453,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * Test errored input rendering
      */
     public function testFormsErroredInput() {
-        $oForm = new \Zend\Form\Form();
-        $oElement = new \Zend\Form\Element\Text('input-text');
+        $oForm = new Form();
+        $oElement = new Text('input-text');
         $oForm->add($oElement
                         ->setMessages([
                             'This is an error message',
