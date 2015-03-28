@@ -8,8 +8,8 @@ use Zend\Form\ElementInterface;
 class TwbBundleFormMultiCheckbox extends FormMultiCheckbox
 {
     /**
-     * @see \Zend\Form\View\Helper\FormMultiCheckbox::render()
-     * @param \Zend\Form\ElementInterface $oElement
+     * @see FormMultiCheckbox::render()
+     * @param ElementInterface $oElement
      * @return string
      */
     public function render(ElementInterface $oElement)
