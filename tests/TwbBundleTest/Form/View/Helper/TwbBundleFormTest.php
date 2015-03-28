@@ -32,7 +32,7 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderFormWithClassAlreadyDefined()
     {
-        $oForm = new Form(null, ['attributes' => ['class' => 'test-class']]);
+        $oForm = new Form(null, array('attributes' => array('class' => 'test-class')));
         $oForm->setAttribute('class', 'test-class');
         $this->formHelper->render($oForm);
         $this->assertEquals('test-class', $oForm->getAttribute('class'));
