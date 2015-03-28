@@ -31,7 +31,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-forms' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = Bootstrap::getServiceManager()->get('view_helper_manager');
         $oRenderer = new PhpRenderer();
-        $this->formHelper = $oViewHelperPluginManager->get('form')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+        $oRenderer->setHelperPluginManager($oViewHelperPluginManager);
+        $this->formHelper = $oViewHelperPluginManager->get('form')->setView($oRenderer);
     }
 
     /**
