@@ -71,6 +71,10 @@ class TwbBundleFormRow extends FormRow
         }
 
         $sRowClass = '';
+        
+        if( $fgs = $oElement->getOption('twb-form-group-size') ){
+            $sRowClass = $fgs;
+        }
 
         //Validation state
         if (($sValidationState = $oElement->getOption('validation-state'))) {
