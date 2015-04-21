@@ -94,7 +94,7 @@ class TwbBundleFormButton extends FormButton
                 'submit' === $oElement->getAttribute('type') &&
                 $oElement->hasAttribute('value')
             ) {
-                $sButtonContent = $oElement->getAttribute('value')
+                $sButtonContent = $oElement->getAttribute('value'),
             }
 
             if (null === $sButtonContent && !$aIconOptions) {
