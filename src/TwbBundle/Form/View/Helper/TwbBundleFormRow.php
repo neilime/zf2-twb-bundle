@@ -288,7 +288,8 @@ class TwbBundleFormRow extends FormRow
      */
     protected function renderHelpBlock(ElementInterface $oElement)
     {
-        return ($sHelpBlock = $oElement->getOption('help-block')) ? sprintf(
+        return (($sHelpBlock = $oElement->getOption('help-block'))
+            || ($sHelpBlock = $oElement->getOption('description'))) ? sprintf(
             self::$helpBlockFormat,
             $this->getEscapeHtmlHelper()->__invoke(($oTranslator = $this->getTranslator()) ? $oTranslator->translate($sHelpBlock, $this->getTranslatorTextDomain()) : $sHelpBlock)
         ) : '';

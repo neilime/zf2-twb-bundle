@@ -22,9 +22,9 @@ class TwbBundleFormCollection extends FormCollection
      * Attributes valid for the tag represented by this helper
      * @var array
      */
-    protected $validTagAttributes = array(
+    protected $validTagAttributes = [
         'disabled' => true
-    );
+    ];
 
     /**
      * Render a collection by iterating through all fieldsets and elements
@@ -48,6 +48,11 @@ class TwbBundleFormCollection extends FormCollection
 
             foreach ($oElement->getIterator() as $oElementOrFieldset) {
                 $aOptions = $oElementOrFieldset->getOptions();
+
+                if (isset($aOptions['hidden']) && $aOptions['hidden'] === true) {
+                    continue;
+                }
+
                 if ($sElementLayout && empty($aOptions['twb-layout'])) {
                     $aOptions['twb-layout'] = $sElementLayout;
                     $oElementOrFieldset->setOptions($aOptions);
