@@ -87,7 +87,12 @@ class TwbBundleFormButton extends FormButton
          * Define button content
          */
         if (null === $sButtonContent) {
-            $sButtonContent = $oElement->getLabel();
+            $sButtonContent = $oElement->getValue();
+
+            if (!$sButtonContent) {
+                $sButtonContent = $oElement->getLabel();
+            }
+
             if (null === $sButtonContent && !$aIconOptions) {
                 throw new DomainException(sprintf(
                     '%s expects either button content as the second argument, ' .
@@ -119,16 +124,16 @@ class TwbBundleFormButton extends FormButton
                     'position' => self::ICON_PREPEND
                 );
             }
-            
+
             if (!is_array($aIconOptions)) {
                 throw new LogicException(sprintf(
                     '"glyphicon" and "fontAwesome" button option expects a scalar value or an array, "%s" given',
                     is_object($aIconOptions) ? get_class($aIconOptions) : gettype($aIconOptions)
                 ));
             }
-            
+
             $position = 'prepend';
-            
+
             if (!empty($aIconOptions['position'])) {
                 $position = $aIconOptions['position'];
             }
@@ -136,7 +141,7 @@ class TwbBundleFormButton extends FormButton
             if (!empty($aIconOptions['icon'])) {
                 $icon = $aIconOptions['icon'];
             }
-            
+
             if (!is_scalar($icon)) {
                 throw new LogicException(sprintf(
                     'Glyphicon and fontAwesome "icon" option expects a scalar value, "%s" given',
@@ -200,7 +205,7 @@ class TwbBundleFormButton extends FormButton
                 $sMarkup = $this->openTag($oElement) .
                     sprintf(self::$dropdownToggleFormat, $sButtonContent) .
                     $this->closeTag();
-            } else { 
+            } else {
                 /*
                  * Add caret element
                  */
