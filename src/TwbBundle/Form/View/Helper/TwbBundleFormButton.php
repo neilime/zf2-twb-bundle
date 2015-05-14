@@ -88,6 +88,11 @@ class TwbBundleFormButton extends FormButton
          */
         if (null === $sButtonContent) {
             $sButtonContent = $oElement->getValue();
+
+            if (!$sButtonContent) {
+                $sButtonContent = $oElement->getLabel();
+            }
+
             if (null === $sButtonContent && !$aIconOptions) {
                 throw new DomainException(sprintf(
                     '%s expects either button content as the second argument, ' .
