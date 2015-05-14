@@ -273,6 +273,17 @@ $this->formRow(new \Zend\Form\Element('my-element',  array(
 )));
 ```
 
+You can also set the the form-group size by passing the `twb-form-group-size` option on the element passed to formRow, example Twig syntax:
+
+```twig
+{% for f in server_form %}
+    {% do f.setOption( 'twb-form-group-size', 'form-group-sm' ) %}
+    {{ formRow( f ) }}
+{% endfor %}
+```
+
+
+
 #### Static : `TwbBundle\Form\View\Helper\TwbBundleFormStatic`
 
 Static helper can be called in a view with the view helper service `formStatic(\Zend\Form\ElementInterface $oElement)` :
