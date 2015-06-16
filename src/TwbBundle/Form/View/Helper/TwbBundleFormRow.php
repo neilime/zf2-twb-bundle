@@ -103,6 +103,13 @@ class TwbBundleFormRow extends FormRow
             $sRowClass .= ' col-' . $sColumSize;
         }
 
+        //Additional row class
+        if (
+                ($sAddRowClass = $oElement->getOption('row-class'))
+        ) {
+            $sRowClass .= ' ' . $sAddRowClass;
+        }
+
         //Render element
         $sElementContent = $this->renderElement($oElement);
 
