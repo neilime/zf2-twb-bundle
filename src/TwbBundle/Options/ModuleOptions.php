@@ -11,10 +11,22 @@ class ModuleOptions extends AbstractOptions
 {
     protected $ignoredViewHelpers;
     
-    protected $classMap = [];
+    protected $classMap;
 
-    protected $typeMap = [];
+    protected $typeMap;
     
+    /**
+     * Constructor
+     * 
+     * @param array|Traversable|null $options
+     */
+    public function __construct($options = null)
+    {
+        $this->classMap = [];
+        $this->typeMap = [];
+        parent::__construct($options);
+    }
+
     public function getIgnoredViewHelpers()
     {
         return $this->ignoredViewHelpers;
@@ -28,17 +40,17 @@ class ModuleOptions extends AbstractOptions
     {
         return $this->classMap;
     }
-    public function setClassMap($class_map)
+    public function setClassMap($classMap)
     {
-        $this->classMap = $class_map;
+        $this->classMap = $classMap;
     }
 
     public function getTypeMap()
     {
         return $this->typeMap;
     }
-    public function setTypeMap($type_map)
+    public function setTypeMap($typeMap)
     {
-        $this->typeMap = $type_map;
+        $this->typeMap = $typeMap;
     }    
 }
