@@ -1,6 +1,7 @@
 <?php
 namespace TwbBundle\Form\View\Helper;
 
+use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\Form;
 use Zend\Form\FormInterface;
 use Zend\Form\FieldsetInterface;
@@ -61,7 +62,13 @@ class TwbBundleForm extends Form
         $bHasColumnSizes = false;
         $sFormContent = '';
         $oRenderer = $this->getView();
+
+        /** @var ElementInterface|FieldsetInterface $oElement */
         foreach ($oForm as $oElement) {
+            if ($oElement->getOption('hidden') === true) {
+                continue;
+            }
+
             $aOptions = $oElement->getOptions();
             if (!$bHasColumnSizes && !empty($aOptions['column-size'])) {
                 $bHasColumnSizes = true;

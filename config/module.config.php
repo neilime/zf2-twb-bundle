@@ -1,8 +1,8 @@
 <?php
 
-return array(
-    'twbbundle' => array (
-        'ignoredViewHelpers' => array (
+return [
+    'twbbundle' => [
+        'ignoredViewHelpers' => [
             'file',
             'checkbox',
             'radio',
@@ -11,15 +11,18 @@ return array(
             'static',
             'button',
             'reset'
-        )
-    ),
-    'service_manager' => array (
-        'factories' => array (
+        ]
+    ],
+    'service_manager' => [
+        'invokables' => [
+            'twb_nav_view_helper_configurator'  => 'TwbBundle\View\Helper\Navigation\PluginConfigurator',
+        ],
+        'factories' => [
             'TwbBundle\Options\ModuleOptions' => 'TwbBundle\Options\Factory\ModuleOptionsFactory'
-        )
-    ),
-    'view_helpers' => array (
-        'invokables' => array (
+        ]
+    ],
+    'view_helpers' => [
+        'invokables' => [
             //Alert
             'alert' => 'TwbBundle\View\Helper\TwbBundleAlert',
             //Badge
@@ -47,9 +50,9 @@ return array(
             'fontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
             //Label
             'label' => 'TwbBundle\View\Helper\TwbBundleLabel'
-        ),
-        'factories' => array (
+        ],
+        'factories' => [
             'formElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
-        )
-    ),
-);
+        ]
+    ],
+];
