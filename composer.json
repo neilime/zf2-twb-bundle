@@ -1,5 +1,5 @@
 {
-    "name": "mdsina/zf2-twb-bundle",
+    "name": "neilime/zf2-twb-bundle",
     "type": "library",
     "description": "Zend Framework 2 module for easy integration of Twitter Bootstrap",
     "keywords": ["Zend Framework 2","Twitter Bootstrap","module"],
