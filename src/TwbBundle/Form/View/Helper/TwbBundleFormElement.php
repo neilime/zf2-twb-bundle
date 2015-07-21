@@ -69,9 +69,13 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
     
     public function __construct(ModuleOptions $options)
     {
+        if (is_array($this->typeMap)) {
+            $this->typeMap = array_merge($this->typeMap, $options->getTypeMap());
+        }
+        if (is_array($this->classMap)) {
+            $this->classMap = array_merge($this->classMap, $options->getClassMap());
+        }
         $this->options = $options;
-        $this->typeMap = array_merge($this->typeMap, $options->getTypeMap());
-        $this->classMap = array_merge($this->classMap, $options->getClassMap());
     }
 
     /**

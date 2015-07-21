@@ -22,8 +22,6 @@ class ModuleOptions extends AbstractOptions
      */
     public function __construct($options = null)
     {
-        $this->classMap = [];
-        $this->typeMap = [];
         parent::__construct($options);
     }
 
