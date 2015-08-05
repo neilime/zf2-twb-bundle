@@ -87,10 +87,10 @@ class TwbBundleFormButton extends FormButton
          * Define button content
          */
         if (null === $sButtonContent) {
-            $sButtonContent = $oElement->getValue();
+            $sButtonContent = $oElement->getLabel();
 
             if (!$sButtonContent) {
-                $sButtonContent = $oElement->getLabel();
+                $sButtonContent = $oElement->getValue();
             }
 
             if (null === $sButtonContent && !$aIconOptions) {
