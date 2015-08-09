@@ -2,21 +2,8 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-use Traversable;
-use InvalidArgumentException;
-use LogicException;
-use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\FormElement;
-use Zend\Form\Element\Collection;
-use Zend\Form\Factory;
-use Zend\I18n\Translator\TranslatorAwareInterface;
-use Zend\I18n\Translator\TranslatorInterface;
-use Zend\I18n\Translator\Translator;
-use TwbBundle\Options\ModuleOptions;
-use Zend\Form\Element\Button;
+class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements \Zend\I18n\Translator\TranslatorAwareInterface {
 
-class TwbBundleFormElement extends FormElement implements TranslatorAwareInterface
-{
     /**
      * @var string
      */
@@ -29,7 +16,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
 
     /**
      * Translator (optional)
-     * @var Translator
+     * @var \Zend\I18n\Translator\Translator
      */
     protected $translator;
 
@@ -44,12 +31,6 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
      * @var boolean
      */
     protected $translatorEnabled = true;
-    
-    /**
-     * Hold configurable options
-     * @var ModuleOptions 
-     */
-    protected $options;
 
     /**
      * Instance map to view helper
@@ -66,24 +47,17 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
         'Zend\Form\Element\MonthSelect' => 'formmonthselect',
         'TwbBundle\Form\Element\StaticElement' => 'formStatic',
     );
-    
-    public function __construct(ModuleOptions $options)
-    {
-        $this->options = $options;
-    }
 
     /**
      * Render an element
-     * @param ElementInterface $oElement
+     * @param \Zend\Form\ElementInterface $oElement
      * @return string
      */
-    public function render(ElementInterface $oElement)
-    {
-        // Add form-controll class
+    public function render(\Zend\Form\ElementInterface $oElement) {
+        //Add form-controll class
         $sElementType = $oElement->getAttribute('type');
-        if (!in_array($sElementType, $this->options->getIgnoredViewHelpers()) &&
-            !($oElement instanceof Collection)
-        ) {
+
+        if (!in_array($sElementType, array('file', 'checkbox', 'radio', 'submit', 'multi_checkbox', 'static', 'button', 'reset'))) {
             if ($sElementClass = $oElement->getAttribute('class')) {
                 if (!preg_match('/(\s|^)form-control(\s|$)/', $sElementClass)) {
                     $oElement->setAttribute('class', trim($sElementClass . ' form-control'));
@@ -95,19 +69,19 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
 
         $sMarkup = parent::render($oElement);
 
-        // Addon prepend
+        //Addon prepend
         if ($aAddOnPrepend = $oElement->getOption('add-on-prepend')) {
             $sMarkup = $this->renderAddOn($aAddOnPrepend) . $sMarkup;
         }
 
-        // Addon append
+        //Addon append
         if ($aAddOnAppend = $oElement->getOption('add-on-append')) {
             $sMarkup .= $this->renderAddOn($aAddOnAppend);
         }
 
         if ($aAddOnAppend || $aAddOnPrepend) {
             $sSpecialClass = '';
-            // Input size
+            //Input size
             if ($sElementClass = $oElement->getAttribute('class')) {
                 if (preg_match('/(\s|^)input-lg(\s|$)/', $sElementClass)) {
                     $sSpecialClass .= ' input-group-lg';
@@ -116,9 +90,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
                 }
             }
             return sprintf(
-                self::$inputGroupFormat,
-                trim($sSpecialClass),
-                $sMarkup
+                    self::$inputGroupFormat, trim($sSpecialClass), $sMarkup
             );
         }
         return $sMarkup;
@@ -127,24 +99,20 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
     /**
      * Render addo-on markup
      * @param string $aAddOnOptions
-     * @throws InvalidArgumentException
-     * @throws LogicException
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
      * @return string
      */
-    protected function renderAddOn($aAddOnOptions)
-    {
+    protected function renderAddOn($aAddOnOptions) {
         if (empty($aAddOnOptions)) {
-            throw new InvalidArgumentException('Addon options are empty');
+            throw new \InvalidArgumentException('Addon options are empty');
         }
-        if ($aAddOnOptions instanceof ElementInterface) {
+        if ($aAddOnOptions instanceof \Zend\Form\ElementInterface) {
             $aAddOnOptions = array('element' => $aAddOnOptions);
         } elseif (is_scalar($aAddOnOptions)) {
             $aAddOnOptions = array('text' => $aAddOnOptions);
         } elseif (!is_array($aAddOnOptions)) {
-            throw new InvalidArgumentException(sprintf(
-                'Addon options expects an array or a scalar value, "%s" given',
-                is_object($aAddOnOptions) ? get_class($aAddOnOptions) : gettype($aAddOnOptions)
-            ));
+            throw new \InvalidArgumentException('Addon options expects an array or a scalar value, "' . gettype($aAddOnOptions) . '" given');
         }
 
         $sMarkup = '';
@@ -152,10 +120,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
         $sAddonClass = '';
         if (!empty($aAddOnOptions['text'])) {
             if (!is_scalar($aAddOnOptions['text'])) {
-                throw new InvalidArgumentException(sprintf(
-                    '"text" option expects a scalar value, "%s" given',
-                    is_object($aAddOnOptions['text']) ? get_class($aAddOnOptions['text']) : gettype($aAddOnOptions['text'])
-                ));
+                throw new \LogicException('"text" option expects a scalar value, "' . gettype($aAddOnOptions['text']) . '" given');
             } elseif (($oTranslator = $this->getTranslator())) {
                 $sMarkup .= $oTranslator->translate($aAddOnOptions['text'], $this->getTranslatorTextDomain());
             } else {
@@ -163,27 +128,20 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
             }
             $sAddonClass .= ' input-group-addon';
         } elseif (!empty($aAddOnOptions['element'])) {
-            if (is_array($aAddOnOptions['element']) ||
-                ($aAddOnOptions['element'] instanceof Traversable &&
-                !($aAddOnOptions['element'] instanceof ElementInterface))
+            if (
+                    is_array($aAddOnOptions['element']) || ($aAddOnOptions['element'] instanceof \Traversable && !($aAddOnOptions['element'] instanceof \Zend\Form\ElementInterface))
             ) {
-                $oFactory = new Factory();
+                $oFactory = new \Zend\Form\Factory();
                 $aAddOnOptions['element'] = $oFactory->create($aAddOnOptions['element']);
-            } elseif (!($aAddOnOptions['element'] instanceof ElementInterface)) {
-                throw new LogicException(sprintf(
-                    '"element" option expects an instanceof Zend\Form\ElementInterface, "%s" given',
-                    is_object($aAddOnOptions['element']) ? get_class($aAddOnOptions['element']) : gettype($aAddOnOptions['element'])
+            } elseif (!($aAddOnOptions['element'] instanceof \Zend\Form\ElementInterface)) {
+                throw new \LogicException(sprintf(
+                        '"element" option expects an instanceof \Zend\Form\ElementInterface, "%s" given', is_object($aAddOnOptions['element']) ? get_class($aAddOnOptions['element']) : gettype($aAddOnOptions['element'])
                 ));
             }
-            
-            $aAddOnOptions['element']->setOptions(array_merge(
-                $aAddOnOptions['element']->getOptions(),
-                array('disable-twb' => true)
-            ));
-            
+            $aAddOnOptions['element']->setOptions(array_merge($aAddOnOptions['element']->getOptions(), array('disable-twb' => true)));
             $sMarkup .= $this->render($aAddOnOptions['element']);
 
-            if ($aAddOnOptions['element'] instanceof Button) {
+            if ($aAddOnOptions['element'] instanceof \Zend\Form\Element\Button) {
                 $sAddonClass .= ' input-group-btn';
                 //Element contains dropdown, so add-on container must be a "div"
                 if ($aAddOnOptions['element']->getOption('dropdown')) {
@@ -199,13 +157,12 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
 
     /**
      * Sets translator to use in helper
-     * @see TranslatorAwareInterface::setTranslator()
-     * @param TranslatorInterface $oTranslator : [optional] translator. Default is null, which sets no translator.
+     * @see \Zend\I18n\Translator\TranslatorAwareInterface::setTranslator()
+     * @param \Zend\I18n\Translator\TranslatorInterface $oTranslator : [optional] translator. Default is null, which sets no translator.
      * @param string $sTextDomain : [optional] text domain Default is null, which skips setTranslatorTextDomain
-     * @return TwbBundleFormElement
+     * @return \TwbBundle\Form\View\Helper\TwbBundleFormElement
      */
-    public function setTranslator(TranslatorInterface $oTranslator = null, $sTextDomain = null)
-    {
+    public function setTranslator(\Zend\I18n\Translator\TranslatorInterface $oTranslator = null, $sTextDomain = null) {
         $this->translator = $oTranslator;
         if (null !== $sTextDomain) {
             $this->setTranslatorTextDomain($sTextDomain);
@@ -215,65 +172,60 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
 
     /**
      * Returns translator used in helper
-     * @see TranslatorAwareInterface::getTranslator()
-     * @return null|TranslatorInterface
+     * @see \Zend\I18n\Translator\TranslatorAwareInterface::getTranslator()
+     * @return null|\Zend\I18n\Translator\TranslatorInterface
      */
-    public function getTranslator()
-    {
+    public function getTranslator() {
         return $this->isTranslatorEnabled() ? $this->translator : null;
     }
 
     /**
      * Checks if the helper has a translator
-     * @see TranslatorAwareInterface::hasTranslator()
+     * @see \Zend\I18n\Translator\TranslatorAwareInterface::hasTranslator()
      * @return boolean
      */
-    public function hasTranslator()
-    {
+    public function hasTranslator() {
         return !!$this->getTranslator();
     }
 
     /**
      * Sets whether translator is enabled and should be used
-     * @see TranslatorAwareInterface::setTranslatorEnabled()
+     * @see \Zend\I18n\Translator\TranslatorAwareInterface::setTranslatorEnabled()
      * @param boolean $bEnabled
-     * @return TwbBundleFormElement
+     * @return \TwbBundle\Form\View\Helper\TwbBundleFormElement
      */
-    public function setTranslatorEnabled($bEnabled = true)
-    {
+    public function setTranslatorEnabled($bEnabled = true) {
         $this->translatorEnabled = !!$bEnabled;
         return $this;
     }
 
     /**
      * Returns whether translator is enabled and should be used
-     * @see TranslatorAwareInterface::isTranslatorEnabled()
+     * @see \Zend\I18n\Translator\TranslatorAwareInterface::isTranslatorEnabled()
      * @return boolean
      */
-    public function isTranslatorEnabled()
-    {
+    public function isTranslatorEnabled() {
         return $this->translatorEnabled;
     }
 
     /**
      * Set translation text domain
-     * @see TranslatorAwareInterface::setTranslatorTextDomain()
+     * @see \Zend\I18n\Translator\TranslatorAwareInterface::setTranslatorTextDomain()
      * @param string $sTextDomain
-     * @return TwbBundleFormElement
+     * @return \TwbBundle\Form\View\Helper\TwbBundleFormElement
      */
-    public function setTranslatorTextDomain($sTextDomain = 'default')
-    {
+    public function setTranslatorTextDomain($sTextDomain = 'default') {
         $this->translatorTextDomain = $sTextDomain;
         return $this;
     }
 
     /**
      * Return the translation text domain
-     * @see TranslatorAwareInterface::getTranslatorTextDomain()
+     * @see \Zend\I18n\Translator\TranslatorAwareInterface::getTranslatorTextDomain()
      * @return string
      */
-    public function getTranslatorTextDomain()
-    {
+    public function getTranslatorTextDomain() {
         return $this->translatorTextDomain;
     }
+
 }

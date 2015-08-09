@@ -2,15 +2,8 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-use DomainException;
-use Zend\Form\View\Helper\FormRow;
-use Zend\Form\ElementInterface;
-use Zend\Form\LabelAwareInterface;
-use Zend\Form\Element\Button;
-use Zend\Form\Element\Submit;
+class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
 
-class TwbBundleFormRow extends FormRow
-{
     /**
      * @var string
      */
@@ -43,12 +36,11 @@ class TwbBundleFormRow extends FormRow
     protected $requiredFormat = null;
 
     /**
-     * @see FormRow::render()
-     * @param ElementInterface $oElement
+     * @see \Zend\Form\View\Helper\FormRow::render()
+     * @param \Zend\Form\ElementInterface $oElement
      * @return string
      */
-    public function render(ElementInterface $oElement, $labelPosition = null)
-    {
+    public function render(\Zend\Form\ElementInterface $oElement) {
         $sElementType = $oElement->getAttribute('type');
 
         //Nothing to do for hidden elements which have no messages
@@ -71,10 +63,6 @@ class TwbBundleFormRow extends FormRow
         }
 
         $sRowClass = '';
-        
-        if( $fgs = $oElement->getOption('twb-form-group-size') ){
-            $sRowClass = $fgs;
-        }
 
         //Validation state
         if (($sValidationState = $oElement->getOption('validation-state'))) {
@@ -82,7 +70,7 @@ class TwbBundleFormRow extends FormRow
         }
 
         //"has-error" validation state case
-        if ($oElement->getMessages()) {
+        if (count($oElement->getMessages())) {
             $sRowClass .= ' has-error';
             //Element have errors
             if ($sInputErrorClass = $this->getInputErrorClass()) {
@@ -97,8 +85,8 @@ class TwbBundleFormRow extends FormRow
         }
 
         //Column size
-        if (($sColumSize = $oElement->getOption('column-size')) &&
-            $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL
+        if (
+                ($sColumSize = $oElement->getOption('column-size')) && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL
         ) {
             $sRowClass .= ' col-' . $sColumSize;
         }
@@ -107,25 +95,25 @@ class TwbBundleFormRow extends FormRow
         $sElementContent = $this->renderElement($oElement);
 
         //Render form row
-        if ($sElementType === 'checkbox' && $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL) {
+        if ($sElementType === 'checkbox' && $sLayout !== \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL) {
             return $sElementContent . PHP_EOL;
         }
-        if (($sElementType === 'submit' || $sElementType === 'button' || $sElementType === 'reset')
-            && $sLayout === TwbBundleForm::LAYOUT_INLINE
+        if (($sElementType === 'submit' || $sElementType === 'button' || $sElementType === 'reset') && $sLayout === \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE
         ) {
             return $sElementContent . PHP_EOL;
         }
 
-        return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . PHP_EOL;
+        return sprintf(
+                        self::$formGroupFormat, $sRowClass, $sElementContent
+                ) . PHP_EOL;
     }
 
     /**
      * Render element's label
-     * @param ElementInterface $oElement
+     * @param \Zend\Form\ElementInterface $oElement
      * @return string
      */
-    protected function renderLabel(ElementInterface $oElement)
-    {
+    protected function renderLabel(\Zend\Form\ElementInterface $oElement) {
         if (($sLabel = $oElement->getLabel()) && ($oTranslator = $this->getTranslator())) {
             $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
         }
@@ -134,33 +122,28 @@ class TwbBundleFormRow extends FormRow
 
     /**
      * Render element
-     * @param ElementInterface $oElement
-     * @throws DomainException
+     * @param \Zend\Form\ElementInterface $oElement
+     * @throws \DomainException
      * @return string
      */
-    protected function renderElement(ElementInterface $oElement)
-    {
+    protected function renderElement(\Zend\Form\ElementInterface $oElement) {
         //Retrieve expected layout
         $sLayout = $oElement->getOption('twb-layout');
 
         //Render label
         $sLabelOpen = $sLabelClose = $sLabelContent = $sElementType = '';
         if ($sLabelContent = $this->renderLabel($oElement)) {
-            /*
-             * Multicheckbox elements have to be handled differently
-             * as the HTML standard does not allow nested labels.
-             * The semantic way is to group them inside a fieldset
-             */
+            //Multicheckbox elements have to be handled differently as the HTML standard does not allow nested labels. The semantic way is to group them inside a fieldset
             $sElementType = $oElement->getAttribute('type');
 
             //Button element is a special case, because label is always rendered inside it
-            if (($oElement instanceof Button) or ($oElement instanceof Submit)) {
+            if ($oElement instanceof \Zend\Form\Element\Button) {
                 $sLabelContent = '';
             } else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
 
                 //Validation state
-                if ($oElement->getOption('validation-state') || $oElement->getMessages()) {
+                if ($oElement->getOption('validation-state') || count($oElement->getMessages())) {
                     if (empty($aLabelAttributes['class'])) {
                         $aLabelAttributes['class'] = 'control-label';
                     } elseif (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
@@ -171,7 +154,7 @@ class TwbBundleFormRow extends FormRow
                 $oLabelHelper = $this->getLabelHelper();
                 switch ($sLayout) {
                     //Hide label for "inline" layout
-                    case TwbBundleForm::LAYOUT_INLINE:
+                    case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
                         if ($sElementType !== 'checkbox') {
                             if (empty($aLabelAttributes['class'])) {
                                 $aLabelAttributes['class'] = 'sr-only';
@@ -181,14 +164,12 @@ class TwbBundleFormRow extends FormRow
                         }
                         break;
 
-                    case TwbBundleForm::LAYOUT_HORIZONTAL:
-                        if ($sElementType !== 'checkbox') {
-                            if (empty($aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = 'control-label';
-                            } else {
-                                if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
-                                    $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
-                                }
+                    case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
+                        if (empty($aLabelAttributes['class'])) {
+                            $aLabelAttributes['class'] = 'control-label';
+                        } else {
+                            if (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
+                                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
                             }
                         }
                         break;
@@ -199,27 +180,24 @@ class TwbBundleFormRow extends FormRow
 
                 $sLabelOpen = $oLabelHelper->openTag($oElement->getAttribute('id') ? $oElement : $aLabelAttributes);
                 $sLabelClose = $oLabelHelper->closeTag();
-
+                
                 // Allow label html escape desable
                 //$sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
-
-                if (!$oElement instanceof LabelAwareInterface || !$oElement->getLabelOption('disable_html_escape')) {
-                    $sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
+                
+                if (! $oElement instanceof \Zend\Form\LabelAwareInterface || ! $oElement->getLabelOption('disable_html_escape')) {
+                	$sLabelContent = $this->getEscapeHtmlHelper()->__invoke($sLabelContent);
                 }
             }
         }
 
         //Add required string if element is required
-        if ($this->requiredFormat &&
-            $oElement->getAttribute('required') &&
-            strpos($this->requiredFormat, $sLabelContent) === false
-        ) {
+        if ($this->requiredFormat && $oElement->getAttribute('required') && strpos($this->requiredFormat, $sLabelContent) === false) {
             $sLabelContent .= $this->requiredFormat;
         }
 
         switch ($sLayout) {
             case null:
-            case TwbBundleForm::LAYOUT_INLINE:
+            case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE:
 
                 $sElementContent = $this->getElementHelper()->render($oElement);
 
@@ -244,7 +222,7 @@ class TwbBundleFormRow extends FormRow
 
                 return $sElementContent;
 
-            case TwbBundleForm::LAYOUT_HORIZONTAL:
+            case \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL:
                 $sElementContent = $this->getElementHelper()->render($oElement) . $this->renderHelpBlock($oElement);
 
                 //Render errors
@@ -262,39 +240,34 @@ class TwbBundleFormRow extends FormRow
                 // Checkbox elements are a special case, element is rendered into label
                 if ($sElementType === 'checkbox') {
                     return sprintf(
-                        self::$horizontalLayoutFormat,
-                        $sClass,
-                        sprintf(self::$checkboxFormat, $sElementContent)
+                            self::$horizontalLayoutFormat, $sClass, sprintf(self::$checkboxFormat, $sElementContent)
                     );
                 }
 
                 if ($this->getLabelPosition() === self::LABEL_PREPEND) {
                     return $sLabelOpen . $sLabelContent . $sLabelClose . sprintf(
-                        self::$horizontalLayoutFormat,
-                        $sClass,
-                        $sElementContent
+                                    self::$horizontalLayoutFormat, $sClass, $sElementContent
                     );
                 } else {
                     return sprintf(
-                        self::$horizontalLayoutFormat,
-                        $sClass,
-                        $sElementContent
-                    ) . $sLabelOpen . $sLabelContent . $sLabelClose;
+                                    self::$horizontalLayoutFormat, $sClass, $sElementContent
+                            ) . $sLabelOpen . $sLabelContent . $sLabelClose;
                 }
+
+            default:
+                throw new \DomainException('Layout "' . $sLayout . '" is not valid');
         }
-        throw new DomainException('Layout "' . $sLayout . '" is not valid');
     }
 
     /**
      * Render element's help block
-     * @param ElementInterface $oElement
+     * @param \Zend\Form\ElementInterface $oElement
      * @return string
      */
-    protected function renderHelpBlock(ElementInterface $oElement)
-    {
+    protected function renderHelpBlock(\Zend\Form\ElementInterface $oElement) {
         return ($sHelpBlock = $oElement->getOption('help-block')) ? sprintf(
-            self::$helpBlockFormat,
-            $this->getEscapeHtmlHelper()->__invoke(($oTranslator = $this->getTranslator()) ? $oTranslator->translate($sHelpBlock, $this->getTranslatorTextDomain()) : $sHelpBlock)
-        ) : '';
+                        self::$helpBlockFormat, $this->getEscapeHtmlHelper()->__invoke(($oTranslator = $this->getTranslator()) ? $oTranslator->translate($sHelpBlock, $this->getTranslatorTextDomain()) : $sHelpBlock)
+                ) : '';
     }
+
 }
