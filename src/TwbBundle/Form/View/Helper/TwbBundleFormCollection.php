@@ -11,12 +11,12 @@ class TwbBundleFormCollection extends FormCollection
     /**
      * @var string
      */
-    protected static $legendFormat = '<legend%s>%s</legend>';
+    private static $legendFormat = '<legend%s>%s</legend>';
 
     /**
      * @var string
      */
-    protected static $fieldsetFormat = '<fieldset%s>%s</fieldset>';
+    private static $fieldsetFormat = '<fieldset%s>%s</fieldset>';
 
     /**
      * Attributes valid for the tag represented by this helper
@@ -56,15 +56,7 @@ class TwbBundleFormCollection extends FormCollection
                 if ($oElementOrFieldset instanceof \Zend\Form\FieldsetInterface) {
                     $sMarkup .= $oFieldsetHelper($oElementOrFieldset);
                 } elseif ($oElementOrFieldset instanceof \Zend\Form\ElementInterface) {
-                	if ($oElementOrFieldset->getOption('twb-row-open')) {
-						$sMarkup .= '<div class="row">' . PHP_EOL;
-					}
-
-					$sMarkup .= $oElementHelper($oElementOrFieldset);
-
-					if ($oElementOrFieldset->getOption('twb-row-close')) {
-						$sMarkup .= '</div>' . PHP_EOL;
-					}
+                    $sMarkup .= $oElementHelper($oElementOrFieldset);
                 }
             }
             if ($oElement instanceof \Zend\Form\Element\Collection && $oElement->shouldCreateTemplate()) {
@@ -73,7 +65,7 @@ class TwbBundleFormCollection extends FormCollection
         }
 
         if ($bShouldWrap) {
-            if (false != ($sLabel = $oElement->getLabel())) {
+            if (($sLabel = $oElement->getLabel())) {
                 if (null !== ($oTranslator = $this->getTranslator())) {
                     $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
                 }
@@ -86,7 +78,7 @@ class TwbBundleFormCollection extends FormCollection
             //Set form layout class
             if ($sElementLayout) {
                 $sLayoutClass = 'form-' . $sElementLayout;
-                if (false != ($sElementClass = $oElement->getAttribute('class'))) {
+                if ($sElementClass = $oElement->getAttribute('class')) {
                     if (!preg_match('/(\s|^)' . preg_quote($sLayoutClass, '/') . '(\s|$)/', $sElementClass)) {
                         $oElement->setAttribute('class', trim($sElementClass . ' ' . $sLayoutClass));
                     }
@@ -110,7 +102,7 @@ class TwbBundleFormCollection extends FormCollection
      */
     public function renderTemplate(CollectionElement $collection)
     {
-        if (false != ($sElementLayout = $collection->getOption('twb-layout'))) {
+        if ($sElementLayout = $collection->getOption('twb-layout')) {
             $elementOrFieldset = $collection->getTemplateElement();
             $elementOrFieldset->setOption('twb-layout', $sElementLayout);
         }
