@@ -109,6 +109,16 @@ class TwbBundleForm extends Form
     public function openTag(FormInterface $form = null)
     {
         $this->setFormClass($form, $this->formLayout);
-        return parent::openTag($form);
+        return parent::openTag($form) . '<div class="form-body">';
+    }
+
+    /**
+     * Prefix the closing form tag with a closing div tag to close the div with class "form-body".
+     *
+     * @return string
+     */
+    public function closeTag()
+    {
+        return '</div>' . parent::closeTag();
     }
 }
