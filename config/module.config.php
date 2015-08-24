@@ -11,7 +11,9 @@ return array(
             'static',
             'button',
             'reset'
-        )
+        ),
+        'type_map' => array(),
+        'class_map' => array(),
     ),
     'service_manager' => array (
         'factories' => array (
