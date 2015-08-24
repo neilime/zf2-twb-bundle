@@ -244,6 +244,7 @@ $this->formRadio(new \Zend\Form\Element\ElementInterface());
 ```
 This helper accepts an element as first param.
 The option `disable-twb` (boolean) can be passed to the element to disable rendering it in a `div` container.
+The option `inline` (boolean) can be passed to the element to display radio inlined or not (default).
 
 #### Form row : `TwbBundle\Form\View\Helper\TwbBundleFormRow`
 
