@@ -28,7 +28,7 @@ class TwbBundleForm extends Form
      * @param string $sFormLayout
      * @return TwbBundleForm|string
      */
-    public function __invoke(FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    public function __invoke(FormInterface $oForm = null, $sFormLayout = null)
     {
         if ($oForm) {
             return $this->render($oForm, $sFormLayout);
@@ -44,7 +44,7 @@ class TwbBundleForm extends Form
      * @param string $sFormLayout
      * @return string
      */
-    public function render(FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    public function render(FormInterface $oForm, $sFormLayout = null)
     {
         //Prepare form if needed
         if (method_exists($oForm, 'prepare')) {
