@@ -61,9 +61,14 @@ class TwbBundleForm extends Form
         $bHasColumnSizes = false;
         $sFormContent = '';
         $oRenderer = $this->getView();
+		$rowsOpened = 0;
         foreach ($oForm as $oElement) {
             $aOptions = $oElement->getOptions();
-            if (!$bHasColumnSizes && !empty($aOptions['column-size'])) {
+			if (isset($aOptions['twb-row-open']) && $aOptions['twb-row-open']) {
+			    $sFormContent .= '<div class="row">';
+			    $rowsOpened++;
+			}
+            if (!$bHasColumnSizes && !empty($aOptions['column-size']) && $rowsOpened === 0) {
                 $bHasColumnSizes = true;
             }
             //Define layout option to form elements if not already defined
@@ -72,6 +77,10 @@ class TwbBundleForm extends Form
                 $oElement->setOptions($aOptions);
             }
             $sFormContent .= $oElement instanceof FieldsetInterface ? $oRenderer->formCollection($oElement) : $oRenderer->formRow($oElement);
+			if (isset($aOptions['twb-row-close']) && $aOptions['twb-row-close']) {
+			    $sFormContent .= '</div>';
+			    $rowsOpened--;
+			}
         }
         if ($bHasColumnSizes && $sFormLayout !== self::LAYOUT_HORIZONTAL) {
             $sFormContent = sprintf(self::$formRowFormat, $sFormContent);
