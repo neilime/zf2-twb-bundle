@@ -6,7 +6,8 @@ namespace TwbBundleTest;
  * Test forms rendering
  * Based on http://getbootstrap.com/css/#forms
  */
-class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * @var string
@@ -21,7 +22,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @see \PHPUnit_Framework_TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp()
+    {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-forms' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
@@ -31,7 +33,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-example
      */
-    public function testBasicExample() {
+    public function testBasicExample()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'input-email',
@@ -77,7 +80,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-inline
      */
-    public function testInlineForm() {
+    public function testInlineForm()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'input-email',
@@ -113,7 +117,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-horizontal
      */
-    public function testHorizontalform() {
+    public function testHorizontalform()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'input-email',
@@ -153,7 +158,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-controls
      */
-    public function testSupportedControlsform() {
+    public function testSupportedControlsform()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'input-text',
@@ -216,7 +222,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'supported-controls-form.phtml', $this->formHelper->__invoke($oForm, null));
     }
 
-    public function testRenderMultiCheckboxInlineWithLabel() {
+    public function testRenderMultiCheckboxInlineWithLabel()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'optionsRadios',
@@ -240,7 +247,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-controls-static
      */
-    public function testStaticControlform() {
+    public function testStaticControlform()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'static-element',
@@ -264,7 +272,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-control-states
      */
-    public function testControlStatesform() {
+    public function testControlStatesform()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'input-text-disabled',
@@ -313,7 +322,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-validation
      */
-    public function testFormsValidation() {
+    public function testFormsValidation()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'input-text-success',
@@ -354,7 +364,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-control-sizes
      */
-    public function testFormsControlSizes() {
+    public function testFormsControlSizes()
+    {
 
         //Height sizing
         $oForm = new \Zend\Form\Form();
@@ -429,7 +440,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/css/#forms-help-text
      */
-    public function testFormsHelpText() {
+    public function testFormsHelpText()
+    {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'input-text',
@@ -446,7 +458,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test errored input rendering
      */
-    public function testFormsErroredInput() {
+    public function testFormsErroredInput()
+    {
         $oForm = new \Zend\Form\Form();
         $oElement = new \Zend\Form\Element\Text('input-text');
         $oForm->add($oElement
@@ -469,6 +482,21 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input-with-label.phtml', $this->formHelper->__invoke($oForm));
     }
 
+    public function testFormWithButtonGroups()
+    {
+        $oForm = new \Zend\Form\Form();
+        $oForm
+                ->add(new \Zend\Form\Element\Text('input-text-1'))
+                ->add(new \Zend\Form\Element\Button('input-button-1', array('label' => 'Left', 'button-group' => 'group-1')))
+                ->add(new \Zend\Form\Element\Button('input-button-2', array('label' => 'Right', 'button-group' => 'group-1')))
+                ->add(new \Zend\Form\Element\Button('input-button-3', array('label' => 'Left', 'button-group' => 'group-2')))
+                ->add(new \Zend\Form\Element\Button('input-button-4', array('label' => 'Right', 'button-group' => 'group-2')))
+                ->add(new \Zend\Form\Element\Text('input-text-3'));
+
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-button-groups.phtml', $this->formHelper->__invoke($oForm));
+    }
+
     /**
      * @param string $sExpectedFile
      * @param string $sActualString
@@ -476,8 +504,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
+    {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace TwbBundle\Form\View\Helper;
 
 use Zend\Form\View\Helper\Form;
@@ -7,6 +8,7 @@ use Zend\Form\FieldsetInterface;
 
 class TwbBundleForm extends Form
 {
+
     const LAYOUT_HORIZONTAL = 'horizontal';
     const LAYOUT_INLINE = 'inline';
 
@@ -58,38 +60,95 @@ class TwbBundleForm extends Form
             $oForm->setAttribute('role', 'form');
         }
 
-        $bHasColumnSizes = false;
-        $sFormContent = '';
-        $oRenderer = $this->getView();
-        foreach ($oForm as $oElement) {
+        return $this->openTag($oForm) . PHP_EOL . $this->renderElements($oForm, $sFormLayout) . $this->closeTag();
+    }
+
+    /**
+     * @param FormInterface $oForm
+     * @param string|null $sFormLayout
+     * @return string
+     */
+    protected function renderElements(FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    {
+        // Store button groups
+        $aButtonGroups = array();
+
+        // Store elements rendering
+        $aElementsRendering = array();
+
+        // Retrieve view helper plugin manager
+        $oHelperPluginManager = $this->getView()->getHelperPluginManager();
+
+        // Retrieve form row helper
+        $oFormRowHelper = $oHelperPluginManager->get('formRow');
+
+        // Retrieve form collection helper
+        $oFormCollectionHelper = $oHelperPluginManager->get('formCollection');
+
+        // Retrieve button group helper
+        $oButtonGroupHelper = $oHelperPluginManager->get('buttonGroup');
+
+        // Store column size option
+        $bHasColumnSize = false;
+
+        // Prepare options
+        foreach ($oForm as $iKey => $oElement) {
             $aOptions = $oElement->getOptions();
-            if (!$bHasColumnSizes && !empty($aOptions['column-size'])) {
-                $bHasColumnSizes = true;
+            if (!$bHasColumnSize && !empty($aOptions['column-size'])) {
+                $bHasColumnSize = true;
             }
-            //Define layout option to form elements if not already defined
+            // Define layout option to form elements if not already defined
             if ($sFormLayout && empty($aOptions['twb-layout'])) {
                 $aOptions['twb-layout'] = $sFormLayout;
                 $oElement->setOptions($aOptions);
             }
-            $sFormContent .= $oElement instanceof FieldsetInterface ? $oRenderer->formCollection($oElement) : $oRenderer->formRow($oElement);
+
+            // Manage button group option
+            if (array_key_exists('button-group', $aOptions)) {
+                $sButtonGroupKey = $aOptions['button-group'];
+                if (isset($aButtonGroups[$sButtonGroupKey])) {
+                    $aButtonGroups[$sButtonGroupKey][] = $oElement;
+                    $aElementsRendering[$iKey] = $sButtonGroupKey;
+                } else {
+                    $aButtonGroups[$sButtonGroupKey] = array($oElement);
+                }
+            } elseif ($oElement instanceof FieldsetInterface) {
+                $aElementsRendering[$iKey] = $oFormCollectionHelper->__invoke($oElement);
+            } else {
+                $aElementsRendering[$iKey] = $oFormRowHelper->__invoke($oElement);
+            }
         }
-        if ($bHasColumnSizes && $sFormLayout !== self::LAYOUT_HORIZONTAL) {
+
+        // Assemble elements rendering
+        $sFormContent = '';
+        foreach ($aElementsRendering as $sElementRendering) {
+            // Check if element rendering is a button group key
+            if (isset($aButtonGroups[$sElementRendering])) {
+                $aButtons = $aButtonGroups[$sElementRendering];
+
+                // Render button group content
+                $sFormContent .= $oFormRowHelper->renderElementFormGroup($oButtonGroupHelper($aButtons), $oFormRowHelper->getRowClassFromElement(current($aButtons)));
+            } else {
+                $sFormContent .= $sElementRendering;
+            }
+        }
+
+        if ($bHasColumnSize && $sFormLayout !== self::LAYOUT_HORIZONTAL) {
             $sFormContent = sprintf(self::$formRowFormat, $sFormContent);
         }
-        return $this->openTag($oForm) . $sFormContent . $this->closeTag();
+        return $sFormContent;
     }
 
     /**
      * Sets form layout class
-     *
      * @param FormInterface $oForm
      * @param string $sFormLayout
-     * @return void
+     * @return \TwbBundle\Form\View\Helper\TwbBundleForm
      */
     protected function setFormClass(FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)
     {
         if (is_string($sFormLayout)) {
-            $sLayoutClass = 'form-'.$sFormLayout;
+            $sLayoutClass = 'form-' . $sFormLayout;
             if ($sFormClass = $oForm->getAttribute('class')) {
                 if (!preg_match('/(\s|^)' . preg_quote($sLayoutClass, '/') . '(\s|$)/', $sFormClass)) {
                     $oForm->setAttribute('class', trim($sFormClass . ' ' . $sLayoutClass));
@@ -98,12 +157,12 @@ class TwbBundleForm extends Form
                 $oForm->setAttribute('class', $sLayoutClass);
             }
         }
+        return $this;
     }
 
     /**
      * Generate an opening form tag
-     *
-     * @param  null|FormInterface $form
+     * @param null|FormInterface $form
      * @return string
      */
     public function openTag(FormInterface $form = null)

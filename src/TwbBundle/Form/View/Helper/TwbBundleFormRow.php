@@ -11,6 +11,7 @@ use Zend\Form\Element\Submit;
 
 class TwbBundleFormRow extends FormRow
 {
+
     /**
      * @var string
      */
@@ -49,17 +50,18 @@ class TwbBundleFormRow extends FormRow
      */
     public function render(ElementInterface $oElement, $labelPosition = null)
     {
+        // Retrieve element type
         $sElementType = $oElement->getAttribute('type');
 
-        //Nothing to do for hidden elements which have no messages
+        // Nothing to do for hidden elements which have no messages
         if ($sElementType === 'hidden' && !$oElement->getMessages()) {
             return parent::render($oElement);
         }
 
-        //Retrieve expected layout
+        // Retrieve expected layout
         $sLayout = $oElement->getOption('twb-layout');
 
-        //Partial rendering
+        // Partial rendering
         if ($this->partial) {
             return $this->view->render($this->partial, array(
                         'element' => $oElement,
@@ -70,20 +72,8 @@ class TwbBundleFormRow extends FormRow
             ));
         }
 
-        $sRowClass = '';
-        
-        if( $fgs = $oElement->getOption('twb-form-group-size') ){
-            $sRowClass = $fgs;
-        }
-
-        //Validation state
-        if (($sValidationState = $oElement->getOption('validation-state'))) {
-            $sRowClass .= ' has-' . $sValidationState;
-        }
-
-        //"has-error" validation state case
+        // "has-error" validation state case
         if ($oElement->getMessages()) {
-            $sRowClass .= ' has-error';
             //Element have errors
             if ($sInputErrorClass = $this->getInputErrorClass()) {
                 if ($sElementClass = $oElement->getAttribute('class')) {
@@ -96,26 +86,63 @@ class TwbBundleFormRow extends FormRow
             }
         }
 
-        //Column size
-        if (($sColumSize = $oElement->getOption('column-size')) &&
-            $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL
+        // Render element
+        $sElementContent = $this->renderElement($oElement);
+
+        // Render form row
+        switch (true) {
+            // Checkbox element not in horizontal form
+            case $sElementType === 'checkbox' && $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL:
+            // All "button" elements in inline form
+            case in_array($sElementType, array('submit', 'button', 'reset'), true) && $sLayout === TwbBundleForm::LAYOUT_INLINE:
+                return $sElementContent . PHP_EOL;
+            default:
+                // Render element into form group
+                return $this->renderElementFormGroup($sElementContent, $this->getRowClassFromElement($oElement));
+        }
+    }
+
+    /**
+     * @param ElementInterface $oElement
+     * @return string
+     */
+    public function getRowClassFromElement(\Zend\Form\ElementInterface $oElement)
+    {
+        $sRowClass = '';
+        if ($sFormGroupSize = $oElement->getOption('twb-form-group-size')) {
+            $sRowClass = $sFormGroupSize;
+        }
+
+        // Validation state
+        if (($sValidationState = $oElement->getOption('validation-state'))) {
+            $sRowClass .= ' has-' . $sValidationState;
+        }
+        if ($oElement->getMessages()) {
+            $sRowClass .= ' has-error';
+        }
+
+        // Column size
+        if (($sColumSize = $oElement->getOption('column-size')) && $oElement->getOption('twb-layout') !== TwbBundleForm::LAYOUT_HORIZONTAL
         ) {
             $sRowClass .= ' col-' . $sColumSize;
         }
+        return $sRowClass;
+    }
 
-        //Render element
-        $sElementContent = $this->renderElement($oElement);
-
-        //Render form row
-        if ($sElementType === 'checkbox' && $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL) {
-            return $sElementContent . PHP_EOL;
+    /**
+     * @param string $sElementContent
+     * @param string $sRowClass
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    public function renderElementFormGroup($sElementContent, $sRowClass)
+    {
+        if (!is_string($sElementContent)) {
+            throw new \InvalidArgumentException('Argument "$sElementContent" expects a string, "' . (is_object($sElementContent) ? get_class($sElementContent) : gettype($sElementContent)) . '" given');
         }
-        if (($sElementType === 'submit' || $sElementType === 'button' || $sElementType === 'reset')
-            && $sLayout === TwbBundleForm::LAYOUT_INLINE
-        ) {
-            return $sElementContent . PHP_EOL;
+        if (!is_string($sRowClass)) {
+            throw new \InvalidArgumentException('Argument "$sRowClass" expects a string, "' . (is_object($sRowClass) ? get_class($sRowClass) : gettype($sRowClass)) . '" given');
         }
-
         return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . PHP_EOL;
     }
 
@@ -154,7 +181,7 @@ class TwbBundleFormRow extends FormRow
             $sElementType = $oElement->getAttribute('type');
 
             //Button element is a special case, because label is always rendered inside it
-            if (($oElement instanceof Button) or ($oElement instanceof Submit)) {
+            if (($oElement instanceof Button) or ( $oElement instanceof Submit)) {
                 $sLabelContent = '';
             } else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
@@ -211,8 +238,8 @@ class TwbBundleFormRow extends FormRow
 
         //Add required string if element is required
         if ($this->requiredFormat &&
-            $oElement->getAttribute('required') &&
-            strpos($this->requiredFormat, $sLabelContent) === false
+                $oElement->getAttribute('required') &&
+                strpos($this->requiredFormat, $sLabelContent) === false
         ) {
             $sLabelContent .= $this->requiredFormat;
         }
@@ -262,24 +289,18 @@ class TwbBundleFormRow extends FormRow
                 // Checkbox elements are a special case, element is rendered into label
                 if ($sElementType === 'checkbox') {
                     return sprintf(
-                        self::$horizontalLayoutFormat,
-                        $sClass,
-                        sprintf(self::$checkboxFormat, $sElementContent)
+                            self::$horizontalLayoutFormat, $sClass, sprintf(self::$checkboxFormat, $sElementContent)
                     );
                 }
 
                 if ($this->getLabelPosition() === self::LABEL_PREPEND) {
                     return $sLabelOpen . $sLabelContent . $sLabelClose . sprintf(
-                        self::$horizontalLayoutFormat,
-                        $sClass,
-                        $sElementContent
+                                    self::$horizontalLayoutFormat, $sClass, $sElementContent
                     );
                 } else {
                     return sprintf(
-                        self::$horizontalLayoutFormat,
-                        $sClass,
-                        $sElementContent
-                    ) . $sLabelOpen . $sLabelContent . $sLabelClose;
+                                    self::$horizontalLayoutFormat, $sClass, $sElementContent
+                            ) . $sLabelOpen . $sLabelContent . $sLabelClose;
                 }
         }
         throw new DomainException('Layout "' . $sLayout . '" is not valid');
@@ -293,8 +314,7 @@ class TwbBundleFormRow extends FormRow
     protected function renderHelpBlock(ElementInterface $oElement)
     {
         return ($sHelpBlock = $oElement->getOption('help-block')) ? sprintf(
-            self::$helpBlockFormat,
-            $this->getEscapeHtmlHelper()->__invoke(($oTranslator = $this->getTranslator()) ? $oTranslator->translate($sHelpBlock, $this->getTranslatorTextDomain()) : $sHelpBlock)
-        ) : '';
+                        self::$helpBlockFormat, $this->getEscapeHtmlHelper()->__invoke(($oTranslator = $this->getTranslator()) ? $oTranslator->translate($sHelpBlock, $this->getTranslatorTextDomain()) : $sHelpBlock)
+                ) : '';
     }
 }

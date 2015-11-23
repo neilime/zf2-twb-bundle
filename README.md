@@ -139,6 +139,17 @@ Here are the available layouts :
 
 The helper auto add form specific class and `form` role attributes.
 
+### Button groups in form
+Form helper can render button groups in a form row, button elements are grouped by the option `button-group`. Exemple :
+```php
+<?php
+$oForm = new \Zend\Form\Form();
+$oForm
+    ->add(new \Zend\Form\Element\Button('left-button', array('label' => 'Left', 'button-group' => 'group-1')))
+    ->add(new \Zend\Form\Element\Button('roght-button', array('label' => 'Right', 'button-group' => 'group-1')));
+$this->form($oForm);
+```
+
 #### Button : `TwbBundle\Form\View\Helper\TwbBundleFormButton`
 
 Button helper can be called in a view with the view helper service `formButton(\Zend\Form\ElementInterface $oElement, $sButtonContent = null)` :
@@ -401,7 +412,7 @@ $this->label('label message',array('class' => 'label-primary','tagName' => 'a'))
 
 ### Ignore custom view helpers
 
-By default, this module tries to add form-control class to every form element. There are some elements, like checkboxes, radios and buttons, that does not use that class in bootstrap. This config allows you to tell the render method to ignore your custom form view helper and do NOT add that class. 
+By default, this module tries to add form-control class to every form element. There are some elements, like checkboxes, radios and buttons, that does not use that class in bootstrap. This config allows you to tell the render method to ignore your custom form view helper and do NOT add that class.
 
 ```php
     return [
