@@ -6,7 +6,8 @@ namespace TwbBundleTest;
  * Test dropdowns rendering
  * Based on http://getbootstrap.com/components/#dropdowns
  */
-class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * @var string
@@ -21,7 +22,8 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @see \PHPUnit_Framework_TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp()
+    {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-dropdowns' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
@@ -29,9 +31,10 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * Test http://getbootstrap.com/css/#dropdowns-example
+     * Test http://getbootstrap.com/components/#dropdowns-example
      */
-    public function testExample() {
+    public function testExample()
+    {
         $aDropDownOptions = array(
             'label' => 'Dropdown',
             'name' => 'dropdownMenu1',
@@ -45,9 +48,10 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * Test http://getbootstrap.com/css/#dropdowns-alignment
+     * Test http://getbootstrap.com/components/#dropdowns-alignment
      */
-    public function testAlignment() {
+    public function testAlignment()
+    {
         $aDropDownOptions = array(
             'label' => 'Dropdown',
             'name' => 'dropdownMenu1',
@@ -63,7 +67,8 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/components/#dropdowns-headers
      */
-    public function testHeaders() {
+    public function testHeaders()
+    {
         $aDropDownOptions = array(
             'label' => 'Dropdown',
             'name' => 'dropdownMenu1',
@@ -85,7 +90,8 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test http://getbootstrap.com/components/#dropdowns-disabled
      */
-    public function testDisabled() {
+    public function testDisabled()
+    {
         $aDropDownOptions = array(
             'label' => 'Dropdown',
             'name' => 'dropdownMenu1',
@@ -109,8 +115,8 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
+    {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
-
 }

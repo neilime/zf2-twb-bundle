@@ -48,18 +48,23 @@ class TwbBundleFormRow extends FormRow
      * @param ElementInterface $oElement
      * @return string
      */
-    public function render(ElementInterface $oElement, $labelPosition = null)
+    public function render(ElementInterface $oElement, $sLabelPosition = null)
     {
         // Retrieve element type
         $sElementType = $oElement->getAttribute('type');
 
         // Nothing to do for hidden elements which have no messages
         if ($sElementType === 'hidden' && !$oElement->getMessages()) {
-            return parent::render($oElement);
+            return parent::render($oElement, $sLabelPosition);
         }
 
         // Retrieve expected layout
         $sLayout = $oElement->getOption('twb-layout');
+
+        // Define label position
+        if ($sLabelPosition === null) {
+            $sLabelPosition = $this->getLabelPosition();
+        }
 
         // Partial rendering
         if ($this->partial) {
@@ -67,7 +72,7 @@ class TwbBundleFormRow extends FormRow
                         'element' => $oElement,
                         'label' => $this->renderLabel($oElement),
                         'labelAttributes' => $this->labelAttributes,
-                        'labelPosition' => $this->labelPosition,
+                        'labelPosition' => $sLabelPosition,
                         'renderErrors' => $this->renderErrors,
             ));
         }
@@ -87,7 +92,7 @@ class TwbBundleFormRow extends FormRow
         }
 
         // Render element
-        $sElementContent = $this->renderElement($oElement);
+        $sElementContent = $this->renderElement($oElement, $sLabelPosition);
 
         // Render form row
         switch (true) {
@@ -162,13 +167,19 @@ class TwbBundleFormRow extends FormRow
     /**
      * Render element
      * @param ElementInterface $oElement
+     * @param string $sLabelPosition
+     * @return type
      * @throws DomainException
-     * @return string
      */
-    protected function renderElement(ElementInterface $oElement)
+    protected function renderElement(ElementInterface $oElement, $sLabelPosition = null)
     {
         //Retrieve expected layout
         $sLayout = $oElement->getOption('twb-layout');
+
+        // Define label position
+        if ($sLabelPosition === null) {
+            $sLabelPosition = $this->getLabelPosition();
+        }
 
         //Render label
         $sLabelOpen = $sLabelClose = $sLabelContent = $sElementType = '';
@@ -254,7 +265,7 @@ class TwbBundleFormRow extends FormRow
                 if ($sElementType === 'checkbox') {
                     $sElementContent = sprintf(self::$checkboxFormat, $sElementContent);
                 } else {
-                    if ($this->getLabelPosition() === self::LABEL_PREPEND) {
+                    if ($sLabelPosition === self::LABEL_PREPEND) {
                         $sElementContent = $sLabelOpen . $sLabelContent . $sLabelClose . $sElementContent;
                     } else {
                         $sElementContent = $sElementContent . $sLabelOpen . $sLabelContent . $sLabelClose;
@@ -293,7 +304,7 @@ class TwbBundleFormRow extends FormRow
                     );
                 }
 
-                if ($this->getLabelPosition() === self::LABEL_PREPEND) {
+                if ($sLabelPosition === self::LABEL_PREPEND) {
                     return $sLabelOpen . $sLabelContent . $sLabelClose . sprintf(
                                     self::$horizontalLayoutFormat, $sClass, $sElementContent
                     );
@@ -313,8 +324,17 @@ class TwbBundleFormRow extends FormRow
      */
     protected function renderHelpBlock(ElementInterface $oElement)
     {
-        return ($sHelpBlock = $oElement->getOption('help-block')) ? sprintf(
-                        self::$helpBlockFormat, $this->getEscapeHtmlHelper()->__invoke(($oTranslator = $this->getTranslator()) ? $oTranslator->translate($sHelpBlock, $this->getTranslatorTextDomain()) : $sHelpBlock)
-                ) : '';
+        if ($sHelpBlock = $oElement->getOption('help-block')) {
+            if ($oTranslator = $this->getTranslator()) {
+                $sHelpBlock = $oTranslator->translate($sHelpBlock, $this->getTranslatorTextDomain());
+            }
+            $sHelpBlockString = strip_tags($sHelpBlock);
+            if ($sHelpBlock === $sHelpBlockString) {
+                $sHelpBlock = $this->getEscapeHtmlHelper()->__invoke($sHelpBlock);
+            }
+            return sprintf(self::$helpBlockFormat, $sHelpBlock);
+        } else {
+            return '';
+        }
     }
 }

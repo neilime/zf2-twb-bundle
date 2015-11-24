@@ -9,7 +9,14 @@ use Zend\Form\FieldsetInterface;
 class TwbBundleForm extends Form
 {
 
+    /**
+     * @var string
+     */
     const LAYOUT_HORIZONTAL = 'horizontal';
+
+    /**
+     * @var string
+     */
     const LAYOUT_INLINE = 'inline';
 
     /**

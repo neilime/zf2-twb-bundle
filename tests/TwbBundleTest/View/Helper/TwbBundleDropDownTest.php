@@ -2,7 +2,8 @@
 
 namespace TwbBundleTest\View\Helper;
 
-class TwbBundleDropDownTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleDropDownTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * @var \TwbBundle\View\Helper\TwbBundleDropDown
@@ -12,7 +13,8 @@ class TwbBundleDropDownTest extends \PHPUnit_Framework_TestCase {
     /**
      * @see \PHPUnit_Framework_TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp()
+    {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
         $this->dropDownHelper = $oViewHelperPluginManager->get('dropDown')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
@@ -21,19 +23,23 @@ class TwbBundleDropDownTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testRenderToggleWithWrongTypeAttributes() {
+    public function testRenderToggleWithWrongTypeAttributes()
+    {
         $this->dropDownHelper->renderToggle(array('toggle_attributes' => 'wrong'));
     }
 
-    public function testRenderToggleWithEmptyClassAttribute() {
+    public function testRenderToggleWithEmptyClassAttribute()
+    {
         $this->assertEquals('<a class="sr-only&#x20;dropdown-toggle" data-toggle="dropdown" role="button" href="&#x23;"> <b class="caret"></b></a>', $this->dropDownHelper->renderToggle(array('toggle_attributes' => array('class' => ''))));
     }
 
-    public function testRenderToggleWithDefinedClassAttribute() {
+    public function testRenderToggleWithDefinedClassAttribute()
+    {
         $this->assertEquals('<a class="test-toggle&#x20;sr-only&#x20;dropdown-toggle" data-toggle="dropdown" role="button" href="&#x23;"> <b class="caret"></b></a>', $this->dropDownHelper->renderToggle(array('toggle_attributes' => array('class' => 'test-toggle'))));
     }
 
-    public function testRenderItemWithDefinedClassAttribute() {
+    public function testRenderItemWithDefinedClassAttribute()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\View\Helper\TwbBundleDropDown');
         $oReflectionMethod = $oReflectionClass->getMethod('renderItem');
         $oReflectionMethod->setAccessible(true);
@@ -55,5 +61,4 @@ class TwbBundleDropDownTest extends \PHPUnit_Framework_TestCase {
                 ))
         );
     }
-
 }

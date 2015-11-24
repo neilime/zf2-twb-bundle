@@ -2,7 +2,8 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * @var string
@@ -17,7 +18,8 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
     /**
      * @see \PHPUnit_Framework_TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp()
+    {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../../../_files/expected-rows' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
@@ -26,14 +28,16 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
         $this->formRowHelper->setPartial(null);
     }
 
-    public function testRenderPartial() {
+    public function testRenderPartial()
+    {
         $this->formRowHelper->setPartial('partial-row');
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'partial.phtml', $this->formRowHelper->render(new \Zend\Form\Element('test-element')));
     }
 
-    public function testRenderAddOnWithValidationStateAndDefinedLabelClass() {
+    public function testRenderAddOnWithValidationStateAndDefinedLabelClass()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormRow');
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
@@ -47,7 +51,8 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'add-on-validation-states.phtml', $oReflectionMethod->invoke($this->formRowHelper, $oElement));
     }
 
-    public function testRenderAddOnWithInlineLayoutAndDefinedLabelClass() {
+    public function testRenderAddOnWithInlineLayoutAndDefinedLabelClass()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormRow');
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
@@ -61,7 +66,8 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'add-on-inline-layout.phtml', $oReflectionMethod->invoke($this->formRowHelper, $oElement));
     }
 
-    public function testRenderAddOnWithHorizontalLayoutAndDefinedLabelClass() {
+    public function testRenderAddOnWithHorizontalLayoutAndDefinedLabelClass()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormRow');
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
@@ -78,14 +84,16 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \DomainException
      */
-    public function testRenderAddOnWithWrongLayout() {
+    public function testRenderAddOnWithWrongLayout()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormRow');
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
         $oReflectionMethod->invoke($this->formRowHelper, new \Zend\Form\Element('test-element', array('label' => 'test-label', 'twb-layout' => 'wrong')));
     }
 
-    public function testRenderErrorsWithInputErrorClass() {
+    public function testRenderErrorsWithInputErrorClass()
+    {
         $this->formRowHelper->setInputErrorClass('input-error');
         $oElement = new \Zend\Form\Element\Text('input-text');
         $oElement->setAttribute('class', 'test-class');
@@ -98,7 +106,8 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'errors-input-errors-class.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
-    public function testRenderErrorsWithoutInputErrorClass() {
+    public function testRenderErrorsWithoutInputErrorClass()
+    {
         $this->formRowHelper->setInputErrorClass('input-error');
         $oElement = new \Zend\Form\Element\Text('input-text');
         $oElement->setMessages(array(
@@ -110,7 +119,8 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'errors-without-input-errors-class.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
-    public function testRenderHiddenElement() {
+    public function testRenderHiddenElement()
+    {
         $this->formRowHelper->setInputErrorClass('input-error');
         $oElement = new \Zend\Form\Element\Hidden('input-hidden');
         //Test content
@@ -122,16 +132,22 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
         $this->assertStringEqualsFile($this->expectedPath . 'hidden-element.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
-    public function testRendeCheckboxWithDefinedLabelAttributes() {
+    public function testRendeCheckboxWithDefinedLabelAttributes()
+    {
         $oElement = new \Zend\Form\Element\Checkbox('test-checkbox');
         $oElement->setLabel('Test checkbox');
+        $aLabelAttributes = $this->formRowHelper->getLabelAttributes();
         $this->formRowHelper->setLabelAttributes(array('class' => 'test-class'));
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'checkbox-defined-label-attributes.phtml', $this->formRowHelper->__invoke($oElement));
+
+        // Restore original label attributes
+        $this->formRowHelper->setLabelAttributes($aLabelAttributes);
     }
 
-    public function testRendeRadiosWithHorizontalLayout() {
+    public function testRendeRadiosWithHorizontalLayout()
+    {
         $oElement = new \Zend\Form\Element\Radio('test-radio', array(
             'twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL,
             'label' => 'Test radio',
@@ -143,8 +159,19 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
             )
         ));
 
-        //Test content
+        // Test content
         $this->assertStringEqualsFile($this->expectedPath . 'radio-horizontal-layout.phtml', $this->formRowHelper->__invoke($oElement));
+    }
+
+    public function testRenderInputWithHelpTextAndError()
+    {
+        $oElement = new \Zend\Form\Element\Text('input-text', array(
+            'label' => 'Input text label',
+            'help-block' => 'Help block text'
+        ));
+        $oElement->setMessages(array('Error message'));
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'input-with-help-text-and-error.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
     /**
@@ -154,8 +181,8 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
+    {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
-
 }
