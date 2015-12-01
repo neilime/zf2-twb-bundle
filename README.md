@@ -41,7 +41,7 @@ Installation
 #### By cloning project (manual)
 
 1. Clone this project into your `./vendor/` directory.
-2. (Optionnal) Clone the [Twitter bootstrap project](https://github.com/twbs/bootstrap) (v3.*) into your `./vendor/` directory.
+2. (Optional) Clone the [Twitter bootstrap project](https://github.com/twbs/bootstrap) (v3.*) into your `./vendor/` directory.
 
 #### With composer (the faster way)
 
@@ -131,7 +131,7 @@ Open form tag with a specific layout :
 $this->form(null,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)->openTag($oForm);
 ```
 
-This helper accepts a form element as first param, and an optionnal Bootstrap defined layout style definition as second param.
+This helper accepts a form element as first param, and an optional Bootstrap defined layout style definition as second param.
 Here are the available layouts :
 
 * `TwbBundle\Form\View\Helper::LAYOUT_HORIZONTAL` : horizontal (default)
@@ -158,7 +158,7 @@ Button helper can be called in a view with the view helper service `formButton(\
 <?php
 $this->formButton(new \Zend\Form\Element());
 ```
-This helper accepts a button element as first param, and an optionnal button content as second param.
+This helper accepts a button element as first param, and an optional button content as second param.
 It auto add button specific class (`btn` & `btn-default` is no button class is defined) attribute.
 
 The option `glyphicon` (string or array) and `fontAwesome` (string or array) can be defined to render a glyphicon or a fontAwesome icon into the element :
@@ -316,7 +316,7 @@ Alert helper can be called in a view with the view helper service `alert($sAlert
 <?php
 $this->alert('alert message',array('class' => 'alert-success'));
 ```
-This helper accepts a message as first param, attributes for alert container as second param (optionnal) and boolean as third param to display or not a close action to the alert message (optionnal).
+This helper accepts a message as first param, attributes for alert container as second param (optional) and boolean as third param to display or not a close action to the alert message (optional).
 The class attribute "alert" is auto added to the alert container.
 
 #### Badge : `TwbBundle\View\Helper\TwbBundleBadge`
@@ -327,7 +327,7 @@ Badge helper can be called in a view with the view helper service `badge($sBadge
 <?php
 $this->badge('badge message',array('class' => 'pull-right'));
 ```
-This helper accepts a message as first param, and attributes for badge container as second param (optionnal).
+This helper accepts a message as first param, and attributes for badge container as second param (optional).
 The class attribute "badge" is auto added to the badge container.
 
 #### Button group : `TwbBundle\View\Helper\TwbBundleButtonGroup`
@@ -338,7 +338,7 @@ Button group helper can be called in a view with the view helper service `button
 <?php
 $this->buttonGroup(array(new \Zend\Form\Element\Button('left', array('label' => 'Left'))),array('class' => 'pull-right'));
 ```
-This helper accepts an array of buttons as first param, and attributes for button group container as second param (optionnal).
+This helper accepts an array of buttons as first param, and attributes for button group container as second param (optional).
 The buttons can be instance of `\Zend\Form\Element\Button` or array containing data to build an element with the `\Zend\Form\Factory`
 
 #### Glyphicon : `TwbBundle\View\Helper\TwbBundleGlyphicon`
@@ -349,7 +349,7 @@ Glyphicon helper can be called in a view with the view helper service `glyphicon
 <?php
 $this->glyphicon('star',array('class' => 'pull-right'));
 ```
-This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for glyphicon element as second param (optionnal).
+This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for glyphicon element as second param (optional).
 The class attribute "glyphicon" is auto added to the glyphicon container.
 
 #### FontAwesome : `TwbBundle\View\Helper\TwbBundleFontAwesome`
@@ -360,7 +360,7 @@ FontAwesome helper can be called in a view with the view helper service `fontAwe
 <?php
 $this->fontAwesome('star',array('class' => 'pull-right'));
 ```
-This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for fontAwesome element as second param (optionnal).
+This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for fontAwesome element as second param (optional).
 The class attribute "fa" is auto added to the fontAwesome container.
 
 #### Dropdown : `TwbBundle\View\Helper\TwbBundleDropDown`
@@ -372,9 +372,9 @@ Dropdown helper can be called in a view with the view helper service `dropdown(a
 $this->dropdown(array('Item #1',\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER,'Item #2'));
 ```
 This helper accepts dropdown configuration as first param :
- * `attributes` (array) : attributes for the dropdown container (optionnal)
- * `label` (scalar) : Label content (will be translated), may be empty (optionnal)
- * `toggle_attributes` (array) : attributes for the dropdown toggle container (optionnal)
+ * `attributes` (array) : attributes for the dropdown container (optional)
+ * `label` (scalar) : Label content (will be translated), may be empty (optional)
+ * `toggle_attributes` (array) : attributes for the dropdown toggle container (optional)
  * `items` (array) : list of items, should contains :
   * `scalar` :
    * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER` : display a divider
@@ -388,9 +388,9 @@ This helper accepts dropdown configuration as first param :
       * `\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_LINK` : render an item as a link `<a ...>`
     It needs the following option :
      * `label` (scalar) content text  (translated) of the item
-     * `item_attributes` (array) : attributes for the item container (optionnal)
+     * `item_attributes` (array) : attributes for the item container (optional)
    * `attributes` (array) : the attributes of the item container
- * `list_attributes` (array) : attributes for the dropdown list container (optionnal)
+ * `list_attributes` (array) : attributes for the dropdown list container (optional)
 
 #### Label : `TwbBundle\View\Helper\TwbBundleLabel`
 
@@ -400,7 +400,7 @@ Label helper can be called in a view with the view helper service `label($sLabel
 <?php
 $this->label('label message',array('class' => 'label-primary'));
 ```
-This helper accepts a message as first param, and attributes for label container as second param (optionnal).
+This helper accepts a message as first param, and attributes for label container as second param (optional).
 The class attribute "label" is auto added to the label container and "label-default" is no attributes is given. Default label container is a span, but it can be changed by passing the tag name in the attributes array :
 
 ```php
