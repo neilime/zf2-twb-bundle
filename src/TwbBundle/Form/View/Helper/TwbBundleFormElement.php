@@ -189,12 +189,10 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
             
             $sMarkup .= $this->render($aAddOnOptions['element']);
 
+            //Element is a button, so add-on container must be a "div"
             if ($aAddOnOptions['element'] instanceof Button) {
                 $sAddonClass .= ' input-group-btn';
-                //Element contains dropdown, so add-on container must be a "div"
-                if ($aAddOnOptions['element']->getOption('dropdown')) {
-                    $sAddonTagName = 'div';
-                }
+                $sAddonTagName = 'div';
             } else {
                 $sAddonClass .= ' input-group-addon';
             }
