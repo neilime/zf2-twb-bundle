@@ -106,8 +106,7 @@ class TwbBundleForm extends Form
             }
             // Define layout option to form elements if not already defined
             if ($sFormLayout && empty($aOptions['twb-layout'])) {
-                $aOptions['twb-layout'] = $sFormLayout;
-                $oElement->setOptions($aOptions);
+                $oElement->setOption('twb-layout', $sFormLayout);
             }
 
             // Manage button group option
