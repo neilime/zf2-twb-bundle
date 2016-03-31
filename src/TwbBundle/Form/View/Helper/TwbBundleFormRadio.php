@@ -28,7 +28,7 @@ class TwbBundleFormRadio extends FormRadio
     public function render(ElementInterface $oElement)
     {
         $aElementOptions = $oElement->getOptions();
-        
+
         if (isset($aElementOptions['disable-twb']) && $aElementOptions['disable-twb'] == true) {
             $sSeparator = $this->separator;
             $this->separator = '';
@@ -36,14 +36,21 @@ class TwbBundleFormRadio extends FormRadio
             $this->separator = $sSeparator;
             return $sReturn;
         }
-        
+
         if (isset($aElementOptions['inline']) && $aElementOptions['inline'] == true) {
             $this->setSeparator('');
             $oElement->setLabelAttributes(array('class' => 'radio-inline'));
 
             return sprintf('%s', parent::render($oElement));
         }
-        
+
+        if (isset($aElementOptions['btn-group']) && $aElementOptions['btn-group'] == true) {
+        	$this->setSeparator('');
+        	$oElement->setLabelAttributes(array('class' => 'btn btn-primary'));
+
+        	return sprintf('<div class="btn-group" data-toggle="buttons">%s</div>', parent::render($oElement));
+        }
+
         return sprintf(self::$checkboxFormat, parent::render($oElement));
     }
 
@@ -65,6 +72,7 @@ class TwbBundleFormRadio extends FormRadio
         $aGlobalLabelAttributes = $oElement->getLabelAttributes()? : $this->labelAttributes;
         $sMarkup = '';
         $oLabelHelper = $this->getLabelHelper();
+        $aElementOptions = $oElement->getOptions();
         foreach ($aOptions as $key => $aOptionspec) {
             if (is_scalar($aOptionspec)) {
                 $aOptionspec = array('label' => $aOptionspec, 'value' => $key);
@@ -107,6 +115,12 @@ class TwbBundleFormRadio extends FormRadio
             $sLabel = isset($aOptionspec['label']) ? $aOptionspec['label'] : '';
             if ($sLabel) {
                 $aLabelAttributes = $aGlobalLabelAttributes;
+                if (isset($aElementOptions['btn-group']) && $aElementOptions['btn-group'] == true) {
+                	if ($aInputAttributes['checked']) {
+                		$aLabelAttributes['class'] = ((isset($aLabelAttributes['class'])) ? $aLabelAttributes['class'] : '') . ' active';
+                	}
+                }
+
                 if (isset($aOptionspec['label_attributes'])) {
                     $aLabelAttributes = isset($aLabelAttributes) ? array_merge($aLabelAttributes, $aOptionspec['label_attributes']) : $aOptionspec['label_attributes'];
                 }
