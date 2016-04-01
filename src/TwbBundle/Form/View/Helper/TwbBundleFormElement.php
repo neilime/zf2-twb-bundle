@@ -85,7 +85,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
      */
     public function render(ElementInterface $oElement)
     {
-        // Add form-controll class
+        // Add form-control class
         $sElementType = $oElement->getAttribute('type');
         if (!in_array($sElementType, $this->options->getIgnoredViewHelpers()) &&
             !($oElement instanceof Collection)
@@ -121,6 +121,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
                     $sSpecialClass .= ' input-group-sm';
                 }
             }
+
             return sprintf(
                 self::$inputGroupFormat,
                 trim($sSpecialClass),
