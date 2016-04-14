@@ -97,7 +97,7 @@ class TwbBundleFormRow extends FormRow
         // Render form row
         switch (true) {
             // Checkbox element not in horizontal form
-            case $sElementType === 'checkbox' && $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL:
+            case $sElementType === 'checkbox' && $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL && !$oElement->getOption('form-group'):
             // All "button" elements in inline form
             case in_array($sElementType, array('submit', 'button', 'reset'), true) && $sLayout === TwbBundleForm::LAYOUT_INLINE:
                 return $sElementContent . PHP_EOL;

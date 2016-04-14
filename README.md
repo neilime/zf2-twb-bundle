@@ -187,6 +187,7 @@ $this->formCheckbox(new \Zend\Form\Element\Checkbox('checkbox-input'));
 ```
 This helper accepts a checkbox element as first param. As the input is rendered into a label element, the label position (append by default) can passed as an option
 The option `disable-twb` (boolean) can be passed to the element to disable rendering it in a `label`.
+The option `form-group` (boolean) can be passed to the element to force the form-group div container.
 
 ```php
 <?php
