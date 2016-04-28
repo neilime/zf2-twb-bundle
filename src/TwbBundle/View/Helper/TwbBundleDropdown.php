@@ -325,7 +325,19 @@ class TwbBundleDropDown extends AbstractHelper
                 $sAttributeString = $this->createAttributesString($aItemOptions['item_attributes']);
                 $this->validTagAttributes = $aValidTagAttributes;
 
-                $sItemContent = sprintf(self::$dropdownItemFormats[self::TYPE_ITEM_LINK], $sAttributeString, $this->getEscapeHtmlHelper()->__invoke($aItemOptions['label']));
+                $sLabel = '';
+                
+                if (isset($aItemOptions['label_options']['disable_html_escaping']) && $aItemOptions['label_options']['disable_html_escaping']) {
+                    $sLabel = $aItemOptions['label'];
+                } else {
+                    $sLabel = $this->getEscapeHtmlHelper()->__invoke($aItemOptions['label']);
+                }
+                
+                $sItemContent = sprintf(
+                    self::$dropdownItemFormats[self::TYPE_ITEM_LINK],
+                    $sAttributeString,
+                    $sLabel
+                );
                 break;
         }
 
