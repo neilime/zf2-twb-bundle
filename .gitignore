@@ -1,9 +1,7 @@
 /.settings
 /.buildpath
 /.project
-/composer.lock
 /vendor
-/nbproject/private/
 /nbproject/
 nbactions.xml
 nb-configuration.xml

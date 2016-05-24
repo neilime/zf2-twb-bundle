@@ -36,8 +36,8 @@
         "zendframework/zend-view": "~2.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.*",
-        "satooshi/php-coveralls": "0.*"
+        "phpunit/phpunit": "~4.8",
+        "satooshi/php-coveralls": "~0.7"
     },
     "autoload": {
         "psr-0": {
