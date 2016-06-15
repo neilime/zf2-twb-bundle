@@ -55,24 +55,19 @@ class TwbBundleFormCheckbox extends FormCheckbox
             $aAttributes['checked'] = 'checked';
         }
 
-        //Render label
-        $sLabelOpen = $sLabelClose = $sLabelContent = '';
-
-        //Render label and visible element
-        if ($sLabelContent = $oElement->getLabel()) {
-            if ($oTranslator = $this->getTranslator()) {
-                $sLabelContent = $oTranslator->translate($sLabelContent, $this->getTranslatorTextDomain());
-            }
-
+        // Render label
+        $sLabelOpen = $sLabelClose = '';
+        $sLabelContent = $this->getLabelContent($oElement);
+        if($sLabelContent) {
             $oLabelHelper = $this->getLabelHelper();
             $sLabelOpen = $oLabelHelper->openTag($oElement->getLabelAttributes() ? : null);
             $sLabelClose = $oLabelHelper->closeTag();
         }
 
-        //Render checkbox
+        // Render checkbox
         $sElementContent = sprintf('<input %s%s', $this->createAttributesString($aAttributes), $sClosingBracket);
 
-        //Add label markup
+        // Add label markup
         if ($this->getLabelPosition($oElement) === FormRow::LABEL_PREPEND) {
             $sElementContent = $sLabelOpen .
                 ($sLabelContent ? rtrim($sLabelContent) . ' ' : '') .
@@ -97,6 +92,20 @@ class TwbBundleFormCheckbox extends FormCheckbox
             ) . $sElementContent;
         }
         return $sElementContent;
+    }
+    
+    /**
+     * @param ElementInterface $oElement
+     * @return string
+     */
+    public function getLabelContent(ElementInterface $oElement){
+        $sLabelContent = $oElement->getLabel() ? : '';
+        if ($sLabelContent) {
+            if ($oTranslator = $this->getTranslator()) {
+                $sLabelContent = $oTranslator->translate($sLabelContent, $this->getTranslatorTextDomain());
+            }
+        }
+        return $sLabelContent;
     }
 
     /**
