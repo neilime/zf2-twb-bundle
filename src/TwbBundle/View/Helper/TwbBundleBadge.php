@@ -20,7 +20,7 @@ class TwbBundleBadge extends AbstractHelper
      */
     public function __invoke($sBadgeMessage = null, array $aBadgeAttributes = null)
     {
-        if (!$sBadgeMessage) {
+        if ($sBadgeMessage === null) {
             return $this;
         }
         return $this->render($sBadgeMessage, $aBadgeAttributes);
