@@ -51,6 +51,10 @@ return array(
             'label' => 'TwbBundle\View\Helper\TwbBundleLabel',
 
             // ZF3
+            'form_alert' => 'TwbBundle\View\Helper\TwbBundleAlert',
+            'form_badge' => 'TwbBundle\View\Helper\TwbBundleBadge',
+            'form_buttonGroup' => 'TwbBundle\View\Helper\TwbBundleButtonGroup',
+            'form_dropDown' => 'TwbBundle\View\Helper\TwbBundleDropDown',
             'form_button' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
             'form_submit' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
             'form_checkbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormCheckbox',
@@ -61,7 +65,14 @@ return array(
             'form_row' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow',
             'form_static' => 'TwbBundle\Form\View\Helper\TwbBundleFormStatic',
             'form_errors' => 'TwbBundle\Form\View\Helper\TwbBundleFormErrors',
+            'form_glyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
+            'form_fontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
+            'form_label' => 'TwbBundle\View\Helper\TwbBundleLabel',
 
+            'formalert' => 'TwbBundle\View\Helper\TwbBundleAlert',
+            'formbadge' => 'TwbBundle\View\Helper\TwbBundleBadge',
+            'formbuttonGroup' => 'TwbBundle\View\Helper\TwbBundleButtonGroup',
+            'formdropDown' => 'TwbBundle\View\Helper\TwbBundleDropDown',
             'formbutton' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
             'formsubmit' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
             'formcheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormCheckbox',
@@ -72,6 +83,9 @@ return array(
             'formrow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow',
             'formstatic' => 'TwbBundle\Form\View\Helper\TwbBundleFormStatic',
             'formerrors' => 'TwbBundle\Form\View\Helper\TwbBundleFormErrors',
+            'formglyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
+            'formfontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
+            'formlabel' => 'TwbBundle\View\Helper\TwbBundleLabel',
         ),
         'factories' => array (
             'formElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
