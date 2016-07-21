@@ -140,14 +140,29 @@ Here are the available layouts :
 The helper auto add form specific class and `form` role attributes.
 
 ### Button groups in form
-Form helper can render button groups in a form row, button elements are grouped by the option `button-group`. Exemple :
+Form helper can render button groups in a form row, button elements are grouped by the option `button-group`. Example :
 ```php
 <?php
 $oForm = new \Zend\Form\Form();
 $oForm
     ->add(new \Zend\Form\Element\Button('left-button', array('label' => 'Left', 'button-group' => 'group-1')))
-    ->add(new \Zend\Form\Element\Button('roght-button', array('label' => 'Right', 'button-group' => 'group-1')));
+    ->add(new \Zend\Form\Element\Button('right-button', array('label' => 'Right', 'button-group' => 'group-1')));
 $this->form($oForm);
+```
+
+If any button belonging to a button group has a `column-size` attribute, then the first occurrence of it will be used for the button group styling. Example :
+```php
+<?php
+$oForm = new \Zend\Form\Form();
+$oForm
+    ->add(new \Zend\Form\Element\Button('left-button', array('label' => 'Left', 'button-group' => 'group-1', 'column-size' => 'sm-10 col-sm-offset-2')))
+    ->add(new \Zend\Form\Element\Button('right-button', array('label' => 'Right', 'button-group' => 'group-1')));
+$this->form($oForm);
+```
+This results in following output :
+```html
+<?php
+<div class="form-group "><div class="col-sm-10&#x20;col-sm-offset-2&#x20;btn-group"><button name="left-button" class="btn&#x20;btn-default" value="">Left</button><button name="right-button" class="btn&#x20;btn-default" value="">Right</button></div></div>
 ```
 
 #### Button : `TwbBundle\Form\View\Helper\TwbBundleFormButton`
