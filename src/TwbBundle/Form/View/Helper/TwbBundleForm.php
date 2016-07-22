@@ -80,6 +80,9 @@ class TwbBundleForm extends Form
         // Store button groups
         $aButtonGroups = array();
 
+        // Store button groups column-size from buttons
+        $aButtonGroupsColumnSize = array();
+
         // Store elements rendering
         $aElementsRendering = array();
 
@@ -118,6 +121,10 @@ class TwbBundleForm extends Form
                 } else {
                     $aButtonGroups[$sButtonGroupKey] = array($oElement);
                 }
+                if (!empty($aOptions['column-size']) && !isset($aButtonGroupsColumnSize[$sButtonGroupKey])) {
+                    // Only the first occured column-size will be set, other are ignored.
+                    $aButtonGroupsColumnSize[$sButtonGroupKey] = $aOptions['column-size'];
+                }
             } elseif ($oElement instanceof FieldsetInterface) {
                 $aElementsRendering[$iKey] = $oFormCollectionHelper->__invoke($oElement);
             } else {
@@ -133,7 +140,8 @@ class TwbBundleForm extends Form
                 $aButtons = $aButtonGroups[$sElementRendering];
 
                 // Render button group content
-                $sFormContent .= $oFormRowHelper->renderElementFormGroup($oButtonGroupHelper($aButtons), $oFormRowHelper->getRowClassFromElement(current($aButtons)));
+                $options = (isset($aButtonGroupsColumnSize[$sElementRendering])) ? array('attributes' => array('class' => 'col-' . $aButtonGroupsColumnSize[$sElementRendering])) : null;
+                $sFormContent .= $oFormRowHelper->renderElementFormGroup($oButtonGroupHelper($aButtons, $options), $oFormRowHelper->getRowClassFromElement(current($aButtons)));
             } else {
                 $sFormContent .= $sElementRendering;
             }

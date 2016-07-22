@@ -156,6 +156,52 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test http://getbootstrap.com/css/#forms-horizontal
+     */
+    public function testHorizontalformButtonGroup()
+    {
+        $oForm = new \Zend\Form\Form();
+        $oForm->add(array(
+            'name' => 'input-email',
+            'attributes' => array(
+                'type' => 'email',
+                'placeholder' => 'Enter email',
+                'id' => 'inputEmail1'
+            ),
+            'options' => array(
+                'label' => 'Email',
+                'column-size' => 'sm-10',
+                'label_attributes' => array('class' => 'col-sm-2')
+            )
+        ))->add(array(
+            'name' => 'input-password',
+            'attributes' => array(
+                'type' => 'password',
+                'placeholder' => 'Password',
+                'id' => 'inputPassword1'
+            ),
+            'options' => array('label' => 'Password', 'column-size' => 'sm-10', 'label_attributes' => array('class' => 'col-sm-2'))
+        ))->add(array(
+            'name' => 'input-checkbox',
+            'type' => 'checkbox',
+            'options' => array('label' => 'Remember me', 'column-size' => 'sm-10 col-sm-offset-2')
+        ))->add(array(
+            'name' => 'button-submit',
+            'type' => 'button',
+            'attributes' => array('type' => 'submit'),
+            'options' => array('label' => 'Sign in', 'column-size' => 'sm-10 col-sm-offset-2', 'button-group' => 'group-1')
+        ))->add(array(
+            'name' => 'button-reset',
+            'type' => 'button',
+            'attributes' => array('type' => 'reset'),
+            'options' => array('label' => 'Reset form', 'column-size' => 'sm-8 col-sm-offset-4', 'button-group' => 'group-1')
+        ));
+
+        //Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'horizontal-form-button-group.phtml', $this->formHelper->__invoke($oForm));
+    }
+
+    /**
      * Test http://getbootstrap.com/css/#forms-controls
      */
     public function testSupportedControlsform()
