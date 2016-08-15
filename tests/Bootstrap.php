@@ -58,8 +58,6 @@ class Bootstrap {
         $smConfig->configureServiceManager($serviceManager);
         $serviceManager->setService('ApplicationConfig', $configuration);
 
-        var_dump($configuration);
-
         // Load modules
         $serviceManager->get('ModuleManager')->loadModules();
 

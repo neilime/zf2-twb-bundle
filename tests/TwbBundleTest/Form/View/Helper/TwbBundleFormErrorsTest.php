@@ -30,7 +30,7 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
      */
     public function getFormErrorsHelper() {
         if (null === $this->formErrorsHelper) {
-            $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+            $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
             $oRenderer = new \Zend\View\Renderer\PhpRenderer();
             $oRenderer->setResolver(\TwbBundleTest\Bootstrap::getServiceManager()->get('ViewResolver'));
             $helper = $oViewHelperPluginManager->get('formErrors')
