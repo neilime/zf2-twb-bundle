@@ -98,7 +98,8 @@ return array(
             'formtext'     => 'Zend\Form\View\Helper\FormText',
             'formtextarea' => 'Zend\Form\View\Helper\FormTextArea',
             'formselect'   => 'Zend\Form\View\Helper\FormSelect',
-            'forminput'   => 'Zend\Form\View\Helper\FormInput',
+            'forminput'    => 'Zend\Form\View\Helper\FormInput',
+            'formhidden'   => 'Zend\Form\View\Helper\FormHidden',
         ),
         'factories' => array (
             'formElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
