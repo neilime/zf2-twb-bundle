@@ -33,6 +33,7 @@ return array(
             'buttonGroup' => 'TwbBundle\View\Helper\TwbBundleButtonGroup',
             //DropDown
             'dropDown' => 'TwbBundle\View\Helper\TwbBundleDropDown',
+            'dropdown' => 'TwbBundle\View\Helper\TwbBundleDropDown',
             //Form
             'form' => 'TwbBundle\Form\View\Helper\TwbBundleForm',
             'formButton' => 'TwbBundle\Form\View\Helper\TwbBundleFormButton',
@@ -81,7 +82,7 @@ return array(
             'formcheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormCheckbox',
             'formcollection' => 'TwbBundle\Form\View\Helper\TwbBundleFormCollection',
             'formelement_errors' => 'TwbBundle\Form\View\Helper\TwbBundleFormElementErrors',
-            'formmulti_checkbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox',
+            'formmulticheckbox' => 'TwbBundle\Form\View\Helper\TwbBundleFormMultiCheckbox',
             'formradio' => 'TwbBundle\Form\View\Helper\TwbBundleFormRadio',
             'formrow' => 'TwbBundle\Form\View\Helper\TwbBundleFormRow',
             'formstatic' => 'TwbBundle\Form\View\Helper\TwbBundleFormStatic',
@@ -89,6 +90,15 @@ return array(
             'formglyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
             'formfontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
             'formlabel' => 'TwbBundle\View\Helper\TwbBundleLabel',
+
+            // zend
+            'formemail'    => 'Zend\Form\View\Helper\FormEmail',
+            'formpassword' => 'Zend\Form\View\Helper\FormPassword',
+            'formfile'     => 'Zend\Form\View\Helper\FormFile',
+            'formtext'     => 'Zend\Form\View\Helper\FormText',
+            'formtextarea' => 'Zend\Form\View\Helper\FormTextArea',
+            'formselect'   => 'Zend\Form\View\Helper\FormSelect',
+            'forminput'   => 'Zend\Form\View\Helper\FormInput',
         ),
         'factories' => array (
             'formElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
