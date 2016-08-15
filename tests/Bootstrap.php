@@ -2,6 +2,13 @@
 
 namespace TwbBundleTest;
 
+use Zend\EventManager\EventManagerAwareInterface;
+use Zend\EventManager\EventManagerInterface;
+use Zend\ServiceManager\ServiceManager;
+use Zend\Stdlib\RequestInterface;
+use Zend\Stdlib\ResponseInterface;
+use Zend\Mvc\Service;
+
 error_reporting(E_ALL | E_STRICT);
 chdir(__DIR__);
 
@@ -33,7 +40,7 @@ class Bootstrap {
         }
         static::initAutoloader();
 
-        //Use ModuleManager to load this module and it's dependencies
+        // Use ModuleManager to load this module and it's dependencies
         static::$config = \Zend\Stdlib\ArrayUtils::merge(array(
                     'module_listener_options' => array(
                         'module_paths' => array_merge(
@@ -41,8 +48,22 @@ class Bootstrap {
                         )
                     )
                         ), $aTestConfig);
-        static::$serviceManager = new \Zend\ServiceManager\ServiceManager(new \Zend\Mvc\Service\ServiceManagerConfig());
-        static::$serviceManager->setService('ApplicationConfig', static::$config)->get('ModuleManager')->loadModules();
+
+        $configuration = static::$config;
+        // Prepare the service manager
+        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
+        $smConfig = new Service\ServiceManagerConfig($smConfig);
+
+        $serviceManager = new ServiceManager();
+        $smConfig->configureServiceManager($serviceManager);
+        $serviceManager->setService('ApplicationConfig', $configuration);
+
+        var_dump($configuration);
+
+        // Load modules
+        $serviceManager->get('ModuleManager')->loadModules();
+
+        static::$serviceManager = $serviceManager;
     }
 
     /**
