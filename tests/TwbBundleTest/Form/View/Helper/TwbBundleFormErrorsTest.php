@@ -48,7 +48,10 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testInvokeWithFormCallsRender() {
-        $form = $this->getMock('\Zend\Form\Form', array('hasValidated', 'isValid'), array(), '', false);
+        $form = $this->getMockBuilder('\Zend\Form\Form')
+            ->setMethods(array('hasValidated', 'isValid'))
+            ->disableOriginalConstructor()
+            ->getMock();
         $form->expects($this->exactly(1))
                 ->method('hasValidated')
                 ->will($this->returnValue(true));
@@ -58,7 +61,9 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('\Zend\Form\Form', $form);
 
-        $helper = $this->getMock('TwbBundle\Form\View\Helper\TwbBundleFormErrors', array('render'));
+        $helper = $this->getMockBuilder('TwbBundle\Form\View\Helper\TwbBundleFormErrors')
+            ->setMethods(array('render'))
+            ->getMock();
         $helper->expects($this->atLeastOnce())
                 ->method('render')
                 ->with($this->identicalTo($form), 'There were errors in the form submission', false /* default */)
@@ -70,7 +75,10 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testInvokeWithFormNoErrorsReturnsNull() {
-        $form = $this->getMock('\Zend\Form\Form', array('hasValidated', 'isValid'), array(), '', false);
+        $form = $this->getMockBuilder('\Zend\Form\Form')
+            ->setMethods(array('hasValidated', 'isValid'))
+            ->disableOriginalConstructor()
+            ->getMock();
         $form->expects($this->exactly(1))
                 ->method('hasValidated')
                 ->will($this->returnValue(true));
@@ -109,7 +117,11 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
             ),
         );
 
-        $element = $this->getMock('\Zend\Form\Element', array('getAttribute', 'getLabel'), array(), '', false);
+        $element = $this->getMockBuilder('\Zend\Form\Element')
+            ->setMethods(array('getAttribute', 'getLabel'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $element->expects($this->atLeastOnce())
                 ->method('getAttribute')
                 ->with($this->equalTo('id'))
@@ -120,7 +132,10 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('\Zend\Form\Element', $element);
 
-        $element2 = $this->getMock('\Zend\Form\Element', array('getAttribute', 'getLabel'), array(), '', false);
+        $element2 = $this->getMockBuilder('\Zend\Form\Element')
+            ->setMethods(array('getAttribute', 'getLabel'))
+            ->disableOriginalConstructor()
+            ->getMock();
         $element2->expects($this->atLeastOnce())
                 ->method('getAttribute')
                 ->with($this->equalTo('id'))
@@ -138,7 +153,10 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
             array('dob', $element2),
         );
 
-        $form = $this->getMock('\Zend\Form\Form', array('getMessages', 'get'), array(), '', false);
+        $form = $this->getMockBuilder('\Zend\Form\Form')
+            ->setMethods(array('getMessages', 'get'))
+            ->disableOriginalConstructor()
+            ->getMock();
         $form->expects($this->exactly(1))
                 ->method('getMessages')
                 ->will($this->returnValue($messagesArray));
