@@ -10,7 +10,7 @@ class TwbBundleAlertTest extends \PHPUnit_Framework_TestCase{
 	 * @see \PHPUnit_Framework_TestCase::setUp()
 	 */
 	public function setUp(){
-		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
 		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
 		$this->alertHelper = $oViewHelperPluginManager->get('alert')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}

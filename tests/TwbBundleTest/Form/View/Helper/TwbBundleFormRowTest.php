@@ -21,7 +21,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../../../_files/expected-rows' . DIRECTORY_SEPARATOR;
-        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
         $oRenderer->setResolver(\TwbBundleTest\Bootstrap::getServiceManager()->get('ViewResolver'));
         $this->formRowHelper = $oViewHelperPluginManager->get('formRow')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
@@ -32,7 +32,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
     {
         $this->formRowHelper->setPartial('partial-row');
 
-        //Test content
+        // Test content
         $this->assertStringEqualsFile($this->expectedPath . 'partial.phtml', $this->formRowHelper->render(new \Zend\Form\Element('test-element')));
     }
 
@@ -102,8 +102,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
             'This is an another one error message'
         ));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'errors-input-errors-class.phtml', $this->formRowHelper->__invoke($oElement));
+        // Test content
+        $sContent = $this->formRowHelper->__invoke($oElement);
+        $this->assertStringEqualsFile($this->expectedPath . 'errors-input-errors-class.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     public function testRenderErrorsWithoutInputErrorClass()
@@ -115,20 +116,19 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
             'This is an another one error message'
         ));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'errors-without-input-errors-class.phtml', $this->formRowHelper->__invoke($oElement));
+        // Test content
+        $sContent = $this->formRowHelper->__invoke($oElement);
+        $this->assertStringEqualsFile($this->expectedPath . 'errors-without-input-errors-class.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     public function testRenderHiddenElement()
     {
         $this->formRowHelper->setInputErrorClass('input-error');
         $oElement = new \Zend\Form\Element\Hidden('input-hidden');
-        //Test content
-        $this->assertEquals(
-                '<input type="hidden" name="input-hidden" class="form-control" value="">', $this->formRowHelper->__invoke($oElement)
-        );
+        // Test content
+        $this->assertEquals('<input type="hidden" name="input-hidden" class="form-control" value="">', $this->formRowHelper->__invoke($oElement));
 
-        //Test content
+        // Test content
         $this->assertStringEqualsFile($this->expectedPath . 'hidden-element.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
@@ -139,8 +139,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $aLabelAttributes = $this->formRowHelper->getLabelAttributes();
         $this->formRowHelper->setLabelAttributes(array('class' => 'test-class'));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'checkbox-defined-label-attributes.phtml', $this->formRowHelper->__invoke($oElement));
+        // Test content
+        $sContent = $this->formRowHelper->__invoke($oElement);
+        $this->assertStringEqualsFile($this->expectedPath . 'checkbox-defined-label-attributes.phtml', str_replace(PHP_EOL, "\n", $sContent));
 
         // Restore original label attributes
         $this->formRowHelper->setLabelAttributes($aLabelAttributes);
@@ -160,7 +161,8 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         ));
 
         // Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'radio-horizontal-layout.phtml', $this->formRowHelper->__invoke($oElement));
+        $sContent = $this->formRowHelper->__invoke($oElement);
+        $this->assertStringEqualsFile($this->expectedPath . 'radio-horizontal-layout.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     public function testRenderInputWithHelpTextAndError()
@@ -170,19 +172,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
             'help-block' => 'Help block text'
         ));
         $oElement->setMessages(array('Error message'));
-        // Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'input-with-help-text-and-error.phtml', $this->formRowHelper->__invoke($oElement));
-    }
 
-    /**
-     * @param string $sExpectedFile
-     * @param string $sActualString
-     * @param string $sMessage
-     * @param boolean $bCanonicalize
-     * @param boolean $bIgnoreCase
-     */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
-    {
-        return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
+        // Test content
+        $sContent = $this->formRowHelper->__invoke($oElement);
+        $this->assertStringEqualsFile($this->expectedPath . 'input-with-help-text-and-error.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 }

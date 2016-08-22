@@ -5,7 +5,8 @@ namespace TwbBundleTest;
 error_reporting(E_ALL | E_STRICT);
 chdir(__DIR__);
 
-class Bootstrap {
+class Bootstrap
+{
 
     /**
      * @var \Zend\ServiceManager\ServiceManager
@@ -20,7 +21,8 @@ class Bootstrap {
     /**
      * Initialize bootstrap
      */
-    public static function init() {
+    public static function init()
+    {
         //Load the user-defined test configuration file, if it exists;
         $aTestConfig = include is_readable(__DIR__ . '/TestConfig.php') ? __DIR__ . '/TestConfig.php' : __DIR__ . '/TestConfig.php.dist';
         $aZf2ModulePaths = array();
@@ -33,7 +35,7 @@ class Bootstrap {
         }
         static::initAutoloader();
 
-        //Use ModuleManager to load this module and it's dependencies
+        // Use ModuleManager to load this module and it's dependencies
         static::$config = \Zend\Stdlib\ArrayUtils::merge(array(
                     'module_listener_options' => array(
                         'module_paths' => array_merge(
@@ -41,21 +43,31 @@ class Bootstrap {
                         )
                     )
                         ), $aTestConfig);
-        static::$serviceManager = new \Zend\ServiceManager\ServiceManager(new \Zend\Mvc\Service\ServiceManagerConfig());
-        static::$serviceManager->setService('ApplicationConfig', static::$config)->get('ModuleManager')->loadModules();
+
+        // Prepare the service manager
+        $oServiceManagerConfig = new \Zend\Mvc\Service\ServiceManagerConfig(isset(static::$config['service_manager']) ? static::$config['service_manager'] : []);
+
+        static::$serviceManager = new \Zend\ServiceManager\ServiceManager();
+        $oServiceManagerConfig->configureServiceManager(static::$serviceManager);
+        static::$serviceManager->setService('ApplicationConfig', static::$config);
+
+        // Load modules
+        static::$serviceManager->get('ModuleManager')->loadModules();
     }
 
     /**
      * @return \Zend\ServiceManager\ServiceManager
      */
-    public static function getServiceManager() {
+    public static function getServiceManager()
+    {
         return static::$serviceManager;
     }
 
     /**
      * @return array
      */
-    public static function getConfig() {
+    public static function getConfig()
+    {
         return static::$config;
     }
 
@@ -63,7 +75,8 @@ class Bootstrap {
      * Initialize Autoloader
      * @throws RuntimeException
      */
-    protected static function initAutoloader() {
+    protected static function initAutoloader()
+    {
         $sVendorPath = static::findParentPath('vendor');
 
         if (is_readable($sVendorPath . '/autoload.php')) {
@@ -90,7 +103,8 @@ class Bootstrap {
      * @param string $sPath
      * @return boolean|string
      */
-    protected static function findParentPath($sPath) {
+    protected static function findParentPath($sPath)
+    {
         $sCurrentDir = __DIR__;
         $sPreviousDir = '.';
         while (!is_dir($sPreviousDir . '/' . $sPath)) {
@@ -102,7 +116,6 @@ class Bootstrap {
         }
         return $sCurrentDir . '/' . $sPath;
     }
-
 }
 
 Bootstrap::init();

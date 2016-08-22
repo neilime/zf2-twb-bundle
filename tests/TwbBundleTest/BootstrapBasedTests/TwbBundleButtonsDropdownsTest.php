@@ -23,7 +23,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
      */
     public function setUp() {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-buttons-dropdowns' . DIRECTORY_SEPARATOR;
-        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
         $this->formButtonHelper = $oViewHelperPluginManager->get('formButton')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
@@ -61,7 +61,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-single.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-single.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -99,7 +99,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-split.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-split.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -128,7 +128,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-sizing.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-sizing.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -152,7 +152,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropup.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'dropup.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**

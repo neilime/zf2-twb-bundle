@@ -23,7 +23,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
      */
     public function setUp() {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-button-groups' . DIRECTORY_SEPARATOR;
-        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
         $this->buttonGroupHelper = $oViewHelperPluginManager->get('buttonGroup')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
@@ -70,7 +70,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= '</div>';
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'toolbar.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'toolbar.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -109,7 +109,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
                         ), array('attributes' => array('class' => 'btn-group-xs'))) . '</div>';
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'sizing.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'sizing.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**

@@ -2,7 +2,8 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase
+{
 
     /**
      * @var \TwbBundle\Form\View\Helper\TwbBundleFormElement
@@ -12,8 +13,9 @@ class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @see \PHPUnit_Framework_TestCase::setUp()
      */
-    public function setUp() {
-        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+    public function setUp()
+    {
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
         $this->formElementHelper = $oViewHelperPluginManager->get('formElement')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
@@ -21,7 +23,8 @@ class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testRenderAddOnWithEmptuOption() {
+    public function testRenderAddOnWithEmptuOption()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
@@ -31,30 +34,33 @@ class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testRenderAddOnWithWrongTypeOption() {
+    public function testRenderAddOnWithWrongTypeOption()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
         $oReflectionMethod->invoke($this->formElementHelper, new \stdClass());
     }
 
-    public function testRenderAddOnWithoutTranslator() {
+    public function testRenderAddOnWithoutTranslator()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
 
-        //Unset tranlator
+        // Unset tranlator
         $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslator(null));
         $this->assertFalse($this->formElementHelper->hasTranslator());
 
         $this->assertEquals('<span class="input-group-addon">test</span>', $oReflectionMethod->invoke($this->formElementHelper, 'test'));
 
         //Set translator
-        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslator(\TwbBundleTest\Bootstrap::getServiceManager()->get('MVCTranslator')));
+        $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslator(\TwbBundleTest\Bootstrap::getServiceManager()->get('Zend\Mvc\I18n\Translator')));
         $this->assertTrue($this->formElementHelper->hasTranslator());
     }
 
-    public function testRenderAddOnWithElementAsArray() {
+    public function testRenderAddOnWithElementAsArray()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
@@ -66,7 +72,8 @@ class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \LogicException
      */
-    public function testRenderAddOnWithWrongTypeElement() {
+    public function testRenderAddOnWithWrongTypeElement()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
@@ -76,14 +83,16 @@ class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \LogicException
      */
-    public function testRenderAddOnWithWrongTypeText() {
+    public function testRenderAddOnWithWrongTypeText()
+    {
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
         $oReflectionMethod->invoke($this->formElementHelper, array('text' => new \stdClass()));
     }
 
-    public function testSetTranslatorEnabled() {
+    public function testSetTranslatorEnabled()
+    {
         $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslatorEnabled(false));
         $this->assertFalse($this->formElementHelper->isTranslatorEnabled());
 
@@ -91,17 +100,18 @@ class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue($this->formElementHelper->isTranslatorEnabled());
     }
 
-    public function testSetTranslatorWithTextDomain() {
+    public function testSetTranslatorWithTextDomain()
+    {
         $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslator($this->formElementHelper->getTranslator(), 'test'));
         $this->assertEquals('test', $this->formElementHelper->getTranslatorTextDomain());
     }
 
-    public function testSetTranslatorTextDomain() {
+    public function testSetTranslatorTextDomain()
+    {
         $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslatorTextDomain('test'));
         $this->assertEquals('test', $this->formElementHelper->getTranslatorTextDomain());
 
         $this->assertSame($this->formElementHelper, $this->formElementHelper->setTranslatorTextDomain());
         $this->assertEquals('default', $this->formElementHelper->getTranslatorTextDomain());
     }
-
 }

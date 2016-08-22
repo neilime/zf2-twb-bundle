@@ -20,7 +20,7 @@ class TwbBundleBadgesTest extends \PHPUnit_Framework_TestCase{
 	 */
 	public function setUp(){
 		$this->expectedPath = __DIR__.DIRECTORY_SEPARATOR.'../../_files/expected-badges'.DIRECTORY_SEPARATOR;
-		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
 		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
 		$this->badgeHelper = $oViewHelperPluginManager->get('badge')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
@@ -34,6 +34,6 @@ class TwbBundleBadgesTest extends \PHPUnit_Framework_TestCase{
 		//Pull-right
 		$sContent .= $this->badgeHelper->__invoke('3',array('class' => 'pull-right')).PHP_EOL;
 
-		$this->assertStringEqualsFile($this->expectedPath.'badges.phtml',$sContent);
+		$this->assertStringEqualsFile($this->expectedPath.'badges.phtml',  str_replace(PHP_EOL, "\n", $sContent));
 	}
 }

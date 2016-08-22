@@ -28,7 +28,7 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
      */
     public function setUp() {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-glyphicons' . DIRECTORY_SEPARATOR;
-        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
 
         //Initialize glyphicon helper
@@ -79,7 +79,7 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
         $oButton->setAttribute('class', 'btn-xs');
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
-        $this->assertStringEqualsFile($this->expectedPath . 'examples.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'examples.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**

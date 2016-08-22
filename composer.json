@@ -2,10 +2,10 @@
     "name": "neilime/zf2-twb-bundle",
     "type": "library",
     "description": "Zend Framework 2 module for easy integration of Twitter Bootstrap",
-    "keywords": ["Zend Framework 2","Twitter Bootstrap","module"],
+    "keywords": ["Zend Framework 2", "Twitter Bootstrap", "module"],
     "homepage": "http://neilime.github.io/zf2-twb-bundle/",
     "license": "MIT",
-    "minimum-stability" : "stable",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Neilime",
@@ -21,29 +21,19 @@
         "twitter/bootstrap": "Twitter bootstrap assets"
     },
     "require": {
-        "php": ">=5.3.2",
-        "zendframework/zend-config": "~2.3",
-        "zendframework/zend-escaper": "~2.3",
-        "zendframework/zend-form": "~2.3",
-        "zendframework/zend-i18n": "~2.3",
-        "zendframework/zend-loader": "~2.3",
-        "zendframework/zend-log": "~2.3",
-        "zendframework/zend-modulemanager": "~2.3",
-        "zendframework/zend-mvc": "~2.3",
-        "zendframework/zend-serializer": "~2.3",
-        "zendframework/zend-servicemanager": "~2.3",
-        "zendframework/zend-stdlib": "~2.3",
-        "zendframework/zend-view": "~2.3"
+        "zendframework/zend-mvc": "~3.0.2",
+        "zendframework/zend-form": "~2.9.0",
+        "zendframework/zend-mvc-i18n": "~1.0.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8",
-        "satooshi/php-coveralls": "~0.7"
+        "phpunit/phpunit": "~5.5.2",
+        "satooshi/php-coveralls": "~v1.0.1"
     },
     "autoload": {
         "psr-0": {
             "TwbBundle": "src"
         },
-        "classmap" : ["Module.php"]
+        "classmap": ["Module.php"]
     },
     "extra": {
         "branch-alias": {

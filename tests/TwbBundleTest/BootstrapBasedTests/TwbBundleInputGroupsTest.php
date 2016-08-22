@@ -23,7 +23,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
      */
     public function setUp() {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-input-groups' . DIRECTORY_SEPARATOR;
-        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Zend\View\Renderer\PhpRenderer();
         $this->formElementHelper = $oViewHelperPluginManager->get('formElement')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
@@ -45,7 +45,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-basic.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-basic.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -70,7 +70,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-sizing.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-sizing.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -88,7 +88,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-checkboxes-radios.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-checkboxes-radios.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -106,7 +106,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -132,7 +132,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons-dropdowns.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons-dropdowns.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -159,7 +159,7 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons-segmented.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons-segmented.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
