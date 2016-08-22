@@ -34,6 +34,6 @@ class TwbBundleBadgesTest extends \PHPUnit_Framework_TestCase{
 		//Pull-right
 		$sContent .= $this->badgeHelper->__invoke('3',array('class' => 'pull-right')).PHP_EOL;
 
-		$this->assertStringEqualsFile($this->expectedPath.'badges.phtml',$sContent);
+		$this->assertStringEqualsFile($this->expectedPath.'badges.phtml',  str_replace(PHP_EOL, "\n", $sContent));
 	}
 }

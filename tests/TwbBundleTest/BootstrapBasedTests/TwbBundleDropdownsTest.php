@@ -42,9 +42,10 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
             'list_attributes' => array('aria-labelledby' => 'dropdownMenu1'),
             'items' => array('Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link')
         );
+        $sContent = $this->dropdownHelper->__invoke($aDropDownOptions);
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'exemple.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'exemple.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -59,9 +60,10 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
             'list_attributes' => array('aria-labelledby' => 'dropdownMenu1', 'class' => 'pull-right'),
             'items' => array('Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link')
         );
+        $sContent = $this->dropdownHelper->__invoke($aDropDownOptions);
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'alignment.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'alignment.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -82,9 +84,10 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
                 'Separated link'
             )
         );
+        $sContent = $this->dropdownHelper->__invoke($aDropDownOptions);
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'headers.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'headers.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -103,20 +106,9 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
                 'Another link'
             )
         );
+        $sContent = $this->dropdownHelper->__invoke($aDropDownOptions);
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'disabled.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
-    }
-
-    /**
-     * @param string $sExpectedFile
-     * @param string $sActualString
-     * @param string $sMessage
-     * @param boolean $bCanonicalize
-     * @param boolean $bIgnoreCase
-     */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
-    {
-        return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'disabled.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 }

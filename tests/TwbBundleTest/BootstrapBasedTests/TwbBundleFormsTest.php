@@ -72,9 +72,10 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             'attributes' => array('type' => 'submit'),
             'options' => array('label' => 'Submit')
         ));
+        $sContent = $this->formHelper->__invoke($oForm, null);
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'basic-example.phtml', $this->formHelper->__invoke($oForm, null));
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'basic-example.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -109,9 +110,10 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             'attributes' => array('type' => 'submit'),
             'options' => array('label' => 'Sign in')
         ));
+        $sContent = $this->formHelper->__invoke($oForm, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE);
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'inline-form.phtml', $this->formHelper->__invoke($oForm, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'inline-form.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -151,8 +153,10 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             'options' => array('label' => 'Sign in', 'column-size' => 'sm-10 col-sm-offset-2')
         ));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'horizontal-form.phtml', $this->formHelper->__invoke($oForm));
+        $sContent = $this->formHelper->__invoke($oForm);
+
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'horizontal-form.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -218,8 +222,10 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             'attributes' => array('multiple' => true)
         ));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'supported-controls-form.phtml', $this->formHelper->__invoke($oForm, null));
+        $sContent = $this->formHelper->__invoke($oForm, null);
+
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'supported-controls-form.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     public function testRenderMultiCheckboxInlineWithLabel()
@@ -240,8 +246,11 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
                 'inline' => true
             )
         ));
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'multi-checkbox-inline.phtml', $this->formHelper->__invoke($oForm));
+
+        $sContent = $this->formHelper->__invoke($oForm);
+
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'multi-checkbox-inline.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -265,8 +274,10 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             'options' => array('label' => 'Password', 'column-size' => 'lg-10', 'label_attributes' => array('class' => 'col-lg-2'))
         ));
 
+        $sContent = $this->formHelper->__invoke($oForm);
+
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'static-control-form.phtml', $this->formHelper->__invoke($oForm));
+        $this->assertStringEqualsFile($this->expectedPath . 'static-control-form.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -312,11 +323,13 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
                     'options' => array('label' => 'Submit')
         )));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'control-states-form.phtml', $this->formHelper->__invoke($oForm, null));
+        // Test content
+        $sContent = $this->formHelper->__invoke($oForm, null);
+        $this->assertStringEqualsFile($this->expectedPath . 'control-states-form.phtml', str_replace(PHP_EOL, "\n", $sContent));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'control-states-form-horizontal.phtml', $this->formHelper->__invoke($oForm));
+        // Test content
+        $sContent = $this->formHelper->__invoke($oForm);
+        $this->assertStringEqualsFile($this->expectedPath . 'control-states-form-horizontal.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -356,9 +369,10 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
                 'validation-state' => 'error'
             )
         ));
+        $sContent = $this->formHelper->__invoke($oForm, null);
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-validation.phtml', $this->formHelper->__invoke($oForm, null));
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-validation.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -405,10 +419,12 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             'attributes' => array('class' => 'input-sm')
         ));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-control-sizes-height.phtml', $this->formHelper->__invoke($oForm, null));
+        $sContent = $this->formHelper->__invoke($oForm, null);
 
-        //Column sizing
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-control-sizes-height.phtml', str_replace(PHP_EOL, "\n", $sContent));
+
+        // Column sizing
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
             'name' => 'input-text-col-lg-2',
@@ -433,8 +449,9 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             'options' => array('column-size' => 'lg-4')
         ));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-control-sizes-column.phtml', $this->formHelper->__invoke($oForm, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
+        // Test content
+        $sContent = $this->formHelper->__invoke($oForm, \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE);
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-control-sizes-column.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -451,8 +468,9 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             )
         ));
 
-        //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-help-text.phtml', $this->formHelper->__invoke($oForm, null));
+        // Test content
+        $sContent = $this->formHelper->__invoke($oForm, null);
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-help-text.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -468,18 +486,22 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
                             'This is an another one error message'
         )));
 
-        //No form layout
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-no-layout-errored-input.phtml', $this->formHelper->__invoke($oForm, null));
+        // No form layout
+        $sContent = $this->formHelper->__invoke($oForm, null);
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-no-layout-errored-input.phtml', str_replace(PHP_EOL, "\n", $sContent));
 
-        //Horizontal form
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input.phtml', $this->formHelper->__invoke($oForm));
+        // Horizontal form
+        $sContent = $this->formHelper->__invoke($oForm);
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input.phtml', str_replace(PHP_EOL, "\n", $sContent));
 
-        //Horizontal form / input with label
+        // Horizontal form / input with label
         $oElement
                 ->setOptions(array('column-size' => 'lg-10'))
                 ->setLabel('Input label')
                 ->setLabelAttributes(array('class' => 'col-lg-2'));
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input-with-label.phtml', $this->formHelper->__invoke($oForm));
+
+        $sContent = $this->formHelper->__invoke($oForm);
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-horizontal-errored-input-with-label.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 
     public function testFormWithButtonGroups()
@@ -494,18 +516,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
                 ->add(new \Zend\Form\Element\Text('input-text-3'));
 
         // Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'forms-button-groups.phtml', $this->formHelper->__invoke($oForm));
-    }
-
-    /**
-     * @param string $sExpectedFile
-     * @param string $sActualString
-     * @param string $sMessage
-     * @param boolean $bCanonicalize
-     * @param boolean $bIgnoreCase
-     */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
-    {
-        return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
+        $sContent = $this->formHelper->__invoke($oForm);
+        $this->assertStringEqualsFile($this->expectedPath . 'forms-button-groups.phtml', str_replace(PHP_EOL, "\n", $sContent));
     }
 }

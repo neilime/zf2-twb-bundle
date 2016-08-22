@@ -61,7 +61,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-single.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-single.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -99,7 +99,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-split.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-split.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -128,7 +128,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-sizing.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-sizing.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -152,7 +152,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropup.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'dropup.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**

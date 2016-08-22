@@ -2,17 +2,11 @@
 
 namespace TwbBundleTest;
 
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\RequestInterface;
-use Zend\Stdlib\ResponseInterface;
-use Zend\Mvc\Service;
-
 error_reporting(E_ALL | E_STRICT);
 chdir(__DIR__);
 
-class Bootstrap {
+class Bootstrap
+{
 
     /**
      * @var \Zend\ServiceManager\ServiceManager
@@ -27,7 +21,8 @@ class Bootstrap {
     /**
      * Initialize bootstrap
      */
-    public static function init() {
+    public static function init()
+    {
         //Load the user-defined test configuration file, if it exists;
         $aTestConfig = include is_readable(__DIR__ . '/TestConfig.php') ? __DIR__ . '/TestConfig.php' : __DIR__ . '/TestConfig.php.dist';
         $aZf2ModulePaths = array();
@@ -49,32 +44,30 @@ class Bootstrap {
                     )
                         ), $aTestConfig);
 
-        $configuration = static::$config;
         // Prepare the service manager
-        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
-        $smConfig = new Service\ServiceManagerConfig($smConfig);
+        $oServiceManagerConfig = new \Zend\Mvc\Service\ServiceManagerConfig(isset(static::$config['service_manager']) ? static::$config['service_manager'] : []);
 
-        $serviceManager = new ServiceManager();
-        $smConfig->configureServiceManager($serviceManager);
-        $serviceManager->setService('ApplicationConfig', $configuration);
+        static::$serviceManager = new \Zend\ServiceManager\ServiceManager();
+        $oServiceManagerConfig->configureServiceManager(static::$serviceManager);
+        static::$serviceManager->setService('ApplicationConfig', static::$config);
 
         // Load modules
-        $serviceManager->get('ModuleManager')->loadModules();
-
-        static::$serviceManager = $serviceManager;
+        static::$serviceManager->get('ModuleManager')->loadModules();
     }
 
     /**
      * @return \Zend\ServiceManager\ServiceManager
      */
-    public static function getServiceManager() {
+    public static function getServiceManager()
+    {
         return static::$serviceManager;
     }
 
     /**
      * @return array
      */
-    public static function getConfig() {
+    public static function getConfig()
+    {
         return static::$config;
     }
 
@@ -82,7 +75,8 @@ class Bootstrap {
      * Initialize Autoloader
      * @throws RuntimeException
      */
-    protected static function initAutoloader() {
+    protected static function initAutoloader()
+    {
         $sVendorPath = static::findParentPath('vendor');
 
         if (is_readable($sVendorPath . '/autoload.php')) {
@@ -109,7 +103,8 @@ class Bootstrap {
      * @param string $sPath
      * @return boolean|string
      */
-    protected static function findParentPath($sPath) {
+    protected static function findParentPath($sPath)
+    {
         $sCurrentDir = __DIR__;
         $sPreviousDir = '.';
         while (!is_dir($sPreviousDir . '/' . $sPath)) {
@@ -121,7 +116,6 @@ class Bootstrap {
         }
         return $sCurrentDir . '/' . $sPath;
     }
-
 }
 
 Bootstrap::init();

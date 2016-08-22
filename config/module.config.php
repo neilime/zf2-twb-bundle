@@ -1,8 +1,8 @@
 <?php
 
 return array(
-    'twbbundle' => array (
-        'ignoredViewHelpers' => array (
+    'twbbundle' => array(
+        'ignoredViewHelpers' => array(
             'file',
             'checkbox',
             'radio',
@@ -15,16 +15,17 @@ return array(
         'type_map' => array(),
         'class_map' => array(),
     ),
-    'service_manager' => array (
-        'factories' => array (
+    'service_manager' => array(
+        'factories' => array(
             'TwbBundle\Options\ModuleOptions' => 'TwbBundle\Options\Factory\ModuleOptionsFactory',
-            'RoutePluginManager'              => 'Zend\Router\RoutePluginManagerFactory',
-            'Router'                          => 'Zend\Router\RouterFactory',
-            'HttpRouter'                      => 'Zend\Router\Http\HttpRouterFactory',
-        )
+            'RoutePluginManager' => 'Zend\Router\RoutePluginManagerFactory',
+            'Router' => 'Zend\Router\RouterFactory',
+            'HttpRouter' => 'Zend\Router\Http\HttpRouterFactory',
+            'Zend\Mvc\I18n\Translator' => 'Zend\Mvc\I18n\TranslatorFactory',
+        ),
     ),
-    'view_helpers' => array (
-        'invokables' => array (
+    'view_helpers' => array(
+        'invokables' => array(
             //Alert
             'alert' => 'TwbBundle\View\Helper\TwbBundleAlert',
             //Badge
@@ -53,7 +54,6 @@ return array(
             'fontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
             //Label
             'label' => 'TwbBundle\View\Helper\TwbBundleLabel',
-
             // ZF3
             'form_alert' => 'TwbBundle\View\Helper\TwbBundleAlert',
             'form_badge' => 'TwbBundle\View\Helper\TwbBundleBadge',
@@ -72,7 +72,6 @@ return array(
             'form_glyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
             'form_fontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
             'form_label' => 'TwbBundle\View\Helper\TwbBundleLabel',
-
             'formalert' => 'TwbBundle\View\Helper\TwbBundleAlert',
             'formbadge' => 'TwbBundle\View\Helper\TwbBundleBadge',
             'formbuttonGroup' => 'TwbBundle\View\Helper\TwbBundleButtonGroup',
@@ -90,18 +89,17 @@ return array(
             'formglyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
             'formfontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
             'formlabel' => 'TwbBundle\View\Helper\TwbBundleLabel',
-
             // zend
-            'formemail'    => 'Zend\Form\View\Helper\FormEmail',
+            'formemail' => 'Zend\Form\View\Helper\FormEmail',
             'formpassword' => 'Zend\Form\View\Helper\FormPassword',
-            'formfile'     => 'Zend\Form\View\Helper\FormFile',
-            'formtext'     => 'Zend\Form\View\Helper\FormText',
+            'formfile' => 'Zend\Form\View\Helper\FormFile',
+            'formtext' => 'Zend\Form\View\Helper\FormText',
             'formtextarea' => 'Zend\Form\View\Helper\FormTextArea',
-            'formselect'   => 'Zend\Form\View\Helper\FormSelect',
-            'forminput'    => 'Zend\Form\View\Helper\FormInput',
-            'formhidden'   => 'Zend\Form\View\Helper\FormHidden',
+            'formselect' => 'Zend\Form\View\Helper\FormSelect',
+            'forminput' => 'Zend\Form\View\Helper\FormInput',
+            'formhidden' => 'Zend\Form\View\Helper\FormHidden',
         ),
-        'factories' => array (
+        'factories' => array(
             'formElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
             'form_element' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
             'formelement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',

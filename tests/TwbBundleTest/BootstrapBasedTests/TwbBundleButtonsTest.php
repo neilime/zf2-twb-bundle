@@ -61,7 +61,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'options.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'options.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -115,7 +115,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'sizes.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'sizes.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -137,7 +137,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'active.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'active.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
@@ -161,7 +161,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'disabled.phtml', $sContent);
+        $this->assertStringEqualsFile($this->expectedPath . 'disabled.phtml',  str_replace(PHP_EOL, "\n", $sContent));
     }
 
     /**
