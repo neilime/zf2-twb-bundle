@@ -105,6 +105,10 @@ return array(
             'formElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
             'form_element' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
             'formelement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
-        )
+            'TwbBundle\Form\View\Helper\TwbBundleFormElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
+        ),
+        'aliases' => array (
+            'form_element' => 'TwbBundle\Form\View\Helper\TwbBundleFormElement',
+        ),
     ),
 );
