@@ -96,7 +96,7 @@ return array(
             'formpassword' => 'Zend\Form\View\Helper\FormPassword',
             'formfile'     => 'Zend\Form\View\Helper\FormFile',
             'formtext'     => 'Zend\Form\View\Helper\FormText',
-            'formtextarea' => 'Zend\Form\View\Helper\FormTextArea',
+            'formtextarea' => 'Zend\Form\View\Helper\FormTextarea',
             'formselect'   => 'Zend\Form\View\Helper\FormSelect',
             'forminput'    => 'Zend\Form\View\Helper\FormInput',
             'formhidden'   => 'Zend\Form\View\Helper\FormHidden',
