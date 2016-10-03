@@ -3,6 +3,7 @@ TwbBundle, v2.0
 (Supports Twitter Bootstrap v3.*)
 
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
+[![Coverage Status](https://coveralls.io/repos/github/neilime/zf2-twb-bundle/badge.svg)](https://coveralls.io/github/neilime/zf2-twb-bundle)
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
 [![Total Downloads](https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
 [![Dependency Status](https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046/badge.png)](https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046)
