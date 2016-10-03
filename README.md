@@ -15,7 +15,7 @@ NOTE : If you want to contribute don't hesitate, I'll review any PR.
 Introduction
 ------------
 
-__TwbBundle__ is a module for Zend Framework 2, for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap).
+__TwbBundle__ is a module for Zend Framework 2 & 3, for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap).
 
 Contributing
 ------------
@@ -31,7 +31,7 @@ Render forms, buttons, alerts with TwbBundle : see it in action [on-line](http:/
 Requirements
 ------------
 
-* [Zend Framework 2](https://github.com/zendframework/zf2) (2.*)
+* [Zend Framework 2 or 3](https://github.com/zendframework/zendframework) (2.* || 3.*)
 * [Twitter Bootstrap](https://github.com/twbs/bootstrap) (v3.*)
 
 Installation
