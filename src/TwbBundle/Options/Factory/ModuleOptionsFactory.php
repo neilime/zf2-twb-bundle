@@ -1,5 +1,4 @@
 <?php
-
 namespace TwbBundle\Options\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
@@ -9,16 +8,15 @@ use Interop\Container\ContainerInterface;
 
 class ModuleOptionsFactory implements FactoryInterface
 {
+
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $serviceLocator->get('Config');
-        $options = $config['twbbundle'];
-        return new ModuleOptions($options);
+        return $this($serviceLocator, 'TwbBundle\Options\ModuleOptions');
     }
 
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $container->get('Config');
+        $config = $container->get('config');
         $options = $config['twbbundle'];
         return new ModuleOptions($options);
     }

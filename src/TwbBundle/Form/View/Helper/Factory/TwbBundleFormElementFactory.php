@@ -1,5 +1,4 @@
 <?php
-
 namespace TwbBundle\Form\View\Helper\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
@@ -15,13 +14,13 @@ use Interop\Container\ContainerInterface;
  */
 class TwbBundleFormElementFactory implements FactoryInterface
 {
+
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $options = $serviceLocator->getServiceLocator()->get('TwbBundle\Options\ModuleOptions');
-        return new TwbBundleFormElement($options);
+        return $this($serviceLocator, 'TwbBundle\Form\View\Helper\TwbBundleFormElement');
     }
 
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $options = $container->get('TwbBundle\Options\ModuleOptions');
         return new TwbBundleFormElement($options);
