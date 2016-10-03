@@ -10,7 +10,7 @@ class TwbBundleLabelTest extends \PHPUnit_Framework_TestCase{
 	 * @see \PHPUnit_Framework_TestCase::setUp()
 	 */
 	public function setUp(){
-		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('view_helper_manager');
+		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
 		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
 		$this->labelHelper = $oViewHelperPluginManager->get('label')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}

@@ -23,7 +23,7 @@ class TwbBundleFontAwesomeTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp() {
         $oViewHelperPluginManager = Bootstrap::getServiceManager()
-            ->get('view_helper_manager');
+            ->get('ViewHelperManager');
         $oRenderer = new PhpRenderer();
         $this->fontAwesomeHelper = $oViewHelperPluginManager->get('fontAwesome')
             ->setView(
@@ -57,4 +57,4 @@ class TwbBundleFontAwesomeTest extends \PHPUnit_Framework_TestCase
             $this->fontAwesomeHelper->render('test', array('class' => 'test'))
         );
     }
-} 
+}
