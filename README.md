@@ -1,4 +1,4 @@
-TwbBundle, v2.0
+TwbBundle
 =====================
 (Supports Twitter Bootstrap v3.*)
 
