@@ -42,6 +42,7 @@ class Bootstrap {
 
         // Use ModuleManager to load this module and it's dependencies
         static::$config = \Zend\Stdlib\ArrayUtils::merge(array(
+            'modules' => array('Zend\\Router'),
                     'module_listener_options' => array(
                         'module_paths' => array_merge(
                                 $aZf2ModulePaths, explode(PATH_SEPARATOR, (getenv('ZF2_MODULES_TEST_PATHS')? : (defined('ZF2_MODULES_TEST_PATHS') ? ZF2_MODULES_TEST_PATHS : '')))
@@ -51,7 +52,7 @@ class Bootstrap {
 
         $configuration = static::$config;
         // Prepare the service manager
-        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
+        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
         $smConfig = new Service\ServiceManagerConfig($smConfig);
 
         $serviceManager = new ServiceManager();

@@ -5,7 +5,7 @@
     "keywords": ["Zend Framework 2","Twitter Bootstrap","module"],
     "homepage": "http://neilime.github.io/zf2-twb-bundle/",
     "license": "MIT",
-    "minimum-stability" : "stable",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Neilime",
