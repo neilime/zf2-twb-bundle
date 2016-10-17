@@ -9,11 +9,14 @@
         <testsuite name="TwbBundleTest">
             <directory suffix=".php">./TwbBundleTest/</directory>
         </testsuite>
+        <testsuite name="BootstrapBasedTests">
+            <directory suffix=".php">./BootstrapBasedTests/</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">../src/</directory>
-            <file>../Module.php</file>
+            <directory suffix=".php">../src/TwbBundle/</directory>
+            <file>./Module.php</file>
         </whitelist>
     </filter>
 </phpunit>

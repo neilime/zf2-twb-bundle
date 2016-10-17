@@ -1,25 +1,70 @@
+sudo: false
+
 language: php
 
-php:
- - "5.6"
- - "7.0"
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+env:
+  global:
+    - COMPOSER_ARGS="--no-interaction"
+    - PHPUNIT_ARGS=""
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 5.3
+      env:
+        - DEPS=latest
+    - php: 5.4
+      env:
+        - DEPS=latest
+    - php: 5.5
+      env:
+        - DEPS=latest
+    - php: 5.6
+      env:
+        - EXECUTE_COVERAGE=true
+        - DEPS=locked
+    - php: 5.6
+      env:
+        - DEPS=latest
+    - php: 7
+      env:
+        - DEPS=locked
+    - php: 7
+      env:
+        - DEPS=latest
+    - php: hhvm
+      env:
+        - DEPS=locked
+    - php: hhvm
+      env:
+        - DEPS=latest
+  allow_failures:
+    - php: hhvm
 
 before_install:
+  - if [[ $EXECUTE_COVERAGE != 'true' ]]; then phpenv config-rm xdebug.ini || return 0 ; fi
 # Set the GitHub OAuth token to make use of the 6000 per hour rate limit
- - mkdir -p ~/.composer
- - cp .travis.composer.json ~/.composer/config.json
+  - mkdir -p ~/.composer
+  - cp .travis.composer.json ~/.composer/config.json
 # Update composer
- - composer self-update
-# Install project
- - composer install --prefer-dist --dev
+  - composer self-update
+
+install:
+  - if [[ $DEPS == 'latest' ]]; then travis_retry composer update $COMPOSER_ARGS ; fi
+  - if [[ $DEPS == 'lowest' ]]; then travis_retry composer update --prefer-lowest --prefer-stable $COMPOSER_ARGS ; fi
+  - travis_retry composer install $COMPOSER_ARGS
+  - composer show --installed
 
 before_script:
- - mkdir -p build/logs
+  - mkdir -p build/logs
 
 script:
- - cd tests
- - phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml
- - cd ..
+  - if [[ $EXECUTE_COVERAGE == 'true' ]]; then cd tests && ../vendor/bin/phpunit --coverage-text --coverage-clover ../build/logs/clover.xml && cd ..; fi
+  - if [[ $EXECUTE_COVERAGE != 'true' ]]; then cd tests && ../vendor/bin/phpunit && cd ..; fi
 
 after_script:
- - php vendor/bin/coveralls --verbose --config
+  - if [[ $EXECUTE_COVERAGE == 'true' ]]; then php vendor/bin/coveralls --verbose --config; fi
