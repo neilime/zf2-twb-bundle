@@ -27,7 +27,8 @@ class TwbBundleFormElementFactory implements FactoryInterface
             $serviceLocator = $serviceLocator->getServiceLocator() ?: $serviceLocator;
         }
 
-        return $this($serviceLocator, 'TwbBundle\Form\View\Helper\TwbBundleFormElement');
+        $options = $serviceLocator->get('TwbBundle\Options\ModuleOptions');
+        return new TwbBundleFormElement($options);
     }
 
     /**

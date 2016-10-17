@@ -40,10 +40,14 @@
         "satooshi/php-coveralls": "^0.7"
     },
     "autoload": {
-        "psr-0": {
-            "TwbBundle": "src"
-        },
-        "classmap" : ["Module.php"]
+        "psr-4": {
+            "TwbBundle\\": "src/TwbBundle/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TwbBundleTest\\": ["tests/TwbBundleTest", "tests/BootstrapBasedTests"]
+        }
     },
     "extra": {
         "branch-alias": {

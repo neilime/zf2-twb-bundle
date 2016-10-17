@@ -2,11 +2,7 @@
 
 namespace TwbBundleTest;
 
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
 use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\RequestInterface;
-use Zend\Stdlib\ResponseInterface;
 use Zend\Mvc\Service;
 
 error_reporting(E_ALL | E_STRICT);
@@ -28,6 +24,8 @@ class Bootstrap {
      * Initialize bootstrap
      */
     public static function init() {
+
+
         //Load the user-defined test configuration file, if it exists;
         $aTestConfig = include is_readable(__DIR__ . '/TestConfig.php') ? __DIR__ . '/TestConfig.php' : __DIR__ . '/TestConfig.php.dist';
         $aZf2ModulePaths = array();
@@ -41,14 +39,19 @@ class Bootstrap {
         static::initAutoloader();
 
         // Use ModuleManager to load this module and it's dependencies
+        $modules = array();
+        if (class_exists('Zend\\Router\\Module')) {
+            $modules[] = 'Zend\\Router';
+        }
         static::$config = \Zend\Stdlib\ArrayUtils::merge(array(
-            'modules' => array('Zend\\Router'),
-                    'module_listener_options' => array(
-                        'module_paths' => array_merge(
-                                $aZf2ModulePaths, explode(PATH_SEPARATOR, (getenv('ZF2_MODULES_TEST_PATHS')? : (defined('ZF2_MODULES_TEST_PATHS') ? ZF2_MODULES_TEST_PATHS : '')))
-                        )
-                    )
-                        ), $aTestConfig);
+            'modules' => $modules,
+            'module_listener_options' => array(
+                'module_paths' => array_merge(
+                    $aZf2ModulePaths,
+                    explode(PATH_SEPARATOR, (getenv('ZF2_MODULES_TEST_PATHS')? : (defined('ZF2_MODULES_TEST_PATHS') ? ZF2_MODULES_TEST_PATHS : '')))
+                ),
+            ),
+        ), $aTestConfig);
 
         $configuration = static::$config;
         // Prepare the service manager
@@ -81,7 +84,7 @@ class Bootstrap {
 
     /**
      * Initialize Autoloader
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     protected static function initAutoloader() {
         $sVendorPath = static::findParentPath('vendor');

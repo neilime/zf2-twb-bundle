@@ -9,31 +9,20 @@ cache:
 env:
   global:
     - COMPOSER_ARGS="--no-interaction"
+    - PHPUNIT_ARGS=""
 
 matrix:
   fast_finish: true
   include:
     - php: 5.3
       env:
-        - DEPS=lowest
-    - php: 5.3
-      env:
         - DEPS=latest
-    - php: 5.4
-      env:
-        - DEPS=lowest
     - php: 5.4
       env:
         - DEPS=latest
     - php: 5.5
       env:
-        - DEPS=lowest
-    - php: 5.5
-      env:
         - DEPS=latest
-    - php: 5.6
-      env:
-        - DEPS=lowest
     - php: 5.6
       env:
         - EXECUTE_COVERAGE=true
@@ -43,16 +32,10 @@ matrix:
         - DEPS=latest
     - php: 7
       env:
-        - DEPS=lowest
-    - php: 7
-      env:
         - DEPS=locked
     - php: 7
       env:
         - DEPS=latest
-    - php: hhvm
-      env:
-        - DEPS=lowest
     - php: hhvm
       env:
         - DEPS=locked
@@ -80,8 +63,8 @@ before_script:
   - mkdir -p build/logs
 
 script:
-  - if [[ $EXECUTE_COVERAGE == 'true' ]]; then cd tests; ../vendor/bin/phpunit --coverage-text --coverage-clover ../build/logs/clover.xml; cd ..; fi
-  - if [[ $EXECUTE_COVERAGE != 'true' ]]; then cd tests; ../vendor/bin/phpunit; cd ..; fi
+  - if [[ $EXECUTE_COVERAGE == 'true' ]]; then cd tests && ../vendor/bin/phpunit --coverage-text --coverage-clover ../build/logs/clover.xml && cd ..; fi
+  - if [[ $EXECUTE_COVERAGE != 'true' ]]; then cd tests && ../vendor/bin/phpunit && cd ..; fi
 
 after_script:
   - if [[ $EXECUTE_COVERAGE == 'true' ]]; then php vendor/bin/coveralls --verbose --config; fi
