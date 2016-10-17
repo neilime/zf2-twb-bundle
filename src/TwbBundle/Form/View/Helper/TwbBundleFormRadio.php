@@ -30,18 +30,20 @@ class TwbBundleFormRadio extends FormRadio
         $aElementOptions = $oElement->getOptions();
 
         if (isset($aElementOptions['disable-twb']) && $aElementOptions['disable-twb'] == true) {
-            $sSeparator = $this->separator;
-            $this->separator = '';
+            $sSeparator = $this->getSeparator();
+            $this->setSeparator('');
             $sReturn = parent::render($oElement);
-            $this->separator = $sSeparator;
+            $this->setSeparator($sSeparator);
             return $sReturn;
         }
 
         if (isset($aElementOptions['inline']) && $aElementOptions['inline'] == true) {
+            $sSeparator = $this->getSeparator();
             $this->setSeparator('');
             $oElement->setLabelAttributes(array('class' => 'radio-inline'));
-
-            return sprintf('%s', parent::render($oElement));
+            $sReturn = sprintf('%s', parent::render($oElement));
+            $this->setSeparator($sSeparator);
+            return $sReturn;    
         }
 
         if (isset($aElementOptions['btn-group']) && $aElementOptions['btn-group'] == true) {

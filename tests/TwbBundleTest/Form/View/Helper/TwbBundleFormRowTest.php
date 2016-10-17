@@ -146,7 +146,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $this->formRowHelper->setLabelAttributes($aLabelAttributes);
     }
 
-    public function testRendeRadiosWithHorizontalLayout()
+    public function testRenderRadiosWithHorizontalLayout()
     {
         $oElement = new \Zend\Form\Element\Radio('test-radio', array(
             'twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL,
@@ -172,6 +172,29 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $oElement->setMessages(array('Error message'));
         // Test content
         $this->assertStringEqualsFile($this->expectedPath . 'input-with-help-text-and-error.phtml', $this->formRowHelper->__invoke($oElement));
+    }
+    
+    public function testRenderWithBothInlineAndNoInlineRadios() {
+        $oForm = new \Zend\Form\Form();
+        $oForm->add(array(
+            'name' => 'optInput1',
+            'type' => 'radio',
+            'options' => array(
+                'label' => 'Opt1',
+                'value_options' => array('label1','label2','label3'),
+                'inline' => true,
+            ),
+        ))->add(array(
+            'name' => 'optInput2',
+            'type' => 'radio',
+            'options' => array(
+                'label' => 'Opt2',
+                'value_options' => array('label1','label2','label3'),
+                'inline' => false,
+            ),
+        ));        
+        
+        $this->assertStringEqualsFile($this->expectedPath . 'both-inline-and-no-inline-radios.phtml', $this->formRowHelper->__invoke($oForm->get('optInput1')).$this->formRowHelper->__invoke($oForm->get('optInput2')));
     }
 
     /**
