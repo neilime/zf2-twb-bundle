@@ -18,7 +18,7 @@ class ModuleOptions extends AbstractOptions
     /**
      * Constructor
      * 
-     * @param array|Traversable|null $options
+     * @param array|\Traversable|null $options
      */
     public function __construct($options = null)
     {

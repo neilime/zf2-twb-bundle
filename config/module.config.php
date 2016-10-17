@@ -18,9 +18,6 @@ return array(
     'service_manager' => array (
         'factories' => array (
             'TwbBundle\Options\ModuleOptions' => 'TwbBundle\Options\Factory\ModuleOptionsFactory',
-            'RoutePluginManager'              => 'Zend\Router\RoutePluginManagerFactory',
-            'Router'                          => 'Zend\Router\RouterFactory',
-            'HttpRouter'                      => 'Zend\Router\Http\HttpRouterFactory',
         )
     ),
     'view_helpers' => array (
