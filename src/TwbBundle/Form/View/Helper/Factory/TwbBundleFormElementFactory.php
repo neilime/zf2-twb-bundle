@@ -1,6 +1,7 @@
 <?php
 namespace TwbBundle\Form\View\Helper\Factory;
 
+use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use TwbBundle\Form\View\Helper\TwbBundleFormElement;
@@ -17,7 +18,12 @@ class TwbBundleFormElementFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return $this($serviceLocator, 'TwbBundle\Form\View\Helper\TwbBundleFormElement');
+        if ($serviceLocator instanceof AbstractPluginManager) {
+            $serviceLocator = $serviceLocator->getServiceLocator() ?: $serviceLocator;
+        }
+
+        $options = $serviceLocator->get('TwbBundle\Options\ModuleOptions');
+        return new TwbBundleFormElement($options);
     }
 
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)

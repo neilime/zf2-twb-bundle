@@ -1,6 +1,7 @@
 <?php
 return array(
     'modules' => array(
+        'Zend\Router',
         'TwbBundle'
     ),
     'module_listener_options' => array(

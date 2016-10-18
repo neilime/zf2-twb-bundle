@@ -2,11 +2,7 @@
 
 namespace TwbBundleTest;
 
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
 use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\RequestInterface;
-use Zend\Stdlib\ResponseInterface;
 use Zend\Mvc\Service;
 
 error_reporting(E_ALL | E_STRICT);
@@ -51,7 +47,7 @@ class Bootstrap {
 
         $configuration = static::$config;
         // Prepare the service manager
-        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
+        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
         $smConfig = new Service\ServiceManagerConfig($smConfig);
 
         $serviceManager = new ServiceManager();
@@ -80,7 +76,7 @@ class Bootstrap {
 
     /**
      * Initialize Autoloader
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     protected static function initAutoloader() {
         $sVendorPath = static::findParentPath('vendor');

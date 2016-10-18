@@ -11,7 +11,9 @@ class ModuleOptionsFactory implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return $this($serviceLocator, 'TwbBundle\Options\ModuleOptions');
+        $config = $serviceLocator->get('config');
+        $options = $config['twbbundle'];
+        return new ModuleOptions($options);
     }
 
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
