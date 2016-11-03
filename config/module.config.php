@@ -68,7 +68,6 @@ return array(
             'form_errors' => 'TwbBundle\Form\View\Helper\TwbBundleFormErrors',
             'form_glyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
             'form_fontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
-            'form_label' => 'TwbBundle\View\Helper\TwbBundleLabel',
 
             'formalert' => 'TwbBundle\View\Helper\TwbBundleAlert',
             'formbadge' => 'TwbBundle\View\Helper\TwbBundleBadge',
@@ -86,7 +85,6 @@ return array(
             'formerrors' => 'TwbBundle\Form\View\Helper\TwbBundleFormErrors',
             'formglyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
             'formfontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
-            'formlabel' => 'TwbBundle\View\Helper\TwbBundleLabel',
 
             // zend
             'formemail'    => 'Zend\Form\View\Helper\FormEmail',
