@@ -18,7 +18,7 @@ return array(
     'service_manager' => array (
         'factories' => array (
             'TwbBundle\Options\ModuleOptions' => 'TwbBundle\Options\Factory\ModuleOptionsFactory',
-        )
+        ),
     ),
     'view_helpers' => array (
         'invokables' => array (
@@ -68,7 +68,6 @@ return array(
             'form_errors' => 'TwbBundle\Form\View\Helper\TwbBundleFormErrors',
             'form_glyphicon' => 'TwbBundle\View\Helper\TwbBundleGlyphicon',
             'form_fontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
-
             'formalert' => 'TwbBundle\View\Helper\TwbBundleAlert',
             'formbadge' => 'TwbBundle\View\Helper\TwbBundleBadge',
             'formbuttonGroup' => 'TwbBundle\View\Helper\TwbBundleButtonGroup',
@@ -87,6 +86,8 @@ return array(
             'formfontAwesome' => 'TwbBundle\View\Helper\TwbBundleFontAwesome',
 
             // zend
+            'form_label' => 'Zend\Form\View\Helper\FormLabel',
+            'formlabel' => 'Zend\Form\View\Helper\FormLabel',
             'formemail'    => 'Zend\Form\View\Helper\FormEmail',
             'formpassword' => 'Zend\Form\View\Helper\FormPassword',
             'formfile'     => 'Zend\Form\View\Helper\FormFile',
