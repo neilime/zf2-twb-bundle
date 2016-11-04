@@ -65,7 +65,6 @@ Installation
 1. Enabling it in your `application.config.php` file.
 
     ```php
-    <?php
     return array(
         'modules' => array(
             // ...
@@ -82,25 +81,21 @@ Installation
 * Install the [AssetsBundle module](https://github.com/neilime/zf2-twb-bundle/tree/1.0)(1.0)
 * Install [Twitter Bootstrap](https://github.com/twbs/bootstrap/tree/v2.3.2) (v2.3.2)
 * Edit the application module configuration file `module/Application/config/module.config.php`, adding the configuration fragment below:
-
+ 
     ```php
-    <?php
     return array(
         //...
          'assets_bundle' => array(
              'assets' => array(
-                 'less' => array('@zfRootPath/vendor/twitter/bootstrap/less/bootstrap.less')
-             )
+                 'less' => array('@zfRootPath/vendor/twitter/bootstrap/less/bootstrap.less'),
+             ),
          ),
          //...
      );
      ```
-
-
 * Edit layout file `module/Application/view/layout/layout.phtml`, to render head scripts :
-
+ 
     ```php
-    <?php
     //...
     echo $this->headScript();
     //...
@@ -108,7 +103,7 @@ Installation
 
 ###### Manually
 
-* Copy `bootstrap.css` file (available on Twitter Bootstrap website(https://github.com/twbs/bootstrap/archive/v3.0.0.zip) into your assets folder and add it in your head scripts
+* Copy `bootstrap.css` file (available on [Twitter Bootstrap website](https://github.com/twbs/bootstrap/archive/v3.0.0.zip)) into your assets folder and add it in your head scripts
 
 # How to use __TwbBundle__
 
@@ -122,13 +117,11 @@ __TwbBundle__ provides view helpers helping render html elements
 
 Form helper can be called in a view with the view helper service `form(\Zend\Form\FormInterface $oForm = null, $sFormLayout = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL)` :
 ```php
-<?php
 $this->form(new \Zend\Form\Form());
 ```
 
 Open form tag with a specific layout :
 ```php
-<?php
 $this->form(null,\TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE)->openTag($oForm);
 ```
 
@@ -143,7 +136,6 @@ The helper auto add form specific class and `form` role attributes.
 ### Button groups in form
 Form helper can render button groups in a form row, button elements are grouped by the option `button-group`. Example :
 ```php
-<?php
 $oForm = new \Zend\Form\Form();
 $oForm
     ->add(new \Zend\Form\Element\Button('left-button', array('label' => 'Left', 'button-group' => 'group-1')))
@@ -153,7 +145,6 @@ $this->form($oForm);
 
 If any button belonging to a button group has a `column-size` attribute, then the first occurrence of it will be used for the button group styling. Example :
 ```php
-<?php
 $oForm = new \Zend\Form\Form();
 $oForm
     ->add(new \Zend\Form\Element\Button('left-button', array('label' => 'Left', 'button-group' => 'group-1', 'column-size' => 'sm-10 col-sm-offset-2')))
@@ -162,7 +153,6 @@ $this->form($oForm);
 ```
 This results in following output :
 ```html
-<?php
 <div class="form-group "><div class="col-sm-10&#x20;col-sm-offset-2&#x20;btn-group"><button name="left-button" class="btn&#x20;btn-default" value="">Left</button><button name="right-button" class="btn&#x20;btn-default" value="">Right</button></div></div>
 ```
 
@@ -171,7 +161,6 @@ This results in following output :
 Button helper can be called in a view with the view helper service `formButton(\Zend\Form\ElementInterface $oElement, $sButtonContent = null)` :
 
 ```php
-<?php
 $this->formButton(new \Zend\Form\Element());
 ```
 This helper accepts a button element as first param, and an optional button content as second param.
@@ -198,7 +187,6 @@ The option `disable-twb` can be passed to the element to disable rendering it in
 Checkbox helper can be called in a view with the view helper service `formCheckbox(\Zend\Form\Checkbox $oElement)` :
 
 ```php
-<?php
 $this->formCheckbox(new \Zend\Form\Element\Checkbox('checkbox-input'));
 ```
 This helper accepts a checkbox element as first param. As the input is rendered into a label element, the label position (append by default) can passed as an option
@@ -206,7 +194,6 @@ The option `disable-twb` (boolean) can be passed to the element to disable rende
 The option `form-group` (boolean) can be passed to the element to force the form-group div container.
 
 ```php
-<?php
 $this->formCheckbox(new \Zend\Form\Element\Checkbox('checkbox-input',array(
     'label' => 'Prepend label',
     'label_options' => array('position' => \Zend\Form\View\Helper\FormRow::LABEL_PREPEND)
@@ -218,7 +205,6 @@ $this->formCheckbox(new \Zend\Form\Element\Checkbox('checkbox-input',array(
 Form collection helper can be called in a view with the view helper service `formCollection(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-<?php
 $this->formCollection(new \Zend\Form\Element());
 ```
 This helper accepts a form collection (fieldset) element as first param.
@@ -228,7 +214,6 @@ This helper accepts a form collection (fieldset) element as first param.
 Form element helper can be called in a view with the view helper service `formElement(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-<?php
 $this->formElement(new \Zend\Form\Element());
 ```
 This helper accepts a form element as first param. This helper can render prepend and/or append add-on by setting the appropriate option `add-on-prepend` and/or `add-on-append` to the element.
@@ -246,7 +231,6 @@ These options accept the following values :
 Form element errors helper can be called in a view with the view helper service `formElementErrors(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-<?php
 $this->formElementErrors(new \Zend\Form\Element());
 ```
 This helper accepts a form element as first param. This helper render element's errors.
@@ -256,7 +240,6 @@ This helper accepts a form element as first param. This helper render element's 
 Multi-Checkbox helper can be called in a view with the view helper service `formMultiCheckbox(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-<?php
 $this->formMultiCheckbox(new \Zend\Form\Element\ElementInterface());
 ```
 This helper accepts an element as first param.
@@ -267,7 +250,6 @@ The option `inline` (boolean) can be passed to the element to display checkoxes 
 Radio helper can be called in a view with the view helper service `formCheckbox(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-<?php
 $this->formRadio(new \Zend\Form\Element\ElementInterface());
 ```
 This helper accepts an element as first param.
@@ -280,7 +262,6 @@ The option `btn-group` (boolean) can be passed to the element to display the rad
 Form element helper can be called in a view with the view helper service `formRow(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-<?php
 $this->formRow(new \Zend\Form\Element());
 ```
 This helper accepts a form element as first param.
@@ -289,14 +270,13 @@ The option `validation-state` (string) can be passed to the element to render th
 The option `column-size` (int) can be passed to the element to render the row with a defined column size class attribute(`col-lg-...`).
 The option `help-block` (string) can be passed to the element to render an help block translated appending the element.
 
-If you like to wrap elements into a <div class="row"> in case you want X number of elements on the same line the option `twb-row-open` (bool) can be passed to the element where the row must start and will be printed before the element is rendered. It could be you have to provide the `column-size` in combination with this option.
+If you like to wrap elements into a `<div class="row">` in case you want X number of elements on the same line the option `twb-row-open` (bool) can be passed to the element where the row must start and will be printed before the element is rendered. It could be you have to provide the `column-size` in combination with this option.
 The option `twb-row-close` (bool) can be passed to the element to close the earlier opened row and will be printed after the elements is rendered.
 Note: closing earlier opened rows is your responsibility.
 
 You can allow the label html rendering after toggling off escape :
 
 ```php
-<?php
 $this->formRow(new \Zend\Form\Element('my-element',  array(
     'label' => 'My <i>Label</i> :',
     'label_options' => array('disable_html_escape' => true)
@@ -311,15 +291,11 @@ You can also set the the form-group size by passing the `twb-form-group-size` op
     {{ formRow( f ) }}
 {% endfor %}
 ```
-
-
-
 #### Static : `TwbBundle\Form\View\Helper\TwbBundleFormStatic`
 
 Static helper can be called in a view with the view helper service `formStatic(\Zend\Form\ElementInterface $oElement)` :
 
 ```php
-<?php
 $this->formStatic(new \Zend\Form\Element\ElementInterface());
 ```
 This helper accepts an element as first param.
@@ -331,7 +307,6 @@ This helper accepts an element as first param.
 Alert helper can be called in a view with the view helper service `alert($sAlertMessage = null, $aAlertAttributes = null, $bDismissable = false)` :
 
 ```php
-<?php
 $this->alert('alert message',array('class' => 'alert-success'));
 ```
 This helper accepts a message as first param, attributes for alert container as second param (optional) and boolean as third param to display or not a close action to the alert message (optional).
@@ -342,7 +317,6 @@ The class attribute "alert" is auto added to the alert container.
 Badge helper can be called in a view with the view helper service `badge($sBadgeMessage = null, array $aBadgeAttributes = null)` :
 
 ```php
-<?php
 $this->badge('badge message',array('class' => 'pull-right'));
 ```
 This helper accepts a message as first param, and attributes for badge container as second param (optional).
@@ -353,7 +327,6 @@ The class attribute "badge" is auto added to the badge container.
 Button group helper can be called in a view with the view helper service `buttonGroup(array $aButtons = null, array $aButtonGroupOptions = null)` :
 
 ```php
-<?php
 $this->buttonGroup(array(new \Zend\Form\Element\Button('left', array('label' => 'Left'))),array('class' => 'pull-right'));
 ```
 This helper accepts an array of buttons as first param, and attributes for button group container as second param (optional).
@@ -364,7 +337,6 @@ The buttons can be instance of `\Zend\Form\Element\Button` or array containing d
 Glyphicon helper can be called in a view with the view helper service `glyphicon($sGlyphicon = null, array $aGlyphiconAttributes = null)` :
 
 ```php
-<?php
 $this->glyphicon('star',array('class' => 'pull-right'));
 ```
 This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for glyphicon element as second param (optional).
@@ -375,7 +347,6 @@ The class attribute "glyphicon" is auto added to the glyphicon container.
 FontAwesome helper can be called in a view with the view helper service `fontAwesome($sFontAwesome = null, array $aFontAwesomeAttributes = null)` :
 
 ```php
-<?php
 $this->fontAwesome('star',array('class' => 'pull-right'));
 ```
 This helper accepts an icon name as first param (e.g. "star", "search" ...), and attributes for fontAwesome element as second param (optional).
@@ -386,7 +357,6 @@ The class attribute "fa" is auto added to the fontAwesome container.
 Dropdown helper can be called in a view with the view helper service `dropdown(array $aDropdownOptions = null)` :
 
 ```php
-<?php
 $this->dropdown(array('Item #1',\TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER,'Item #2'));
 ```
 This helper accepts dropdown configuration as first param :
@@ -415,14 +385,12 @@ This helper accepts dropdown configuration as first param :
 Label helper can be called in a view with the view helper service `label($sLabelMessage  = null, array $aLabelAttributes  = 'label-default')` :
 
 ```php
-<?php
 $this->label('label message',array('class' => 'label-primary'));
 ```
 This helper accepts a message as first param, and attributes for label container as second param (optional).
 The class attribute "label" is auto added to the label container and "label-default" is no attributes is given. Default label container is a span, but it can be changed by passing the tag name in the attributes array :
 
 ```php
-<?php
 $this->label('label message',array('class' => 'label-primary','tagName' => 'a'));
 ```
 
@@ -468,6 +436,5 @@ __TwbBundle__ provides new elements to supports Twitter Bootstrap potential.
 Static element is a form element witch provides `Static control` and should be rendered by [static form helper](#static--twbbundleformviewhelpertwbbundleformstatic)
 
 ```php
-<?php
 $this->formStatic(new \TwbBundle\Form\Element\StaticElement());
 ```
