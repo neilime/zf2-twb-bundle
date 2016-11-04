@@ -1,6 +1,6 @@
 # TwbBundle - Zend Framework module
 
-(Supports Twitter Bootstrap v3.*)
+__TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap) (Supports Twitter Bootstrap v3.*).
 
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/neilime/zf2-twb-bundle/badge.svg)](https://coveralls.io/github/neilime/zf2-twb-bundle)
@@ -8,17 +8,17 @@
 [![Total Downloads](https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
 [![Dependency Status](https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046/badge.png)](https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046)
 
-NOTE : If you want to contribute don't hesitate, I'll review any PR.
+# Helping Project 
+
+If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can make a donation, thank you.
+
 
 <a href='https://pledgie.com/campaigns/26667'><img alt='Support the project' src='https://pledgie.com/campaigns/26667.png?skin_name=chrome' border='0' ><br/></a>
-
-# Introduction
-
-__TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap).
 
 # Contributing
 
 If you wish to contribute to TwbBundle, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+NOTE : If you want to contribute don't hesitate, I'll review any PR.
 
 # Demonstration / example
 
