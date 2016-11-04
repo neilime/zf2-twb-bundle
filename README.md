@@ -1,4 +1,4 @@
-# ZF TwbBundle module
+# TwbBundle - Zend Framework module
 
 (Supports Twitter Bootstrap v3.*)
 
