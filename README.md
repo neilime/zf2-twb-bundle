@@ -1,5 +1,5 @@
-TwbBundle
-=====================
+# ZF TwbBundle module
+
 (Supports Twitter Bootstrap v3.*)
 
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
@@ -12,39 +12,33 @@ NOTE : If you want to contribute don't hesitate, I'll review any PR.
 
 <a href='https://pledgie.com/campaigns/26667'><img alt='Support the project' src='https://pledgie.com/campaigns/26667.png?skin_name=chrome' border='0' ><br/></a>
 
-Introduction
-------------
+# Introduction
 
-__TwbBundle__ is a module for Zend Framework 2 & 3, for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap).
+__TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap).
 
-Contributing
-------------
+# Contributing
 
 If you wish to contribute to TwbBundle, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
-Demonstration / example
------------------------
+# Demonstration / example
 
 Render forms, buttons, alerts with TwbBundle : see it in action [on-line](http://neilime.github.io/zf2-twb-bundle/demo.html).
 
-
-Requirements
-------------
+# Requirements
 
 * [Zend Framework 2 or 3](https://github.com/zendframework/zendframework) (2.* || 3.*)
 * [Twitter Bootstrap](https://github.com/twbs/bootstrap) (v3.*)
 
-Installation
-------------
+# Installation
 
-### Main Setup
+## Main Setup
 
-#### By cloning project (manual)
+### By cloning project (manual)
 
 1. Clone this project into your `./vendor/` directory.
 2. (Optional) Clone the [Twitter bootstrap project](https://github.com/twbs/bootstrap) (v3.*) into your `./vendor/` directory.
 
-#### With composer (the faster way)
+### With composer (the faster way)
 
 1. Add this project in your composer.json:
 
@@ -60,7 +54,7 @@ Installation
     $ php composer.phar update
     ```
 
-#### Post installation
+### Post installation
 
 1. Enabling it in your `application.config.php` file.
 
@@ -76,7 +70,7 @@ Installation
 
 2. Include Twitter Bootstrap assets
 
-###### With __AssetsBundle__ module (easy way)
+##### With __AssetsBundle__ module (easy way)
 
 * Install the [AssetsBundle module](https://github.com/neilime/zf2-twb-bundle/tree/1.0)(1.0)
 * Install [Twitter Bootstrap](https://github.com/twbs/bootstrap/tree/v2.3.2) (v2.3.2)
@@ -101,7 +95,7 @@ Installation
     //...
     ```
 
-###### Manually
+##### Manually
 
 * Copy `bootstrap.css` file (available on [Twitter Bootstrap website](https://github.com/twbs/bootstrap/archive/v3.0.0.zip)) into your assets folder and add it in your head scripts
 
