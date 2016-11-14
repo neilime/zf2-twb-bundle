@@ -163,6 +163,19 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $this->assertStringEqualsFile($this->expectedPath . 'radio-horizontal-layout.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
+    public function testRenderFormRowWithSpecificClass()
+    {
+        $oElement = new \Zend\Form\Element\Text('test-text', array(
+            'label' => 'Test text',
+            'column-size' => 'sm-10',
+            'label_attributes' => array('class' => 'col-sm-2'),
+            'twb-row-class' => 'my-row-class'
+        ));
+
+        // Test content
+        $this->assertStringEqualsFile($this->expectedPath . 'row-class.phtml', $this->formRowHelper->__invoke($oElement));
+    }
+
     public function testRenderInputWithHelpTextAndError()
     {
         $oElement = new \Zend\Form\Element\Text('input-text', array(
