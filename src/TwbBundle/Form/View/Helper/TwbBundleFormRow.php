@@ -216,10 +216,12 @@ class TwbBundleFormRow extends FormRow
                     //Hide label for "inline" layout
                     case TwbBundleForm::LAYOUT_INLINE:
                         if ($sElementType !== 'checkbox') {
-                            if (empty($aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = 'sr-only';
-                            } elseif (!preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                            if ($sElementType !== 'checkbox') {
+                                if (empty($aLabelAttributes['class']) && empty($aLabelAttributes['showLabel']) ) {
+                                    $aLabelAttributes['class'] = 'sr-only';
+                                } elseif (empty($aLabelAttributes['showLabel']) && !preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
+                                    $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                                }
                             }
                         }
                         break;
