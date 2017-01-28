@@ -67,7 +67,7 @@ class TwbBundleForm extends Form
             $oForm->setAttribute('role', 'form');
         }
 
-        return $this->openTag($oForm) . PHP_EOL . $this->renderElements($oForm, $sFormLayout) . $this->closeTag();
+        return $this->openTag($oForm) . "\n" . $this->renderElements($oForm, $sFormLayout) . $this->closeTag();
     }
 
     /**

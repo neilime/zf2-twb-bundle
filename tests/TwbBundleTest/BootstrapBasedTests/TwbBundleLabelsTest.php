@@ -29,22 +29,22 @@ class TwbBundleLabelsTest extends \PHPUnit_Framework_TestCase{
 		$sContent = '';
 
 		//Default
-		$sContent .= $this->labelHelper->__invoke('Default','label-default').PHP_EOL;
+		$sContent .= $this->labelHelper->__invoke('Default','label-default')."\n";
 
 		//Primary
-		$sContent .= $this->labelHelper->__invoke('Primary','label-primary').PHP_EOL;
+		$sContent .= $this->labelHelper->__invoke('Primary','label-primary')."\n";
 
 		//Success
-		$sContent .= $this->labelHelper->__invoke('Success','label-success').PHP_EOL;
+		$sContent .= $this->labelHelper->__invoke('Success','label-success')."\n";
 
 		//Info
-		$sContent .= $this->labelHelper->__invoke('Info','label-info').PHP_EOL;
+		$sContent .= $this->labelHelper->__invoke('Info','label-info')."\n";
 
 		//Warning
-		$sContent .= $this->labelHelper->__invoke('Warning','label-warning').PHP_EOL;
+		$sContent .= $this->labelHelper->__invoke('Warning','label-warning')."\n";
 
 		//Danger
-		$sContent .= $this->labelHelper->__invoke('Danger','label-danger').PHP_EOL;
+		$sContent .= $this->labelHelper->__invoke('Danger','label-danger')."\n";
 
 		//Test content
         file_put_contents($this->expectedPath.'available-variations.phtml',$sContent);

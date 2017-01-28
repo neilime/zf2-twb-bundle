@@ -38,27 +38,27 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
 
         $sContent = '';
         $oButton = new \Zend\Form\Element\Button('default', array('label' => 'Default', 'dropdown' => $aDropDownOptions));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('primary', array('label' => 'Primary', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-primary');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('success', array('label' => 'Success', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-success');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('info', array('label' => 'Info', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-info');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('warning', array('label' => 'Warning', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-warning');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('danger', array('label' => 'Danger', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-danger');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-single.phtml', $sContent);
@@ -76,27 +76,27 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent = '';
 
         $oButton = new \Zend\Form\Element\Button('default', array('label' => 'Default', 'dropdown' => $aDropDownOptions));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('primary', array('label' => 'Primary', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-primary');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('success', array('label' => 'Success', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-success');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('info', array('label' => 'Info', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-info');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('warning', array('label' => 'Warning', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-warning');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('danger', array('label' => 'Danger', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-danger');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-split.phtml', $sContent);
@@ -115,17 +115,17 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         //Large
         $oButton = new \Zend\Form\Element\Button('large-button-default', array('label' => 'Large button', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-lg');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Small
         $oButton = new \Zend\Form\Element\Button('small-button-default', array('label' => 'Small button', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-sm');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Extra small
         $oButton = new \Zend\Form\Element\Button('extra-small-button-default', array('label' => 'Extra small button', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-xs');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-sizing.phtml', $sContent);
@@ -144,12 +144,12 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent = '';
 
         $oButton = new \Zend\Form\Element\Button('default', array('label' => 'Dropup', 'dropdown' => $aDropDownOptions));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $aDropDownOptions['list_attributes'] = array('class' => 'pull-right');
         $oButton = new \Zend\Form\Element\Button('primary', array('label' => 'Right dropup', 'dropdown' => $aDropDownOptions));
         $oButton->setAttribute('class', 'btn-primary');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'dropup.phtml', $sContent);
