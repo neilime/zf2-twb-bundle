@@ -217,9 +217,9 @@ class TwbBundleFormRow extends FormRow
                     case TwbBundleForm::LAYOUT_INLINE:
                         if ($sElementType !== 'checkbox') {
                             if ($sElementType !== 'checkbox') {
-                                if (empty($aLabelAttributes['class']) && empty($aLabelAttributes['showLabel']) ) {
+                                if (empty($aLabelAttributes['class']) && empty($oElement->getOption('showLabel'))) {
                                     $aLabelAttributes['class'] = 'sr-only';
-                                } elseif (empty($aLabelAttributes['showLabel']) && !preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
+                                } elseif (empty($oElement->getOption('showLabel')) && !preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
                                     $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
                                 }
                             }
