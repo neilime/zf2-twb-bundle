@@ -100,7 +100,7 @@ class TwbBundleFormRow extends FormRow
             case $sElementType === 'checkbox' && $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL && !$oElement->getOption('form-group'):
             // All "button" elements in inline form
             case in_array($sElementType, array('submit', 'button', 'reset'), true) && $sLayout === TwbBundleForm::LAYOUT_INLINE:
-                return $sElementContent . PHP_EOL;
+                return $sElementContent . "\n";
             default:
                 // Render element into form group
                 return $this->renderElementFormGroup($sElementContent, $this->getRowClassFromElement($oElement));
@@ -153,7 +153,7 @@ class TwbBundleFormRow extends FormRow
         if (!is_string($sRowClass)) {
             throw new \InvalidArgumentException('Argument "$sRowClass" expects a string, "' . (is_object($sRowClass) ? get_class($sRowClass) : gettype($sRowClass)) . '" given');
         }
-        return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . PHP_EOL;
+        return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
     }
 
     /**
@@ -216,10 +216,12 @@ class TwbBundleFormRow extends FormRow
                     //Hide label for "inline" layout
                     case TwbBundleForm::LAYOUT_INLINE:
                         if ($sElementType !== 'checkbox') {
-                            if (empty($aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = 'sr-only';
-                            } elseif (!preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
-                                $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                            if ($sElementType !== 'checkbox') {
+                                if (empty($aLabelAttributes['class']) && empty($oElement->getOption('showLabel'))) {
+                                    $aLabelAttributes['class'] = 'sr-only';
+                                } elseif (empty($oElement->getOption('showLabel')) && !preg_match('/(\s|^)sr-only(\s|$)/', $aLabelAttributes['class'])) {
+                                    $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' sr-only');
+                                }
                             }
                         }
                         break;

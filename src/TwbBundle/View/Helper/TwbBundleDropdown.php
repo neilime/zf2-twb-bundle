@@ -228,7 +228,7 @@ class TwbBundleDropDown extends AbstractHelper
                     $aItemOptions['type'] = self::TYPE_ITEM_LINK;
                 }
             }
-            $sItems .= $this->renderItem($aItemOptions) . PHP_EOL;
+            $sItems .= $this->renderItem($aItemOptions) . "\n";
         }
 
         return sprintf(

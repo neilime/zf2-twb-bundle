@@ -36,13 +36,13 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
 
         $oInput = new \Zend\Form\Element\Text('input-prepend', array('add-on-prepend' => '@'));
         $oInput->setAttribute('placeholder', 'Username');
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         $oInput = new \Zend\Form\Element\Text('input-append', array('add-on-append' => '.00'));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         $oInput = new \Zend\Form\Element\Text('input-append-prepend', array('add-on-prepend' => '$', 'add-on-append' => '.00'));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'input-groups-basic.phtml', $sContent);
@@ -57,17 +57,17 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
         //Large
         $oInput = new \Zend\Form\Element\Text('input-prepend', array('add-on-prepend' => '@'));
         $oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-lg'));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Default
         $oInput = new \Zend\Form\Element\Text('input-prepend', array('add-on-prepend' => '@'));
         $oInput->setAttribute('placeholder', 'Username');
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Small
         $oInput = new \Zend\Form\Element\Text('input-prepend', array('add-on-prepend' => '@'));
         $oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-sm'));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'input-groups-sizing.phtml', $sContent);
@@ -81,11 +81,11 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
 
         //Checkbox
         $oInput = new \Zend\Form\Element\Text('input-username', array('add-on-prepend' => new \Zend\Form\Element\Checkbox('checkbox')));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Radio
         $oInput = new \Zend\Form\Element\Text('input-username', array('add-on-prepend' => new \Zend\Form\Element\Radio('radio', array('value_options' => array(1 => '')))));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'input-groups-checkboxes-radios.phtml', $sContent);
@@ -99,11 +99,11 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
 
         //Prepend
         $oInput = new \Zend\Form\Element\Text('input-username', array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button', array('label' => 'Go!'))));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Append
         $oInput = new \Zend\Form\Element\Text('input-username', array('add-on-append' => new \Zend\Form\Element\Button('append-button', array('label' => 'Go!'))));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons.phtml', $sContent);
@@ -125,11 +125,11 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
 
         //Prepend
         $oInput = new \Zend\Form\Element\Text('input-username', array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button', $aButtonOptions)));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Append
         $oInput = new \Zend\Form\Element\Text('input-username', array('add-on-append' => new \Zend\Form\Element\Button('append-button', $aButtonOptions)));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons-dropdowns.phtml', $sContent);
@@ -152,11 +152,11 @@ class TwbBundleInputGroupsTest extends \PHPUnit_Framework_TestCase {
 
         //Prepend
         $oInput = new \Zend\Form\Element\Text('input-username', array('add-on-prepend' => new \Zend\Form\Element\Button('prepend-button', $aButtonOptions)));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Append
         $oInput = new \Zend\Form\Element\Text('input-username', array('add-on-append' => new \Zend\Form\Element\Button('append-button', $aButtonOptions)));
-        $sContent .= $this->formElementHelper->__invoke($oInput) . PHP_EOL;
+        $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'input-groups-buttons-segmented.phtml', $sContent);

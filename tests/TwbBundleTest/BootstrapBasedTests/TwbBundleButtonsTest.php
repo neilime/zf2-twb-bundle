@@ -34,31 +34,31 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
     public function testButtonsOptions() {
         $sContent = '';
         $oButton = new \Zend\Form\Element\Button('default', array('label' => 'Default'));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('primary', array('label' => 'Primary'));
         $oButton->setAttribute('class', 'btn-primary');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('success', array('label' => 'Success'));
         $oButton->setAttribute('class', 'btn-success');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('info', array('label' => 'Info'));
         $oButton->setAttribute('class', 'btn-info');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('warning', array('label' => 'Warning'));
         $oButton->setAttribute('class', 'btn-warning');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('danger', array('label' => 'Danger'));
         $oButton->setAttribute('class', 'btn-danger');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('link', array('label' => 'Link'));
         $oButton->setAttribute('class', 'btn-link');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'options.phtml', $sContent);
@@ -73,46 +73,46 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         //Large
         $oButton = new \Zend\Form\Element\Button('large-button-primary', array('label' => 'Large button'));
         $oButton->setAttribute('class', 'btn-primary btn-lg');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('large-button-default', array('label' => 'Large button'));
         $oButton->setAttribute('class', 'btn-lg');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Default
         $oButton = new \Zend\Form\Element\Button('button-primary', array('label' => 'Default button'));
         $oButton->setAttribute('class', 'btn-primary');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('button-default', array('label' => 'Default button'));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Small
         $oButton = new \Zend\Form\Element\Button('small-button-primary', array('label' => 'Small button'));
         $oButton->setAttribute('class', 'btn-primary btn-sm');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('small-button-default', array('label' => 'Small button'));
         $oButton->setAttribute('class', 'btn-sm');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Extra small
         $oButton = new \Zend\Form\Element\Button('extra-small-button-primary', array('label' => 'Extra small button'));
         $oButton->setAttribute('class', 'btn-primary btn-xs');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('extra-small-button-default', array('label' => 'Extra small button'));
         $oButton->setAttribute('class', 'btn-xs');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Block level
         $oButton = new \Zend\Form\Element\Button('block-level-button-primary', array('label' => 'Block level button'));
         $oButton->setAttribute('class', 'btn-primary btn-block');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('block-level-button-default', array('label' => 'Block level button'));
         $oButton->setAttribute('class', 'btn-block');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'sizes.phtml', $sContent);
@@ -128,13 +128,13 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $oButton->setAttributes(array(
             'class' => 'btn-primary btn-lg active',
         ));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('large-button-default-active', array('label' => 'Button'));
         $oButton->setAttributes(array(
             'class' => 'btn-lg active',
         ));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'active.phtml', $sContent);
@@ -151,14 +151,14 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
             'class' => 'btn-primary btn-lg',
             'disabled' => true
         ));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $oButton = new \Zend\Form\Element\Button('large-button-default-disabled', array('label' => 'Button'));
         $oButton->setAttributes(array(
             'class' => 'btn-lg',
             'disabled' => true
         ));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
         $this->assertStringEqualsFile($this->expectedPath . 'disabled.phtml', $sContent);

@@ -29,10 +29,10 @@ class TwbBundleBadgesTest extends \PHPUnit_Framework_TestCase{
 		$sContent = '';
 
 		//Default
-		$sContent .= $this->badgeHelper->__invoke('42').PHP_EOL;
+		$sContent .= $this->badgeHelper->__invoke('42')."\n";
 
 		//Pull-right
-		$sContent .= $this->badgeHelper->__invoke('3',array('class' => 'pull-right')).PHP_EOL;
+		$sContent .= $this->badgeHelper->__invoke('3',array('class' => 'pull-right'))."\n";
 
 		$this->assertStringEqualsFile($this->expectedPath.'badges.phtml',$sContent);
 	}

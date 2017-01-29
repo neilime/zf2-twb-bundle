@@ -90,7 +90,15 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
                 'placeholder' => 'Enter email',
                 'id' => 'exampleInputEmail2'
             ),
-            'options' => array('label' => 'Email address')
+            'options' => array('label' => 'Email address', 'showLabel' => false)
+        ))->add(array(
+            'name' => 'input-email2',
+            'attributes' => array(
+                'type' => 'email2',
+                'placeholder' => 'Enter email2',
+                'id' => 'exampleInputEmail2a'
+            ),
+            'options' => array('label' => 'Email address2', 'showLabel' => true)
         ))->add(array(
             'name' => 'input-password',
             'attributes' => array(

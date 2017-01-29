@@ -52,32 +52,32 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
         $sContent = '';
 
         //Align left
-        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-left'))) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-left'))) . "\n";
 
         //Align center
-        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-center'))) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-center'))) . "\n";
 
         //Align right
-        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-right'))) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-right'))) . "\n";
 
         //Large
         $oButton = new \Zend\Form\Element\Button('large-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
         $oButton->setAttribute('class', 'btn-lg');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Default
         $oButton = new \Zend\Form\Element\Button('button-default', array('label' => 'Star', 'glyphicon' => 'star'));
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Small
         $oButton = new \Zend\Form\Element\Button('small-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
         $oButton->setAttribute('class', 'btn-sm');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Extra small
         $oButton = new \Zend\Form\Element\Button('extra-small-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
         $oButton->setAttribute('class', 'btn-xs');
-        $sContent .= $this->formButtonHelper->__invoke($oButton) . PHP_EOL;
+        $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         $this->assertStringEqualsFile($this->expectedPath . 'examples.phtml', $sContent);
     }
