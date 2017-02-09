@@ -22,7 +22,7 @@ class TwbBundleForm extends Form
     /**
      * @var string
      */
-    private static $formRowFormat = '<div class="row">%s</div>';
+    protected static $formRowFormat = '<div class="row">%s</div>';
 
     /**
      * Form layout (see LAYOUT_* consts)
@@ -148,7 +148,7 @@ class TwbBundleForm extends Form
         }
 
         if ($bHasColumnSize && $sFormLayout !== self::LAYOUT_HORIZONTAL) {
-            $sFormContent = sprintf(self::$formRowFormat, $sFormContent);
+            $sFormContent = sprintf(static::$formRowFormat, $sFormContent);
         }
         return $sFormContent;
     }

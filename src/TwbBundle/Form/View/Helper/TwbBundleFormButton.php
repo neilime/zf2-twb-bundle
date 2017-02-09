@@ -24,17 +24,17 @@ class TwbBundleFormButton extends FormButton
     /**
      * @var string
      */
-    private static $dropdownContainerFormat = '<div class="btn-group %s">%s</div>';
+    protected static $dropdownContainerFormat = '<div class="btn-group %s">%s</div>';
 
     /**
      * @var string
      */
-    private static $dropdownToggleFormat = '%s <b class="caret"></b>';
+    protected static $dropdownToggleFormat = '%s <b class="caret"></b>';
 
     /**
      * @var string
      */
-    private static $dropdownCaretFormat = '<button type="button" class="dropdown-toggle %s" data-toggle="dropdown"><span class="caret"></span></button>';
+    protected static $dropdownCaretFormat = '<button type="button" class="dropdown-toggle %s" data-toggle="dropdown"><span class="caret"></span></button>';
 
     /**
      * Allowed button options
@@ -61,7 +61,7 @@ class TwbBundleFormButton extends FormButton
                 $sClass .= ' btn-default';
             } else {
                 $bHasOption = false;
-                foreach (self::$buttonOptions as $sButtonOption) {
+                foreach (static::$buttonOptions as $sButtonOption) {
                     if (preg_match('/(\s|^)btn-' . $sButtonOption . '.*(\s|$)/', $sClass)) {
                         $bHasOption = true;
                         break;
@@ -203,7 +203,7 @@ class TwbBundleFormButton extends FormButton
                  */
                 $oElement->setAttribute('data-toggle', 'dropdown');
                 $sMarkup = $this->openTag($oElement) .
-                    sprintf(self::$dropdownToggleFormat, $sButtonContent) .
+                    sprintf(static::$dropdownToggleFormat, $sButtonContent) .
                     $this->closeTag();
             } else {
                 /*
@@ -212,7 +212,7 @@ class TwbBundleFormButton extends FormButton
                 $sMarkup = $this->openTag($oElement) .
                     $sButtonContent .
                     $this->closeTag() .
-                    sprintf(self::$dropdownCaretFormat, $oElement->getAttribute('class'));
+                    sprintf(static::$dropdownCaretFormat, $oElement->getAttribute('class'));
             }
 
             /*
@@ -226,7 +226,7 @@ class TwbBundleFormButton extends FormButton
              * Render button + dropdown
              */
             return sprintf(
-                self::$dropdownContainerFormat,
+                static::$dropdownContainerFormat,
                 //Drop way
                 empty($aDropdownOptions['dropup']) ? '' : 'dropup',
                 $sMarkup .

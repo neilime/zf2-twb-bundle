@@ -44,10 +44,10 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
      * @var boolean
      */
     protected $translatorEnabled = true;
-    
+
     /**
      * Hold configurable options
-     * @var ModuleOptions 
+     * @var ModuleOptions
      */
     protected $options;
 
@@ -66,7 +66,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
         'Zend\Form\Element\MonthSelect' => 'formmonthselect',
         'TwbBundle\Form\Element\StaticElement' => 'formStatic',
     );
-    
+
     public function __construct(ModuleOptions $options)
     {
         if (is_array($options->getTypeMap())) {
@@ -122,7 +122,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
                 }
             }
             return sprintf(
-                self::$inputGroupFormat,
+                static::$inputGroupFormat,
                 trim($sSpecialClass),
                 $sMarkup
             );
@@ -181,12 +181,12 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
                     is_object($aAddOnOptions['element']) ? get_class($aAddOnOptions['element']) : gettype($aAddOnOptions['element'])
                 ));
             }
-            
+
             $aAddOnOptions['element']->setOptions(array_merge(
                 $aAddOnOptions['element']->getOptions(),
                 array('disable-twb' => true)
             ));
-            
+
             $sMarkup .= $this->render($aAddOnOptions['element']);
 
             //Element is a button, so add-on container must be a "div"
@@ -198,7 +198,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
             }
         }
 
-        return sprintf(self::$addonFormat, $sAddonTagName, trim($sAddonClass), $sMarkup, $sAddonTagName);
+        return sprintf(static::$addonFormat, $sAddonTagName, trim($sAddonClass), $sMarkup, $sAddonTagName);
     }
 
     /**

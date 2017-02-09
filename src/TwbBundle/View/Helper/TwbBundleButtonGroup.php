@@ -64,7 +64,7 @@ class TwbBundleButtonGroup extends AbstractHelper
          * Render button group
          */
         return sprintf(
-            self::$buttonGroupContainerFormat,
+            static::$buttonGroupContainerFormat,
             //Container attributes
             $this->createAttributesString($aButtonGroupOptions['attributes']),
             //Buttons
@@ -98,7 +98,7 @@ class TwbBundleButtonGroup extends AbstractHelper
 
             $sButtonMarkup = $this->getFormElementHelper()->__invoke($oButton);
 
-            $sMarkup .= $bJustified ? sprintf(self::$buttonGroupJustifiedFormat, $sButtonMarkup) : $sButtonMarkup;
+            $sMarkup .= $bJustified ? sprintf(static::$buttonGroupJustifiedFormat, $sButtonMarkup) : $sButtonMarkup;
         }
         return $sMarkup;
     }

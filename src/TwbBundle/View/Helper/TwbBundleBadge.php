@@ -10,7 +10,7 @@ class TwbBundleBadge extends AbstractHelper
     /**
      * @var string
      */
-    private static $badgeFormat = '<span %s>%s</span>';
+    protected static $badgeFormat = '<span %s>%s</span>';
 
     /**
      * Invoke helper as functor, proxies to {@link render()}.
@@ -51,13 +51,13 @@ class TwbBundleBadge extends AbstractHelper
                 $aBadgeAttributes['class'] .= ' badge';
             }
         }
-        
+
         if (null !== ($oTranslator = $this->getTranslator())) {
             $sBadgeMessage = $oTranslator->translate($sBadgeMessage, $this->getTranslatorTextDomain());
         }
-        
+
         return sprintf(
-            self::$badgeFormat,
+            static::$badgeFormat,
             $this->createAttributesString($aBadgeAttributes),
             $sBadgeMessage
         );

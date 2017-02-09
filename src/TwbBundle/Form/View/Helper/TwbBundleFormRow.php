@@ -153,7 +153,7 @@ class TwbBundleFormRow extends FormRow
         if (!is_string($sRowClass)) {
             throw new \InvalidArgumentException('Argument "$sRowClass" expects a string, "' . (is_object($sRowClass) ? get_class($sRowClass) : gettype($sRowClass)) . '" given');
         }
-        return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
+        return sprintf(static::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
     }
 
     /**
@@ -270,7 +270,7 @@ class TwbBundleFormRow extends FormRow
 
                 // Checkbox elements are a special case, element is already rendered into label
                 if ($sElementType === 'checkbox') {
-                    $sElementContent = sprintf(self::$checkboxFormat, $sElementContent);
+                    $sElementContent = sprintf(static::$checkboxFormat, $sElementContent);
                 } else {
                     if ($sLabelPosition === self::LABEL_PREPEND) {
                         $sElementContent = $sLabelOpen . $sLabelContent . $sLabelClose . $sElementContent;
@@ -307,17 +307,17 @@ class TwbBundleFormRow extends FormRow
                 // Checkbox elements are a special case, element is rendered into label
                 if ($sElementType === 'checkbox') {
                     return sprintf(
-                            self::$horizontalLayoutFormat, $sClass, sprintf(self::$checkboxFormat, $sElementContent)
+                            static::$horizontalLayoutFormat, $sClass, sprintf(static::$checkboxFormat, $sElementContent)
                     );
                 }
 
                 if ($sLabelPosition === self::LABEL_PREPEND) {
                     return $sLabelOpen . $sLabelContent . $sLabelClose . sprintf(
-                                    self::$horizontalLayoutFormat, $sClass, $sElementContent
+                                    static::$horizontalLayoutFormat, $sClass, $sElementContent
                     );
                 } else {
                     return sprintf(
-                                    self::$horizontalLayoutFormat, $sClass, $sElementContent
+                                    static::$horizontalLayoutFormat, $sClass, $sElementContent
                             ) . $sLabelOpen . $sLabelContent . $sLabelClose;
                 }
         }
@@ -339,7 +339,7 @@ class TwbBundleFormRow extends FormRow
             if ($sHelpBlock === $sHelpBlockString) {
                 $sHelpBlock = $this->getEscapeHtmlHelper()->__invoke($sHelpBlock);
             }
-            return sprintf(self::$helpBlockFormat, $sHelpBlock);
+            return sprintf(static::$helpBlockFormat, $sHelpBlock);
         } else {
             return '';
         }

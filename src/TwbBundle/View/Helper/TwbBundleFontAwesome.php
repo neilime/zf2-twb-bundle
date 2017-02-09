@@ -19,7 +19,7 @@ class TwbBundleFontAwesome extends AbstractHelper
     /**
      * @var string
      */
-    private static $faFormat = '<span %s></span>';
+    protected static $faFormat = '<span %s></span>';
 
     /**
      * Invoke helper as functor, proxies to {@link render()}.
@@ -73,7 +73,7 @@ class TwbBundleFontAwesome extends AbstractHelper
         }
 
         return sprintf(
-            self::$faFormat,
+            static::$faFormat,
             $this->createAttributesString($aFontAwesomeAttributes)
         );
     }

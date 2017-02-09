@@ -79,7 +79,7 @@ class TwbBundleFormCollection extends FormCollection
                 }
 
                 $sMarkup = sprintf(
-                        self::$legendFormat, ($sAttributes = $this->createAttributesString($oElement->getLabelAttributes()? : array())) ? ' ' . $sAttributes : '', $this->getEscapeHtmlHelper()->__invoke($sLabel)
+                        static::$legendFormat, ($sAttributes = $this->createAttributesString($oElement->getLabelAttributes()? : array())) ? ' ' . $sAttributes : '', $this->getEscapeHtmlHelper()->__invoke($sLabel)
                 ) . $sMarkup;
             }
 
@@ -96,7 +96,7 @@ class TwbBundleFormCollection extends FormCollection
             }
 
             $sMarkup = sprintf(
-                    self::$fieldsetFormat, ($sAttributes = $this->createAttributesString($oElement->getAttributes())) ? ' ' . $sAttributes : '', $sMarkup
+                    static::$fieldsetFormat, ($sAttributes = $this->createAttributesString($oElement->getAttributes())) ? ' ' . $sAttributes : '', $sMarkup
             );
         }
         return $sMarkup;

@@ -9,7 +9,7 @@ class TwbBundleFormStatic extends AbstractHelper
     /**
      * @var string
      */
-    private static $staticFormat = '<p class="form-control-static">%s</p>';
+    protected static $staticFormat = '<p class="form-control-static">%s</p>';
 
     /**
      * Invoke helper as functor
@@ -35,6 +35,6 @@ class TwbBundleFormStatic extends AbstractHelper
      */
     public function render(ElementInterface $oElement)
     {
-        return sprintf(self::$staticFormat, $oElement->getValue());
+        return sprintf(static::$staticFormat, $oElement->getValue());
     }
 }
