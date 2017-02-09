@@ -10,12 +10,12 @@ class TwbBundleAlert extends AbstractHelper
     /**
      * @var string
      */
-    private static $alertFormat = '<div %s>%s</div>';
+    protected static $alertFormat = '<div %s>%s</div>';
 
     /**
      * @var string
      */
-    private static $dismissButtonFormat = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+    protected static $dismissButtonFormat = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 
     /**
      * Invoke helper as functor, proxies to {@link render()}.
@@ -48,7 +48,7 @@ class TwbBundleAlert extends AbstractHelper
         if (!is_scalar($sAlertMessage)) {
             throw new InvalidArgumentException('Alert message expects a scalar value, "' . gettype($sAlertMessage) . '" given');
         }
-        
+
         if (empty($aAlertAttributes)) {
             $aAlertAttributes = array('class' => 'alert');
         } elseif (is_string($aAlertAttributes)) {
@@ -64,20 +64,20 @@ class TwbBundleAlert extends AbstractHelper
         if (!preg_match('/(\s|^)alert(\s|$)/', $aAlertAttributes['class'])) {
             $aAlertAttributes['class'] .= ' alert';
         }
-        
+
         if (null !== ($oTranslator = $this->getTranslator())) {
             $sAlertMessage = $oTranslator->translate($sAlertMessage, $this->getTranslatorTextDomain());
         }
 
         if ($bDismissable) {
-            $sAlertMessage = self::$dismissButtonFormat . $sAlertMessage;
+            $sAlertMessage = static::$dismissButtonFormat . $sAlertMessage;
             if (!preg_match('/(\s|^)alert-dismissable(\s|$)/', $aAlertAttributes['class'])) {
                 $aAlertAttributes['class'] .= ' alert-dismissable';
             }
         }
 
         return sprintf(
-            self::$alertFormat,
+            static::$alertFormat,
             $this->createAttributesString($aAlertAttributes),
             $sAlertMessage
         );

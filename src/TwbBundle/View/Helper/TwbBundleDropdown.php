@@ -27,27 +27,27 @@ class TwbBundleDropDown extends AbstractHelper
     /**
      * @var string
      */
-    private static $dropdownContainerFormat = '<div %s>%s</div>';
+    protected static $dropdownContainerFormat = '<div %s>%s</div>';
 
     /**
      * @var string
      */
-    private static $dropdownToggleFormat = '<a %s>%s <b class="caret"></b></a>';
+    protected static $dropdownToggleFormat = '<a %s>%s <b class="caret"></b></a>';
 
     /**
      * @var string
      */
-    private static $dropdownListFormat = '<ul %s>%s</ul>';
+    protected static $dropdownListFormat = '<ul %s>%s</ul>';
 
     /**
      * @var string
      */
-    private static $dropdownItemContainerFormat = '<li %s>%s</li>';
+    protected static $dropdownItemContainerFormat = '<li %s>%s</li>';
 
     /**
      * @var string
      */
-    private static $dropdownItemFormats = array(
+    protected static $dropdownItemFormats = array(
         self::TYPE_ITEM_LINK => '<a %s>%s</a>',
     );
 
@@ -88,7 +88,7 @@ class TwbBundleDropDown extends AbstractHelper
 
         // Render dropdown
         return sprintf(
-                self::$dropdownContainerFormat, $this->createAttributesString($aDropdownOptions['attributes']), //Container attributes
+                static::$dropdownContainerFormat, $this->createAttributesString($aDropdownOptions['attributes']), //Container attributes
                 $this->renderToggle($aDropdownOptions) . //Toggle
                 $this->renderListItems($aDropdownOptions) //List items
         );
@@ -157,7 +157,7 @@ class TwbBundleDropDown extends AbstractHelper
         $this->validTagAttributes = $aValidTagAttributes;
 
         return sprintf(
-                self::$dropdownToggleFormat, $sAttributeString, // Toggle attributes
+                static::$dropdownToggleFormat, $sAttributeString, // Toggle attributes
                 $this->getEscapeHtmlHelper()->__invoke($aDropdownOptions['label']) // Toggle label
         );
     }
@@ -232,7 +232,7 @@ class TwbBundleDropDown extends AbstractHelper
         }
 
         return sprintf(
-                self::$dropdownListFormat, $this->createAttributesString($aDropdownOptions['list_attributes']), // List attributes
+                static::$dropdownListFormat, $this->createAttributesString($aDropdownOptions['list_attributes']), // List attributes
                 $sItems // Items
         );
     }
@@ -325,10 +325,10 @@ class TwbBundleDropDown extends AbstractHelper
                 $sAttributeString = $this->createAttributesString($aItemOptions['item_attributes']);
                 $this->validTagAttributes = $aValidTagAttributes;
 
-                $sItemContent = sprintf(self::$dropdownItemFormats[self::TYPE_ITEM_LINK], $sAttributeString, $this->getEscapeHtmlHelper()->__invoke($aItemOptions['label']));
+                $sItemContent = sprintf(static::$dropdownItemFormats[self::TYPE_ITEM_LINK], $sAttributeString, $this->getEscapeHtmlHelper()->__invoke($aItemOptions['label']));
                 break;
         }
 
-        return sprintf(self::$dropdownItemContainerFormat, $this->createAttributesString($aItemOptions['attributes']), $sItemContent);
+        return sprintf(static::$dropdownItemContainerFormat, $this->createAttributesString($aItemOptions['attributes']), $sItemContent);
     }
 }

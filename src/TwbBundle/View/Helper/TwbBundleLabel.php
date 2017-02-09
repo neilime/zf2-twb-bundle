@@ -13,7 +13,7 @@ class TwbBundleLabel extends AbstractHelper
     /**
      * @var string
      */
-    private static $labelFormat = '<%s %s>%s</%1$s>';
+    protected static $labelFormat = '<%s %s>%s</%1$s>';
 
     /**
      * @var string
@@ -38,7 +38,7 @@ class TwbBundleLabel extends AbstractHelper
         if (!$sLabelMessage) {
             return $this;
         }
-        
+
         return $this->render($sLabelMessage, $aLabelAttributes);
     }
 
@@ -78,7 +78,7 @@ class TwbBundleLabel extends AbstractHelper
         }
 
         return sprintf(
-            self::$labelFormat,
+            static::$labelFormat,
             isset($aLabelAttributes['tagName']) ? $aLabelAttributes['tagName'] : $this->tagName,
             $this->createAttributesString($aLabelAttributes),
             $sLabelMessage

@@ -10,7 +10,7 @@ class TwbBundleGlyphicon extends AbstractHelper
     /**
      * @var string
      */
-    private static $glyphiconFormat = '<span %s></span>';
+    protected static $glyphiconFormat = '<span %s></span>';
 
     /**
      * Invoke helper as functor, proxies to {@link render()}.
@@ -59,7 +59,7 @@ class TwbBundleGlyphicon extends AbstractHelper
         }
 
         return sprintf(
-            self::$glyphiconFormat,
+            static::$glyphiconFormat,
             $this->createAttributesString($aGlyphiconAttributes)
         );
     }

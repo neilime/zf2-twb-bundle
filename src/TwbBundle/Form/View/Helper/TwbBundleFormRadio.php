@@ -18,7 +18,7 @@ class TwbBundleFormRadio extends FormRadio
     /**
      * @var string
      */
-    private static $checkboxFormat = '<div class="radio">%s</div>';
+    protected static $checkboxFormat = '<div class="radio">%s</div>';
 
     /**
      * @see \Zend\Form\View\Helper\FormRadio::render()
@@ -43,7 +43,7 @@ class TwbBundleFormRadio extends FormRadio
             $oElement->setLabelAttributes(array('class' => 'radio-inline'));
             $sReturn = sprintf('%s', parent::render($oElement));
             $this->setSeparator($sSeparator);
-            return $sReturn;    
+            return $sReturn;
         }
 
         if (isset($aElementOptions['btn-group']) && $aElementOptions['btn-group'] == true) {
@@ -53,7 +53,7 @@ class TwbBundleFormRadio extends FormRadio
         	return sprintf('<div class="btn-group" data-toggle="buttons">%s</div>', parent::render($oElement));
         }
 
-        return sprintf(self::$checkboxFormat, parent::render($oElement));
+        return sprintf(static::$checkboxFormat, parent::render($oElement));
     }
 
     /**
