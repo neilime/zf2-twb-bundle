@@ -129,7 +129,8 @@ class TwbBundleFormRow extends FormRow
         // Column size
         if (($sColumSize = $oElement->getOption('column-size')) && $oElement->getOption('twb-layout') !== TwbBundleForm::LAYOUT_HORIZONTAL
         ) {
-            $sRowClass .= ' col-' . $sColumSize;
+            $sColumSize = (is_array($sColumSize)) ? $sColumSize : array($sColumSize); 
+            $sRowClass .= implode(' ', array_map(function($item) { return 'col-' . $item; }, $sColumSize));
         }
 
         //Additional row class
