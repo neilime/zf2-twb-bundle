@@ -149,7 +149,6 @@ class TwbBundleFormRow extends FormRow
      * @param string $sFeedbackElement A feedback element that should be rendered within the element
      *
      * @return string
-     * @throws \InvalidArgumentException
      */
     public function renderElementFormGroup($sElementContent, $sRowClass, $sFeedbackElement = '' )
     {
