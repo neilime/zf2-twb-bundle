@@ -159,7 +159,7 @@ class TwbBundleFormRow extends FormRow
         }
 
         if( $sFeedbackElement ){
-            $sElementContent .= PHP_EOL . '<i class="' . $sFeedbackElement . ' form-control-feedback"></i>';
+            $sElementContent .= "\n" . '<i class="' . $sFeedbackElement . ' form-control-feedback"></i>';
         }
 
         return sprintf(static::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
