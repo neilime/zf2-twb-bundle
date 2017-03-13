@@ -441,6 +441,34 @@ This config options allow to change instance and type map to FormElement class. 
     ];
 ```
 
+### Insert glyphicons into text fields
+
+Bootstrap allows you to easily insert glyphicons into text fields like so:
+
+```html
+<div class="form-group has-feedback">
+    <label class="control-label">Username</label>
+    <input type="text" class="form-control" placeholder="Username" />
+    <i class="glyphicon glyphicon-user form-control-feedback"></i>
+</div>
+```
+
+You can reproduce this behavior by specifying the 'feedback' parameter when you are adding elements, which translates into the 'form-control-feedback' glyph. e.g.,
+
+```php
+$this->add([
+    'name' => 'username',
+    'type' => Text::class,
+    'options' => [
+        'label' => _( "Your Username" ),
+        'feedback' => 'glyphicon glyphicon-user',
+    ],
+]);
+```
+
+
+
+
 ## Elements
 
 __TwbBundle__ provides new elements to supports Twitter Bootstrap potential.
