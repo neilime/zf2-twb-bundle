@@ -103,7 +103,7 @@ class TwbBundleFormRow extends FormRow
                 return $sElementContent . "\n";
             default:
                 // Render element into form group
-                return $this->renderElementFormGroup($sElementContent, $this->getRowClassFromElement($oElement));
+                return $this->renderElementFormGroup($sElementContent, $this->getRowClassFromElement($oElement), $oElement->getOption('feedback'));
         }
     }
 
@@ -125,11 +125,14 @@ class TwbBundleFormRow extends FormRow
         if ($oElement->getMessages()) {
             $sRowClass .= ' has-error';
         }
+        if( $oElement->getOption('feedback')) {
+            $sRowClass .= ' has-feedback';
+        }
 
         // Column size
         if (($sColumSize = $oElement->getOption('column-size')) && $oElement->getOption('twb-layout') !== TwbBundleForm::LAYOUT_HORIZONTAL
         ) {
-            $sColumSize = (is_array($sColumSize)) ? $sColumSize : array($sColumSize); 
+            $sColumSize = (is_array($sColumSize)) ? $sColumSize : array($sColumSize);
             $sRowClass .= implode('', array_map(function($item) { return ' col-' . $item; }, $sColumSize));
         }
 
@@ -143,16 +146,24 @@ class TwbBundleFormRow extends FormRow
     /**
      * @param string $sElementContent
      * @param string $sRowClass
+     * @param string $sFeedbackElement A feedback element that should be rendered within the element, optional
+     *
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function renderElementFormGroup($sElementContent, $sRowClass)
+    public function renderElementFormGroup($sElementContent, $sRowClass, $sFeedbackElement = '' )
     {
         if (!is_string($sElementContent)) {
             throw new \InvalidArgumentException('Argument "$sElementContent" expects a string, "' . (is_object($sElementContent) ? get_class($sElementContent) : gettype($sElementContent)) . '" given');
         }
         if (!is_string($sRowClass)) {
             throw new \InvalidArgumentException('Argument "$sRowClass" expects a string, "' . (is_object($sRowClass) ? get_class($sRowClass) : gettype($sRowClass)) . '" given');
+        }
+        if ($sFeedbackElement && !is_string($sFeedbackElement)) {
+            throw new \InvalidArgumentException('Argument "$sFeedbackElement" expects a string, "' . (is_object($sFeedbackElement) ? get_class($sFeedbackElement) : gettype($sFeedbackElement)) . '" given');
+        }
+        if( $sFeedbackElement ){
+            $sElementContent .= '<i class="' . $sFeedbackElement . ' form-control-feedback"></i>';
         }
         return sprintf(static::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
     }
