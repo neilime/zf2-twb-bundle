@@ -155,7 +155,7 @@ class TwbBundleFormRow extends FormRow
             $sElementContent .= "\n" . '<i class="' . $sFeedbackElement . ' form-control-feedback"></i>';
         }
 
-        return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
+        return sprintf(static::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
     }
 
     /**
