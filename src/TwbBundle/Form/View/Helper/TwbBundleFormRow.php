@@ -152,10 +152,10 @@ class TwbBundleFormRow extends FormRow
             throw new \InvalidArgumentException('Argument "$sRowClass" expects a string, "' . (is_object($sRowClass) ? get_class($sRowClass) : gettype($sRowClass)) . '" given');
         }
         if( $sFeedbackElement ){
-            $sElementContent .= PHP_EOL . '<i class="' . $sFeedbackElement . ' form-control-feedback"></i>';
+            $sElementContent .= "\n" . '<i class="' . $sFeedbackElement . ' form-control-feedback"></i>';
         }
 
-        return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . PHP_EOL;
+        return sprintf(self::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
     }
 
     /**
