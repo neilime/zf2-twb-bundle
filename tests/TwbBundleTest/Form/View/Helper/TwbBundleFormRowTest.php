@@ -186,7 +186,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         // Test content
         $this->assertStringEqualsFile($this->expectedPath . 'input-with-help-text-and-error.phtml', $this->formRowHelper->__invoke($oElement));
     }
-    
+
     public function testRenderWithBothInlineAndNoInlineRadios() {
         $oForm = new \Zend\Form\Form();
         $oForm->add(array(
@@ -205,9 +205,23 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
                 'value_options' => array('label1','label2','label3'),
                 'inline' => false,
             ),
-        ));        
-        
+        ));
+
         $this->assertStringEqualsFile($this->expectedPath . 'both-inline-and-no-inline-radios.phtml', $this->formRowHelper->__invoke($oForm->get('optInput1')).$this->formRowHelper->__invoke($oForm->get('optInput2')));
+    }
+
+    public function testAllowsFeedbackInTextField(){
+        $oForm = new \Zend\Form\Form();
+        $oForm->add(array(
+            'name' => 'username',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Your Username',
+                'feedback' => 'glyphicon glyphicon-user',
+            ),
+        ));
+
+        $this->assertStringEqualsFile($this->expectedPath . 'has-feedback-in-textfield.phtml', $this->formRowHelper->__invoke($oForm->get('username')));
     }
 
     /**
