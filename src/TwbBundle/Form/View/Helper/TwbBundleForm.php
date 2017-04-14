@@ -117,9 +117,9 @@ class TwbBundleForm extends Form
                 $sButtonGroupKey = $aOptions['button-group'];
                 if (isset($aButtonGroups[$sButtonGroupKey])) {
                     $aButtonGroups[$sButtonGroupKey][] = $oElement;
-                    $aElementsRendering[$iKey] = $sButtonGroupKey;
                 } else {
                     $aButtonGroups[$sButtonGroupKey] = array($oElement);
+                    $aElementsRendering[$iKey] = $sButtonGroupKey;
                 }
                 if (!empty($aOptions['column-size']) && !isset($aButtonGroupsColumnSize[$sButtonGroupKey])) {
                     // Only the first occured column-size will be set, other are ignored.
