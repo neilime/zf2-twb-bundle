@@ -46,9 +46,15 @@ class TwbBundleFormRadio extends FormRadio
             return $sReturn;
         }
 
-        if (isset($aElementOptions['btn-group']) && $aElementOptions['btn-group'] == true) {
+        if (isset($aElementOptions['btn-group']) && $aElementOptions['btn-group'] != false) {
+
+            $buttonClass = 'btn btn-primary';
+            if (is_array($aElementOptions['btn-group']) && isset($aElementOptions['btn-group']['btn-class'])) {
+                $buttonClass = $aElementOptions['btn-group']['btn-class'];
+            }
+
         	$this->setSeparator('');
-        	$oElement->setLabelAttributes(array('class' => 'btn btn-primary'));
+        	$oElement->setLabelAttributes(array('class' => $buttonClass));
 
         	return sprintf('<div class="btn-group" data-toggle="buttons">%s</div>', parent::render($oElement));
         }
