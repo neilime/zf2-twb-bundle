@@ -47,6 +47,9 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "zf": {
+            "config-provider": "TwbBundle\\ConfigProvider"
         }
     }
 }
