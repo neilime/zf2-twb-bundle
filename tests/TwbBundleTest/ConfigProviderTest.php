@@ -12,23 +12,23 @@ class ConfigProviderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * The zend-component config provider
-     * 
+     *
      * @var \TwbBundle\ConfigProvider
      */
-	protected $configProvider;
+    protected $configProvider;
 
-	/**
-	 * @see \PHPUnit_Framework_TestCase::setUp()
-	 */
-	public function setUp()
+    /**
+     * @see \PHPUnit_Framework_TestCase::setUp()
+     */
+    public function setUp()
     {
-		$this->configProvider = new ConfigProvider();
-	}
+        $this->configProvider = new ConfigProvider();
+    }
 
     /**
      * Tests valid return values
      */
-	public function testInvokeReturnValues()
+    public function testInvokeReturnValues()
     {
         $config = $this->configProvider->__invoke();
 
