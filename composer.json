@@ -22,7 +22,7 @@
     },
     "require": {
         "php": ">=5.3.2",
-        "zendframework/zend-config": "^2.3",
+        "zendframework/zend-config": "^2.3 || ^3.0",
         "zendframework/zend-escaper": "^2.3",
         "zendframework/zend-form": "^2.3",
         "zendframework/zend-i18n": "^2.3",

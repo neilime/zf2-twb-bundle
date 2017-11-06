@@ -1,8 +1,20 @@
 language: php
 
-php:
- - "5.6"
- - "7.0"
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - vendor
+    - $HOME/.local
+
+matrix:
+  include:
+    - php: 5.6
+    - php: 7.0
+      env:
+        - TEST_COVERAGE=true
+    - php: 7.1
 
 before_install:
 # Set the GitHub OAuth token to make use of the 6000 per hour rate limit
@@ -11,15 +23,16 @@ before_install:
 # Update composer
  - composer self-update
 # Install project
- - composer install --prefer-dist --dev
+ - composer update --prefer-dist --dev
 
 before_script:
  - mkdir -p build/logs
 
 script:
  - cd tests
- - phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml
+ - if [[ $TEST_COVERAGE == 'true' ]]; then ../vendor/bin/phpunit --coverage-text --coverage-clover ../build/logs/clover.xml ; fi
+ - if [[ $TEST_COVERAGE != 'true' ]]; then ../vendor/bin/phpunit ; fi
  - cd ..
 
 after_script:
- - php vendor/bin/coveralls --verbose --config
+ - if [[ $TEST_COVERAGE == 'true' ]]; php vendor/bin/coveralls --verbose --config ; fi
