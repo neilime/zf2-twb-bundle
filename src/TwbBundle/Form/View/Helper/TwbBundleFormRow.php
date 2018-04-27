@@ -218,7 +218,7 @@ class TwbBundleFormRow extends FormRow
                 if ($oElement->getOption('validation-state') || $oElement->getMessages()) {
                     if (empty($aLabelAttributes['class'])) {
                         $aLabelAttributes['class'] = 'control-label';
-                    } elseif (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class'])) {
+                    } elseif (!preg_match('/(\s|^)control-label(\s|$)/', $aLabelAttributes['class']) && $sElementType !== 'checkbox') {
                         $aLabelAttributes['class'] = trim($aLabelAttributes['class'] . ' control-label');
                     }
                 }
