@@ -33,11 +33,13 @@
         "zendframework/zend-serializer": "^2.3",
         "zendframework/zend-servicemanager": "^2.3 || ^3.1",
         "zendframework/zend-stdlib": "^2.3 || ^3.1",
-        "zendframework/zend-view": "^2.3"
+        "zendframework/zend-view": "^2.3",
+        "zendframework/zend-navigation": "^2.9"
+
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
-        "satooshi/php-coveralls": "^0.7"
+        "satooshi/php-coveralls": "^2.0"
     },
     "autoload": {
         "psr-4": {

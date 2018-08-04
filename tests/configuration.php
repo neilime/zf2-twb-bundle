@@ -5,5 +5,5 @@ return array(
 		'template_map' => array(
 			'partial-row' => __DIR__.'/_files/partial/partial-row.phtml'
 		)
-	)
+	),
 );
