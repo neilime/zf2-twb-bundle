@@ -30,7 +30,7 @@ before_script:
 
 script:
  - cd tests
- - if [[ $TEST_COVERAGE == 'true' ]]; then ../vendor/bin/phpunit --coverage-text --coverage-clover ../build/logs/clover.xml ; fi
+ - if [[ $TEST_COVERAGE == 'true' ]]; then phpdbg -qrr ../vendor/bin/phpunit --coverage-text --coverage-clover ../build/logs/clover.xml ; fi
  - if [[ $TEST_COVERAGE != 'true' ]]; then ../vendor/bin/phpunit ; fi
  - cd ..
 
