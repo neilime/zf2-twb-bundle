@@ -6,13 +6,15 @@ __TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bo
 [![Coverage Status](https://coveralls.io/repos/github/neilime/zf2-twb-bundle/badge.svg)](https://coveralls.io/github/neilime/zf2-twb-bundle)
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
 [![Total Downloads](https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
-[![Dependency Status](https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046/badge.png)](https://www.versioneye.com/user/projects/5294fa9d632bac5a67000046)
+[![Beerpay](https://beerpay.io/neilime/zf2-twb-bundle/badge.svg)](https://beerpay.io/neilime/zf2-twb-bundle)
 
-# Helping Project 
+****
 
-If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can make a donation, thank you.
+__⚠️ For Boostrap 4+, please use [zf-twbs-helper-module](https://github.com/neilime/zf-twbs-helper-module) ⚠️__
 
-<a href='https://pledgie.com/campaigns/26667'><img alt='Support the project' src='https://pledgie.com/campaigns/26667.png?skin_name=chrome' border='0' ><br/></a>
+# Helping Project
+
+❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/zf2-twb-bundle/badge.svg)](https://beerpay.io/neilime/zf2-twb-bundle) Thank you !
 
 # Contributing
 
