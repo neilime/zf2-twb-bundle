@@ -12,6 +12,8 @@ __TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bo
 
 __⚠️ For Boostrap 4+, please use [zf-twbs-helper-module](https://github.com/neilime/zf-twbs-helper-module) ⚠️__
 
+****
+
 # Helping Project
 
 ❤️ If this project helps you reduce time to develop and/or you want to help the maintainer of this project, you can support him on [![Beerpay](https://beerpay.io/neilime/zf2-twb-bundle/badge.svg)](https://beerpay.io/neilime/zf2-twb-bundle) Thank you !
