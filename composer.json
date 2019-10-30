@@ -47,7 +47,7 @@
     },
     "scripts": {
         "test": "cd tests && phpunit --colors & cd ..",
-        "test:ci": "cd tests && phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml --coverage-html ../build/coverage/ && cd ..",
+        "test:ci": "cd tests && phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml --coverage-html ../build/coverage/ && cd .."
     },
     "extra": {
         "branch-alias": {
