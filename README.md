@@ -2,12 +2,12 @@
 
 __TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap) (Supports Twitter Bootstrap v3.*).
 
-[![License](https://img.shields.io/github/license/neilime/zf2-twb-bundle)](LICENSE)
+[![License](https://img.shields.io/github/license/neilime/zf2-twb-bundle)](https://github.com/neilime/zf2-twb-bundle/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/neilime/zf2-twb-bundle/badge.svg)](https://coveralls.io/github/neilime/zf2-twb-bundle)
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
 [![Total Downloads](https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
-[![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor-ff69b4)](https://github.com/sponsors/neilime) 
+[![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor-ff69b4)](https://github.com/sponsors/neilime)
 
 ****
 
@@ -21,7 +21,7 @@ __⚠️ For Boostrap 4+, please use [zf-twbs-helper-module](https://github.com/
 
 # Contributing
 
-👍 If you wish to contribute to TwbsHelper, PRs are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+👍 If you wish to contribute to TwbsHelper, PRs are welcome! Please read the [https://github.com/neilime/zf2-twb-bundle/blob/master/CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 # Demonstration / example
 
