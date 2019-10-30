@@ -1,6 +1,10 @@
+---
+layout: default
+title: Home
+---
 # TwbBundle - Zend Framework module
 
-__TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bootstrap v3.*](https://github.com/twbs/bootstrap) (Supports Twitter Bootstrap v3.*).
+__TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bootstrap v3.*](https://getbootstrap.com/docs/3.4/).
 
 [![License](https://img.shields.io/github/license/neilime/zf2-twb-bundle)](https://github.com/neilime/zf2-twb-bundle/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
