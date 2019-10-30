@@ -1,0 +1,8 @@
+title: Zf2-twb-bundle
+description: Zend Framework 2 module for easy integration of Twitter Bootstrap
+google_analytics: UA-53063406-1
+show_downloads: true
+theme: jekyll-theme-architect
+
+gems:
+  - jekyll-mentions
