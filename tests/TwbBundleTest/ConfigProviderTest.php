@@ -40,4 +40,12 @@ class ConfigProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($config['dependencies']);
         $this->assertNotEmpty($config['view_helpers']);
     }
+
+    public function testFormElementRegression()
+    {
+        $config = $this->configProvider->__invoke();
+        $this->assertArrayHasKey('formElement', $config['view_helpers']['aliases']);
+    }
+
+
 }

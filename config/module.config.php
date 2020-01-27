@@ -21,6 +21,15 @@ return array(
         ),
     ),
     'view_helpers' => array (
+        'aliases' => array (
+            'form_element' => 'TwbBundle\Form\View\Helper\TwbBundleFormElement',
+            'formElement' => 'TwbBundle\Form\View\Helper\TwbBundleFormElement',
+            'formelement' => 'TwbBundle\Form\View\Helper\TwbBundleFormElement',
+
+            'navigation'   => 'TwbBundle\View\Helper\Navigation',
+            'Navigation'   => 'TwbBundle\View\Helper\Navigation',
+            'zendviewhelpernavigation'   => 'TwbBundle\View\Helper\Navigation',
+        ),
         'invokables' => array (
             //Alert
             'alert' => 'TwbBundle\View\Helper\TwbBundleAlert',
@@ -98,10 +107,8 @@ return array(
             'formhidden'   => 'Zend\Form\View\Helper\FormHidden',
         ),
         'factories' => array (
-            'formElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
-            'form_element' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
-            'formelement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
             'TwbBundle\Form\View\Helper\TwbBundleFormElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
+            'TwbBundle\View\Helper\Navigation' => 'TwbBundle\Navigation\View\NavigationHelperFactory',
             'zendviewhelpernavigation'  => 'TwbBundle\Navigation\View\NavigationHelperFactory',
         ),
         'aliases' => array (
