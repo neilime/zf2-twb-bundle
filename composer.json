@@ -38,13 +38,16 @@
 
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8",
-        "satooshi/php-coveralls": "^2.0"
+        "phpunit/phpunit": "^4.8"
     },
     "autoload": {
         "psr-4": {
             "TwbBundle\\": "src/TwbBundle"
         }
+    },
+    "scripts": {
+        "test": "cd tests && phpunit --colors & cd ..",
+        "test:ci": "cd tests && phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml --coverage-html ../build/coverage/ && cd .."
     },
     "extra": {
         "branch-alias": {

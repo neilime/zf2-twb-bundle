@@ -109,6 +109,12 @@ return array(
         'factories' => array (
             'TwbBundle\Form\View\Helper\TwbBundleFormElement' => 'TwbBundle\Form\View\Helper\Factory\TwbBundleFormElementFactory',
             'TwbBundle\View\Helper\Navigation' => 'TwbBundle\Navigation\View\NavigationHelperFactory',
+            'zendviewhelpernavigation'  => 'TwbBundle\Navigation\View\NavigationHelperFactory',
+        ),
+        'aliases' => array (
+            'form_element' => 'TwbBundle\Form\View\Helper\TwbBundleFormElement',
+            'navigation' => 'zendviewhelpernavigation',
+            'Navigation' => 'zendviewhelpernavigation',
         ),
     ),
 );

@@ -1,38 +1,28 @@
+env:
+  global:
+    secure: PN5YmqEfDtR0Egg06gImyKy9/bmjJB4bXnDBkU+0G8JI0Cd2ckkJgVIXi0FfzmS7PPv949TNaA5Gs11+HxvjqjFEnukj6+RFtPqNN8MjnhlWUeOmDh2dnn7SAhUGtBN+/gRPm093Jpo3UD/FDKy82H2f/0IbijPlqMNFWya+Yy0=
+
 language: php
 
 sudo: false
 
-cache:
-  directories:
-    - $HOME/.composer/cache
-    - vendor
-    - $HOME/.local
-
 matrix:
   include:
-    - php: 5.6
-    - php: 7.0
-      env:
-        - TEST_COVERAGE=true
-    - php: 7.1
+  - php: '7.2'
+  - php: '7.3'
+    env:
+    - EXECUTE_AFTER_SCRIPT=true
+
+cache:
+  directories:
+  - "$HOME/.composer/cache"
 
 before_install:
-# Set the GitHub OAuth token to make use of the 6000 per hour rate limit
- - mkdir -p ~/.composer
- - cp .travis.composer.json ~/.composer/config.json
-# Update composer
- - composer self-update
-# Install project
- - composer update --prefer-dist --dev
-
-before_script:
- - mkdir -p build/logs
+- travis_retry composer self-update
+- travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
 
 script:
- - cd tests
- - if [[ $TEST_COVERAGE == 'true' ]]; then phpdbg -qrr ../vendor/bin/phpunit --coverage-text --coverage-clover ../build/logs/clover.xml ; fi
- - if [[ $TEST_COVERAGE != 'true' ]]; then ../vendor/bin/phpunit ; fi
- - cd ..
+- composer test:ci
 
 after_script:
- - if [[ $TEST_COVERAGE == 'true' ]]; php vendor/bin/coveralls --verbose --config ; fi
+- if [[ $EXECUTE_AFTER_SCRIPT == 'true' ]]; then bash <(curl -s https://gist.githubusercontent.com/neilime/769d733c52acdecea8d2548fb3aca3ff/raw/travis_ci_php_publish_build.sh);fi
