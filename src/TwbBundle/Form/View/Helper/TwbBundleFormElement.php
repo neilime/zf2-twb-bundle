@@ -5,15 +5,15 @@ namespace TwbBundle\Form\View\Helper;
 use Traversable;
 use InvalidArgumentException;
 use LogicException;
-use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\FormElement;
-use Zend\Form\Element\Collection;
-use Zend\Form\Factory;
-use Zend\I18n\Translator\TranslatorAwareInterface;
-use Zend\I18n\Translator\TranslatorInterface;
-use Zend\I18n\Translator\Translator;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\View\Helper\FormElement;
+use Laminas\Form\Element\Collection;
+use Laminas\Form\Factory;
+use Laminas\I18n\Translator\TranslatorAwareInterface;
+use Laminas\I18n\Translator\TranslatorInterface;
+use Laminas\I18n\Translator\Translator;
 use TwbBundle\Options\ModuleOptions;
-use Zend\Form\Element\Button;
+use Laminas\Form\Element\Button;
 
 class TwbBundleFormElement extends FormElement implements TranslatorAwareInterface
 {
@@ -57,13 +57,13 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
      * @var array
      */
     protected $classMap = array(
-        'Zend\Form\Element\Button' => 'formbutton',
-        'Zend\Form\Element\Captcha' => 'formcaptcha',
-        'Zend\Form\Element\Csrf' => 'formhidden',
-        'Zend\Form\Element\Collection' => 'formcollection',
-        'Zend\Form\Element\DateTimeSelect' => 'formdatetimeselect',
-        'Zend\Form\Element\DateSelect' => 'formdateselect',
-        'Zend\Form\Element\MonthSelect' => 'formmonthselect',
+        'Laminas\Form\Element\Button' => 'formbutton',
+        'Laminas\Form\Element\Captcha' => 'formcaptcha',
+        'Laminas\Form\Element\Csrf' => 'formhidden',
+        'Laminas\Form\Element\Collection' => 'formcollection',
+        'Laminas\Form\Element\DateTimeSelect' => 'formdatetimeselect',
+        'Laminas\Form\Element\DateSelect' => 'formdateselect',
+        'Laminas\Form\Element\MonthSelect' => 'formmonthselect',
         'TwbBundle\Form\Element\StaticElement' => 'formStatic',
     );
 
@@ -177,7 +177,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
                 $aAddOnOptions['element'] = $oFactory->create($aAddOnOptions['element']);
             } elseif (!($aAddOnOptions['element'] instanceof ElementInterface)) {
                 throw new LogicException(sprintf(
-                    '"element" option expects an instanceof Zend\Form\ElementInterface, "%s" given',
+                    '"element" option expects an instanceof Laminas\Form\ElementInterface, "%s" given',
                     is_object($aAddOnOptions['element']) ? get_class($aAddOnOptions['element']) : gettype($aAddOnOptions['element'])
                 ));
             }

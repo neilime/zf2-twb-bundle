@@ -3,7 +3,7 @@
 namespace TwbBundle\View\Helper;
 
 
-use Zend\View\Helper\Navigation as ZendNavigationHelper;
+use Laminas\View\Helper\Navigation as ZendNavigationHelper;
 
 class Navigation extends ZendNavigationHelper
 {

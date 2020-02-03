@@ -16,7 +16,7 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-        $oRenderer = new \Zend\View\Renderer\PhpRenderer();
+        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $this->formHelper = $oViewHelperPluginManager->get('form')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
@@ -27,7 +27,7 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderFormWithClassAlreadyDefined()
     {
-        $oForm = new \Zend\Form\Form(null, array('attributes' => array('class' => 'test-class')));
+        $oForm = new \Laminas\Form\Form(null, array('attributes' => array('class' => 'test-class')));
         $this->formHelper->render($oForm->setAttribute('class', 'test-class'));
         $this->assertEquals('test-class form-horizontal', $oForm->getAttribute('class'));
     }

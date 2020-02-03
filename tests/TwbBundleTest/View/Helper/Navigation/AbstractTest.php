@@ -10,16 +10,16 @@
 namespace TwbBundleTest\View\Helper\Navigation;
 
 use PHPUnit\Framework\TestCase;
-use Zend\Navigation\Navigation;
-use Zend\Config\Factory as ConfigFactory;
-use Zend\Mvc\Router\RouteMatch as V2RouteMatch;
-use Zend\Mvc\Service\ServiceManagerConfig;
-use Zend\Navigation\Service\DefaultNavigationFactory;
-use Zend\Router\ConfigProvider as RouterConfigProvider;
-use Zend\Router\RouteMatch as V3RouteMatch;
-use Zend\ServiceManager\Config;
-use Zend\ServiceManager\ServiceManager;
-use Zend\View\Renderer\PhpRenderer;
+use Laminas\Navigation\Navigation;
+use Laminas\Config\Factory as ConfigFactory;
+use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
+use Laminas\Mvc\Service\ServiceManagerConfig;
+use Laminas\Navigation\Service\DefaultNavigationFactory;
+use Laminas\Router\ConfigProvider as RouterConfigProvider;
+use Laminas\Router\RouteMatch as V3RouteMatch;
+use Laminas\ServiceManager\Config;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\View\Renderer\PhpRenderer;
 
 /**
  * Base class for navigation view helper tests
@@ -49,7 +49,7 @@ abstract class AbstractTest extends TestCase
     /**
      * View helper
      *
-     * @var \Zend\View\Helper\Navigation\AbstractHelper
+     * @var \Laminas\View\Helper\Navigation\AbstractHelper
      */
     protected $_helper;
 

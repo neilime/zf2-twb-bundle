@@ -2,13 +2,13 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-use Zend\Form\View\Helper\FormRow;
-use Zend\Form\View\Helper\FormCheckbox;
-use Zend\Form\ElementInterface;
+use Laminas\Form\View\Helper\FormRow;
+use Laminas\Form\View\Helper\FormCheckbox;
+use Laminas\Form\ElementInterface;
 use InvalidArgumentException;
 use LogicException;
-use Zend\Form\Element\Checkbox;
-use Zend\Form\View\Helper\FormLabel;
+use Laminas\Form\Element\Checkbox;
+use Laminas\Form\View\Helper\FormLabel;
 
 class TwbBundleFormCheckbox extends FormCheckbox
 {
@@ -34,7 +34,7 @@ class TwbBundleFormCheckbox extends FormCheckbox
 
         if (!$oElement instanceof Checkbox) {
             throw new InvalidArgumentException(sprintf(
-                '%s requires that the element is of type Zend\Form\Element\Checkbox',
+                '%s requires that the element is of type Laminas\Form\Element\Checkbox',
                 __METHOD__
             ));
         }

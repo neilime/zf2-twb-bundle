@@ -9,7 +9,7 @@ namespace TwbBundleTest\View\Helper;
 
 use TwbBundle\View\Helper\TwbBundleFontAwesome;
 use TwbBundleTest\Bootstrap;
-use Zend\View\Renderer\PhpRenderer;
+use Laminas\View\Renderer\PhpRenderer;
 
 class TwbBundleFontAwesomeTest extends \PHPUnit_Framework_TestCase
 {

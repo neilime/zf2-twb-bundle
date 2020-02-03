@@ -1,7 +1,7 @@
 <?php
 return array(
     'modules' => array(
-        'Zend\Router',
+        'Laminas\Router',
         'TwbBundle'
     ),
     'module_listener_options' => array(

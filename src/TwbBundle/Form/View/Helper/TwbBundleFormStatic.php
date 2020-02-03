@@ -1,8 +1,8 @@
 <?php
 namespace TwbBundle\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\Form\ElementInterface;
+use Laminas\View\Helper\AbstractHelper;
 
 class TwbBundleFormStatic extends AbstractHelper
 {
@@ -29,7 +29,7 @@ class TwbBundleFormStatic extends AbstractHelper
     }
 
     /**
-     * @see \Zend\Form\View\Helper\AbstractHelper::render()
+     * @see \Laminas\Form\View\Helper\AbstractHelper::render()
      * @param ElementInterface $oElement
      * @return string
      */

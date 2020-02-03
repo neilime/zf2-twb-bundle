@@ -1,8 +1,8 @@
 {
     "name": "neilime/zf2-twb-bundle",
     "type": "library",
-    "description": "Zend Framework 2 module for easy integration of Twitter Bootstrap",
-    "keywords": ["Zend Framework 2","Twitter Bootstrap","module"],
+    "description": "Zend Framework/Laminas module for easy integration of Twitter Bootstrap",
+    "keywords": ["Zend Framework","Laminas","Twitter Bootstrap","module"],
     "homepage": "http://neilime.github.io/zf2-twb-bundle/",
     "license": "MIT",
     "minimum-stability": "stable",
@@ -22,20 +22,19 @@
     },
     "require": {
         "php": ">=5.3.2",
-        "zendframework/zend-config": "^2.3 || ^3.0",
-        "zendframework/zend-escaper": "^2.3",
-        "zendframework/zend-form": "^2.3",
-        "zendframework/zend-i18n": "^2.3",
-        "zendframework/zend-loader": "^2.3",
-        "zendframework/zend-log": "^2.3",
-        "zendframework/zend-modulemanager": "^2.3",
-        "zendframework/zend-mvc": "^2.3 || ^3.0",
-        "zendframework/zend-serializer": "^2.3",
-        "zendframework/zend-servicemanager": "^2.3 || ^3.1",
-        "zendframework/zend-stdlib": "^2.3 || ^3.1",
-        "zendframework/zend-view": "^2.3",
-        "zendframework/zend-navigation": "^2.9"
-
+        "laminas/laminas-config": "^2.3 || ^3.0",
+        "laminas/laminas-escaper": "^2.3",
+        "laminas/laminas-form": "^2.3",
+        "laminas/laminas-i18n": "^2.3",
+        "laminas/laminas-loader": "^2.3",
+        "laminas/laminas-log": "^2.3",
+        "laminas/laminas-modulemanager": "^2.3",
+        "laminas/laminas-mvc": "^2.3 || ^3.0",
+        "laminas/laminas-serializer": "^2.3",
+        "laminas/laminas-servicemanager": "^2.3 || ^3.1",
+        "laminas/laminas-stdlib": "^2.3 || ^3.1",
+        "laminas/laminas-view": "^2.3",
+        "laminas/laminas-navigation": "^2.9"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8"

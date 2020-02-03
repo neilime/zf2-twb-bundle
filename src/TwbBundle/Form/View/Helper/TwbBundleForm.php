@@ -2,9 +2,9 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-use Zend\Form\View\Helper\Form;
-use Zend\Form\FormInterface;
-use Zend\Form\FieldsetInterface;
+use Laminas\Form\View\Helper\Form;
+use Laminas\Form\FormInterface;
+use Laminas\Form\FieldsetInterface;
 
 class TwbBundleForm extends Form
 {

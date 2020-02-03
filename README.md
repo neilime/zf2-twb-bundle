@@ -1,6 +1,6 @@
-# TwbBundle - Zend Framework module
+# TwbBundle - Zend Framework/Laminas module
 
-__TwbBundle__ is a Zend Framework module for easy integration of the [Twitter Bootstrap v3](https://getbootstrap.com/docs/3.4/).
+__TwbBundle__ is a Zend Framework/Laminas module for easy integration of the [Twitter Bootstrap v3](https://getbootstrap.com/docs/3.4/).
 
 [![License](https://img.shields.io/github/license/neilime/zf2-twb-bundle)](https://github.com/neilime/zf2-twb-bundle/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
@@ -32,18 +32,18 @@ Render forms, buttons, alerts with TwbBundle : see it in action [on-line](http:/
 Name | Version
 -----|--------
 [php](https://secure.php.net/) | >=5.3.3
-[zendframework/zend-config](https://github.com/zendframework/zend-config) | 2.3.9
-[zendframework/zend-escaper](https://github.com/zendframework/zend-escaper) | 2.3.9
-[zendframework/zend-form](https://github.com/zendframework/zend-form) | 2.3.9
-[zendframework/zend-i18n](https://github.com/zendframework/zend-i18n) | 2.3.9
-[zendframework/zend-loader](https://github.com/zendframework/zend-loader) | 2.3.9
-[zendframework/zend-log](https://github.com/zendframework/zend-log) | 2.3.9
-[zendframework/zend-modulemanager](https://github.com/zendframework/zend-modulemanager) | 2.3.9
-[zendframework/zend-mvc](https://github.com/zendframework/zend-mvc) | 2.3.9
-[zendframework/zend-serializer](https://github.com/zendframework/zend-serializer) | 2.3.9
-[zendframework/zend-servicemanager](https://github.com/zendframework/zend-servicemanager) | 2.3.9
-[zendframework/zend-stdlib](https://github.com/zendframework/zend-stdlib) | 2.3.9
-[zendframework/zend-view](https://github.com/zendframework/zend-view) | 2.3.9
+[laminas/laminas-config](https://github.com/laminas/laminas-config) | 2.3.9
+[laminas/laminas-escaper](https://github.com/laminas/laminas-escaper) | 2.3.9
+[laminas/laminas-form](https://github.com/laminas/laminas-form) | 2.3.9
+[laminas/laminas-i18n](https://github.com/laminas/laminas-i18n) | 2.3.9
+[laminas/laminas-loader](https://github.com/laminas/laminas-loader) | 2.3.9
+[laminas/laminas-log](https://github.com/laminas/laminas-log) | 2.3.9
+[laminas/laminas-modulemanager](https://github.com/laminas/laminas-modulemanager) | 2.3.9
+[laminas/laminas-mvc](https://github.com/laminas/laminas-mvc) | 2.3.9
+[laminas/laminas-serializer](https://github.com/laminas/laminas-serializer) | 2.3.9
+[laminas/laminas-servicemanager](https://github.com/laminas/laminas-servicemanager) | 2.3.9
+[laminas/laminas-stdlib](https://github.com/laminas/laminas-stdlib) | 2.3.9
+[laminas/laminas-view](https://github.com/laminas/laminas-view) | 2.3.9
 
 # Documentation
 

@@ -4,9 +4,9 @@ namespace TwbBundle\View\Helper;
 
 use Traversable;
 use LogicException;
-use Zend\Form\View\Helper\AbstractHelper;
-use Zend\Form\ElementInterface;
-use Zend\Form\Factory;
+use Laminas\Form\View\Helper\AbstractHelper;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Factory;
 
 class TwbBundleButtonGroup extends AbstractHelper
 {
@@ -92,7 +92,7 @@ class TwbBundleButtonGroup extends AbstractHelper
                 $oButton = $oFactory->create($oButton);
             } elseif (!($oButton instanceof ElementInterface)) {
                 throw new LogicException(sprintf(
-                    'Button expects an instanceof Zend\Form\ElementInterface or an array / Traversable, "%s" given', is_object($oButton) ? get_class($oButton) : gettype($oButton)
+                    'Button expects an instanceof Laminas\Form\ElementInterface or an array / Traversable, "%s" given', is_object($oButton) ? get_class($oButton) : gettype($oButton)
                 ));
             }
 

@@ -1,16 +1,16 @@
 <?php
 namespace TwbBundle;
 class Module implements
-	\Zend\ModuleManager\Feature\ConfigProviderInterface,
-	\Zend\ModuleManager\Feature\AutoloaderProviderInterface{
+	\Laminas\ModuleManager\Feature\ConfigProviderInterface,
+	\Laminas\ModuleManager\Feature\AutoloaderProviderInterface{
 
 	/**
-	 * @see \Zend\ModuleManager\Feature\AutoloaderProviderInterface::getAutoloaderConfig()
+	 * @see \Laminas\ModuleManager\Feature\AutoloaderProviderInterface::getAutoloaderConfig()
 	 * @return array
 	 */
 	public function getAutoloaderConfig(){
         return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+            'Laminas\Loader\ClassMapAutoloader' => array(
                 realpath(__DIR__.DIRECTORY_SEPARATOR.'/../../autoload_classmap.php')
             )
         );
