@@ -13,7 +13,7 @@ class ModuleTest extends \PHPUnit_Framework_TestCase{
 
 	public function testGetAutoloaderConfig(){
 		$this->assertEquals(
-			array('Zend\Loader\ClassMapAutoloader' => array(realpath(getcwd().'/../autoload_classmap.php'))),
+			array('Laminas\Loader\ClassMapAutoloader' => array(realpath(getcwd().'/../autoload_classmap.php'))),
 			$this->module->getAutoloaderConfig()
 		);
 	}

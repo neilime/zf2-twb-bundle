@@ -5,9 +5,9 @@ namespace TwbBundle\Form\View\Helper;
 use DomainException;
 use LogicException;
 use Exception;
-use Zend\Form\LabelAwareInterface;
-use Zend\Form\View\Helper\FormButton;
-use Zend\Form\ElementInterface;
+use Laminas\Form\LabelAwareInterface;
+use Laminas\Form\View\Helper\FormButton;
+use Laminas\Form\ElementInterface;
 
 class TwbBundleFormButton extends FormButton
 {

@@ -3,7 +3,7 @@
 namespace TwbBundle\View\Helper;
 
 use InvalidArgumentException;
-use Zend\Form\View\Helper\AbstractHelper;
+use Laminas\Form\View\Helper\AbstractHelper;
 
 /**
  * Render labels (http://getbootstrap.com/components/#labels)

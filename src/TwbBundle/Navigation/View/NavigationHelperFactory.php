@@ -7,7 +7,7 @@ use Interop\Container\ContainerInterface;
 use ReflectionProperty;
 use TwbBundle\View\Helper\Navigation as NavigationHelper;
 
-class NavigationHelperFactory extends \Zend\Navigation\View\NavigationHelperFactory
+class NavigationHelperFactory extends \Laminas\Navigation\View\NavigationHelperFactory
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {

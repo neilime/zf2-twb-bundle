@@ -22,7 +22,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../../../_files/expected-rows' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-        $oRenderer = new \Zend\View\Renderer\PhpRenderer();
+        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $oRenderer->setResolver(\TwbBundleTest\Bootstrap::getServiceManager()->get('ViewResolver'));
         $this->formRowHelper = $oViewHelperPluginManager->get('formRow')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
         $this->formRowHelper->setPartial(null);
@@ -33,7 +33,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $this->formRowHelper->setPartial('partial-row');
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'partial.phtml', $this->formRowHelper->render(new \Zend\Form\Element('test-element')));
+        $this->assertStringEqualsFile($this->expectedPath . 'partial.phtml', $this->formRowHelper->render(new \Laminas\Form\Element('test-element')));
     }
 
     public function testRenderAddOnWithValidationStateAndDefinedLabelClass()
@@ -42,7 +42,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
 
-        $oElement = new \Zend\Form\Element('test-element', array('validation-state' => 'warning'));
+        $oElement = new \Laminas\Form\Element('test-element', array('validation-state' => 'warning'));
         $oElement
                 ->setLabel('test-label')
                 ->setLabelAttributes(array('class' => 'test-label-class'));
@@ -57,7 +57,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
 
-        $oElement = new \Zend\Form\Element('test-element', array('twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
+        $oElement = new \Laminas\Form\Element('test-element', array('twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
         $oElement
                 ->setLabel('test-label')
                 ->setLabelAttributes(array('class' => 'test-label-class'));
@@ -72,7 +72,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
 
-        $oElement = new \Zend\Form\Element('test-element', array('twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL));
+        $oElement = new \Laminas\Form\Element('test-element', array('twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL));
         $oElement
                 ->setLabel('test-label')
                 ->setLabelAttributes(array('class' => 'test-label-class'));
@@ -89,13 +89,13 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormRow');
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
-        $oReflectionMethod->invoke($this->formRowHelper, new \Zend\Form\Element('test-element', array('label' => 'test-label', 'twb-layout' => 'wrong')));
+        $oReflectionMethod->invoke($this->formRowHelper, new \Laminas\Form\Element('test-element', array('label' => 'test-label', 'twb-layout' => 'wrong')));
     }
 
     public function testRenderErrorsWithInputErrorClass()
     {
         $this->formRowHelper->setInputErrorClass('input-error');
-        $oElement = new \Zend\Form\Element\Text('input-text');
+        $oElement = new \Laminas\Form\Element\Text('input-text');
         $oElement->setAttribute('class', 'test-class');
         $oElement->setMessages(array(
             'This is an error message',
@@ -109,7 +109,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
     public function testRenderErrorsWithoutInputErrorClass()
     {
         $this->formRowHelper->setInputErrorClass('input-error');
-        $oElement = new \Zend\Form\Element\Text('input-text');
+        $oElement = new \Laminas\Form\Element\Text('input-text');
         $oElement->setMessages(array(
             'This is an error message',
             'This is an another one error message'
@@ -122,7 +122,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
     public function testRenderHiddenElement()
     {
         $this->formRowHelper->setInputErrorClass('input-error');
-        $oElement = new \Zend\Form\Element\Hidden('input-hidden');
+        $oElement = new \Laminas\Form\Element\Hidden('input-hidden');
         //Test content
         $this->assertEquals(
                 '<input type="hidden" name="input-hidden" class="form-control" value="">', $this->formRowHelper->__invoke($oElement)
@@ -134,7 +134,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
 
     public function testRendeCheckboxWithDefinedLabelAttributes()
     {
-        $oElement = new \Zend\Form\Element\Checkbox('test-checkbox');
+        $oElement = new \Laminas\Form\Element\Checkbox('test-checkbox');
         $oElement->setLabel('Test checkbox');
         $aLabelAttributes = $this->formRowHelper->getLabelAttributes();
         $this->formRowHelper->setLabelAttributes(array('class' => 'test-class'));
@@ -148,7 +148,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderRadiosWithHorizontalLayout()
     {
-        $oElement = new \Zend\Form\Element\Radio('test-radio', array(
+        $oElement = new \Laminas\Form\Element\Radio('test-radio', array(
             'twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL,
             'label' => 'Test radio',
             'column-size' => 'sm-10',
@@ -165,7 +165,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderFormRowWithSpecificClass()
     {
-        $oElement = new \Zend\Form\Element\Text('test-text', array(
+        $oElement = new \Laminas\Form\Element\Text('test-text', array(
             'label' => 'Test text',
             'column-size' => 'sm-10',
             'label_attributes' => array('class' => 'col-sm-2'),
@@ -178,7 +178,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderInputWithHelpTextAndError()
     {
-        $oElement = new \Zend\Form\Element\Text('input-text', array(
+        $oElement = new \Laminas\Form\Element\Text('input-text', array(
             'label' => 'Input text label',
             'help-block' => 'Help block text'
         ));
@@ -188,7 +188,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testRenderWithBothInlineAndNoInlineRadios() {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'optInput1',
             'type' => 'radio',
@@ -211,7 +211,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testAllowsFeedbackInTextField(){
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'username',
             'type' => 'text',

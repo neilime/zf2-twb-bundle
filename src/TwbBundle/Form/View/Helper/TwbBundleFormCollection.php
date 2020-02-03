@@ -2,9 +2,9 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-use Zend\Form\Element\Collection as CollectionElement;
-use Zend\Form\View\Helper\FormCollection;
-use Zend\Form\ElementInterface;
+use Laminas\Form\Element\Collection as CollectionElement;
+use Laminas\Form\View\Helper\FormCollection;
+use Laminas\Form\ElementInterface;
 
 class TwbBundleFormCollection extends FormCollection
 {
@@ -28,7 +28,7 @@ class TwbBundleFormCollection extends FormCollection
 
     /**
      * Render a collection by iterating through all fieldsets and elements
-     * @param \Zend\Form\ElementInterface $oElement
+     * @param \Laminas\Form\ElementInterface $oElement
      * @return string
      */
     public function render(ElementInterface $oElement)
@@ -53,9 +53,9 @@ class TwbBundleFormCollection extends FormCollection
                     $oElementOrFieldset->setOptions($aOptions);
                 }
 
-                if ($oElementOrFieldset instanceof \Zend\Form\FieldsetInterface) {
+                if ($oElementOrFieldset instanceof \Laminas\Form\FieldsetInterface) {
                     $sMarkup .= $oFieldsetHelper($oElementOrFieldset);
-                } elseif ($oElementOrFieldset instanceof \Zend\Form\ElementInterface) {
+                } elseif ($oElementOrFieldset instanceof \Laminas\Form\ElementInterface) {
                 	if ($oElementOrFieldset->getOption('twb-row-open')) {
 						$sMarkup .= '<div class="row">' . "\n";
 					}
@@ -67,7 +67,7 @@ class TwbBundleFormCollection extends FormCollection
 					}
                 }
             }
-            if ($oElement instanceof \Zend\Form\Element\Collection && $oElement->shouldCreateTemplate()) {
+            if ($oElement instanceof \Laminas\Form\Element\Collection && $oElement->shouldCreateTemplate()) {
                 $sMarkup .= $this->renderTemplate($oElement);
             }
         }

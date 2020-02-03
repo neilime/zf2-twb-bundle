@@ -1,9 +1,9 @@
 <?php
 namespace TwbBundle\Form\View\Helper\Factory;
 
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use TwbBundle\Form\View\Helper\TwbBundleFormElement;
 use Interop\Container\ContainerInterface;
 

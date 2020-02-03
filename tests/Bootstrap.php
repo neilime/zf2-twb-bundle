@@ -2,8 +2,8 @@
 
 namespace TwbBundleTest;
 
-use Zend\ServiceManager\ServiceManager;
-use Zend\Mvc\Service;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Mvc\Service;
 
 error_reporting(E_ALL | E_STRICT);
 chdir(__DIR__);
@@ -11,7 +11,7 @@ chdir(__DIR__);
 class Bootstrap {
 
     /**
-     * @var \Zend\ServiceManager\ServiceManager
+     * @var \Laminas\ServiceManager\ServiceManager
      */
     protected static $serviceManager;
 
@@ -37,7 +37,7 @@ class Bootstrap {
         static::initAutoloader();
 
         // Use ModuleManager to load this module and it's dependencies
-        static::$config = \Zend\Stdlib\ArrayUtils::merge(array(
+        static::$config = \Laminas\Stdlib\ArrayUtils::merge(array(
                     'module_listener_options' => array(
                         'module_paths' => array_merge(
                                 $aZf2ModulePaths, explode(PATH_SEPARATOR, (getenv('ZF2_MODULES_TEST_PATHS')? : (defined('ZF2_MODULES_TEST_PATHS') ? ZF2_MODULES_TEST_PATHS : '')))
@@ -61,7 +61,7 @@ class Bootstrap {
     }
 
     /**
-     * @return \Zend\ServiceManager\ServiceManager
+     * @return \Laminas\ServiceManager\ServiceManager
      */
     public static function getServiceManager() {
         return static::$serviceManager;
@@ -90,8 +90,8 @@ class Bootstrap {
             }
             include $sZf2Path . '/Zend/Loader/AutoloaderFactory.php';
         }
-        \Zend\Loader\AutoloaderFactory::factory(array(
-            'Zend\Loader\StandardAutoloader' => array(
+        \Laminas\Loader\AutoloaderFactory::factory(array(
+            'Laminas\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/' . __NAMESPACE__,

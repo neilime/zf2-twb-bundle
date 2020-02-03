@@ -3,9 +3,9 @@
 namespace TwbBundle\View\Helper\Navigation;
 
 use RecursiveIteratorIterator;
-use Zend\View\Helper\Navigation\Menu as ZendMenuHelper;
-use Zend\Navigation\AbstractContainer;
-use Zend\Navigation\Page\AbstractPage;
+use Laminas\View\Helper\Navigation\Menu as ZendMenuHelper;
+use Laminas\Navigation\AbstractContainer;
+use Laminas\Navigation\Page\AbstractPage;
 
 class TwbBundleMenu extends ZendMenuHelper
 {

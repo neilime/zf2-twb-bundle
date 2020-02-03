@@ -3,11 +3,11 @@
 namespace TwbBundle\Form\View\Helper;
 
 use DomainException;
-use Zend\Form\View\Helper\FormRow;
-use Zend\Form\ElementInterface;
-use Zend\Form\LabelAwareInterface;
-use Zend\Form\Element\Button;
-use Zend\Form\Element\Submit;
+use Laminas\Form\View\Helper\FormRow;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\LabelAwareInterface;
+use Laminas\Form\Element\Button;
+use Laminas\Form\Element\Submit;
 
 class TwbBundleFormRow extends FormRow
 {
@@ -111,7 +111,7 @@ class TwbBundleFormRow extends FormRow
      * @param ElementInterface $oElement
      * @return string
      */
-    public function getRowClassFromElement(\Zend\Form\ElementInterface $oElement)
+    public function getRowClassFromElement(\Laminas\Form\ElementInterface $oElement)
     {
         $sRowClass = '';
         if ($sFormGroupSize = $oElement->getOption('twb-form-group-size')) {

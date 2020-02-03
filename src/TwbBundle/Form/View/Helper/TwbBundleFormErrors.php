@@ -2,8 +2,8 @@
 
 namespace TwbBundle\Form\View\Helper;
 
-use Zend\Form\View\Helper\AbstractHelper;
-use Zend\Form\FormInterface;
+use Laminas\Form\View\Helper\AbstractHelper;
+use Laminas\Form\FormInterface;
 
 class TwbBundleFormErrors extends AbstractHelper
 {
@@ -15,7 +15,7 @@ class TwbBundleFormErrors extends AbstractHelper
 
     /**
      * Invoke as function
-     * @param \Zend\Form\FormInterface $oForm
+     * @param \Laminas\Form\FormInterface $oForm
      * @param string $sMessage
      * @param string $bDismissable
      * @return string|null
@@ -40,7 +40,7 @@ class TwbBundleFormErrors extends AbstractHelper
 
     /**
      * Renders the error messages.
-     * @param \Zend\Form\FormInterface $oForm
+     * @param \Laminas\Form\FormInterface $oForm
      * @return string
      */
     public function render(FormInterface $oForm, $sMessage, $bDismissable = false)

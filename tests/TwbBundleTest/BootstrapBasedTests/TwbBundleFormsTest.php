@@ -26,7 +26,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-forms' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-        $oRenderer = new \Zend\View\Renderer\PhpRenderer();
+        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $this->formHelper = $oViewHelperPluginManager->get('form')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
@@ -35,7 +35,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testBasicExample()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-email',
             'attributes' => array(
@@ -82,7 +82,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testInlineForm()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-email',
             'attributes' => array(
@@ -127,7 +127,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testHorizontalform()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-email',
             'attributes' => array(
@@ -168,7 +168,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testHorizontalformButtonGroup()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-email',
             'attributes' => array(
@@ -214,7 +214,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testSupportedControlsform()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-text',
             'attributes' => array(
@@ -278,7 +278,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderMultiCheckboxInlineWithLabel()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'optionsRadios',
             'type' => 'MultiCheckbox',
@@ -303,7 +303,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testStaticControlform()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'static-element',
             'type' => '\TwbBundle\Form\Element\StaticElement',
@@ -328,7 +328,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testControlStatesform()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-text-disabled',
             'attributes' => array(
@@ -338,7 +338,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
             )
         ));
 
-        $oFieldset = new \Zend\Form\Fieldset('fieldset-disabled');
+        $oFieldset = new \Laminas\Form\Fieldset('fieldset-disabled');
         $oForm->add($oFieldset->setAttributes(array('disabled' => true))->add(array(
                     'name' => 'input-text-disabled',
                     'attributes' => array(
@@ -378,7 +378,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormsValidation()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-text-success',
             'attributes' => array(
@@ -422,7 +422,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
     {
 
         //Height sizing
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-text-lg',
             'attributes' => array(
@@ -463,7 +463,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
         $this->assertStringEqualsFile($this->expectedPath . 'forms-control-sizes-height.phtml', $this->formHelper->__invoke($oForm, null));
 
         //Column sizing
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-text-col-lg-2',
             'attributes' => array(
@@ -496,7 +496,7 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormsHelpText()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'input-text',
             'attributes' => array('type' => 'text'),
@@ -514,8 +514,8 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormsErroredInput()
     {
-        $oForm = new \Zend\Form\Form();
-        $oElement = new \Zend\Form\Element\Text('input-text');
+        $oForm = new \Laminas\Form\Form();
+        $oElement = new \Laminas\Form\Element\Text('input-text');
         $oForm->add($oElement
                         ->setMessages(array(
                             'This is an error message',
@@ -538,14 +538,14 @@ class TwbBundleFormsTest extends \PHPUnit_Framework_TestCase
 
     public function testFormWithButtonGroups()
     {
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm
-                ->add(new \Zend\Form\Element\Text('input-text-1'))
-                ->add(new \Zend\Form\Element\Button('input-button-1', array('label' => 'Left', 'button-group' => 'group-1')))
-                ->add(new \Zend\Form\Element\Button('input-button-2', array('label' => 'Right', 'button-group' => 'group-1')))
-                ->add(new \Zend\Form\Element\Button('input-button-3', array('label' => 'Left', 'button-group' => 'group-2')))
-                ->add(new \Zend\Form\Element\Button('input-button-4', array('label' => 'Right', 'button-group' => 'group-2')))
-                ->add(new \Zend\Form\Element\Text('input-text-3'));
+                ->add(new \Laminas\Form\Element\Text('input-text-1'))
+                ->add(new \Laminas\Form\Element\Button('input-button-1', array('label' => 'Left', 'button-group' => 'group-1')))
+                ->add(new \Laminas\Form\Element\Button('input-button-2', array('label' => 'Right', 'button-group' => 'group-1')))
+                ->add(new \Laminas\Form\Element\Button('input-button-3', array('label' => 'Left', 'button-group' => 'group-2')))
+                ->add(new \Laminas\Form\Element\Button('input-button-4', array('label' => 'Right', 'button-group' => 'group-2')))
+                ->add(new \Laminas\Form\Element\Text('input-text-3'));
 
         // Test content
         $this->assertStringEqualsFile($this->expectedPath . 'forms-button-groups.phtml', $this->formHelper->__invoke($oForm));

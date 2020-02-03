@@ -3,9 +3,9 @@
 namespace TwbBundle\View\Helper\Navigation;
 
 
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
-class PluginManager extends \Zend\View\Helper\Navigation\PluginManager
+class PluginManager extends \Laminas\View\Helper\Navigation\PluginManager
 {
     public function __construct($configOrContainerInstance = null, array $v3config = [])
     {

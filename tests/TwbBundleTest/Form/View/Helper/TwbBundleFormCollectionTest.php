@@ -14,28 +14,28 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase {
      */
     public function setUp() {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-        $oRenderer = new \Zend\View\Renderer\PhpRenderer();
+        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $this->formCollectionHelper = $oViewHelperPluginManager->get('formCollection')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
     public function testRenderWithPluginFunctionUnavailable() {
-        $this->formCollectionHelper->setView(new \Zend\View\Renderer\FeedRenderer());
-        $this->assertEquals('', $this->formCollectionHelper->render(new \Zend\Form\Element\Collection(null, array('label' => 'test-element'))));
+        $this->formCollectionHelper->setView(new \Laminas\View\Renderer\FeedRenderer());
+        $this->assertEquals('', $this->formCollectionHelper->render(new \Laminas\Form\Element\Collection(null, array('label' => 'test-element'))));
     }
 
     public function testRenderWithShouldWrap() {
         $this->formCollectionHelper->setShouldWrap(true);
         $this->assertEquals(
-                '<fieldset><legend>test-element</legend></fieldset>', $this->formCollectionHelper->render(new \Zend\Form\Element\Collection(null, array('label' => 'test-element')))
+                '<fieldset><legend>test-element</legend></fieldset>', $this->formCollectionHelper->render(new \Laminas\Form\Element\Collection(null, array('label' => 'test-element')))
         );
     }
 
     public function testRenderWithShouldCreateTemplate() {
-        $oElement = new \Zend\Form\Element('test');
-        $oForm = new \Zend\Form\Form();
+        $oElement = new \Laminas\Form\Element('test');
+        $oForm = new \Laminas\Form\Form();
         $oForm->add(array(
             'name' => 'test-collection',
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'options' => array(
                 'should_create_template' => true,
                 'target_element' => $oElement
@@ -47,7 +47,7 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testRenderInlineFieldsetWithAlreadyDefinedClass() {
-        $oFieldset = new \Zend\Form\Fieldset('inline-fieldset', array('twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
+        $oFieldset = new \Laminas\Form\Fieldset('inline-fieldset', array('twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE));
         $oFieldset->setAttributes(array('id' => 'inline-fieldset', 'class' => 'test-class'));
 
         $oFieldset->add(array(
@@ -60,12 +60,12 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase {
             'options' => array('label' => '')
         ));
 
-        $oCollection = new \Zend\Form\Element\Collection('inline-collection', array(
+        $oCollection = new \Laminas\Form\Element\Collection('inline-collection', array(
             'twb-layout' => \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_INLINE
         ));
         $oCollection->add($oFieldset)->setAttributes(array('id' => 'inline-collection'));
 
-        $oForm = new \Zend\Form\Form();
+        $oForm = new \Laminas\Form\Form();
         $oForm->add($oCollection);
 
         $this->assertStringEqualsFile(

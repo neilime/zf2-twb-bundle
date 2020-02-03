@@ -29,7 +29,7 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
     public function setUp() {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-glyphicons' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-        $oRenderer = new \Zend\View\Renderer\PhpRenderer();
+        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
 
         //Initialize glyphicon helper
         $this->glyphiconHelper = $oViewHelperPluginManager->get('glyphicon')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
@@ -52,30 +52,30 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
         $sContent = '';
 
         //Align left
-        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-left'))) . "\n";
+        $sContent .= $this->formButtonHelper->__invoke(new \Laminas\Form\Element\Button('align-left', array('glyphicon' => 'align-left'))) . "\n";
 
         //Align center
-        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-center'))) . "\n";
+        $sContent .= $this->formButtonHelper->__invoke(new \Laminas\Form\Element\Button('align-left', array('glyphicon' => 'align-center'))) . "\n";
 
         //Align right
-        $sContent .= $this->formButtonHelper->__invoke(new \Zend\Form\Element\Button('align-left', array('glyphicon' => 'align-right'))) . "\n";
+        $sContent .= $this->formButtonHelper->__invoke(new \Laminas\Form\Element\Button('align-left', array('glyphicon' => 'align-right'))) . "\n";
 
         //Large
-        $oButton = new \Zend\Form\Element\Button('large-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
+        $oButton = new \Laminas\Form\Element\Button('large-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
         $oButton->setAttribute('class', 'btn-lg');
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Default
-        $oButton = new \Zend\Form\Element\Button('button-default', array('label' => 'Star', 'glyphicon' => 'star'));
+        $oButton = new \Laminas\Form\Element\Button('button-default', array('label' => 'Star', 'glyphicon' => 'star'));
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Small
-        $oButton = new \Zend\Form\Element\Button('small-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
+        $oButton = new \Laminas\Form\Element\Button('small-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
         $oButton->setAttribute('class', 'btn-sm');
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Extra small
-        $oButton = new \Zend\Form\Element\Button('extra-small-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
+        $oButton = new \Laminas\Form\Element\Button('extra-small-button-default', array('label' => 'Star', 'glyphicon' => 'star'));
         $oButton->setAttribute('class', 'btn-xs');
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 

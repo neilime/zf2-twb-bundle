@@ -11,7 +11,7 @@ class TwbBundleLabelTest extends \PHPUnit_Framework_TestCase{
 	 */
 	public function setUp(){
 		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
+		$oRenderer = new \Laminas\View\Renderer\PhpRenderer();
 		$this->labelHelper = $oViewHelperPluginManager->get('label')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
 

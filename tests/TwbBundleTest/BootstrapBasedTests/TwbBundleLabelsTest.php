@@ -21,7 +21,7 @@ class TwbBundleLabelsTest extends \PHPUnit_Framework_TestCase{
 	public function setUp(){
 		$this->expectedPath = __DIR__.DIRECTORY_SEPARATOR.'../../_files/expected-labels'.DIRECTORY_SEPARATOR;
 		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
+		$oRenderer = new \Laminas\View\Renderer\PhpRenderer();
 		$this->labelHelper = $oViewHelperPluginManager->get('label')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
 	}
 

@@ -1,8 +1,8 @@
 <?php
 namespace TwbBundle\Options\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use TwbBundle\Options\ModuleOptions;
 use Interop\Container\ContainerInterface;
 
